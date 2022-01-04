@@ -1,0 +1,17 @@
+.counter {
+    background-color: antiquewhite;
+    padding: 20px;
+    width: 150px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.count-number {
+    color: black;
+}
+
+.btn-decrement,
+.btn-increment {
+    width: 40px;
+}
+
