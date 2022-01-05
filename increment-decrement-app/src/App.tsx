@@ -11,7 +11,7 @@ class App extends React.Component {
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <p>Hello Vite + React! bellow is demo increment/decrement application</p>
-          <HandleNumber/>
+          <HandleNumber />
           <p>
             Edit <code>App.tsx</code> and save to test HMR updates.
           </p>

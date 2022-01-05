@@ -1,4 +1,4 @@
-.counter {
+.Counter {
   background-color: antiquewhite;
   padding: 20px;
   width: 150px;
@@ -6,11 +6,11 @@
   justify-content: space-between;
 }
 
-.count-number {
+.Count-number {
   color: black;
 }
 
-.btn-decrement,
-.btn-increment {
+.Button-decrement,
+.Button-increment {
   width: 40px;
 }
