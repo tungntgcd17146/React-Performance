@@ -7,18 +7,18 @@ type PropsType = {
   onIncrement: MouseEventHandler<HTMLButtonElement>;
 };
 
-export function Counter(props: PropsType): JSX.Element {
-  const { onDecrement, number, onIncrement } = props;
+export function Counter({ onDecrement, number, onIncrement }: PropsType): JSX.Element {
 
   return (
-    <div className="Counter">
-      <button onClick={onDecrement} className="Button-decrement">
+    <div className="counter">
+      <button onClick={onDecrement} className="button-decrement">
         -
       </button>
-      <span className="Count-number">{number}</span>
-      <button onClick={onIncrement} className="Button-increment">
+      <span className="count-number">{number}</span>
+      <button onClick={onIncrement} className="button-increment">
         +
       </button>
     </div>
   );
 }
+

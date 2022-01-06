@@ -1,23 +1,23 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { HandleNumber } from './components/HandleNumber/Index';
+import { Handler } from './components/HandleNumber/Index';
 
 class App extends React.Component {
 
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
+      <div className="app">
+        <header className="app-header">
+          <img src={logo} className="app-logo" alt="logo" />
           <p>Hello Vite + React! bellow is demo increment/decrement application</p>
-          <HandleNumber />
+          <Handler />
           <p>
             Edit <code>App.tsx</code> and save to test HMR updates.
           </p>
           <p>
             <a
-              className="App-link"
+              className="app-link"
               href="https://reactjs.org"
               target="_blank"
               rel="noopener noreferrer"
@@ -26,7 +26,7 @@ class App extends React.Component {
             </a>
             {' | '}
             <a
-              className="App-link"
+              className="app-link"
               href="https://vitejs.dev/guide/features.html"
               target="_blank"
               rel="noopener noreferrer"

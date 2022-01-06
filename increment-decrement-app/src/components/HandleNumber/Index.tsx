@@ -3,7 +3,7 @@ import { Counter } from '../CountNumber/Index';
 
 type State = { number: number };
 
-export class HandleNumber extends React.Component<{}, State> {
+export class Handler extends React.Component<{}, State> {
     
   state: State = {
     number: 29
