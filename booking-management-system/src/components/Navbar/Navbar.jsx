@@ -6,7 +6,7 @@ export function Navbar() {
     return (
         <nav className="navbar navbar-light bg-light">
             <div className="container">
-                <span className="navbar-brand mb-0 h1">Admin</span>
+                <span className="col-6 navbar-brand mb-0 h1">Administrator</span>
                 <Search />
                 <SwitchMode />
             </div>

@@ -1,5 +1,6 @@
 import { Navbar } from '../Navbar/Navbar'
 import { SideBar } from '../SideBar/SideBar'
+import { BookingContent } from '../BookingContent/BookingContent'
 
 import './App.css'
 import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css'
@@ -18,7 +19,7 @@ function App() {
             <SideBar />
           </div>
           <div className='col-sm-12 col-md-8'>
-            {/* <BookingContent /> */}
+            <BookingContent />
           </div>
         </div>
       </div>
