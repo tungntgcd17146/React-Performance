@@ -6,14 +6,14 @@ import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css'
 function App() {
 
   return (
-    <>
-    <Navbar />
     <div className="App">
-      <header className="App-header">
-        <p>Hello Vite + React! Thanh Tung</p>
-      </header>
+    <header>
+      <Navbar />
+    </header>
+    <main className="App-main">
+      <p>Hello Vite + React! Thanh Tung</p>
+    </main>
     </div>
-    </>
     
   )
 }

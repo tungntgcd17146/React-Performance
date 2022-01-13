@@ -1,5 +1,6 @@
 import React from 'react'
 import { Search } from './Search/Search'
+import { SwitchMode } from './SwitchMode/SwitchMode'
 
 export function Navbar() {
     return (
@@ -7,10 +8,7 @@ export function Navbar() {
             <div className="container-fluid">
                 <span className="navbar-brand mb-0 h1">Admin</span>
                 <Search />
-                <div className="form-check form-switch">
-                    <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" />
-                    <label className="form-check-label" for="flexSwitchCheckChecked">Mode</label>
-                </div>
+                <SwitchMode />
             </div>
         </nav>
     )
