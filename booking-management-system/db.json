@@ -1,8 +1,57 @@
 {
-    "room-category": [
-      { "id": 1, "title": "json-server", "author": "typicode" }
-    ],
-    "booking-infos": [
-      { "id": 1, "body": "some comment", "postId": 1 }
-    ]
+    "roomCategory": {
+      "byId" : {
+        "roomCategory1" : {
+          "id" : 1,
+          "roomName" : "Deluxe Room",
+          "Price" : "20$"
+        },
+        "roomCategory2" : {
+          "id" : 2,
+          "roomName" : "Luxury Room",
+          "Price" : "50$"
+        },
+        "roomCategory3" : {
+          "id" : 3,
+          "roomName" : "Executive Suite Room",
+          "Price" : "100$"
+        }
+      },
+      "allIds" : ["roomCategory1", "roomCategory2", "roomCategory3"]
+    },
+    "bookingInfos": {
+      "byId" : {
+        "bookingInfo1" : {
+          "id" : 1,
+          "name" : "TungNguyen",
+          "email" : "tung@gmail.com.vn",
+          "phone" : "053123123",
+          "checkIn" : "",
+          "checkOut" : "",
+          "roomNumber" : 1,
+          "roomCategory" : ["roomCategory1"]
+        },
+        "bookingInfo2" : {
+          "id" : 2,
+          "name" : "BaoNguyen",
+          "email" : "BaoNguyen@gmail.com.vn",
+          "phone" : "053123123",
+          "checkIn" : "",
+          "checkOut" : "",
+          "roomNumber" : 3,
+          "roomCategory" : ["roomCategory2"]
+        },
+        "bookingInfo3" : {
+          "id" : 3,
+          "name" : "TungThanh",
+          "email" : "TungThanh@gmail.com.vn",
+          "phone" : "053123123",
+          "checkIn" : "",
+          "checkOut" : "",
+          "roomNumber" : 2,
+          "roomCategory" : ["roomCategory3"]
+        }
+      },
+      "allIds" : ["bookingInfo1", "bookingInfo2", "bookingInfo3"]
+    }
   }

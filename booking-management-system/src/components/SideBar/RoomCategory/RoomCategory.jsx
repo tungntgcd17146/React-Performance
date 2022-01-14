@@ -1,6 +1,7 @@
 import React from 'react'
 
 import style from './RoomCategory.module.css'
+import '../../../../public/images/deluxe-king-1.jpg'
 
 export const RoomCategory = () => {
     return (
@@ -9,7 +10,7 @@ export const RoomCategory = () => {
                 <div className="card mb-3">
                     <div className="row g-0">
                         <div className="col-md-4">
-                            <img src="..." className="img-fluid rounded-start" alt="..." />
+                            <img src="../../../../public/images/Deluxe-02.jpg" className="img-fluid rounded-start" alt="..." />
                         </div>
                         <div className="col-md-8">
                         <div className="card-body">
@@ -23,7 +24,7 @@ export const RoomCategory = () => {
                 <div className="card mb-3">
                     <div className="row g-0">
                         <div className="col-md-4">
-                            <img src="..." className="img-fluid rounded-start" alt="..." />
+                            <img src="../../../../public/images/Deluxe-02.jpg" className="img-fluid rounded-start" alt="..." />
                         </div>
                         <div className="col-md-8">
                         <div className="card-body">
@@ -37,7 +38,7 @@ export const RoomCategory = () => {
                 <div className="card mb-3">
                     <div className="row g-0">
                         <div className="col-md-4">
-                            <img src="..." className="img-fluid rounded-start" alt="..." />
+                            <img src="../../../../public/images/Deluxe-02.jpg" className="img-fluid rounded-start" alt="..." />
                         </div>
                         <div className="col-md-8">
                         <div className="card-body">
