@@ -3,9 +3,9 @@ import { Search } from './Search/Search'
 import { SwitchMode } from './SwitchMode/SwitchMode'
 
 import { useContext } from 'react'
-import { ThemeContext } from '../../Contexts/ModeContext'
+import { ThemeContext } from '../../contexts/ThemeModeContext'
 
-export function Navbar() {
+export const Navbar = () => {
     const context = useContext(ThemeContext)
 
     return (

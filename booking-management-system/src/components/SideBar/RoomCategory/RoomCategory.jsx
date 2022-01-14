@@ -2,7 +2,7 @@ import React from 'react'
 
 import style from './RoomCategory.module.css'
 
-export function RoomCategory() {
+export const RoomCategory = () => {
     return (
         <div className={`mt-3 ${style.color} ${style.heightContent}`}>
             <div className="row mt-3">

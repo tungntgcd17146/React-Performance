@@ -1,6 +1,6 @@
 import React from 'react'
 
-export function Search() {
+export const Search = () => {
     return (
         <form className="d-flex">
             <input 

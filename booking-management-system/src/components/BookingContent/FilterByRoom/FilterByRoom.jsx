@@ -1,6 +1,6 @@
 import React from 'react'
 
-export function FilterByRoom() {
+export const FilterByRoom = () => {
     return (
         <div className="col-3">
             <label className="form-label ">Email address</label>

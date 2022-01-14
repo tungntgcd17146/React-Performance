@@ -1,6 +1,6 @@
 import React from 'react'
 
-export function ViewMode() {
+export const ViewMode = () => {
     return (
         <div className="col-3 form-check form-switch">
             <label className="form-check-label" htmlFor="flexSwitchCheckChecked">View</label>

@@ -3,13 +3,17 @@ import { SideBar } from '../SideBar/SideBar'
 import { BookingContent } from '../BookingContent/BookingContent'
 
 import { useContext } from 'react'
-import { ThemeContext } from '../../Contexts/ModeContext'
+import { ThemeContext } from '../../contexts/ThemeModeContext'
 
 import './App.css'
 import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css'
 
-function App() {
-  const context = useContext(ThemeContext)
+type context = {
+  theme: string
+};
+
+const App = () => {
+  const context: context = useContext(ThemeContext)
 
   return (
     <div className={`app ${context.theme}`}>

@@ -1,6 +1,6 @@
 import React from 'react'
 
-export function FilterByPrice() {
+export const FilterByPrice = () => {
     return (
         <div className="col-6">
             <label htmlFor="customRange2" className="form-label">Example range</label>

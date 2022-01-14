@@ -2,7 +2,7 @@ import React from 'react'
 
 import style from './BookingInfos.module.css'
 
-export function BookingInfos() {
+export const BookingInfos = () => {
     return (
         <div className={`row mt-5 ${style.color}`}>
             <div className="col-4 mb-3">
