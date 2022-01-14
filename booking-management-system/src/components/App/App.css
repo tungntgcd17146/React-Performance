@@ -2,12 +2,14 @@
   text-align: center;
 } */
 
-.App-main {
+.app-main {
   background-color: white;
   color: black;
+  font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 .dark {
-  background-color: rgb(102, 102, 102);
+  background-color: #18191a;
+  color: white
 }
 
