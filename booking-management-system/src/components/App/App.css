@@ -1,0 +1,15 @@
+/* .App {
+  text-align: center;
+} */
+
+.app-main {
+  background-color: white;
+  color: black;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.dark {
+  background-color: #18191a;
+  color: white
+}
+
