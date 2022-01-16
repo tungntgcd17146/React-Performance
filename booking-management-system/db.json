@@ -4,19 +4,22 @@
       "id" : 1,
       "rommImage": "",
       "roomName" : "Deluxe Room",
-      "Price" : "20$"
+      "totalRoom": 15,
+      "price" : "20$"
     },
     {
       "id" : 2,
       "rommImage": "",
       "roomName" : "Luxury Room",
-      "Price" : "50$"
+      "totalRoom": 10,
+      "price" : "50$"
     },
     {
       "id" : 3,
       "rommImage": "",
       "roomName" : "Executive Suite Room",
-      "Price" : "100$"
+      "totalRoom": 5,
+      "price" : "100$"
     }
   ],
   "bookingInfos": [
@@ -33,7 +36,7 @@
           "id" : 1,
           "rommImage": "",
           "roomName" : "Deluxe Room",
-          "Price" : "20$"
+          "price" : "20$"
         }
       ]
     },
@@ -50,7 +53,7 @@
           "id" : 2,
           "rommImage": "",
           "roomName" : "Luxury Room",
-          "Price" : "50$"
+          "price" : "50$"
         }
       ]
     },
@@ -67,7 +70,7 @@
           "id" : 3,
           "rommImage": "",
           "roomName" : "Executive Suite Room",
-          "Price" : "100$"
+          "price" : "100$"
         }
       ]
     }

@@ -8,8 +8,9 @@ import '../../../../public/images/deluxe-king-1.jpg'
 
 type room = {
     id: number,
-    Price: string,
-    roomName: string
+    price: string,
+    roomName: string,
+    totalRoom: number
 }
 
 export const RoomCategory = () => {
@@ -43,9 +44,11 @@ export const RoomCategory = () => {
                     </div>
                     <div className="col-md-8">
                     <div className="card-body">
-                            <h5 className="card-title">{room.Price}</h5>
-                            <p className="card-text">{room.roomName}</p>
-                            <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
+                            <h5 className="card-title">{room.roomName}</h5>
+                            <p className="card-text">{room.price}</p>
+                            <p className="card-text"><small className="text-muted">Room available: {room.totalRoom} room</small></p>
+                            <button className="btn btn-outline-primary mb-3">Edit</button>
+                            <button className={`${style.button} btn btn-outline-danger mb-3`}>Delete</button>
                     </div>
                     </div>
                 </div>
@@ -54,9 +57,12 @@ export const RoomCategory = () => {
     })
 
     return (
-        <div className={`mt-3 ${style.color} ${style.heightContent}`}>
-            <div className="row mt-3">
-                {renderCategory}
+        <div className="mt-3">
+            <h2>Room Category</h2>
+            <div className={`mt-3 ${style.color} ${style.heightContent}`}>
+                <div className="row mt-3">
+                    {renderCategory}
+                </div>
             </div>
         </div>
     )
