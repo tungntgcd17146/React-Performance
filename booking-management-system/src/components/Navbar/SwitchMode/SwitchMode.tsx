@@ -3,8 +3,13 @@ import React from 'react'
 import { useContext } from 'react'
 import { ThemeContext } from '../../../contexts/ThemeModeContext'
 
+type context = {
+    theme: string
+    toggleTheme: () => void
+  };
+
 export const SwitchMode = () => {
-    const context = useContext(ThemeContext)
+    const context: context = useContext(ThemeContext)
 
     return (
         <div className="form-check form-switch">

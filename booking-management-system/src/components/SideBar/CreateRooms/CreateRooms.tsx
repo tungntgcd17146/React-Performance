@@ -1,7 +1,7 @@
-import React from 'react'
-
 import { useContext } from 'react'
 import { ThemeContext } from '../../../contexts/ThemeModeContext'
+
+
 
 export const CreateRooms = () => {
     const context = useContext(ThemeContext)
