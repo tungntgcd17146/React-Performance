@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 
-import api from '../../../api/contents.js'
+import api from '../../../api/index.js'
 
 import style from './RoomCategory.module.css'
 import '../../../../public/images/deluxe-king-1.jpg'
