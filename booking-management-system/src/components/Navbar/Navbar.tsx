@@ -5,15 +5,11 @@ import { SwitchMode } from './SwitchMode/SwitchMode'
 import { useContext } from 'react'
 import { ThemeContext } from '../../contexts/ThemeModeContext'
 
-type context = {
-    theme: string
-  };
 
-export const Navbar = () => {
-    const context: context = useContext(ThemeContext)
+export const Navbar = ({mode}) => {
 
     return (
-        <nav className={`navbar navbar-${context.theme} bg-${context.theme}`}>
+        <nav className={`navbar navbar-${mode.theme} bg-${mode.theme}`}>
             <div className="container">
                 <span className="col-6 navbar-brand mb-0 h1">ADMINISTRATOR</span>
                 <Search />

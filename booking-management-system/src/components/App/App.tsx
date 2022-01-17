@@ -18,7 +18,7 @@ const App = () => {
   return (
     <div className={`app ${context.theme}`}>
       <header>
-        <Navbar />
+        <Navbar mode={context} />
       </header>
       <main className={`app-main ${context.theme}`}>
         <div className='container mt-3'>

@@ -23,7 +23,9 @@ export const RoomCategory = () => {
         return response.data;
     }
 
+
     useEffect(() => {
+
         const getRoomCategory = async () => {
             const allRoom = await retrieveCategory();
             if (allRoom) {
