@@ -1,47 +1,44 @@
-import { useContext, useRef, useState, useEffect } from 'react'
+import { useContext, useRef } from 'react'
 import { ThemeContext } from '../../../contexts/ThemeModeContext'
 
-import { useReducer } from 'react'
-import { init } from '../../../reducer/rooms/reducer'
+import { useRoom } from '../../../utils/hooks/hooks'
+import { addRoom } from '../../../reducer/rooms/actions'
 
 import api from '../../../api/index.js'
-
 
 export const CreateRooms = () => {
 
     const context = useContext(ThemeContext)
+
+    const [state, dispatch] = useRoom()
 
     const nameRef = useRef(null)
     const priceRef = useRef(null)
     const availableRef = useRef(null)
     const imageRef = useRef(null)
 
-    // const [state, dispath] = useReducer(reducer, init)
-
     const handleSubmit = async () => {
 
-        const postRoom = {
-            "rommImage": imageRef.current.value, 
-            "roomName": nameRef.current.value,
-            "totalRoom": availableRef.current.value,
-            "price": priceRef.current.value
-        }
+        // const postRoom = {
+        //     "rommImage": imageRef.current.value, 
+        //     "roomName": nameRef.current.value,
+        //     "totalRoom": availableRef.current.value,
+        //     "price": priceRef.current.value
+        // }
 
-        await api.post("/roomCategory", postRoom)
+        // dispatch(addRoom(postRoom))
 
-        console.log([
-            nameRef.current.value, 
-            priceRef.current.value, 
-            availableRef.current.value,
-            imageRef.current.value
-        ])
-        nameRef.current.value = "";
-        priceRef.current.value = "";
-        availableRef.current.value = "";
-        imageRef.current.value = "";
+        // await api.post("/roomCategory", postRoom)
+
+        // nameRef.current.value = "";
+        // priceRef.current.value = "";
+        // availableRef.current.value = "";
+        // imageRef.current.value = "";
         
-        nameRef.current.focus()
+        // nameRef.current.focus()
     }
+
+    console.log(state)
 
     return (
         <div className="row mt-3">
@@ -85,11 +82,11 @@ export const CreateRooms = () => {
                 placeholder="name@example.com" 
                 />
             </div>
-            <div className="col-6">
+            <div className="col-12">
                 <button 
                 onClick={handleSubmit}
                 // type="submit" 
-                className="btn btn-outline-success mb-3">Submit</button>
+                className="btn btn-outline-success mb-3 w-50">Submit</button>
             </div>
         </div>
     )

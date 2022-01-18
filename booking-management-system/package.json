@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
-    "start": "json-server -p 3003 -w db.json",
+    "start": "json-server -p 3003 -w src/assets/db.json",
     "build": "tsc && vite build",
     "preview": "vite preview",
     "test": "yarn run jest -env=jsdom",

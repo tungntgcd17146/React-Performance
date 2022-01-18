@@ -1,15 +1,8 @@
-import {  FETCH_ROOM, SET_ROOM, ADD_ROOM, DELETE_ROOM } from "../../constants/roomCategory"
+import {  FETCH_ROOM, ADD_ROOM, DELETE_ROOM } from "../../constants/roomCategory"
 
 export const fetchRoom = (payload) => {
     return {
         type: FETCH_ROOM,
-        payload: payload
-    }
-}
-
-export const setRoom = (payload) => {
-    return {
-        type: SET_ROOM,
         payload: payload
     }
 }

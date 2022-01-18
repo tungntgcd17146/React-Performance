@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { CreateRooms } from './CreateRooms/CreateRooms'
+import { CreateRooms } from './CreateRoom/CreateRoom'
 import { RoomCategory } from './RoomCategory/RoomCategory'
 
 import RoomsProvider from '../../contexts/RoomsContext'
