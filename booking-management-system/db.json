@@ -20,27 +20,6 @@
       "roomName": "Executive Suite Room",
       "totalRoom": 5,
       "price": "100$"
-    },
-    {
-      "rommImage": "",
-      "roomName": "asdasd",
-      "totalRoom": "23",
-      "price": "12",
-      "id": 4
-    },
-    {
-      "rommImage": "",
-      "roomName": "asdasd",
-      "totalRoom": "asdasd",
-      "price": "asdasd",
-      "id": 5
-    },
-    {
-      "rommImage": "",
-      "roomName": "asdasd",
-      "totalRoom": "asdasdasd",
-      "price": "asdasd",
-      "id": 6
     }
   ],
   "bookingInfos": [

@@ -2,7 +2,7 @@ import { useContext, useRef, useState, useEffect } from 'react'
 import { ThemeContext } from '../../../contexts/ThemeModeContext'
 
 import { useReducer } from 'react'
-import { init } from '../../../reducer/sidebar/reducer'
+import { init } from '../../../reducer/rooms/reducer'
 
 import api from '../../../api/index.js'
 
