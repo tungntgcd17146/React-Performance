@@ -17,25 +17,28 @@ export const CreateRooms = () => {
     const availableRef = useRef(null)
     const imageRef = useRef(null)
 
+    // console.log(state.allIds)
+
     const handleSubmit = async () => {
 
-        // const postRoom = {
-        //     "rommImage": imageRef.current.value, 
-        //     "roomName": nameRef.current.value,
-        //     "totalRoom": availableRef.current.value,
-        //     "price": priceRef.current.value
-        // }
+        const postRoom = {
+            "id": state.allIds.length + 1,
+            "rommImage": imageRef.current.value, 
+            "roomName": nameRef.current.value,
+            "totalRoom": availableRef.current.value,
+            "price": priceRef.current.value
+        }
 
-        // dispatch(addRoom(postRoom))
+        dispatch(addRoom(postRoom))
 
-        // await api.post("/roomCategory", postRoom)
+        await api.post("/roomCategory", postRoom)
 
-        // nameRef.current.value = "";
-        // priceRef.current.value = "";
-        // availableRef.current.value = "";
-        // imageRef.current.value = "";
+        nameRef.current.value = "";
+        priceRef.current.value = "";
+        availableRef.current.value = "";
+        imageRef.current.value = "";
         
-        // nameRef.current.focus()
+        nameRef.current.focus()
     }
 
     console.log(state)

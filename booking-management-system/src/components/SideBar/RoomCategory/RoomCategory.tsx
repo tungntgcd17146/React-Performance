@@ -13,6 +13,8 @@ export const RoomCategory = () => {
 
     const [state, dispatch] = useRoom()
 
+    const { byId, allIds } = state
+
     //Retrieve Room category
     const retrieveCategory = async () => {
         const response = await api.get("/roomCategory")
@@ -31,7 +33,6 @@ export const RoomCategory = () => {
         getRoomCategory();
     }, [])
 
-    const { byId, allIds } = state
 
     const renderCategory = allIds.map((id: Number, index) => {
         

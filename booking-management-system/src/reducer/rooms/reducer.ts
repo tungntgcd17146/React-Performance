@@ -15,23 +15,40 @@ const reducer = (state, action) => {
             const newById = convertArrayToObject(rooms, 'id')
             const newIds = rooms.map(room => room.id)
             
+            // state.byId = newById,
+            // state.allIds = newIds
+
             return {
-                ...state,
                 byId: newById,
                 allIds: newIds
             }
+            // break;
         
         case ADD_ROOM: 
-            const addRoom = action.payload
+            const newRoom = action.payload
+            // const newById = state.byId
+            // const newId = Object.keys(arr).length + 1
+
+            state.byId[state.allIds.length + 1] = newRoom
+            
+            // state.byId[state.allIds.length + 1]= newRoom,
+            // state.allIds = [...state.allIds, state.allIds.length + 1]
+
             return {
-                ...state,
-                allIds: [...state.roomsAllId, action.payload]
+                byId: {
+                    ...state.byId
+                },
+                allIds: [...state.allIds, state.allIds.length + 1]
             };
+            // break;
         
         case DELETE_ROOM:
-            return {
-            }
-        
+
+            const roomId = action.payload    
+
+            // return {
+            // }
+            
         default:
             throw new Error("invalid action")
     }

@@ -1,10 +1,10 @@
 import { useReducer, createContext } from "react";
 import reducer, { init } from "../reducer/rooms/reducer"
 
-type RoomsContext = [
-    state:  [],
-    dispatch: () => void
-]
+// type RoomsContext = [
+//     state:  [],
+//     dispatch: () => void
+// ]
 
 export const RoomsContext = createContext({})
 
