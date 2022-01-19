@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useRoom } from '../../../utils/hooks/hooks'
-import { fetchRoom } from '../../../reducer/rooms/actions'
+import { fetchRoom, deleteRoom } from '../../../reducer/rooms/actions'
 
 import api from '../../../api/index.js'
 
@@ -21,6 +21,15 @@ export const RoomCategory = () => {
         return response.data;
     }
 
+    //Delete room category 
+    const deleteCategory = async (id) => {
+        if (window.confirm('You sure to delete?')){
+            dispatch(deleteRoom(id))
+            await api.delete(`/roomCategory/${id}`)
+            console.log(state)
+        }
+    }
+
 
     useEffect(() => {
 
@@ -33,7 +42,7 @@ export const RoomCategory = () => {
         getRoomCategory();
     }, [])
 
-
+    console.log('render:',state)
     const renderCategory = allIds.map((id: Number, index) => {
         
         return (
@@ -49,7 +58,7 @@ export const RoomCategory = () => {
                             <p className="card-text">{byId[id].price}</p>
                             <p className="card-text"><small className="text-muted">Room available: {byId[id].totalRoom} room</small></p>
                             <button className="btn btn-outline-primary mb-3">Edit</button>
-                            <button className={`${style.button} btn btn-outline-danger mb-3`}>Delete</button>
+                            <button onClick={() => deleteCategory(id)} className={`${style.button} btn btn-outline-danger mb-3`}>Delete</button>
                     </div>
                     </div>
                 </div>

@@ -10,13 +10,12 @@ export const init = {
 //Reducer
 const reducer = (state, action) => {
     switch (action.type) {
+        
         case FETCH_ROOM:
+            
             const rooms = action.payload
             const newById = convertArrayToObject(rooms, 'id')
             const newIds = rooms.map(room => room.id)
-            
-            // state.byId = newById,
-            // state.allIds = newIds
 
             return {
                 byId: newById,
@@ -25,29 +24,29 @@ const reducer = (state, action) => {
             // break;
         
         case ADD_ROOM: 
-            const newRoom = action.payload
-            // const newById = state.byId
-            // const newId = Object.keys(arr).length + 1
 
+            const newRoom = action.payload
             state.byId[state.allIds.length + 1] = newRoom
             
-            // state.byId[state.allIds.length + 1]= newRoom,
-            // state.allIds = [...state.allIds, state.allIds.length + 1]
-
             return {
                 byId: {
                     ...state.byId
                 },
                 allIds: [...state.allIds, state.allIds.length + 1]
             };
-            // break;
         
         case DELETE_ROOM:
 
             const roomId = action.payload    
-
-            // return {
-            // }
+            delete state.byId[roomId]
+            state.allIds.splice(roomId - 1, 1)
+            
+            return {
+                byId: {
+                    ...state.byId
+                },
+                allIds: [...state.allIds]
+            }
             
         default:
             throw new Error("invalid action")

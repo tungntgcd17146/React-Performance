@@ -28,23 +28,27 @@ export const CreateRooms = () => {
             "totalRoom": availableRef.current.value,
             "price": priceRef.current.value
         }
+        if (
+            nameRef.current.value != "" &&
+            priceRef.current.value != "" &&
+            availableRef.current.value != ""
+        ) {
+            dispatch(addRoom(postRoom))
+            await api.post("/roomCategory", postRoom)
 
-        dispatch(addRoom(postRoom))
-
-        await api.post("/roomCategory", postRoom)
-
-        nameRef.current.value = "";
-        priceRef.current.value = "";
-        availableRef.current.value = "";
-        imageRef.current.value = "";
-        
-        nameRef.current.focus()
+            nameRef.current.value = "";
+            priceRef.current.value = "";
+            availableRef.current.value = "";
+            imageRef.current.value = "";
+            
+            nameRef.current.focus()
+        }
     }
 
-    console.log(state)
+    // console.log(state)
 
     return (
-        <div className="row mt-3">
+        <form className="row mt-3">
             <div className="col-12 mb-3">
                 <label htmlFor="exampleFormControlInput1" className={`form-label ${context.theme}`}>Room type:</label>
                 <input 
@@ -53,26 +57,29 @@ export const CreateRooms = () => {
                 className="form-control" 
                 id="exampleFormControlInput1" 
                 placeholder="name@example.com" 
+                required
                 />
             </div>
             <div className="col-12 mb-3">
                 <label htmlFor="exampleFormControlInput1" className={`form-label ${context.theme}`}>Price for 1 night:</label>
                 <input 
                 ref={priceRef}
-                type="email" 
+                type="text" 
                 className="form-control" 
                 id="exampleFormControlInput1" 
                 placeholder="name@example.com" 
+                required
                 />
             </div>
             <div className="col-12 mb-3">
                 <label htmlFor="exampleFormControlInput1" className={`form-label ${context.theme}`}>Room available:</label>
                 <input 
                 ref={availableRef}
-                type="email" 
+                type="text" 
                 className="form-control" 
                 id="exampleFormControlInput1" 
                 placeholder="name@example.com" 
+                required
                 />
             </div>
             <div className="col-12 mb-3">
@@ -88,9 +95,9 @@ export const CreateRooms = () => {
             <div className="col-12">
                 <button 
                 onClick={handleSubmit}
-                // type="submit" 
+                type="submit" 
                 className="btn btn-outline-success mb-3 w-50">Submit</button>
             </div>
-        </div>
+        </form>
     )
 }
