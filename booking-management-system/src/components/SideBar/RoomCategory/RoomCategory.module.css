@@ -1,12 +1,12 @@
 .color {
-    color: black;
+  color: black;
 }
 
 .heightContent {
-    height: 500px;
-    overflow-y: scroll;
+  height: 500px;
+  overflow-y: scroll;
 }
 
 .button {
-    margin-left: 20px;
+  margin-left: 0px;
 }

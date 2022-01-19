@@ -1,42 +1,38 @@
-import { useState, createContext, useEffect } from "react";
+import { useState, createContext, useEffect } from 'react';
 
 type ThemeContext = {
-  theme: string,
-  toggleTheme: () => void
+  theme: string;
+  toggleTheme: () => void;
 };
-
 
 const ThemeContext = createContext<ThemeContext>({
   theme: '',
-  toggleTheme : () => {}
-})
+  toggleTheme: () => {}
+});
 
-const ThemeProvider = ( {children} ) => {
-    const [theme, setTheme] = useState('light')
+const ThemeProvider = ({ children }) => {
+  const [theme, setTheme] = useState('light');
 
-    useEffect(() => {
-        if (theme === 'dark') {
-          document.body.style.backgroundColor = '#18191a';
-        } else {
-          document.body.style.backgroundColor = 'white';
-        }
-      }, [theme]);
-    
-
-    const toggleTheme = () => {
-        setTheme(theme === 'light' ? 'dark' : 'light')
+  useEffect(() => {
+    if (theme === 'dark') {
+      document.body.style.backgroundColor = '#18191a';
+    } else {
+      document.body.style.backgroundColor = 'white';
     }
+  }, [theme]);
 
-    const value = {
-        theme,
-        toggleTheme
-    }
+  const toggleTheme = () => {
+    setTheme(theme === 'light' ? 'dark' : 'light');
+  };
 
-    return (
-        <ThemeContext.Provider value={value}>
+  const value = {
+    theme,
+    toggleTheme
+  };
+
+  return <ThemeContext.Provider value={value}>
             {children}
-        </ThemeContext.Provider>
-    )
-}
+          </ThemeContext.Provider>;
+};
 
-export { ThemeProvider, ThemeContext }
+export { ThemeProvider, ThemeContext };

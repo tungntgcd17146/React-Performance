@@ -1,21 +1,15 @@
-import { useReducer, createContext } from "react";
-import reducer, { init } from "../reducer/rooms/reducer"
+import { useReducer, createContext } from 'react';
+import reducer, { init } from '../reducer/rooms/reducer';
 
-// type RoomsContext = [
-//     state:  [],
-//     dispatch: () => void
-// ]
 
-export const RoomsContext = createContext({})
+export const RoomsContext = createContext({});
 
-const RoomsProvider = ( {children} ) => {
-    const [state, dispatch] = useReducer(reducer, init)
+const RoomsProvider = ({ children }) => {
+  const [state, dispatch] = useReducer(reducer, init);
 
-    return (
-        <RoomsContext.Provider value={[state, dispatch]}>
+  return <RoomsContext.Provider value={[state, dispatch]}>
             {children}
-        </RoomsContext.Provider>
-    )
-}
+          </RoomsContext.Provider>;
+};
 
-export default RoomsProvider
+export default RoomsProvider;

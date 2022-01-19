@@ -2,21 +2,21 @@
   "roomCategory": [
     {
       "id": 1,
-      "rommImage": "",
+      "roomImage": "",
       "roomName": "Deluxe Room",
       "totalRoom": 15,
       "price": "20$"
     },
     {
       "id": 2,
-      "rommImage": "",
+      "roomImage": "",
       "roomName": "Luxury Room",
       "totalRoom": 10,
       "price": "50$"
     },
     {
       "id": 3,
-      "rommImage": "",
+      "roomImage": "",
       "roomName": "Executive Suite Room",
       "totalRoom": 5,
       "price": "100$"
@@ -34,7 +34,7 @@
       "roomCategory": [
         {
           "id": 1,
-          "rommImage": "",
+          "roomImage": "",
           "roomName": "Deluxe Room",
           "price": "20$"
         }
@@ -51,7 +51,7 @@
       "roomCategory": [
         {
           "id": 2,
-          "rommImage": "",
+          "roomImage": "",
           "roomName": "Luxury Room",
           "price": "50$"
         }
@@ -68,7 +68,7 @@
       "roomCategory": [
         {
           "id": 3,
-          "rommImage": "",
+          "roomImage": "",
           "roomName": "Executive Suite Room",
           "price": "100$"
         }
