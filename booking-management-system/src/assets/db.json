@@ -60,7 +60,7 @@
       "roomName": "Luxury Room"
     },
     {
-      "id": 1,
+      "id": 4,
       "name": "ChungPham",
       "email": "tung@gmail.com.vn",
       "phone": "053123123",
@@ -72,7 +72,7 @@
       "roomName": "Deluxe Room"
     },
     {
-      "id": 2,
+      "id": 5,
       "name": "Baole",
       "email": "Baole@gmail.com.vn",
       "phone": "053123123",
@@ -84,7 +84,7 @@
       "roomName": "Luxury Room"
     },
     {
-      "id": 3,
+      "id": 6,
       "name": "TrangQuynh",
       "email": "TrangQuynh@gmail.com.vn",
       "phone": "033923123",
