@@ -7,9 +7,11 @@ import { FilterByDate } from './FilterByDate/FilterByDate';
 import { CreateBooking } from './BookingCreate/BookingCreate';
 import { BookingInfos } from './BookingInfos/BookingInfos';
 
+import InfoProvider from '../../contexts/BookingInfosContext';
+
 export const BookingContent = () => {
   return (
-    <>
+    <InfoProvider>
       <div className="row mt-3">
         <FilterByDate />
         <FilterByRoom />
@@ -22,6 +24,6 @@ export const BookingContent = () => {
       <div className="row">
         <BookingInfos />
       </div>
-    </>
+    </InfoProvider>
   );
 };
