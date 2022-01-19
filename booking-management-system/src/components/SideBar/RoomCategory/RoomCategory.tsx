@@ -58,13 +58,13 @@ export const RoomCategory = () => {
               <p className="card-text">
                 <small className="text-muted">Room available: {byId[id].totalRoom} room</small>
               </p>
-              {/* <button onClick={() => editCategory(id)} className="btn btn-outline-primary mb-3">Edit</button> */}
               <button
                 onClick={() => deleteCategory(id)}
-                className={`${style.button} btn btn-outline-danger mb-3`}
+                className="btn btn-outline-danger mb-3"
               >
                 Delete
               </button>
+              {/* <button onClick={() => editCategory(id)} className={`${style.button} btn btn-outline-primary mb-3`}>Edit</button> */}
             </div>
           </div>
         </div>
