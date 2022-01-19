@@ -31,48 +31,69 @@
       "checkIn": "",
       "checkOut": "",
       "roomNumber": 1,
-      "roomCategory": [
-        {
-          "id": 1,
-          "roomImage": "",
-          "roomName": "Deluxe Room",
-          "price": "20$"
-        }
-      ]
+      "totalPrice": "",
+      "roomImage": "",
+      "roomName": "Deluxe Room"
     },
     {
       "id": 2,
-      "name": "BaoNguyen",
-      "email": "BaoNguyen@gmail.com.vn",
+      "name": "Julies",
+      "email": "Julies@gmail.com.vn",
+      "phone": "012343123",
+      "checkIn": "",
+      "checkOut": "",
+      "roomNumber": 2,
+      "totalPrice": "",
+      "roomImage": "",
+      "roomName": "Luxury Room"
+    },
+    {
+      "id": 3,
+      "name": "HoangThanh",
+      "email": "HoangThanh@gmail.com.vn",
+      "phone": "053124567",
+      "checkIn": "",
+      "checkOut": "",
+      "roomNumber": 1,
+      "totalPrice": "",
+      "roomImage": "",
+      "roomName": "Luxury Room"
+    },
+    {
+      "id": 1,
+      "name": "ChungPham",
+      "email": "tung@gmail.com.vn",
+      "phone": "053123123",
+      "checkIn": "",
+      "checkOut": "",
+      "roomNumber": 1,
+      "totalPrice": "",
+      "roomImage": "",
+      "roomName": "Deluxe Room"
+    },
+    {
+      "id": 2,
+      "name": "Baole",
+      "email": "Baole@gmail.com.vn",
       "phone": "053123123",
       "checkIn": "",
       "checkOut": "",
       "roomNumber": 3,
-      "roomCategory": [
-        {
-          "id": 2,
-          "roomImage": "",
-          "roomName": "Luxury Room",
-          "price": "50$"
-        }
-      ]
+      "totalPrice": "",
+      "roomImage": "",
+      "roomName": "Luxury Room"
     },
     {
       "id": 3,
-      "name": "TungThanh",
-      "email": "TungThanh@gmail.com.vn",
-      "phone": "053123123",
+      "name": "TrangQuynh",
+      "email": "TrangQuynh@gmail.com.vn",
+      "phone": "033923123",
       "checkIn": "",
       "checkOut": "",
       "roomNumber": 2,
-      "roomCategory": [
-        {
-          "id": 3,
-          "roomImage": "",
-          "roomName": "Executive Suite Room",
-          "price": "100$"
-        }
-      ]
+      "totalPrice": "",
+      "roomImage": "",
+      "roomName": "Luxury Room"
     }
   ]
 }
