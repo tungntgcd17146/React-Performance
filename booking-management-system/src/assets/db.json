@@ -94,6 +94,17 @@
       "totalPrice": "",
       "roomImage": "",
       "roomName": "Luxury Room"
+    },
+    {
+      "id": 7,
+      "name": "ThanhTung",
+      "email": "tyt@gmail.com",
+      "phone": "123456789",
+      "checkIn": "2022-01-21",
+      "checkOut": "2022-01-24",
+      "roomName": "50",
+      "roomNumber": "2",
+      "totalPrice": "300"
     }
   ]
 }

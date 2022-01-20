@@ -1,10 +1,10 @@
-import { FETCH_INFO } from '../../constants/bookingInfos';
+import { FETCH_INFO, ADD_INFO } from '../../constants/bookingInfos';
 import { convertArrayToObject } from '../../utils/helper/helper';
 
 //Init room category
 export const InitInfos = {
-  byId: {},
-  allIds: []
+  byIdInfo: {},
+  allIdsInfo: []
 };
 
 //Reducer
@@ -12,43 +12,43 @@ const reducer = (state, action) => {
   switch (action.type) {
     case FETCH_INFO:
       const infos = action.payload;
-      const newById = convertArrayToObject(infos, 'id');
+      const newByIdInfo = convertArrayToObject(infos, 'id');
       const newIds = infos.map((room) => room.id);
 
       return {
-        byId: newById,
-        allIds: newIds
+        byIdInfo: newByIdInfo,
+        allIdsInfo: newIds
       };
 
-    // case ADD_ROOM:
-    //   const newRoom = action.payload;
-    //   state.byId[state.allIds.length + 1] = newRoom;
+    case ADD_INFO:
+      const newInfo = action.payload;
+      state.byIdInfo[newInfo['id']] = newInfo;
 
-    //   return {
-    //     byId: {
-    //       ...state.byId
-    //     },
-    //     allIds: [...state.allIds, state.allIds.length + 1]
-    //   };
+      return {
+        byIdInfo: {
+          ...state.byIdInfo
+        },
+        allIdsInfo: [...state.allIdsInfo, newInfo['id']]
+      };
 
     // case DELETE_ROOM:
     //   const roomId = action.payload;
-    //   delete state.byId[roomId];
-    //   state.allIds.splice(roomId - 1, 1);
+    //   delete state.byIdInfo[roomId];
+    //   state.allIdsInfo.splice(roomId - 1, 1);
 
     //   return {
-    //     byId: {
-    //       ...state.byId
+    //     byIdInfo: {
+    //       ...state.byIdInfo
     //     },
-    //     allIds: [...state.allIds]
+    //     allIdsInfo: [...state.allIdsInfo]
     //   };
 
     // case EDIT_ROOM:
     //   return {
-    //     byId: {
-    //       ...state.byId
+    //     byIdInfo: {
+    //       ...state.byIdInfo
     //     },
-    //     allIds: [...state.allIds]
+    //     allIdsInfo: [...state.allIdsInfo]
     //   };
 
     default:

@@ -43,7 +43,7 @@ export const CreateRooms = () => {
     }
   };
 
-  // console.log(state)
+  // console.log('hello:',state)
 
   return (
     <form className="row mt-3">

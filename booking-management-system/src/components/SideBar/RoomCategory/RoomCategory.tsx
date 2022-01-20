@@ -45,7 +45,7 @@ export const RoomCategory = () => {
     getRoomCategory();
   }, []);
 
-  console.log('render:', state);
+  // console.log('render:', state);
   const renderCategory = allIds.map((id: Number, index) => {
     return (
       <div className="card mb-3" key={index}>

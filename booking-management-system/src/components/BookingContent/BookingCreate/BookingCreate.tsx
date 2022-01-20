@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Modal, Button } from "react-bootstrap";
-import { useRoom } from '../../../utils/hooks/hooks';
+import { useBookInfo, useRoom } from '../../../utils/hooks/hooks';
 
-import { fetchRoom, deleteRoom } from '../../../reducer/rooms/actions';
+import { addInfo } from '../../../reducer/bookingContent/actions';
+import { fetchRoom } from '../../../reducer/rooms/actions';
 
 import api from '../../../api/index.js';
 
@@ -10,14 +11,20 @@ export const BookingCreate = () => {
   const [show, setShow] = useState(false);
   const [totalPrice, setTotalPrice] = useState(0);
 
+  const [stateInfo, dispatchInfo] = useBookInfo();
+  const { byIdInfo, allIdsInfo } = stateInfo;
+  
   const [state, dispatch] = useRoom();
   const { byId, allIds } = state;
 
-  const checkInRef = useRef() as MutableRefObject<HTMLInputElement>;
-  const checkOutRef = useRef() as MutableRefObject<HTMLInputElement>;
-  const valueRef = useRef() as MutableRefObject<HTMLInputElement>;
-  const roomNumberRef = useRef() as MutableRefObject<HTMLInputElement>;
-  const totalPriceRef = useRef() as MutableRefObject<HTMLInputElement>;
+  const nameRef = useRef(null) as MutableRefObject<HTMLInputElement>;
+  const emailRef = useRef(null) as MutableRefObject<HTMLInputElement>;
+  const phoneRef = useRef(null) as MutableRefObject<HTMLInputElement>;
+  const checkInRef = useRef(null) as MutableRefObject<HTMLInputElement>;
+  const checkOutRef = useRef(null) as MutableRefObject<HTMLInputElement>;
+  const valueRef = useRef(null) as MutableRefObject<HTMLInputElement>;
+  const roomNumberRef = useRef(null) as MutableRefObject<HTMLInputElement>;
+  const totalPriceRef = useRef(null) as MutableRefObject<HTMLInputElement>;
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -28,23 +35,50 @@ export const BookingCreate = () => {
     setTotalPrice(totalPrice)
   }
 
-  const handleSubmit = () => {
-    const postRoom = {
-      checkin: checkInRef.current.value,
-      checkout: checkOutRef.current.value,
-      price1night: valueRef.current.value,
-      numberRoom: roomNumberRef.current.value,
-      totalPrice: totalPriceRef.current.value
+  const handleSubmit = async () => {
+    const postInfo = {
+      "id": stateInfo.allIdsInfo.length + 1,
+      "name": nameRef.current.value,
+      "email": emailRef.current.value,
+      "phone": phoneRef.current.value,
+      "checkIn": checkInRef.current.value,
+      "checkOut": checkOutRef.current.value,
+      "roomName": valueRef.current.value,
+      "roomNumber": roomNumberRef.current.value,
+      "totalPrice": totalPriceRef.current.value
     };
+    if (
+      nameRef.current.value != '' &&
+      emailRef.current.value != '' &&
+      phoneRef.current.value != '' &&
+      checkInRef.current.value != '' &&
+      checkOutRef.current.value != '' &&
+      roomNumberRef.current.value != '' 
+    ) {
+      dispatchInfo(addInfo(postInfo));
+      await api.post('/bookingInfos', postInfo);
 
-    console.log(postRoom)
+      nameRef.current.value = '' ,
+      emailRef.current.value = '' ,
+      phoneRef.current.value = '' ,
+      checkInRef.current.value = '' ,
+      checkOutRef.current.value = '' ,
+      roomNumberRef.current.value = '' 
+
+      nameRef.current.focus();
+
+    }
+    
+    
 
     const totalDay = Math.floor((new Date(checkOutRef.current.value).getTime() - new Date(checkInRef.current.value).getTime())/(1000 * 3600 * 24))
-    console.log('test date:', postRoom)
+    console.log('test date:', postInfo)
     console.log('test total date:',totalDay)
     console.log('test total price:', totalDay*valueRef.current.value)
   }
   // console.log(valueRef.current.value)
+  console.log(stateInfo.allIdsInfo)
+  console.log('render submit',stateInfo)
 
 
   
@@ -81,6 +115,7 @@ export const BookingCreate = () => {
               Customer name:
             </label>
             <input
+              ref={nameRef}
               type="text"
               className="form-control"
               id="exampleFormControlInput1"
@@ -93,6 +128,7 @@ export const BookingCreate = () => {
               Email:
             </label>
             <input
+              ref={emailRef}
               type="email"
               className="form-control"
               id="exampleFormControlInput1"
@@ -105,6 +141,7 @@ export const BookingCreate = () => {
               Phone number:
             </label>
             <input
+              ref={phoneRef}
               type="number"
               className="form-control"
               id="exampleFormControlInput1"
@@ -114,11 +151,11 @@ export const BookingCreate = () => {
           </div>
           <div className="col-6">
             <label className="form-label ">Check-in:</label>
-            <input ref={checkInRef} type="date" className="form-control" />
+            <input ref={checkInRef} type="date" className="form-control" required/>
           </div>
           <div className="col-6">
             <label className="form-label ">Check-out:</label>
-            <input ref={checkOutRef} type="date" className="form-control" />
+            <input ref={checkOutRef} type="date" className="form-control" required/>
           </div>
           <div className="col-9 mt-3">
             <label className="form-label ">Room type:</label>
