@@ -1,11 +1,11 @@
 import { useReducer, createContext } from 'react';
-import reducer, { init } from '../reducer/rooms/reducer';
+import reducer, { initRooms } from '../reducer/rooms/reducer';
 
 
 export const RoomsContext = createContext({});
 
 const RoomsProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(reducer, init);
+  const [state, dispatch] = useReducer(reducer, initRooms);
 
   return <RoomsContext.Provider value={[state, dispatch]}>
             {children}

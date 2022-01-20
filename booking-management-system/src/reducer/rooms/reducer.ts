@@ -2,7 +2,7 @@ import { FETCH_ROOM, ADD_ROOM, DELETE_ROOM, EDIT_ROOM } from '../../constants/ro
 import { convertArrayToObject } from '../../utils/helper/helper';
 
 //Init room category
-export const init = {
+export const initRooms = {
   byId: {},
   allIds: []
 };
@@ -22,25 +22,25 @@ const reducer = (state, action) => {
 
     case ADD_ROOM:
       const newRoom = action.payload;
-      state.byId[state.allIds.length + 1] = newRoom;
+      state.byId[newRoom['id']] = newRoom;
 
       return {
         byId: {
           ...state.byId
         },
-        allIds: [...state.allIds, state.allIds.length + 1]
+        allIds: [...state.allIds, newRoom['id']]
       };
 
     case DELETE_ROOM:
       const roomId = action.payload;
       delete state.byId[roomId];
-      state.allIds.splice(roomId - 1, 1);
+      const newArr = state.allIds.filter(item => item !== roomId);
 
       return {
         byId: {
           ...state.byId
         },
-        allIds: [...state.allIds]
+        allIds: [...newArr]
       };
 
     // case EDIT_ROOM:
