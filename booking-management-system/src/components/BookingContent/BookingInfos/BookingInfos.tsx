@@ -6,9 +6,7 @@ import api from '../../../api/index';
 
 import style from './BookingInfos.module.css';
 
-
 export const BookingInfos = () => {
-
   const [state, dispatch] = useBookInfo();
 
   //Retrieve Booking infos category
@@ -39,7 +37,6 @@ export const BookingInfos = () => {
   const { byIdInfo, allIdsInfo } = state;
 
   const renderBookingInfos = allIdsInfo.map((id: Number, index) => {
-    
     return (
       <div className="col-4 mb-3" key={index}>
         <div className={`card ${style.cardHeight}`}>
@@ -54,18 +51,22 @@ export const BookingInfos = () => {
             <p className="card-text mb-0">Phone: {byIdInfo[id].phone}</p>
             <small className="text-muted">Check-in: {byIdInfo[id].checkIn}</small>
             <p className="card-text">
-                <small className="text-muted">Check-out: {byIdInfo[id].checkOut}</small>
+              <small className="text-muted">Check-out: {byIdInfo[id].checkOut}</small>
             </p>
             <p className="card-text mb-0">Total Price: {byIdInfo[id].totalPrice} $</p>
             <p className="card-text mb-0">Total Room: {byIdInfo[id].roomNumber}</p>
             <p className="card-text">
-                <small className="text-muted">Room Category: {byIdInfo[id].roomName}</small>
+              <small className="text-muted">Room Category: {byIdInfo[id].roomName}</small>
             </p>
-            <div className='d-flex justify-content-between'>
+            <div className="d-flex justify-content-between">
               <a href="#" className="btn btn-outline-primary col-5">
                 Edit
               </a>
-              <a onClick={() => deleteInfoBooking(id)} href="#" className="btn btn-outline-danger col-5">
+              <a
+                onClick={() => deleteInfoBooking(id)}
+                href="#"
+                className="btn btn-outline-danger col-5"
+              >
                 Delete
               </a>
             </div>
@@ -74,10 +75,8 @@ export const BookingInfos = () => {
       </div>
     );
   });
-  
+
   return (
-    <div className={`row mt-5 ${style.color} ${style.heightContent}`}>
-      {renderBookingInfos}
-    </div>
+    <div className={`row mt-5 ${style.color} ${style.heightContent}`}>{renderBookingInfos}</div>
   );
 };

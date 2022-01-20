@@ -10,8 +10,8 @@ export const SideBar = () => {
     <div className="">
       <div className="row">
         {/* <RoomsProvider> */}
-          <CreateRooms />
-          <RoomCategory />
+        <CreateRooms />
+        <RoomCategory />
         {/* </RoomsProvider> */}
       </div>
     </div>

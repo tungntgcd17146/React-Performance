@@ -2,13 +2,12 @@ import { useEffect, useState } from 'react';
 import { useRoom } from '../../../utils/hooks/hooks';
 import { fetchRoom, deleteRoom } from '../../../reducer/rooms/actions';
 
-import { Modal, Button } from "react-bootstrap";
+import { Modal, Button } from 'react-bootstrap';
 
 import api from '../../../api/index.js';
 
 import style from './RoomCategory.module.css';
 import '../../../../public/images/deluxe-king-1.jpg';
-
 
 export const RoomCategory = () => {
   const [state, dispatch] = useRoom();
@@ -65,13 +64,15 @@ export const RoomCategory = () => {
               <p className="card-text">
                 <small className="text-muted">Room available: {byId[id].totalRoom} room</small>
               </p>
-              <button
-                onClick={() => deleteCategory(id)}
-                className="btn btn-outline-danger mb-3"
-              >
+              <button onClick={() => deleteCategory(id)} className="btn btn-outline-danger mb-3">
                 Delete
               </button>
-              <button onClick={handleShow} className={`${style.button} btn btn-outline-primary mb-3`}>Edit</button>
+              <button
+                onClick={handleShow}
+                className={`${style.button} btn btn-outline-primary mb-3`}
+              >
+                Edit
+              </button>
             </div>
           </div>
         </div>
@@ -86,72 +87,76 @@ export const RoomCategory = () => {
         <div className="row mt-3">
           {/* <Room /> */}
 
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-        <form className="row mt-3">
-          <div className="col-12 mb-3">
-            <label htmlFor="exampleFormControlInput1" className={`form-label`}>
-              Room type:
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              id="exampleFormControlInput1"
-              placeholder="Example: Luxury room..."
-              required
-            />
-          </div>
-          <div className="col-12 mb-3">
-            <label htmlFor="exampleFormControlInput1" className={`form-label`}>
-              Price for 1 night:
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              id="exampleFormControlInput1"
-              placeholder="Example: 70$..."
-              required
-            />
-          </div>
-          <div className="col-12 mb-3">
-            <label htmlFor="exampleFormControlInput1" className={`form-label`}>
-              Room available:
-            </label>
-            <input
-              type="number"
-              className="form-control"
-              id="exampleFormControlInput1"
-              placeholder="number: 5-20"
-              required
-            />
-          </div>
-          <div className="col-12 mb-3">
-            <label htmlFor="exampleFormControlInput1" className={`form-label`}>
-              Room image:
-            </label>
-            <input
-              type="file"
-              className="form-control"
-              id="exampleFormControlInput1"
-              placeholder="name@example.com"
-            />
-          </div>
-          <div className="col-12">
-            <button onClick={handleClose} type="submit" className="btn btn-outline-success mb-3 w-50">
-              Submit
-            </button>
-          </div>
-        </form>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-        </Modal.Footer>
-      </Modal>
+          <Modal show={show} onHide={handleClose}>
+            <Modal.Header closeButton>
+              <Modal.Title>Modal heading</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <form className="row mt-3">
+                <div className="col-12 mb-3">
+                  <label htmlFor="exampleFormControlInput1" className={`form-label`}>
+                    Room type:
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="exampleFormControlInput1"
+                    placeholder="Example: Luxury room..."
+                    required
+                  />
+                </div>
+                <div className="col-12 mb-3">
+                  <label htmlFor="exampleFormControlInput1" className={`form-label`}>
+                    Price for 1 night:
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="exampleFormControlInput1"
+                    placeholder="Example: 70$..."
+                    required
+                  />
+                </div>
+                <div className="col-12 mb-3">
+                  <label htmlFor="exampleFormControlInput1" className={`form-label`}>
+                    Room available:
+                  </label>
+                  <input
+                    type="number"
+                    className="form-control"
+                    id="exampleFormControlInput1"
+                    placeholder="number: 5-20"
+                    required
+                  />
+                </div>
+                <div className="col-12 mb-3">
+                  <label htmlFor="exampleFormControlInput1" className={`form-label`}>
+                    Room image:
+                  </label>
+                  <input
+                    type="file"
+                    className="form-control"
+                    id="exampleFormControlInput1"
+                    placeholder="name@example.com"
+                  />
+                </div>
+                <div className="col-12">
+                  <button
+                    onClick={handleClose}
+                    type="submit"
+                    className="btn btn-outline-success mb-3 w-50"
+                  >
+                    Submit
+                  </button>
+                </div>
+              </form>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={handleClose}>
+                Close
+              </Button>
+            </Modal.Footer>
+          </Modal>
           {renderCategory}
         </div>
       </div>

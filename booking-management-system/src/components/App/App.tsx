@@ -19,25 +19,25 @@ const App = () => {
 
   return (
     <>
-    <RoomsProvider>
-    <div className={`app ${context.theme}`}>
-      <header>
-        <Navbar mode={context} />
-      </header>
-      <main className={`app-main ${context.theme}`}>
-        <div className="container mt-3">
-          <div className="row mb-3">
-            <div className="col-sm-12 col-md-4">
-              <SideBar />
+      <RoomsProvider>
+        <div className={`app ${context.theme}`}>
+          <header>
+            <Navbar mode={context} />
+          </header>
+          <main className={`app-main ${context.theme}`}>
+            <div className="container mt-3">
+              <div className="row mb-3">
+                <div className="col-sm-12 col-md-4">
+                  <SideBar />
+                </div>
+                <div className="col-sm-12 col-md-8">
+                  <BookingContent />
+                </div>
+              </div>
             </div>
-            <div className="col-sm-12 col-md-8">
-              <BookingContent />
-            </div>
-          </div>
+          </main>
         </div>
-      </main>
-    </div>
-    </RoomsProvider>
+      </RoomsProvider>
     </>
   );
 };

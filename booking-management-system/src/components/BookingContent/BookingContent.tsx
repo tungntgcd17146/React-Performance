@@ -18,8 +18,8 @@ export const BookingContent = () => {
         <FilterByPrice />
       </div>
       <div className="row mt-5 d-flex justify-content-between">
-          <BookingCreate />
-        
+        <BookingCreate />
+
         <ViewMode />
       </div>
       <div className="row">

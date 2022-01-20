@@ -1,12 +1,13 @@
-import {  FETCH_INFO,
-          ADD_INFO,
-          DELETE_INFO,
-          EDIT_INFO,
-          UPDATE_INFO,
-          PRICE_FILTER_INFO,
-          DATE_FILTER_INFO,
-          ROOM_FILTER_INFO
-        } from '../../constants/bookingInfos';
+import {
+  FETCH_INFO,
+  ADD_INFO,
+  DELETE_INFO,
+  EDIT_INFO,
+  UPDATE_INFO,
+  PRICE_FILTER_INFO,
+  DATE_FILTER_INFO,
+  ROOM_FILTER_INFO
+} from '../../constants/bookingInfos';
 
 export const fetchInfos = (payload) => {
   return {

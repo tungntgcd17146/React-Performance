@@ -34,7 +34,7 @@ const reducer = (state, action) => {
     case DELETE_INFO:
       const newInfoId = action.payload;
       delete state.byIdInfo[newInfoId];
-      const newArr = state.allIdsInfo.filter(item => item !== newInfoId);
+      const newArr = state.allIdsInfo.filter((item) => item !== newInfoId);
 
       return {
         byIdInfo: {
