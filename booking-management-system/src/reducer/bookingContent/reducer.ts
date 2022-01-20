@@ -1,4 +1,4 @@
-import { FETCH_INFO, ADD_INFO } from '../../constants/bookingInfos';
+import { FETCH_INFO, ADD_INFO, DELETE_INFO } from '../../constants/bookingInfos';
 import { convertArrayToObject } from '../../utils/helper/helper';
 
 //Init room category
@@ -31,17 +31,17 @@ const reducer = (state, action) => {
         allIdsInfo: [...state.allIdsInfo, newInfo['id']]
       };
 
-    // case DELETE_ROOM:
-    //   const roomId = action.payload;
-    //   delete state.byIdInfo[roomId];
-    //   state.allIdsInfo.splice(roomId - 1, 1);
+    case DELETE_INFO:
+      const newInfoId = action.payload;
+      delete state.byIdInfo[newInfoId];
+      const newArr = state.allIdsInfo.filter(item => item !== newInfoId);
 
-    //   return {
-    //     byIdInfo: {
-    //       ...state.byIdInfo
-    //     },
-    //     allIdsInfo: [...state.allIdsInfo]
-    //   };
+      return {
+        byIdInfo: {
+          ...state.byIdInfo
+        },
+        allIdsInfo: [...newArr]
+      };
 
     // case EDIT_ROOM:
     //   return {

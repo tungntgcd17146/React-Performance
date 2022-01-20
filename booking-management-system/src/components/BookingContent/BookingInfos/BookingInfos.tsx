@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useBookInfo } from '../../../utils/hooks/hooks';
-import { fetchInfos } from '../../../reducer/bookingContent/actions';
+import { fetchInfos, deleteInfo } from '../../../reducer/bookingContent/actions';
 
 import api from '../../../api/index';
 
@@ -15,6 +15,15 @@ export const BookingInfos = () => {
   const retrieveInfos = async () => {
     const response = await api.get('/bookingInfos');
     return response.data;
+  };
+
+  //Delete room category
+  const deleteInfoBooking = async (id) => {
+    if (window.confirm('You sure to delete?')) {
+      dispatch(deleteInfo(id));
+      await api.delete(`/bookingInfos/${id}`);
+      console.log(state);
+    }
   };
 
   useEffect(() => {
@@ -56,7 +65,7 @@ export const BookingInfos = () => {
               <a href="#" className="btn btn-outline-primary col-5">
                 Edit
               </a>
-              <a href="#" className="btn btn-outline-danger col-5">
+              <a onClick={() => deleteInfoBooking(id)} href="#" className="btn btn-outline-danger col-5">
                 Delete
               </a>
             </div>
