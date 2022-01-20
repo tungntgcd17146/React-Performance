@@ -27,8 +27,6 @@ export const BookingInfos = () => {
     getRoomCategory();
   }, []);
 
-  console.log(state)
-
   const { byId, allIds } = state;
 
   const renderBookingInfos = allIds.map((id: Number, index) => {

@@ -2,6 +2,8 @@ import { Navbar } from '../Navbar/Navbar';
 import { SideBar } from '../SideBar/SideBar';
 import { BookingContent } from '../BookingContent/BookingContent';
 
+import RoomsProvider from '../../contexts/RoomsContext';
+
 import { useContext } from 'react';
 import { ThemeContext } from '../../contexts/ThemeModeContext';
 
@@ -16,6 +18,8 @@ const App = () => {
   const context: context = useContext(ThemeContext);
 
   return (
+    <>
+    <RoomsProvider>
     <div className={`app ${context.theme}`}>
       <header>
         <Navbar mode={context} />
@@ -33,6 +37,8 @@ const App = () => {
         </div>
       </main>
     </div>
+    </RoomsProvider>
+    </>
   );
 };
 

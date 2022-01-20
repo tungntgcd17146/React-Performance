@@ -3,9 +3,9 @@ import {  FETCH_INFO,
           DELETE_INFO,
           EDIT_INFO,
           UPDATE_INFO,
-          PRICEFILTER_INFO,
-          DATEFILTER_INFO,
-          ROOMFILTER_INFO
+          PRICE_FILTER_INFO,
+          DATE_FILTER_INFO,
+          ROOM_FILTER_INFO
         } from '../../constants/bookingInfos';
 
 export const fetchInfos = (payload) => {
@@ -45,21 +45,21 @@ export const updateInfo = (payload) => {
 
 export const filterByPrice = (payload) => {
   return {
-    type: PRICEFILTER_INFO,
+    type: PRICE_FILTER_INFO,
     payload: payload
   };
 };
 
 export const filterByDate = (payload) => {
   return {
-    type: DATEFILTER_INFO,
+    type: DATE_FILTER_INFO,
     payload: payload
   };
 };
 
 export const filterByRoom = (payload) => {
   return {
-    type: ROOMFILTER_INFO,
+    type: ROOM_FILTER_INFO,
     payload: payload
   };
 };

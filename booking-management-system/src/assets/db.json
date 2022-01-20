@@ -5,21 +5,21 @@
       "roomImage": "",
       "roomName": "Deluxe Room",
       "totalRoom": 15,
-      "price": "20$"
+      "price": 20
     },
     {
       "id": 2,
       "roomImage": "",
       "roomName": "Luxury Room",
       "totalRoom": 10,
-      "price": "50$"
+      "price": 50
     },
     {
       "id": 3,
       "roomImage": "",
       "roomName": "Executive Suite Room",
       "totalRoom": 5,
-      "price": "100$"
+      "price": 100
     }
   ],
   "bookingInfos": [
