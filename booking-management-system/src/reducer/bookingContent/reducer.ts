@@ -1,8 +1,10 @@
-import { FETCH_INFO, 
-        ADD_INFO, 
-        DELETE_INFO,
-        PRICE_FILTER_INFO,
-        SORT_INFO } from '../../constants/bookingInfos';
+import {
+  FETCH_INFO,
+  ADD_INFO,
+  DELETE_INFO,
+  PRICE_FILTER_INFO,
+  ROOM_FILTER_INFO
+} from '../../constants/bookingInfos';
 import { convertArrayToObject } from '../../utils/helper/helper';
 
 //Init room category
@@ -12,14 +14,14 @@ export const InitInfos = {
 };
 
 type state = {
-  byIdInfo: string[],
-  allIdsInfo: string[]
-}
+  byIdInfo: string[];
+  allIdsInfo: string[];
+};
 
 type action = {
-  type: string,
-  payload: any
-}
+  type: string;
+  payload: any;
+};
 
 //Reducer
 const reducer = (state: state, action: action) => {
@@ -68,21 +70,19 @@ const reducer = (state: state, action: action) => {
     case PRICE_FILTER_INFO:
       const priceRange = action.payload;
       // delete state.byIdInfo[newInfoId];
-      const realId =  state.allIdsInfo.filter(item => {
-        if (
-          parseInt(priceRange) <= parseInt(state.byIdInfo[item].totalPrice)
-          )
-        return [...state.allIdsInfo]
-      })
-      
-      // const realValue =  state.allIdsInfo.filter((item)=> 
+      const realId = state.allIdsInfo.filter((item) => {
+        if (parseInt(priceRange) <= parseInt(state.byIdInfo[item].totalPrice))
+          return [...state.allIdsInfo];
+      });
+
+      // const realValue =  state.allIdsInfo.filter((item)=>
       //   item !== realId
       // )
-      
+
       // const newArr = state.allIdsInfo.filter((item) => item !== newInfoId);
-      console.log(priceRange)
-      console.log(realId)
-      console.log(state.byIdInfo)
+      console.log(priceRange);
+      console.log(realId);
+      console.log(state.byIdInfo);
       return {
         byIdInfo: {
           ...state.byIdInfo
@@ -90,30 +90,20 @@ const reducer = (state: state, action: action) => {
         allIdsInfo: [...realId]
       };
 
-      case SORT_INFO:
-        // const priceRange = action.payload;
-        // // delete state.byIdInfo[newInfoId];
-        // const realId =  state.allIdsInfo.filter(item => {
-        //   if (
-        //     parseInt(priceRange) <= parseInt(state.byIdInfo[item].totalPrice)
-        //     )
-        //   return [...state.allIdsInfo]
-        // })
-        
-        // // const realValue =  state.allIdsInfo.filter((item)=> 
-        // //   item !== realId
-        // // )
-        
-        // // const newArr = state.allIdsInfo.filter((item) => item !== newInfoId);
-        // console.log(priceRange)
-        // console.log(realId)
-        // console.log(state.byIdInfo)
-        // return {
-        //   byIdInfo: {
-        //     ...state.byIdInfo
-        //   },
-        //   allIdsInfo: [...realId]
-        // };
+    case ROOM_FILTER_INFO:
+      const roomType = action.payload;
+      const newArrId = state.allIdsInfo.filter((item) => {
+        if (parseInt(roomType) === parseInt(state.byIdInfo[item].roomName))
+          return [...state.allIdsInfo];
+      });
+      console.log(newArrId);
+
+      return {
+        byIdInfo: {
+          ...state.byIdInfo
+        },
+        allIdsInfo: [...newArrId]
+      };
 
     default:
       throw new Error('invalid action');

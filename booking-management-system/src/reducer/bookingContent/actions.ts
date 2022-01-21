@@ -5,6 +5,7 @@ import {
   EDIT_INFO,
   UPDATE_INFO,
   PRICE_FILTER_INFO,
+  ROOM_FILTER_INFO,
   SORT_INFO
 } from '../../constants/bookingInfos';
 
@@ -57,9 +58,9 @@ export const filterPrice = (payload: string) => {
 //   };
 // };
 
-// export const filterByRoom = (payload) => {
-//   return {
-//     type: ROOM_FILTER_INFO,
-//     payload: payload
-//   };
-// };
+export const filterByRoom = (payload: string) => {
+  return {
+    type: ROOM_FILTER_INFO,
+    payload: payload
+  };
+};

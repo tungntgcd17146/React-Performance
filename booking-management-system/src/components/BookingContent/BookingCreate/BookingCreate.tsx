@@ -35,8 +35,8 @@ export const BookingCreate = () => {
         new Date(checkInRef.current.value).getTime()) /
         (1000 * 3600 * 24)
     );
-    const roomNumber = roomNumberRef.current.value
-    const roomType = valueRef.current.value
+    const roomNumber = roomNumberRef.current.value;
+    const roomType = valueRef.current.value;
     const totalPrice = totalDay * roomType * roomNumber;
     setTotalPrice(totalPrice);
   };
@@ -49,7 +49,7 @@ export const BookingCreate = () => {
       phone: phoneRef.current.value,
       checkIn: checkInRef.current.value,
       checkOut: checkOutRef.current.value,
-      roomName: valueRef.current.value,
+      roomName: valueRef.current.innerText,
       roomNumber: roomNumberRef.current.value,
       totalPrice: totalPriceRef.current.value
     };

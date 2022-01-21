@@ -1,2 +1,1 @@
-import { convertArrayToObject } from '../helper/helper'
-
+import { convertArrayToObject } from '../helper/helper';

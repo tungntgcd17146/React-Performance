@@ -1,17 +1,22 @@
-import React, { useState, useRef, MutableRefObject } from 'react';
-import { useBookInfo } from '../../../utils/hooks/hooks';
-import { filterPrice, fetchInfos } from '../../../reducer/bookingContent/actions'
+import React, { useState, useRef, useEffect, MutableRefObject } from 'react';
+import { useBookInfo, useRoom } from '../../../utils/hooks/hooks';
+import { filterPrice, fetchInfos, filterByRoom } from '../../../reducer/bookingContent/actions'
 
 import api from '../../../api/index';
 
 export const Filter = () => {
 
   const [price, setPrice] = useState(0);
+  const [roomCategory, setRoomCategory] = useState("0");
 
   const [stateInfo, dispatchInfo] = useBookInfo();
   const { byIdInfo, allIdsInfo } = stateInfo;
 
+  const [state, dispatch] = useRoom();
+  const { byId, allIds } = state;
+
   const priceRef = useRef() as MutableRefObject<HTMLInputElement>;
+  const roomFilterRef = useRef() as MutableRefObject<HTMLInputElement>;
 
   //Retrieve Booking infos category
   const retrieveInfos = async () => {
@@ -29,6 +34,7 @@ export const Filter = () => {
     getRoomCategory();
     priceRef.current.value = 0;
     setPrice(0)
+    roomFilterRef.current.value = 0;
   }
 
   const handleChange = () => {
@@ -36,20 +42,34 @@ export const Filter = () => {
     setPrice(priceRef.current.value)
     dispatchInfo(filterPrice(priceRef.current.value))
 
-    console.log(stateInfo)
+    // console.log(stateInfo)
   }
+
+
+  
+  const handleRoomChange = () => {
+    setRoomCategory(roomFilterRef.current.value)
+    dispatchInfo(filterByRoom(roomCategory));
+    // console.log(roomCategory)
+  }
+
+  // console.log(roomCategory)
 
   // console.log('price rage:', priceRef.current)
 
   return (
     <>
     <div className="col-3">
-      <label className="form-label ">Email address</label>
-      <select className="form-select" aria-label="Default select example">
-        <option value="0">Open this select menu</option>
-        <option value="1">One</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
+      <label className="form-label ">Filter by room category</label>
+      <select onChange={handleRoomChange} ref={roomFilterRef} className="form-select" aria-label="Default select example">
+        <option value="0">All</option>
+        {allIds.map((id: number) => {
+                  return (
+                    <option key={id} value={byId[id].price}>
+                      {byId[id].roomName}
+                    </option>
+                  );
+                })}
       </select>
     </div>
     <div className="col-6">
@@ -66,7 +86,7 @@ export const Filter = () => {
         id="customRange2" />
       </div>
     </div>
-    <div className='col-3'>
+    <div className='col-3 mt-4'>
     <button
           onClick={handleReset}
           type="submit"

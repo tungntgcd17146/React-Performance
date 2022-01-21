@@ -2,7 +2,7 @@ import React from 'react';
 import { Search } from './Search/Search';
 import { SwitchMode } from './SwitchMode/SwitchMode';
 
-export const Navbar = ({ mode }: {mode: any}) => {
+export const Navbar = ({ mode }: { mode: any }) => {
   return (
     <nav className={`navbar navbar-${mode.theme} bg-${mode.theme}`}>
       <div className="container">

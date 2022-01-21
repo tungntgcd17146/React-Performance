@@ -8,14 +8,14 @@ export const initRooms = {
 };
 
 type state = {
-  byId: string[],
-  allIds: string[]
-}
+  byId: string[];
+  allIds: string[];
+};
 
 type action = {
-  type: string,
-  payload: any
-}
+  type: string;
+  payload: any;
+};
 
 //Reducer
 const reducer = (state: state, action: action) => {

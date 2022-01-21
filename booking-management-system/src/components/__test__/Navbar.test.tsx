@@ -7,9 +7,9 @@ import { Navbar } from '../Navbar/Navbar';
 it('should renderer correctly snapshot', () => {
   const tree = renderer
     .create(
-        <ThemeProvider>
-          <Navbar mode={undefined} />
-        </ThemeProvider>
+      <ThemeProvider>
+        <Navbar mode={undefined} />
+      </ThemeProvider>
     )
     .toJSON();
   expect(tree).toMatchSnapshot();

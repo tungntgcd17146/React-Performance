@@ -8,9 +8,9 @@ import App from '../App/App';
 it('should renderer correctly snapshot', () => {
   const tree = renderer
     .create(
-    <ThemeProvider>
+      <ThemeProvider>
         <App />
-    </ThemeProvider>
+      </ThemeProvider>
     )
     .toJSON();
   expect(tree).toMatchSnapshot();

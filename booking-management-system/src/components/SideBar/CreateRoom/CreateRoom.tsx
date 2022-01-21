@@ -64,7 +64,7 @@ export const CreateRooms = () => {
         <label htmlFor="exampleFormControlInput1" className={`form-label ${context.theme}`}>
           Price for 1 night:
         </label>
-        <div className='input-group'>
+        <div className="input-group">
           <input
             ref={priceRef}
             type="number"

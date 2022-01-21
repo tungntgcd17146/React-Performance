@@ -56,7 +56,7 @@ export const BookingInfos = () => {
             <p className="card-text mb-0">Total Price: {byIdInfo[id].totalPrice} $</p>
             <p className="card-text mb-0">Total Room: {byIdInfo[id].roomNumber}</p>
             <p className="card-text">
-              <small className="text-muted">Room Category: {byIdInfo[id].roomName}</small>
+              <small className="text-muted">Room Price/1 night: {byIdInfo[id].roomName}$</small>
             </p>
             <div className="d-flex justify-content-between">
               <a href="#" className="btn btn-outline-primary col-5">

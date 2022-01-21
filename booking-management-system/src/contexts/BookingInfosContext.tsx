@@ -3,7 +3,7 @@ import reducer, { InitInfos } from '../reducer/bookingContent/reducer';
 
 export const BookingInfoContext = createContext({});
 
-const InfoProvider = ({ children }: {children: string}) => {
+const InfoProvider = ({ children }: { children: string }) => {
   const [state, dispatch] = useReducer(reducer, InitInfos);
 
   return (

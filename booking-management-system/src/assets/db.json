@@ -20,6 +20,13 @@
       "roomName": "Executive Suite Room",
       "totalRoom": 5,
       "price": 100
+    },
+    {
+      "id": 4,
+      "roomImage": "",
+      "roomName": "Vip room",
+      "totalRoom": "1",
+      "price": "150"
     }
   ],
   "bookingInfos": [
