@@ -17,7 +17,8 @@
     "json-server": "^0.17.0",
     "react": "^17.0.2",
     "react-bootstrap": "^2.1.1",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "react-test-renderer": "^17.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.16.7",
@@ -45,14 +46,5 @@
     "prettier": "^2.5.1",
     "typescript": "^4.4.4",
     "vite": "^2.7.2"
-  },
-  "babel": {
-    "env": {
-      "test": {
-        "presets": [
-          "react-app"
-        ]
-      }
-    }
   }
 }

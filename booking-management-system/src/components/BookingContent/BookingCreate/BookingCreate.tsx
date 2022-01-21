@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { MutableRefObject,useState, useEffect, useRef } from 'react';
 import { Modal, Button } from 'react-bootstrap';
 import { useBookInfo, useRoom } from '../../../utils/hooks/hooks';
 
@@ -17,14 +17,14 @@ export const BookingCreate = () => {
   const [state, dispatch] = useRoom();
   const { byId, allIds } = state;
 
-  const nameRef = useRef(null) as MutableRefObject<HTMLInputElement>;
-  const emailRef = useRef(null) as MutableRefObject<HTMLInputElement>;
-  const phoneRef = useRef(null) as MutableRefObject<HTMLInputElement>;
-  const checkInRef = useRef(null) as MutableRefObject<HTMLInputElement>;
-  const checkOutRef = useRef(null) as MutableRefObject<HTMLInputElement>;
-  const valueRef = useRef(null) as MutableRefObject<HTMLInputElement>;
-  const roomNumberRef = useRef(null) as MutableRefObject<HTMLInputElement>;
-  const totalPriceRef = useRef(null) as MutableRefObject<HTMLInputElement>;
+  const nameRef = useRef() as MutableRefObject<HTMLInputElement>;
+  const emailRef = useRef() as MutableRefObject<HTMLInputElement>;
+  const phoneRef = useRef() as MutableRefObject<HTMLInputElement>;
+  const checkInRef = useRef() as MutableRefObject<HTMLInputElement>;
+  const checkOutRef = useRef() as MutableRefObject<HTMLInputElement>;
+  const valueRef = useRef() as MutableRefObject<HTMLSelectElement>;
+  const roomNumberRef = useRef() as MutableRefObject<HTMLInputElement>;
+  const totalPriceRef = useRef() as MutableRefObject<HTMLInputElement>;
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -78,9 +78,9 @@ export const BookingCreate = () => {
         new Date(checkInRef.current.value).getTime()) /
         (1000 * 3600 * 24)
     );
-    console.log('test date:', postInfo);
-    console.log('test total date:', totalDay);
-    console.log('test total price:', totalDay * valueRef.current.value);
+    // console.log('test date:', postInfo);
+    // console.log('test total date:', totalDay);
+    // console.log('test total price:', totalDay * valueRef.current.value);
   };
   // console.log(valueRef.current.value)
   console.log(stateInfo.allIdsInfo);

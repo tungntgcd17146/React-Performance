@@ -64,14 +64,19 @@ export const CreateRooms = () => {
         <label htmlFor="exampleFormControlInput1" className={`form-label ${context.theme}`}>
           Price for 1 night:
         </label>
-        <input
-          ref={priceRef}
-          type="text"
-          className="form-control"
-          id="exampleFormControlInput1"
-          placeholder="Example: 70$..."
-          required
-        />
+        <div className='input-group'>
+          <input
+            ref={priceRef}
+            type="number"
+            className="form-control"
+            id="exampleFormControlInput1"
+            placeholder="Example: 70$..."
+            required
+          />
+          <span className="input-group-text" id="basic-addon2">
+            $
+          </span>
+        </div>
       </div>
       <div className="col-12 mb-3">
         <label htmlFor="exampleFormControlInput1" className={`form-label ${context.theme}`}>

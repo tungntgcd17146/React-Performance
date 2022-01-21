@@ -60,7 +60,7 @@ export const RoomCategory = () => {
           <div className="col-md-8">
             <div className="card-body">
               <h5 className="card-title">{byId[id].roomName}</h5>
-              <p className="card-text">{byId[id].price}</p>
+              <p className="card-text">Price: {byId[id].price}$/1 night</p>
               <p className="card-text">
                 <small className="text-muted">Room available: {byId[id].totalRoom} room</small>
               </p>
