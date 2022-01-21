@@ -8,7 +8,7 @@ it('should renderer correctly snapshot', () => {
   const tree = renderer
     .create(
         <ThemeProvider>
-          <Navbar />
+          <Navbar mode={undefined} />
         </ThemeProvider>
     )
     .toJSON();

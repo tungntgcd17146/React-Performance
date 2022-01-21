@@ -16,7 +16,7 @@ export const BookingInfos = () => {
   };
 
   //Delete room category
-  const deleteInfoBooking = async (id) => {
+  const deleteInfoBooking = async (id: string) => {
     if (window.confirm('You sure to delete?')) {
       dispatch(deleteInfo(id));
       await api.delete(`/bookingInfos/${id}`);
@@ -36,9 +36,9 @@ export const BookingInfos = () => {
 
   const { byIdInfo, allIdsInfo } = state;
 
-  const renderBookingInfos = allIdsInfo.map((id: Number, index) => {
+  const renderBookingInfos = allIdsInfo.map((id: string) => {
     return (
-      <div className="col-4 mb-3" key={index}>
+      <div className="col-4 mb-3" key={id}>
         <div className={`card ${style.cardHeight}`}>
           <img
             src="../../../../public/images/deluxe-king-1.jpg"

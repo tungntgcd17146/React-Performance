@@ -26,7 +26,7 @@ export const RoomCategory = () => {
   };
 
   //Delete room category
-  const deleteCategory = async (id) => {
+  const deleteCategory = async (id: string) => {
     if (window.confirm('You sure to delete?')) {
       dispatch(deleteRoom(id));
       await api.delete(`/roomCategory/${id}`);
@@ -45,9 +45,9 @@ export const RoomCategory = () => {
   }, []);
 
   // console.log('render:', state);
-  const renderCategory = allIds.map((id: Number, index) => {
+  const renderCategory = allIds.map((id: string) => {
     return (
-      <div className="card mb-3" key={index}>
+      <div className="card mb-3" key={id}>
         {/* to do: create new componet card */}
         <div className="row g-0">
           <div className="col-md-4">

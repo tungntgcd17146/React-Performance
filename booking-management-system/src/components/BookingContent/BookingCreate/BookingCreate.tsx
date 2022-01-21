@@ -1,4 +1,4 @@
-import React, { MutableRefObject,useState, useEffect, useRef } from 'react';
+import React, { MutableRefObject, useState, useEffect, useRef } from 'react';
 import { Modal, Button } from 'react-bootstrap';
 import { useBookInfo, useRoom } from '../../../utils/hooks/hooks';
 
@@ -35,7 +35,9 @@ export const BookingCreate = () => {
         new Date(checkInRef.current.value).getTime()) /
         (1000 * 3600 * 24)
     );
-    const totalPrice = totalDay * valueRef.current.value * roomNumberRef.current.value;
+    const roomNumber = roomNumberRef.current.value
+    const roomType = valueRef.current.value
+    const totalPrice = totalDay * roomType * roomNumber;
     setTotalPrice(totalPrice);
   };
 
@@ -83,7 +85,7 @@ export const BookingCreate = () => {
     // console.log('test total price:', totalDay * valueRef.current.value);
   };
   // console.log(valueRef.current.value)
-  console.log(stateInfo.allIdsInfo);
+  // console.log(stateInfo.allIdsInfo);
   console.log('render submit', stateInfo);
 
   const retrieveCategory = async () => {
@@ -168,9 +170,9 @@ export const BookingCreate = () => {
                 className="form-select"
                 aria-label="Default select example"
               >
-                {allIds.map((id: number, index) => {
+                {allIds.map((id: number) => {
                   return (
-                    <option key={index} value={byId[id].price}>
+                    <option key={id} value={byId[id].price}>
                       {byId[id].roomName} ({byId[id].price}$/1 night)
                     </option>
                   );

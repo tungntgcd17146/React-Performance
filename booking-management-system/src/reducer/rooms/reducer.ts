@@ -7,13 +7,23 @@ export const initRooms = {
   allIds: []
 };
 
+type state = {
+  byId: string[],
+  allIds: string[]
+}
+
+type action = {
+  type: string,
+  payload: any
+}
+
 //Reducer
-const reducer = (state, action) => {
+const reducer = (state: state, action: action) => {
   switch (action.type) {
     case FETCH_ROOM:
       const rooms = action.payload;
       const newById = convertArrayToObject(rooms, 'id');
-      const newIds = rooms.map((room) => room.id);
+      const newIds = rooms.map((room: any) => room.id);
 
       return {
         byId: newById,
