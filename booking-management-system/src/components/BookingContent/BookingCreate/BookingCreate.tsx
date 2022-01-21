@@ -49,7 +49,7 @@ export const BookingCreate = () => {
       phone: phoneRef.current.value,
       checkIn: checkInRef.current.value,
       checkOut: checkOutRef.current.value,
-      roomName: valueRef.current.innerText,
+      roomName: valueRef.current.value,
       roomNumber: roomNumberRef.current.value,
       totalPrice: totalPriceRef.current.value
     };
@@ -165,14 +165,12 @@ export const BookingCreate = () => {
             <div className="col-9 mt-3">
               <label className="form-label ">Room type:</label>
               <select
-                ref={valueRef}
                 onChange={handlePick}
                 className="form-select"
-                aria-label="Default select example"
-              >
+                aria-label="Default select example">
                 {allIds.map((id: number) => {
                   return (
-                    <option key={id} value={byId[id].price}>
+                    <option ref={valueRef} key={id} value={byId[id].price}>
                       {byId[id].roomName} ({byId[id].price}$/1 night)
                     </option>
                   );
@@ -197,8 +195,7 @@ export const BookingCreate = () => {
               <button
                 onClick={handleSubmit}
                 type="submit"
-                className="btn btn-outline-success w-100"
-              >
+                className="btn btn-outline-success w-100">
                 Submit
               </button>
             </div>

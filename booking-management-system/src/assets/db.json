@@ -128,6 +128,28 @@
       "roomName": "100",
       "roomNumber": "3",
       "totalPrice": "1500"
+    },
+    {
+      "id": 10,
+      "name": "asd",
+      "email": "asd@gmail.com",
+      "phone": "123456",
+      "checkIn": "2022-01-22",
+      "checkOut": "2022-01-23",
+      "roomName": "Vip room (150$/1 night)",
+      "roomNumber": "3",
+      "totalPrice": "450"
+    },
+    {
+      "id": 11,
+      "name": "asdasd",
+      "email": "qwe@gmail.com",
+      "phone": "123456789",
+      "checkIn": "2022-01-22",
+      "checkOut": "2022-01-26",
+      "roomName": "150",
+      "roomNumber": "3",
+      "totalPrice": "1800"
     }
   ]
 }
