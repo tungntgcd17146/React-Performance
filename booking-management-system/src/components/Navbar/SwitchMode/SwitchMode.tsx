@@ -3,13 +3,13 @@ import React from 'react';
 import { useContext } from 'react';
 import { ThemeContext } from '../../../contexts/ThemeModeContext';
 
-type context = {
+type Context = {
   theme: string;
   toggleTheme: () => void;
 };
 
 export const SwitchMode = () => {
-  const context: context = useContext(ThemeContext);
+  const context: Context = useContext(ThemeContext);
 
   return (
     <div className="form-check form-switch">
@@ -22,8 +22,7 @@ export const SwitchMode = () => {
       />
       <label
         className="form-check-label"
-        htmlFor="flexSwitchCheckChecked"
-      >{`${context.theme.toUpperCase()} MODE`}</label>
+        htmlFor="flexSwitchCheckChecked">{`${context.theme.toUpperCase()} MODE`}</label>
     </div>
   );
 };

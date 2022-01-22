@@ -1,3 +1,4 @@
+/* eslint-disable no-case-declarations */
 import { FETCH_ROOM, ADD_ROOM, DELETE_ROOM, EDIT_ROOM } from '../../constants/roomCategory';
 import { convertArrayToObject } from '../../utils/helper/helper';
 

@@ -1,4 +1,12 @@
-import { FETCH_ROOM, ADD_ROOM, DELETE_ROOM, EDIT_ROOM } from '../../constants/roomCategory';
+import { FETCH_ROOM, ADD_ROOM, DELETE_ROOM } from '../../constants/roomCategory';
+
+type PostRoom = {
+  id: number;
+  roomImage: string;
+  roomName: string;
+  totalRoom: string;
+  price: string;
+};
 
 export const fetchRoom = (payload: string) => {
   return {
@@ -7,7 +15,7 @@ export const fetchRoom = (payload: string) => {
   };
 };
 
-export const addRoom = (payload: string) => {
+export const addRoom = (payload: PostRoom) => {
   return {
     type: ADD_ROOM,
     payload: payload

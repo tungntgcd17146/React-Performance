@@ -1,3 +1,4 @@
+/* eslint-disable no-case-declarations */
 import {
   FETCH_INFO,
   ADD_INFO,
@@ -13,18 +14,13 @@ export const InitInfos = {
   allIdsInfo: []
 };
 
-type state = {
+type State = {
   byIdInfo: string[];
   allIdsInfo: string[];
 };
 
-type action = {
-  type: string;
-  payload: any;
-};
-
 //Reducer
-const reducer = (state: state, action: action) => {
+const reducer = (state: State, action) => {
   switch (action.type) {
     case FETCH_INFO:
       const infos = action.payload;
@@ -59,30 +55,13 @@ const reducer = (state: state, action: action) => {
         allIdsInfo: [...newArr]
       };
 
-    // case EDIT_ROOM:
-    //   return {
-    //     byIdInfo: {
-    //       ...state.byIdInfo
-    //     },
-    //     allIdsInfo: [...state.allIdsInfo]
-    //   };
-
     case PRICE_FILTER_INFO:
       const priceRange = action.payload;
-      // delete state.byIdInfo[newInfoId];
       const realId = state.allIdsInfo.filter((item) => {
         if (parseInt(priceRange) <= parseInt(state.byIdInfo[item].totalPrice))
           return [...state.allIdsInfo];
       });
 
-      // const realValue =  state.allIdsInfo.filter((item)=>
-      //   item !== realId
-      // )
-
-      // const newArr = state.allIdsInfo.filter((item) => item !== newInfoId);
-      console.log(priceRange);
-      console.log(realId);
-      console.log(state.byIdInfo);
       return {
         byIdInfo: {
           ...state.byIdInfo
@@ -93,8 +72,7 @@ const reducer = (state: state, action: action) => {
     case ROOM_FILTER_INFO:
       const roomType = action.payload;
       const newArrId = state.allIdsInfo.filter((item) => {
-        if (parseInt(roomType) === parseInt(state.byIdInfo[item].roomName))
-          return [...state.allIdsInfo];
+        if (roomType === state.byIdInfo[item].roomName) return [...state.allIdsInfo];
       });
       console.log(newArrId);
 
@@ -106,7 +84,7 @@ const reducer = (state: state, action: action) => {
       };
 
     default:
-      throw new Error('invalid action');
+      return state;
   }
 };
 

@@ -3,7 +3,11 @@ import reducer, { initRooms } from '../reducer/rooms/reducer';
 
 export const RoomsContext = createContext({});
 
-const RoomsProvider = ({ children }: { children: string }) => {
+interface Props {
+  children: IntrinsicAttributes;
+}
+
+const RoomsProvider = ({ children }: Props) => {
   const [state, dispatch] = useReducer(reducer, initRooms);
 
   return <RoomsContext.Provider value={[state, dispatch]}>{children}</RoomsContext.Provider>;

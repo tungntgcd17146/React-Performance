@@ -6,6 +6,14 @@ import { addRoom } from '../../../reducer/rooms/actions';
 
 import api from '../../../api/index.js';
 
+type PostRoom = {
+  id: number;
+  roomImage: string;
+  roomName: string;
+  totalRoom: string;
+  price: string;
+};
+
 export const CreateRooms = () => {
   const context = useContext(ThemeContext);
 
@@ -19,7 +27,7 @@ export const CreateRooms = () => {
   // console.log(state.allIds)
 
   const handleSubmit = async () => {
-    const postRoom = {
+    const postRoom: PostRoom = {
       id: state.allIds.length + 1,
       roomImage: imageRef.current.value,
       roomName: nameRef.current.value,

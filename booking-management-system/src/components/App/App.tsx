@@ -10,12 +10,12 @@ import { ThemeContext } from '../../contexts/ThemeModeContext';
 import './App.css';
 import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
-type context = {
+type Context = {
   theme: string;
 };
 
 const App = () => {
-  const context: context = useContext(ThemeContext);
+  const context: Context = useContext(ThemeContext);
 
   return (
     <>

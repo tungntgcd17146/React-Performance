@@ -1,16 +1,20 @@
 import { useState, createContext, useEffect } from 'react';
 
-type ThemeContext = {
+type CreateContext = {
   theme: string;
   toggleTheme: () => void;
 };
 
-const ThemeContext = createContext<ThemeContext>({
+interface Props {
+  children: string;
+}
+
+const ThemeContext = createContext<CreateContext>({
   theme: '',
   toggleTheme: () => {}
 });
 
-const ThemeProvider = ({ children }: { children }) => {
+const ThemeProvider = ({ children }: Props) => {
   const [theme, setTheme] = useState('light');
 
   useEffect(() => {

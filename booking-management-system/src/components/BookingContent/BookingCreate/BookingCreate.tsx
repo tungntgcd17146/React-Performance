@@ -7,12 +7,25 @@ import { fetchRoom } from '../../../reducer/rooms/actions';
 
 import api from '../../../api/index.js';
 
+type PostInfo = {
+  id: number;
+  name: string;
+  email: string;
+  phone: string;
+  checkIn: string;
+  checkOut: string;
+  nightPrice: string;
+  roomName: string;
+  roomNumber: string;
+  totalPrice: string;
+};
+
 export const BookingCreate = () => {
   const [show, setShow] = useState(false);
   const [totalPrice, setTotalPrice] = useState(0);
 
   const [stateInfo, dispatchInfo] = useBookInfo();
-  const { byIdInfo, allIdsInfo } = stateInfo;
+  // const { byIdInfo, allIdsInfo } = stateInfo;
 
   const [state, dispatch] = useRoom();
   const { byId, allIds } = state;
@@ -22,7 +35,7 @@ export const BookingCreate = () => {
   const phoneRef = useRef() as MutableRefObject<HTMLInputElement>;
   const checkInRef = useRef() as MutableRefObject<HTMLInputElement>;
   const checkOutRef = useRef() as MutableRefObject<HTMLInputElement>;
-  const valueRef = useRef() as MutableRefObject<HTMLSelectElement>;
+  const valueRef = useRef() as MutableRefObject<HTMLOptionElement>;
   const roomNumberRef = useRef() as MutableRefObject<HTMLInputElement>;
   const totalPriceRef = useRef() as MutableRefObject<HTMLInputElement>;
 
@@ -35,21 +48,22 @@ export const BookingCreate = () => {
         new Date(checkInRef.current.value).getTime()) /
         (1000 * 3600 * 24)
     );
-    const roomNumber = roomNumberRef.current.value;
-    const roomType = valueRef.current.value;
+    const roomNumber = parseInt(roomNumberRef.current.value);
+    const roomType = parseInt(valueRef.current.value);
     const totalPrice = totalDay * roomType * roomNumber;
     setTotalPrice(totalPrice);
   };
 
   const handleSubmit = async () => {
-    const postInfo = {
+    const postInfo: PostInfo = {
       id: stateInfo.allIdsInfo.length + 1,
       name: nameRef.current.value,
       email: emailRef.current.value,
       phone: phoneRef.current.value,
       checkIn: checkInRef.current.value,
       checkOut: checkOutRef.current.value,
-      roomName: valueRef.current.value,
+      nightPrice: valueRef.current.value,
+      roomName: valueRef.current.innerText,
       roomNumber: roomNumberRef.current.value,
       totalPrice: totalPriceRef.current.value
     };
@@ -74,18 +88,7 @@ export const BookingCreate = () => {
       nameRef.current.focus();
       handleClose();
     }
-
-    const totalDay = Math.floor(
-      (new Date(checkOutRef.current.value).getTime() -
-        new Date(checkInRef.current.value).getTime()) /
-        (1000 * 3600 * 24)
-    );
-    // console.log('test date:', postInfo);
-    // console.log('test total date:', totalDay);
-    // console.log('test total price:', totalDay * valueRef.current.value);
   };
-  // console.log(valueRef.current.value)
-  // console.log(stateInfo.allIdsInfo);
   console.log('render submit', stateInfo);
 
   const retrieveCategory = async () => {
@@ -171,7 +174,7 @@ export const BookingCreate = () => {
                 {allIds.map((id: number) => {
                   return (
                     <option ref={valueRef} key={id} value={byId[id].price}>
-                      {byId[id].roomName} ({byId[id].price}$/1 night)
+                      {byId[id].roomName}
                     </option>
                   );
                 })}

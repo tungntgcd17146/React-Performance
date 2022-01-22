@@ -2,11 +2,8 @@ import {
   FETCH_INFO,
   ADD_INFO,
   DELETE_INFO,
-  EDIT_INFO,
-  UPDATE_INFO,
   PRICE_FILTER_INFO,
-  ROOM_FILTER_INFO,
-  SORT_INFO
+  ROOM_FILTER_INFO
 } from '../../constants/bookingInfos';
 
 export const fetchInfos = (payload: string) => {
@@ -16,7 +13,7 @@ export const fetchInfos = (payload: string) => {
   };
 };
 
-export const addInfo = (payload: string) => {
+export const addInfo = (payload: {}) => {
   return {
     type: ADD_INFO,
     payload: payload
