@@ -20,6 +20,13 @@
       "roomName": "Executive Suite Room",
       "totalRoom": 5,
       "price": 100
+    },
+    {
+      "id": 4,
+      "roomImage": "",
+      "roomName": "Limited Room",
+      "totalRoom": "1",
+      "price": "150"
     }
   ],
   "bookingInfos": [
@@ -130,6 +137,18 @@
       "nightPrice": "100",
       "roomNumber": "3",
       "totalPrice": "1500"
+    },
+    {
+      "id": 10,
+      "name": "ThanhTung",
+      "email": "ThanhTung@gmail.com",
+      "phone": "0533624012",
+      "checkIn": "2022-01-23",
+      "checkOut": "2022-01-29",
+      "nightPrice": "100",
+      "roomName": "Executive Suite Room",
+      "roomNumber": "3",
+      "totalPrice": "1800"
     }
   ]
 }

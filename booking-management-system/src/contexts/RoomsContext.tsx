@@ -4,7 +4,7 @@ import reducer, { initRooms } from '../reducer/rooms/reducer';
 export const RoomsContext = createContext({});
 
 interface Props {
-  children: IntrinsicAttributes;
+  children;
 }
 
 const RoomsProvider = ({ children }: Props) => {

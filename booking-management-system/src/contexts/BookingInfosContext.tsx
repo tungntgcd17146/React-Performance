@@ -4,7 +4,7 @@ import reducer, { InitInfos } from '../reducer/bookingContent/reducer';
 export const BookingInfoContext = createContext({});
 
 interface Props {
-  children: IntrinsicAttributes;
+  children;
 }
 
 const InfoProvider = ({ children }: Props) => {

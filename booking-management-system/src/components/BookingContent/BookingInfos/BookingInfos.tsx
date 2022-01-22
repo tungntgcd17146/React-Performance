@@ -65,10 +65,10 @@ export const BookingInfos = () => {
                     Room Price/1 night: {byIdInfo[id].nightPrice}$
                   </small>
                 </p>
-                <div className="d-flex justify-content-between">
-                  <a href="#" className="btn btn-outline-primary col-5">
+                <div className="d-flex justify-content-end">
+                  {/* <a href="#" className="btn btn-outline-primary col-5">
                     Edit
-                  </a>
+                  </a> */}
                   <a
                     onClick={() => deleteInfoBooking(id)}
                     href="#"

@@ -8,7 +8,7 @@ type PostRoom = {
   price: string;
 };
 
-export const fetchRoom = (payload: string) => {
+export const fetchRoom = (payload) => {
   return {
     type: FETCH_ROOM,
     payload: payload
@@ -22,16 +22,9 @@ export const addRoom = (payload: PostRoom) => {
   };
 };
 
-export const deleteRoom = (payload: string) => {
+export const deleteRoom = (payload) => {
   return {
     type: DELETE_ROOM,
     payload: payload
   };
 };
-
-// export const editRoom = (payload) => {
-//   return {
-//     type: EDIT_ROOM,
-//     payload: payload
-//   };
-// };

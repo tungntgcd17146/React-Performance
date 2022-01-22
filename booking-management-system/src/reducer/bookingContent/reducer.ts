@@ -14,13 +14,8 @@ export const InitInfos = {
   allIdsInfo: []
 };
 
-type State = {
-  byIdInfo: string[];
-  allIdsInfo: string[];
-};
-
 //Reducer
-const reducer = (state: State, action) => {
+const reducer = (state, action) => {
   switch (action.type) {
     case FETCH_INFO:
       const infos = action.payload;
@@ -74,7 +69,6 @@ const reducer = (state: State, action) => {
       const newArrId = state.allIdsInfo.filter((item) => {
         if (roomType === state.byIdInfo[item].roomName) return [...state.allIdsInfo];
       });
-      console.log(newArrId);
 
       return {
         byIdInfo: {

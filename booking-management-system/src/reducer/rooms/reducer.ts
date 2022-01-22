@@ -1,5 +1,5 @@
 /* eslint-disable no-case-declarations */
-import { FETCH_ROOM, ADD_ROOM, DELETE_ROOM, EDIT_ROOM } from '../../constants/roomCategory';
+import { FETCH_ROOM, ADD_ROOM, DELETE_ROOM } from '../../constants/roomCategory';
 import { convertArrayToObject } from '../../utils/helper/helper';
 
 //Init room category
@@ -8,18 +8,8 @@ export const initRooms = {
   allIds: []
 };
 
-type state = {
-  byId: string[];
-  allIds: string[];
-};
-
-type action = {
-  type: string;
-  payload: any;
-};
-
 //Reducer
-const reducer = (state: state, action: action) => {
+const reducer = (state, action) => {
   switch (action.type) {
     case FETCH_ROOM:
       const rooms = action.payload;
@@ -53,14 +43,6 @@ const reducer = (state: state, action: action) => {
         },
         allIds: [...newArr]
       };
-
-    // case EDIT_ROOM:
-    //   return {
-    //     byId: {
-    //       ...state.byId
-    //     },
-    //     allIds: [...state.allIds]
-    //   };
 
     default:
       throw new Error('invalid action');

@@ -24,8 +24,6 @@ export const CreateRooms = () => {
   const availableRef = useRef() as MutableRefObject<HTMLInputElement>;
   const imageRef = useRef() as MutableRefObject<HTMLInputElement>;
 
-  // console.log(state.allIds)
-
   const handleSubmit = async () => {
     const postRoom: PostRoom = {
       id: state.allIds.length + 1,
@@ -50,8 +48,6 @@ export const CreateRooms = () => {
       nameRef.current.focus();
     }
   };
-
-  // console.log('hello:',state)
 
   return (
     <form className="row mt-3">

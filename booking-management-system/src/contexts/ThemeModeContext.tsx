@@ -6,7 +6,7 @@ type CreateContext = {
 };
 
 interface Props {
-  children: string;
+  children;
 }
 
 const ThemeContext = createContext<CreateContext>({
