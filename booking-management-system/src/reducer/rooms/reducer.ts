@@ -2,6 +2,17 @@
 import { FETCH_ROOM, ADD_ROOM, DELETE_ROOM } from '../../constants/roomCategory';
 import { convertArrayToObject } from '../../utils/helper/helper';
 
+import { InitRooms } from '../../interface/roomCategory';
+
+interface Action {
+  type: string;
+  payload;
+}
+
+type Room = {
+  id: number;
+};
+
 //Init room category
 export const initRooms = {
   byId: {},
@@ -9,12 +20,12 @@ export const initRooms = {
 };
 
 //Reducer
-const reducer = (state, action) => {
+const reducer = (state: InitRooms, action: Action) => {
   switch (action.type) {
     case FETCH_ROOM:
       const rooms = action.payload;
       const newById = convertArrayToObject(rooms, 'id');
-      const newIds = rooms.map((room: any) => room.id);
+      const newIds = rooms.map((room: Room) => room.id);
 
       return {
         byId: newById,
@@ -35,7 +46,7 @@ const reducer = (state, action) => {
     case DELETE_ROOM:
       const roomId = action.payload;
       delete state.byId[roomId];
-      const newArr = state.allIds.filter((item) => item !== roomId);
+      const newArr = state.allIds.filter((item: number) => item !== roomId);
 
       return {
         byId: {
@@ -45,7 +56,7 @@ const reducer = (state, action) => {
       };
 
     default:
-      throw new Error('invalid action');
+      return state;
   }
 };
 

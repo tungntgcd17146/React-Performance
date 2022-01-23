@@ -1,8 +1,12 @@
-import React from 'react';
+import { FC } from 'react';
 import { Search } from './Search/Search';
 import { SwitchMode } from './SwitchMode/SwitchMode';
 
-export const Navbar = ({ mode }: { mode: any }) => {
+export type Prop = {
+  mode?: any;
+};
+
+export const Navbar: FC<Prop> = ({ mode }) => {
   return (
     <nav className={`navbar navbar-${mode.theme} bg-${mode.theme}`}>
       <div className="container">

@@ -4,15 +4,9 @@ import { ThemeContext } from '../../../contexts/ThemeModeContext';
 import { useRoom } from '../../../utils/hooks/hooks';
 import { addRoom } from '../../../reducer/rooms/actions';
 
-import api from '../../../api/index.js';
+import { PostRoom } from '../../../interface/roomCategory';
 
-type PostRoom = {
-  id: number;
-  roomImage: string;
-  roomName: string;
-  totalRoom: string;
-  price: string;
-};
+import api from '../../../api/index.js';
 
 export const CreateRooms = () => {
   const context = useContext(ThemeContext);

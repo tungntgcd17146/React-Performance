@@ -5,20 +5,9 @@ import { useBookInfo, useRoom } from '../../../utils/hooks/hooks';
 import { addInfo } from '../../../reducer/bookingContent/actions';
 import { fetchRoom } from '../../../reducer/rooms/actions';
 
-import api from '../../../api/index.js';
+import { PostInfo } from '../../../interface/bookingContent';
 
-type PostInfo = {
-  id: number;
-  name: string;
-  email: string;
-  phone: string;
-  checkIn: string;
-  checkOut: string;
-  nightPrice: string;
-  roomName: string;
-  roomNumber: string;
-  totalPrice: string;
-};
+import api from '../../../api/index.js';
 
 export const BookingCreate = () => {
   const [show, setShow] = useState(false);

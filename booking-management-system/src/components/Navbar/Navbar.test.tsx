@@ -9,12 +9,10 @@ const props = {
 
 describe('Test layout', () => {
   test('test render mode theme', () => {
-    const root = create(<Navbar mode={undefined} />).root;
+    const root = create(<Navbar mode={`${props.mode}`} />).root;
 
     const element = root.findByType('nav');
 
-    expect(element.props.className.includes(`navbar navbar-${props.mode} bg-${props.mode}`)).toBe(
-      true
-    );
+    expect(element.props.className.includes('navbar')).toBe(true);
   });
 });

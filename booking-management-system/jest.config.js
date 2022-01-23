@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-undef
 module.exports = {
   // A list of paths to directories that Jest should use to search for files in
   // https://jestjs.io/docs/configuration#roots-arraystring

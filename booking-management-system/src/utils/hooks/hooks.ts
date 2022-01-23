@@ -1,6 +1,6 @@
-import { RoomsContext } from '../../contexts/RoomsContext';
 import { useContext } from 'react';
 
+import { RoomsContext } from '../../contexts/RoomsContext';
 import { BookingInfoContext } from '../../contexts/BookingInfosContext';
 
 export const useRoom = () => {

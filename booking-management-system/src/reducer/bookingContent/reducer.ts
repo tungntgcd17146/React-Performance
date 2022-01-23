@@ -7,9 +7,14 @@ import {
   ROOM_FILTER_INFO
 } from '../../constants/bookingInfos';
 import { convertArrayToObject } from '../../utils/helper/helper';
+//import { InitInfos } from '../../interface/bookingContent';
+
+type Room = {
+  id: number;
+};
 
 //Init room category
-export const InitInfos = {
+export const initInfos = {
   byIdInfo: {},
   allIdsInfo: []
 };
@@ -20,7 +25,7 @@ const reducer = (state, action) => {
     case FETCH_INFO:
       const infos = action.payload;
       const newByIdInfo = convertArrayToObject(infos, 'id');
-      const newIds = infos.map((room: any) => room.id);
+      const newIds = infos.map((room: Room) => room.id);
 
       return {
         byIdInfo: newByIdInfo,

@@ -19,7 +19,7 @@ export const RoomCategory = () => {
   };
 
   //Delete room category
-  const deleteCategory = async (id: string) => {
+  const deleteCategory = async (id: number) => {
     if (window.confirm('You sure to delete?')) {
       dispatch(deleteRoom(id));
       await api.delete(`/roomCategory/${id}`);
@@ -42,7 +42,7 @@ export const RoomCategory = () => {
       <h2>Room Category</h2>
       <div className={`mt-3 ${style.color} ${style.heightContent}`}>
         <div className="row mt-3">
-          {allIds.map((id) => {
+          {allIds.map((id: number) => {
             return (
               <div className="card mb-3" key={id}>
                 <div className="row g-0">

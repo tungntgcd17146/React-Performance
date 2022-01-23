@@ -1,13 +1,15 @@
-import { useReducer, createContext } from 'react';
+import { useReducer, createContext, ReactNode } from 'react';
 import reducer, { initRooms } from '../reducer/rooms/reducer';
+
+import { FC } from 'react';
 
 export const RoomsContext = createContext({});
 
-interface Props {
-  children;
-}
+export type Props = {
+  children?: ReactNode;
+};
 
-const RoomsProvider = ({ children }: Props) => {
+const RoomsProvider: FC<Props> = ({ children }: Props) => {
   const [state, dispatch] = useReducer(reducer, initRooms);
 
   return <RoomsContext.Provider value={[state, dispatch]}>{children}</RoomsContext.Provider>;
