@@ -1,7 +1,8 @@
 import {
   FETCH_INFO,
   ADD_INFO,
-  DELETE_INFO
+  DELETE_INFO,
+  SORT_INFO
   // PRICE_FILTER_INFO,
   // ROOM_FILTER_INFO
 } from '../../constants/bookingInfos';
@@ -26,6 +27,13 @@ export const addInfo = (payload: Payload) => {
 export const deleteInfo = (payload: Payload) => {
   return {
     type: DELETE_INFO,
+    payload: payload
+  };
+};
+
+export const sortByName = (payload: Payload) => {
+  return {
+    type: SORT_INFO,
     payload: payload
   };
 };

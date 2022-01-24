@@ -32,7 +32,6 @@ export const RoomCategory = () => {
       const allRoom = await retrieveCategory();
       if (allRoom) {
         dispatch(fetchRoom({ rooms: allRoom }));
-        console.log('textRooms:', allRoom);
       }
     };
     getRoomCategory();

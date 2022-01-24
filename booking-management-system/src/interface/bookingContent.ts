@@ -20,6 +20,7 @@ export type Payload = {
   id?: number;
   infos?: Info[];
   info?: Info;
+  totalPrice?: boolean;
 };
 
 export interface ActionInfos {

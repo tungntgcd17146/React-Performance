@@ -1,12 +1,13 @@
 import React, { useState, useRef, MutableRefObject } from 'react';
 import { useBookInfo } from '../../../contexts/BookingInfosContext';
 import { useRoom } from '../../../contexts/RoomsContext';
-import { fetchInfos } from '../../../reducer/bookingContent/actions';
+import { sortByName } from '../../../reducer/bookingContent/actions';
 
-import api from '../../../api/index';
+//import api from '../../../api/index';
 
 export const Filter = () => {
   const [price, setPrice] = useState(0);
+  const [toggleSort, setToggleSort] = useState(false);
 
   // eslint-disable-next-line no-unused-vars
   const { stateInfo, dispatchInfo } = useBookInfo();
@@ -17,28 +18,13 @@ export const Filter = () => {
   const priceRef = useRef() as MutableRefObject<HTMLInputElement>;
   const roomFilterRef = useRef() as MutableRefObject<HTMLSelectElement>;
 
-  //Retrieve Booking infos category
-  const retrieveInfos = async () => {
-    const response = await api.get('/bookingInfos');
-    return response.data;
-  };
-
   const handleReset = () => {
-    const getRoomCategory = async () => {
-      const allRoom = await retrieveInfos();
-      if (allRoom) {
-        dispatchInfo(fetchInfos(allRoom));
-      }
-    };
-    getRoomCategory();
-    priceRef.current.value = '0';
-    setPrice(0);
-    roomFilterRef.current.value = 'all';
+    setToggleSort(!toggleSort);
+    dispatchInfo(sortByName({ totalPrice: toggleSort }));
   };
 
   const handleChange = () => {
     setPrice(parseInt(priceRef.current.value));
-    // dispatchInfo(filterPrice(priceRef.current.value));
   };
 
   const handleRoomChange = () => {
@@ -82,7 +68,7 @@ export const Filter = () => {
       </div>
       <div className="col-3 mt-4">
         <button onClick={handleReset} type="submit" className="btn btn-outline-success w-100 ">
-          Reset Filter
+          Sort Price {!toggleSort ? 'low to hight' : 'hight to low'}
         </button>
       </div>
     </>

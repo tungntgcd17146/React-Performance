@@ -1,12 +1,13 @@
 /* eslint-disable no-case-declarations */
 import {
-  FETCH_INFO
-  // ADD_INFO,
-  // DELETE_INFO
+  FETCH_INFO,
+  ADD_INFO,
+  DELETE_INFO,
+  SORT_INFO
   // PRICE_FILTER_INFO,
   // ROOM_FILTER_INFO
 } from '../../constants/bookingInfos';
-import { convertArrayToObject } from '../../utils/helper/room';
+import { convertArrayToObject } from '../../utils/helper/convert';
 import { ActionInfos, State } from '../../interface/bookingContent';
 
 interface Room {
@@ -32,27 +33,47 @@ const reducer = (state: State, action: ActionInfos) => {
         allIdsInfo: newIds
       };
 
-    // case ADD_INFO:
-    //   const newInfo: PostInfo[] = action.payload;
-    //   state.byIdInfo[newInfo[0].id] = newInfo[0];
+    case ADD_INFO:
+      const newInfo = action.payload.info!;
+      state.byIdInfo[newInfo.id] = newInfo;
 
-    //   return {
-    //     byIdInfo: {
-    //       ...state.byIdInfo
-    //     },
-    //     allIdsInfo: [...state.allIdsInfo, newInfo[0].id]
-    //   };
+      return {
+        byIdInfo: {
+          ...state.byIdInfo
+        },
+        allIdsInfo: [...state.allIdsInfo, newInfo.id]
+      };
 
-    // case DELETE_INFO:
-    //   const newInfoId = action.payload;
-    //   const newArr = state.allIdsInfo.filter((item) => item !== newInfoId);
+    case DELETE_INFO:
+      const newInfoId = action.payload.id;
+      const newArr = state.allIdsInfo.filter((item) => item !== newInfoId);
 
-    //   return {
-    //     byIdInfo: {
-    //       ...state.byIdInfo
-    //     },
-    //     allIdsInfo: [...newArr]
-    //   };
+      return {
+        byIdInfo: {
+          ...state.byIdInfo
+        },
+        allIdsInfo: [...newArr]
+      };
+
+    case SORT_INFO:
+      const data = action.payload.totalPrice;
+
+      if (data === true) {
+        state.allIdsInfo.sort(
+          (a, b) => parseInt(state.byIdInfo[a].totalPrice) - parseInt(state.byIdInfo[b].totalPrice)
+        );
+      } else {
+        state.allIdsInfo.sort(
+          (a, b) => parseInt(state.byIdInfo[b].totalPrice) - parseInt(state.byIdInfo[a].totalPrice)
+        );
+      }
+
+      return {
+        byIdInfo: {
+          ...state.byIdInfo
+        },
+        allIdsInfo: [...state.allIdsInfo]
+      };
 
     // case PRICE_FILTER_INFO:
     //   const priceRange = action.payload;

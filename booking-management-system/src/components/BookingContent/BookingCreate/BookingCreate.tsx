@@ -1,10 +1,9 @@
-import React, { MutableRefObject, useState, useEffect, useRef } from 'react';
+import React, { MutableRefObject, useState, useRef } from 'react';
 import { Modal, Button } from 'react-bootstrap';
 import { useBookInfo } from '../../../contexts/BookingInfosContext';
 import { useRoom } from '../../../contexts/RoomsContext';
 
 import { addInfo } from '../../../reducer/bookingContent/actions';
-import { fetchRoom } from '../../../reducer/rooms/actions';
 
 import { Info } from '../../../interface/bookingContent';
 
@@ -16,7 +15,7 @@ export const BookingCreate = () => {
 
   const { stateInfo, dispatchInfo } = useBookInfo();
 
-  const { state, dispatch } = useRoom();
+  const { state } = useRoom();
   const { byId, allIds } = state;
 
   const nameRef = useRef() as MutableRefObject<HTMLInputElement>;
@@ -24,9 +23,10 @@ export const BookingCreate = () => {
   const phoneRef = useRef() as MutableRefObject<HTMLInputElement>;
   const checkInRef = useRef() as MutableRefObject<HTMLInputElement>;
   const checkOutRef = useRef() as MutableRefObject<HTMLInputElement>;
-  const valueRef = useRef() as MutableRefObject<HTMLOptionElement>;
+  const valueRef = useRef() as MutableRefObject<HTMLSelectElement>;
   const roomNumberRef = useRef() as MutableRefObject<HTMLInputElement>;
   const totalPriceRef = useRef() as MutableRefObject<HTMLInputElement>;
+  const roomNameRef = useRef() as MutableRefObject<HTMLOptionElement>;
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -44,20 +44,18 @@ export const BookingCreate = () => {
   };
 
   const handleSubmit = async () => {
-    const postInfo: Info[] = [
-      {
-        id: stateInfo.allIdsInfo.length + 1,
-        name: nameRef.current.value,
-        email: emailRef.current.value,
-        phone: phoneRef.current.value,
-        checkIn: checkInRef.current.value,
-        checkOut: checkOutRef.current.value,
-        nightPrice: valueRef.current.value,
-        roomName: valueRef.current.innerText,
-        roomNumber: roomNumberRef.current.value,
-        totalPrice: totalPriceRef.current.value
-      }
-    ];
+    const postInfo: Info = {
+      id: stateInfo.allIdsInfo.length + 1,
+      name: nameRef.current.value,
+      email: emailRef.current.value,
+      phone: phoneRef.current.value,
+      checkIn: checkInRef.current.value,
+      checkOut: checkOutRef.current.value,
+      nightPrice: valueRef.current.value,
+      roomName: roomNameRef.current.innerText,
+      roomNumber: roomNumberRef.current.value,
+      totalPrice: totalPriceRef.current.value
+    };
     if (
       nameRef.current.value != '' &&
       emailRef.current.value != '' &&
@@ -66,7 +64,7 @@ export const BookingCreate = () => {
       checkOutRef.current.value != '' &&
       roomNumberRef.current.value != ''
     ) {
-      dispatchInfo(addInfo({ infos: postInfo }));
+      dispatchInfo(addInfo({ info: postInfo }));
       await api.post('/bookingInfos', postInfo);
 
       (nameRef.current.value = ''),
@@ -80,21 +78,6 @@ export const BookingCreate = () => {
       handleClose();
     }
   };
-
-  const retrieveCategory = async () => {
-    const response = await api.get('/roomCategory');
-    return response.data;
-  };
-
-  useEffect(() => {
-    const getRoomCategory = async () => {
-      const allRoom = await retrieveCategory();
-      if (allRoom) {
-        dispatch(fetchRoom(allRoom));
-      }
-    };
-    getRoomCategory();
-  }, []);
 
   return (
     <>
@@ -158,12 +141,13 @@ export const BookingCreate = () => {
             <div className="col-9 mt-3">
               <label className="form-label ">Room type:</label>
               <select
+                ref={valueRef}
                 onChange={handlePick}
                 className="form-select"
                 aria-label="Default select example">
                 {allIds.map((id: number) => {
                   return (
-                    <option ref={valueRef} key={id} value={byId[id].price}>
+                    <option ref={roomNameRef} key={id} value={byId[id].price}>
                       {byId[id].roomName}
                     </option>
                   );
@@ -199,6 +183,7 @@ export const BookingCreate = () => {
                 type="number"
                 className="form-control"
                 value={totalPrice}
+                defaultValue={0}
               />
               <span className="input-group-text" id="basic-addon2">
                 $

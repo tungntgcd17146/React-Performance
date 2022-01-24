@@ -4,6 +4,8 @@ import { State, ActionInfos } from '@/interface/bookingContent';
 import { useReducer, createContext, ReactNode, useContext } from 'react';
 import reducer, { initInfos } from '../reducer/bookingContent/reducer';
 
+//import { filterPrice } from '../utils/helper/filter'
+
 interface RoomContextProps {
   stateInfo: State;
   // eslint-disable-next-line no-unused-vars
@@ -18,6 +20,21 @@ export type Props = {
 
 const InfoProvider = ({ children }: Props) => {
   const [state, dispatch] = useReducer(reducer, initInfos);
+
+  // const getBookingInfo = (id: number) => {
+  //   return state.byIdInfo[id];
+  // };
+
+  // const getInfoAvailable = (id: number) => {
+  //   return state.allIdsInfo.includes(id)
+  // }
+
+  // const infosAfterFilter = () => filterSims(getBookingInfo, filterPrice)
+  // );
+
+  // filterPrice()
+
+  console.log('testState:', state);
 
   return (
     <BookingInfoContext.Provider value={{ stateInfo: state, dispatchInfo: dispatch }}>
