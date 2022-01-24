@@ -1,4 +1,4 @@
-export interface PostRoom {
+export interface Room {
   id: number;
   roomImage: string;
   roomName: string;
@@ -6,12 +6,18 @@ export interface PostRoom {
   price: number;
 }
 
-export interface InitRooms {
-  byId: {};
-  allIds: string[];
+export interface State {
+  byId: { [id: number]: Room };
+  allIds: number[];
 }
+
+export type Payload = {
+  id?: number;
+  rooms?: Room[];
+  room?: Room;
+};
 
 export interface ActionRooms {
   type: string;
-  payload: PostRoom[];
+  payload: Payload;
 }

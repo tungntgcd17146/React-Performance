@@ -1,14 +1,15 @@
 import { useEffect } from 'react';
-import { useRoom } from '../../../utils/hooks/hooks';
+import { useRoom } from '../../../contexts/RoomsContext';
 import { fetchRoom, deleteRoom } from '../../../reducer/rooms/actions';
 
 import api from '../../../api/index.js';
 
 import style from './RoomCategory.module.css';
 import '../../../../public/images/deluxe-king-1.jpg';
+//import { Room } from '@/interface/roomCategory';
 
 export const RoomCategory = () => {
-  const [state, dispatch] = useRoom();
+  const { state, dispatch } = useRoom();
 
   const { byId, allIds } = state;
 
@@ -21,9 +22,8 @@ export const RoomCategory = () => {
   //Delete room category
   const deleteCategory = async (id: number) => {
     if (window.confirm('You sure to delete?')) {
-      dispatch(deleteRoom(id));
+      dispatch(deleteRoom({ id }));
       await api.delete(`/roomCategory/${id}`);
-      console.log(state);
     }
   };
 
@@ -31,7 +31,8 @@ export const RoomCategory = () => {
     const getRoomCategory = async () => {
       const allRoom = await retrieveCategory();
       if (allRoom) {
-        dispatch(fetchRoom(allRoom));
+        dispatch(fetchRoom({ rooms: allRoom }));
+        console.log('textRooms:', allRoom);
       }
     };
     getRoomCategory();

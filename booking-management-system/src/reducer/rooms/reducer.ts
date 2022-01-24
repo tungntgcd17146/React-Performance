@@ -1,53 +1,58 @@
 /* eslint-disable no-case-declarations */
-import { FETCH_ROOM, ADD_ROOM, DELETE_ROOM } from '../../constants/roomCategory';
+import {
+  FETCH_ROOM
+  //ADD_ROOM, DELETE_ROOM
+} from '../../constants/roomCategory';
 import { convertArrayToObject } from '../../utils/helper/room';
 
-import { InitRooms, ActionRooms } from '../../interface/roomCategory';
+import { State, ActionRooms } from '../../interface/roomCategory';
 
-type Room = {
-  id: number;
-};
+// type Room = {
+//   id: number;
+// };
 
 //Init room category
-export const initRooms = {
+export const initRooms: State = {
   byId: {},
   allIds: []
 };
 
 //Reducer
-const reducer = (state: InitRooms, action: ActionRooms) => {
+const reducer = (state: State, action: ActionRooms) => {
   switch (action.type) {
     case FETCH_ROOM:
-      const rooms = action.payload;
-      const newById = convertArrayToObject(rooms, 'id');
-      const newIds = rooms.map((room: Room) => room.id);
+      const rooms = action.payload.rooms || [];
+      const newById = convertArrayToObject(rooms);
+      const newIds = rooms.map((room) => room.id);
+
+      console.log('testFetch:', action.payload);
 
       return {
         byId: newById,
         allIds: newIds
       };
 
-    case ADD_ROOM:
-      const newRoom = action.payload;
-      state.byId[newRoom[0].id] = newRoom[0];
+    // case ADD_ROOM:
+    //   const newRoom = action.payload.room;
+    //   state.byId[newRoom.id] = newRoom;
 
-      return {
-        byId: {
-          ...state.byId
-        },
-        allIds: [...state.allIds, newRoom[0].id]
-      };
+    //   return {
+    //     byId: {
+    //       ...state.byId
+    //     },
+    //     allIds: [...state.allIds, newRoom.id]
+    //   };
 
-    case DELETE_ROOM:
-      const room = action.payload;
-      const newArr = state.allIds.filter((id) => id !== room[0].id);
+    // case DELETE_ROOM:
+    //   const roomId = action.payload.id;
+    //   const newArr = state.allIds.filter((id) => id !== roomId);
 
-      return {
-        byId: {
-          ...state.byId
-        },
-        allIds: [...newArr]
-      };
+    //   return {
+    //     byId: {
+    //       ...state.byId
+    //     },
+    //     allIds: [...newArr]
+    //   };
 
     default:
       return state;

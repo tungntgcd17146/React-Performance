@@ -1,17 +1,17 @@
 import { MutableRefObject, useContext, useRef } from 'react';
 import { ThemeContext } from '../../../contexts/ThemeModeContext';
 
-import { useRoom } from '../../../utils/hooks/hooks';
+import { useRoom } from '../../../contexts/RoomsContext';
 import { addRoom } from '../../../reducer/rooms/actions';
 
-import { PostRoom } from '../../../interface/roomCategory';
+import { Room } from '../../../interface/roomCategory';
 
 import api from '../../../api/index.js';
 
 export const CreateRooms = () => {
   const context = useContext(ThemeContext);
 
-  const [state, dispatch] = useRoom();
+  const { state, dispatch } = useRoom();
 
   const nameRef = useRef() as MutableRefObject<HTMLInputElement>;
   const priceRef = useRef() as MutableRefObject<HTMLInputElement>;
@@ -19,22 +19,20 @@ export const CreateRooms = () => {
   const imageRef = useRef() as MutableRefObject<HTMLInputElement>;
 
   const handleSubmit = async () => {
-    const postRoom: PostRoom[] = [
-      {
-        id: state.allIds.length + 1,
-        roomImage: imageRef.current.value,
-        roomName: nameRef.current.value,
-        totalRoom: parseInt(availableRef.current.value),
-        price: parseInt(priceRef.current.value)
-      }
-    ];
+    const postRoom: Room = {
+      id: state.allIds.length + 1,
+      roomImage: imageRef.current.value,
+      roomName: nameRef.current.value,
+      totalRoom: parseInt(availableRef.current.value),
+      price: parseInt(priceRef.current.value)
+    };
     if (
       nameRef.current.value != '' &&
       priceRef.current.value != '' &&
       availableRef.current.value != ''
     ) {
-      dispatch(addRoom(postRoom));
-      await api.post('/roomCategory', postRoom[0]);
+      dispatch(addRoom({ room: postRoom }));
+      await api.post('/roomCategory', postRoom);
 
       nameRef.current.value = '';
       priceRef.current.value = '';

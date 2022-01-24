@@ -1,4 +1,4 @@
-export interface PostInfo {
+export interface Info {
   id: number;
   name: string;
   email: string;
@@ -11,12 +11,18 @@ export interface PostInfo {
   totalPrice: string;
 }
 
-export interface InitInfos {
-  byIdInfo: {};
-  allIdsInfo: [];
+export interface State {
+  byIdInfo: { [id: number]: Info };
+  allIdsInfo: number[];
 }
+
+export type Payload = {
+  id?: number;
+  infos?: Info[];
+  info?: Info;
+};
 
 export interface ActionInfos {
   type: string;
-  payload: PostInfo[];
+  payload: Payload;
 }

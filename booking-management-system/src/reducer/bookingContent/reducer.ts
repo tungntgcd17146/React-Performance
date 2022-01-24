@@ -1,30 +1,30 @@
 /* eslint-disable no-case-declarations */
 import {
-  FETCH_INFO,
-  ADD_INFO,
-  DELETE_INFO
+  FETCH_INFO
+  // ADD_INFO,
+  // DELETE_INFO
   // PRICE_FILTER_INFO,
   // ROOM_FILTER_INFO
 } from '../../constants/bookingInfos';
-import { convertArrayToObject } from '../../utils/helper/info';
-import { InitInfos, ActionInfos, PostInfo } from '../../interface/bookingContent';
+import { convertArrayToObject } from '../../utils/helper/room';
+import { ActionInfos, State } from '../../interface/bookingContent';
 
 interface Room {
   id: number;
 }
 
 //Init room category
-export const initInfos: InitInfos = {
+export const initInfos: State = {
   byIdInfo: {},
   allIdsInfo: []
 };
 
 //Reducer
-const reducer = (state: InitInfos, action: ActionInfos) => {
+const reducer = (state: State, action: ActionInfos) => {
   switch (action.type) {
     case FETCH_INFO:
-      const infos = action.payload;
-      const newByIdInfo = convertArrayToObject(infos, 'id');
+      const infos = action.payload.infos || [];
+      const newByIdInfo = convertArrayToObject(infos);
       const newIds = infos.map((room: Room) => room.id);
 
       return {
@@ -32,27 +32,27 @@ const reducer = (state: InitInfos, action: ActionInfos) => {
         allIdsInfo: newIds
       };
 
-    case ADD_INFO:
-      const newInfo: PostInfo[] = action.payload;
-      state.byIdInfo[newInfo[0].id] = newInfo[0];
+    // case ADD_INFO:
+    //   const newInfo: PostInfo[] = action.payload;
+    //   state.byIdInfo[newInfo[0].id] = newInfo[0];
 
-      return {
-        byIdInfo: {
-          ...state.byIdInfo
-        },
-        allIdsInfo: [...state.allIdsInfo, newInfo[0].id]
-      };
+    //   return {
+    //     byIdInfo: {
+    //       ...state.byIdInfo
+    //     },
+    //     allIdsInfo: [...state.allIdsInfo, newInfo[0].id]
+    //   };
 
-    case DELETE_INFO:
-      const newInfoId = action.payload;
-      const newArr = state.allIdsInfo.filter((item) => item !== newInfoId);
+    // case DELETE_INFO:
+    //   const newInfoId = action.payload;
+    //   const newArr = state.allIdsInfo.filter((item) => item !== newInfoId);
 
-      return {
-        byIdInfo: {
-          ...state.byIdInfo
-        },
-        allIdsInfo: [...newArr]
-      };
+    //   return {
+    //     byIdInfo: {
+    //       ...state.byIdInfo
+    //     },
+    //     allIdsInfo: [...newArr]
+    //   };
 
     // case PRICE_FILTER_INFO:
     //   const priceRange = action.payload;

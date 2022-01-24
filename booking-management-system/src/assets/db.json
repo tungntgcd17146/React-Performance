@@ -25,15 +25,8 @@
       "id": 4,
       "roomImage": "",
       "roomName": "Limited Room",
-      "totalRoom": "1",
-      "price": "150"
-    },
-    {
-      "id": 5,
-      "roomImage": "",
-      "roomName": "asd",
-      "totalRoom": 23,
-      "price": 12
+      "totalRoom": 1,
+      "price": 150
     }
   ],
   "bookingInfos": [
@@ -148,6 +141,18 @@
     {
       "id": 10,
       "name": "asd",
+      "email": "asd@gmail.com",
+      "phone": "123456",
+      "checkIn": "2022-01-25",
+      "checkOut": "2022-01-31",
+      "nightPrice": "150",
+      "roomName": "Limited Room",
+      "roomNumber": "2",
+      "totalPrice": "1800"
+    },
+    {
+      "id": 11,
+      "name": "asdasdasd",
       "email": "asd@gmail.com",
       "phone": "123456",
       "checkIn": "2022-01-25",

@@ -1,6 +1,7 @@
 import React, { useState, useRef, MutableRefObject } from 'react';
-import { useBookInfo, useRoom } from '../../../utils/hooks/hooks';
-import { filterPrice, fetchInfos, filterByRoom } from '../../../reducer/bookingContent/actions';
+import { useBookInfo } from '../../../contexts/BookingInfosContext';
+import { useRoom } from '../../../contexts/RoomsContext';
+import { fetchInfos } from '../../../reducer/bookingContent/actions';
 
 import api from '../../../api/index';
 
@@ -8,9 +9,9 @@ export const Filter = () => {
   const [price, setPrice] = useState(0);
 
   // eslint-disable-next-line no-unused-vars
-  const [stateInfo, dispatchInfo] = useBookInfo();
+  const { stateInfo, dispatchInfo } = useBookInfo();
 
-  const [state] = useRoom();
+  const { state } = useRoom();
   const { byId, allIds } = state;
 
   const priceRef = useRef() as MutableRefObject<HTMLInputElement>;
@@ -37,11 +38,11 @@ export const Filter = () => {
 
   const handleChange = () => {
     setPrice(parseInt(priceRef.current.value));
-    dispatchInfo(filterPrice(priceRef.current.value));
+    // dispatchInfo(filterPrice(priceRef.current.value));
   };
 
   const handleRoomChange = () => {
-    dispatchInfo(filterByRoom(roomFilterRef.current.value));
+    // dispatchInfo(filterByRoom(roomFilterRef.current.value));
   };
 
   return (

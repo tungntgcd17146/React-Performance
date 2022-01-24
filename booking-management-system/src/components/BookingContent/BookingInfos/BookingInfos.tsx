@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useBookInfo } from '../../../utils/hooks/hooks';
+import { useBookInfo } from '../../../contexts/BookingInfosContext';
 import { fetchInfos, deleteInfo } from '../../../reducer/bookingContent/actions';
 
 import api from '../../../api/index';
@@ -7,7 +7,7 @@ import api from '../../../api/index';
 import style from './BookingInfos.module.css';
 
 export const BookingInfos = () => {
-  const [state, dispatch] = useBookInfo();
+  const { stateInfo, dispatchInfo } = useBookInfo();
 
   //Retrieve Booking infos category
   const retrieveInfos = async () => {
@@ -18,23 +18,22 @@ export const BookingInfos = () => {
   //Delete room category
   const deleteInfoBooking = async (id: number) => {
     if (window.confirm('You sure to delete?')) {
-      dispatch(deleteInfo(id));
+      dispatchInfo(deleteInfo({ id }));
       await api.delete(`/bookingInfos/${id}`);
-      console.log(state);
     }
   };
 
   useEffect(() => {
     const getRoomCategory = async () => {
-      const allRoom = await retrieveInfos();
-      if (allRoom) {
-        dispatch(fetchInfos(allRoom));
+      const allInfos = await retrieveInfos();
+      if (allInfos) {
+        dispatchInfo(fetchInfos({ infos: allInfos }));
       }
     };
     getRoomCategory();
   }, []);
 
-  const { byIdInfo, allIdsInfo } = state;
+  const { byIdInfo, allIdsInfo } = stateInfo;
 
   return (
     <div className={`row mt-5 ${style.color} ${style.heightContent}`}>

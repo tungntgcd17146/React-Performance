@@ -1,11 +1,12 @@
-import { PostRoom } from '../../interface/roomCategory';
+import { Room } from '../../interface/roomCategory';
+import { Info } from '../../interface/bookingContent';
 
-export const convertArrayToObject = (array: PostRoom[], key: string) => {
+export const convertArrayToObject = (array: (Room | Info)[]) => {
   const initialValue = {};
   return array.reduce((obj, item) => {
     return {
       ...obj,
-      [item[key]]: item
+      [item.id]: item
     };
   }, initialValue);
 };

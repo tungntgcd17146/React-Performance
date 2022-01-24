@@ -1,11 +1,12 @@
 import React, { MutableRefObject, useState, useEffect, useRef } from 'react';
 import { Modal, Button } from 'react-bootstrap';
-import { useBookInfo, useRoom } from '../../../utils/hooks/hooks';
+import { useBookInfo } from '../../../contexts/BookingInfosContext';
+import { useRoom } from '../../../contexts/RoomsContext';
 
 import { addInfo } from '../../../reducer/bookingContent/actions';
 import { fetchRoom } from '../../../reducer/rooms/actions';
 
-import { PostInfo } from '../../../interface/bookingContent';
+import { Info } from '../../../interface/bookingContent';
 
 import api from '../../../api/index.js';
 
@@ -13,9 +14,9 @@ export const BookingCreate = () => {
   const [show, setShow] = useState(false);
   const [totalPrice, setTotalPrice] = useState(0);
 
-  const [stateInfo, dispatchInfo] = useBookInfo();
+  const { stateInfo, dispatchInfo } = useBookInfo();
 
-  const [state, dispatch] = useRoom();
+  const { state, dispatch } = useRoom();
   const { byId, allIds } = state;
 
   const nameRef = useRef() as MutableRefObject<HTMLInputElement>;
@@ -43,7 +44,7 @@ export const BookingCreate = () => {
   };
 
   const handleSubmit = async () => {
-    const postInfo: PostInfo[] = [
+    const postInfo: Info[] = [
       {
         id: stateInfo.allIdsInfo.length + 1,
         name: nameRef.current.value,
@@ -65,8 +66,8 @@ export const BookingCreate = () => {
       checkOutRef.current.value != '' &&
       roomNumberRef.current.value != ''
     ) {
-      dispatchInfo(addInfo(postInfo));
-      await api.post('/bookingInfos', postInfo[0]);
+      dispatchInfo(addInfo({ infos: postInfo }));
+      await api.post('/bookingInfos', postInfo);
 
       (nameRef.current.value = ''),
         (emailRef.current.value = ''),
@@ -79,7 +80,6 @@ export const BookingCreate = () => {
       handleClose();
     }
   };
-  console.log('render submit', stateInfo);
 
   const retrieveCategory = async () => {
     const response = await api.get('/roomCategory');
