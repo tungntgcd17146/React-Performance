@@ -5,24 +5,25 @@ import {
   PRICE_FILTER_INFO,
   ROOM_FILTER_INFO
 } from '../../constants/bookingInfos';
-
 import { PostInfo } from '../../interface/bookingContent';
 
-export const fetchInfos = (payload: PostInfo) => {
+// import { PostInfo } from '../../interface/bookingContent';
+
+export const fetchInfos = (payload: PostInfo[]) => {
   return {
     type: FETCH_INFO,
     payload: payload
   };
 };
 
-export const addInfo = (payload: PostInfo) => {
+export const addInfo = (payload: PostInfo[]) => {
   return {
     type: ADD_INFO,
     payload: payload
   };
 };
 
-export const deleteInfo = (payload: string) => {
+export const deleteInfo = (payload: number) => {
   return {
     type: DELETE_INFO,
     payload: payload

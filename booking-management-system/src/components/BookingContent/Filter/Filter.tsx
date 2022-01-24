@@ -36,7 +36,6 @@ export const Filter = () => {
   };
 
   const handleChange = () => {
-    console.log('price rage:', priceRef.current.value);
     setPrice(parseInt(priceRef.current.value));
     dispatchInfo(filterPrice(priceRef.current.value));
   };

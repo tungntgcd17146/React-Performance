@@ -1,13 +1,8 @@
 /* eslint-disable no-case-declarations */
 import { FETCH_ROOM, ADD_ROOM, DELETE_ROOM } from '../../constants/roomCategory';
-import { convertArrayToObject } from '../../utils/helper/helper';
+import { convertArrayToObject } from '../../utils/helper/room';
 
-import { InitRooms } from '../../interface/roomCategory';
-
-interface Action {
-  type: string;
-  payload;
-}
+import { InitRooms, ActionRooms } from '../../interface/roomCategory';
 
 type Room = {
   id: number;
@@ -20,7 +15,7 @@ export const initRooms = {
 };
 
 //Reducer
-const reducer = (state: InitRooms, action: Action) => {
+const reducer = (state: InitRooms, action: ActionRooms) => {
   switch (action.type) {
     case FETCH_ROOM:
       const rooms = action.payload;
@@ -34,19 +29,18 @@ const reducer = (state: InitRooms, action: Action) => {
 
     case ADD_ROOM:
       const newRoom = action.payload;
-      state.byId[newRoom['id']] = newRoom;
+      state.byId[newRoom[0].id] = newRoom[0];
 
       return {
         byId: {
           ...state.byId
         },
-        allIds: [...state.allIds, newRoom['id']]
+        allIds: [...state.allIds, newRoom[0].id]
       };
 
     case DELETE_ROOM:
-      const roomId = action.payload;
-      delete state.byId[roomId];
-      const newArr = state.allIds.filter((item: number) => item !== roomId);
+      const room = action.payload;
+      const newArr = state.allIds.filter((id) => id !== room[0].id);
 
       return {
         byId: {

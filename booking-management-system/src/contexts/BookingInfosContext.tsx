@@ -1,16 +1,14 @@
 import { useReducer, createContext, ReactNode } from 'react';
-import reducer, { InitInfos } from '../reducer/bookingContent/reducer';
-
-import { FC } from 'react';
+import reducer, { initInfos } from '../reducer/bookingContent/reducer';
 
 export const BookingInfoContext = createContext({});
 
 export type Props = {
-  children?: ReactNode;
+  children: ReactNode;
 };
 
-const InfoProvider: FC<Props> = ({ children }: Props) => {
-  const [state, dispatch] = useReducer(reducer, InitInfos);
+const InfoProvider = ({ children }: Props) => {
+  const [state, dispatch] = useReducer(reducer, initInfos);
 
   return (
     <BookingInfoContext.Provider value={[state, dispatch]}>{children}</BookingInfoContext.Provider>

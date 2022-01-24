@@ -2,11 +2,16 @@ export interface PostRoom {
   id: number;
   roomImage: string;
   roomName: string;
-  totalRoom: string;
-  price: string;
+  totalRoom: number;
+  price: number;
 }
 
 export interface InitRooms {
   byId: {};
-  allIds: [];
+  allIds: string[];
+}
+
+export interface ActionRooms {
+  type: string;
+  payload: PostRoom[];
 }

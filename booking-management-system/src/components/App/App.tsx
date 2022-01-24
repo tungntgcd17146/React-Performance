@@ -10,19 +10,15 @@ import { ThemeContext } from '../../contexts/ThemeModeContext';
 import './App.css';
 import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
-type Context = {
-  theme: string;
-};
-
 const App = () => {
-  const context: Context = useContext(ThemeContext);
+  const context = useContext(ThemeContext);
 
   return (
     <>
       <RoomsProvider>
         <div className={`app ${context.theme}`}>
           <header>
-            <Navbar mode={context} />
+            <Navbar />
           </header>
           <main className={`app-main ${context.theme}`}>
             <div className="container mt-3">

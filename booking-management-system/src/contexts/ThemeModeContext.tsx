@@ -1,7 +1,4 @@
 import { useState, createContext, useEffect } from 'react';
-import { FC } from 'react';
-
-import PropTypes from 'prop-types';
 
 type CreateContext = {
   theme: string;
@@ -13,11 +10,11 @@ const ThemeContext = createContext<CreateContext>({
   toggleTheme: () => {}
 });
 
-export interface Theme {
+export type Prop = {
   children: string;
-}
+};
 
-const ThemeProvider: FC<Theme> = ({ children }) => {
+const ThemeProvider = ({ children }: Prop) => {
   const [theme, setTheme] = useState('light');
 
   useEffect(() => {
@@ -38,10 +35,6 @@ const ThemeProvider: FC<Theme> = ({ children }) => {
   };
 
   return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>;
-};
-
-ThemeProvider.propTypes = {
-  children: PropTypes.string.isRequired
 };
 
 export { ThemeProvider, ThemeContext };

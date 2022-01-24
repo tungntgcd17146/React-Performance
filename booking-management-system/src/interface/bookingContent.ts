@@ -15,3 +15,8 @@ export interface InitInfos {
   byIdInfo: {};
   allIdsInfo: [];
 }
+
+export interface ActionInfos {
+  type: string;
+  payload: PostInfo[];
+}

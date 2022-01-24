@@ -1,14 +1,14 @@
-import { FC } from 'react';
 import { Search } from './Search/Search';
 import { SwitchMode } from './SwitchMode/SwitchMode';
 
-export type Prop = {
-  mode?: any;
-};
+import { ThemeContext } from '../../contexts/ThemeModeContext';
+import { useContext } from 'react';
 
-export const Navbar: FC<Prop> = ({ mode }) => {
+export const Navbar = () => {
+  const context = useContext(ThemeContext);
+
   return (
-    <nav className={`navbar navbar-${mode.theme} bg-${mode.theme}`}>
+    <nav className={`navbar navbar-${context.theme} bg-${context.theme}`}>
       <div className="container">
         <span className="col-6 navbar-brand mb-0 h1">ADMINISTRATOR</span>
         <Search />

@@ -14,7 +14,6 @@ export const BookingCreate = () => {
   const [totalPrice, setTotalPrice] = useState(0);
 
   const [stateInfo, dispatchInfo] = useBookInfo();
-  // const { byIdInfo, allIdsInfo } = stateInfo;
 
   const [state, dispatch] = useRoom();
   const { byId, allIds } = state;
@@ -44,18 +43,20 @@ export const BookingCreate = () => {
   };
 
   const handleSubmit = async () => {
-    const postInfo: PostInfo = {
-      id: stateInfo.allIdsInfo.length + 1,
-      name: nameRef.current.value,
-      email: emailRef.current.value,
-      phone: phoneRef.current.value,
-      checkIn: checkInRef.current.value,
-      checkOut: checkOutRef.current.value,
-      nightPrice: valueRef.current.value,
-      roomName: valueRef.current.innerText,
-      roomNumber: roomNumberRef.current.value,
-      totalPrice: totalPriceRef.current.value
-    };
+    const postInfo: PostInfo[] = [
+      {
+        id: stateInfo.allIdsInfo.length + 1,
+        name: nameRef.current.value,
+        email: emailRef.current.value,
+        phone: phoneRef.current.value,
+        checkIn: checkInRef.current.value,
+        checkOut: checkOutRef.current.value,
+        nightPrice: valueRef.current.value,
+        roomName: valueRef.current.innerText,
+        roomNumber: roomNumberRef.current.value,
+        totalPrice: totalPriceRef.current.value
+      }
+    ];
     if (
       nameRef.current.value != '' &&
       emailRef.current.value != '' &&
@@ -65,7 +66,7 @@ export const BookingCreate = () => {
       roomNumberRef.current.value != ''
     ) {
       dispatchInfo(addInfo(postInfo));
-      await api.post('/bookingInfos', postInfo);
+      await api.post('/bookingInfos', postInfo[0]);
 
       (nameRef.current.value = ''),
         (emailRef.current.value = ''),

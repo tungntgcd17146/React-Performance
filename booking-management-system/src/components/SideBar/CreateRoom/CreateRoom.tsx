@@ -19,20 +19,22 @@ export const CreateRooms = () => {
   const imageRef = useRef() as MutableRefObject<HTMLInputElement>;
 
   const handleSubmit = async () => {
-    const postRoom: PostRoom = {
-      id: state.allIds.length + 1,
-      roomImage: imageRef.current.value,
-      roomName: nameRef.current.value,
-      totalRoom: availableRef.current.value,
-      price: priceRef.current.value
-    };
+    const postRoom: PostRoom[] = [
+      {
+        id: state.allIds.length + 1,
+        roomImage: imageRef.current.value,
+        roomName: nameRef.current.value,
+        totalRoom: parseInt(availableRef.current.value),
+        price: parseInt(priceRef.current.value)
+      }
+    ];
     if (
       nameRef.current.value != '' &&
       priceRef.current.value != '' &&
       availableRef.current.value != ''
     ) {
       dispatch(addRoom(postRoom));
-      await api.post('/roomCategory', postRoom);
+      await api.post('/roomCategory', postRoom[0]);
 
       nameRef.current.value = '';
       priceRef.current.value = '';
