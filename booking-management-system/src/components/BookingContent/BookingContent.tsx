@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ViewMode } from './ViewMode/ViewMode';
+import { ViewMode } from './SortByPrice/SortByPrice';
 import { Filter } from './Filter/Filter';
 import { BookingCreate } from './BookingCreate/BookingCreate';
 import { BookingInfos } from './BookingInfos/BookingInfos';

@@ -9,40 +9,35 @@ This is a [React](https://reactjs.org) + [TypeScript](https://www.typescriptlang
 - [TypeScript](https://www.typescriptlang.org)
 - [Jest](https://jestjs.io)
 - [Testing Library](https://testing-library.com)
-- [Cypress](https://www.cypress.io)
 - [ESLint](https://eslint.org)
 - [Prettier](https://prettier.io)
-- [Polyfills](https://github.com/vitejs/vite/tree/main/packages/plugin-legacy#readme)
 
 ## Getting started
-
-1. Create the project.
-
-   ```bash
-   npx degit fabien-ml/react-ts-vite-template my-app
-   ```
-
-2. Access the project directory.
+1. Access the project directory.
 
    ```bash
-   cd my-app
+   cd booking-management-system
    ```
 
-3. Initialize a git repository.
+2. Initialize a git repository.
 
    ```bash
    git init
    ```
 
-4. Install dependencies.
+3. Install dependencies.
 
    ```bash
-   npm install
+   yarn install
+   ```
+5. Start Json server with hot reload at http://localhost:3003.
+   ```bash
+   yarn start
    ```
 
 5. Start dev server with hot reload at http://localhost:3000.
    ```bash
-   npm run dev
+   yarn dev
    ```
 
 ## Recommended VS Code extensions
@@ -55,34 +50,34 @@ This is a [React](https://reactjs.org) + [TypeScript](https://www.typescriptlang
 ### Lint commands
 
 ```bash
-npm run lint
+yarn lint
 ```
 
 ### Build commands
 
 ```bash
-npm run build
+yarn build
 ```
 
 ### Run the app in production mode at http://localhost:3000.
 
 ```bash
-npm run serve
+yarn serve
 ```
 
 ### Test commands
 
 - Run unit tests and watch
   ```bash
-  npm run test:unit
+  yarn test:unit
   ```
 - Run unit tests with coverage
   ```bash
-  npm run test:unit:coverage
+  yarn test:unit:coverage
   ```
-- Run e2e tests
+- yarn tests
   ```bash
-  npm run test:e2e
+  yarn test:e2e
   ```
 
 ## License
