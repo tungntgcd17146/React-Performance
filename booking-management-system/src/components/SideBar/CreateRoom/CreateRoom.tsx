@@ -1,5 +1,6 @@
 import { MutableRefObject, useContext, useRef } from 'react';
 import { ThemeContext } from '../../../contexts/ThemeModeContext';
+import { v4 as uuid } from 'uuid';
 
 import { useRoom } from '../../../contexts/RoomsContext';
 import { addRoom } from '../../../reducer/rooms/actions';
@@ -11,6 +12,7 @@ import api from '../../../api/index.js';
 export const CreateRooms = () => {
   const context = useContext(ThemeContext);
 
+  // eslint-disable-next-line no-unused-vars
   const { state, dispatch } = useRoom();
 
   const nameRef = useRef() as MutableRefObject<HTMLInputElement>;
@@ -20,7 +22,7 @@ export const CreateRooms = () => {
 
   const handleSubmit = async () => {
     const postRoom: Room = {
-      id: state.allIds.length + 1,
+      id: uuid(),
       roomImage: imageRef.current.value,
       roomName: nameRef.current.value,
       totalRoom: parseInt(availableRef.current.value),

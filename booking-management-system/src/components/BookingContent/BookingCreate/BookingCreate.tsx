@@ -62,7 +62,8 @@ export const BookingCreate = () => {
       phoneRef.current.value != '' &&
       checkInRef.current.value != '' &&
       checkOutRef.current.value != '' &&
-      roomNumberRef.current.value != ''
+      roomNumberRef.current.value != '' &&
+      postInfo
     ) {
       dispatchInfo(addInfo({ info: postInfo }));
       await api.post('/bookingInfos', postInfo);
@@ -87,7 +88,7 @@ export const BookingCreate = () => {
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Modal</Modal.Title>
+          <Modal.Title>Booking Modal</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <form className="row mt-3">

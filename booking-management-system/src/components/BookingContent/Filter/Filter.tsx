@@ -1,13 +1,11 @@
 import React, { useState, useRef, MutableRefObject } from 'react';
 import { useBookInfo } from '../../../contexts/BookingInfosContext';
 import { useRoom } from '../../../contexts/RoomsContext';
-import { sortByName } from '../../../reducer/bookingContent/actions';
 
 //import api from '../../../api/index';
 
 export const Filter = () => {
   const [price, setPrice] = useState(0);
-  const [toggleSort, setToggleSort] = useState(false);
 
   // eslint-disable-next-line no-unused-vars
   const { stateInfo, dispatchInfo } = useBookInfo();
@@ -17,11 +15,6 @@ export const Filter = () => {
 
   const priceRef = useRef() as MutableRefObject<HTMLInputElement>;
   const roomFilterRef = useRef() as MutableRefObject<HTMLSelectElement>;
-
-  const handleReset = () => {
-    setToggleSort(!toggleSort);
-    dispatchInfo(sortByName({ totalPrice: toggleSort }));
-  };
 
   const handleChange = () => {
     setPrice(parseInt(priceRef.current.value));
@@ -66,10 +59,16 @@ export const Filter = () => {
           />
         </div>
       </div>
-      <div className="col-3 mt-4">
-        <button onClick={handleReset} type="submit" className="btn btn-outline-success w-100 ">
-          Sort Price {!toggleSort ? 'low to hight' : 'hight to low'}
-        </button>
+      <div className="col-3 mt-4 d-flex justify-content-center form-check form-switch">
+        <input
+          className="form-check-input"
+          type="checkbox"
+          role="switch"
+          id="flexSwitchCheckChecked"
+        />
+        <label className="form-check-label" htmlFor="flexSwitchCheckChecked">
+          View Card
+        </label>
       </div>
     </>
   );

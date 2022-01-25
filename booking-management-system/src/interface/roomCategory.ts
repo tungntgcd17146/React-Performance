@@ -1,5 +1,5 @@
 export interface Room {
-  id: number;
+  id: string;
   roomImage: string;
   roomName: string;
   totalRoom: number;
@@ -7,12 +7,12 @@ export interface Room {
 }
 
 export interface State {
-  byId: { [id: number]: Room };
-  allIds: number[];
+  byId: { [id: string]: Room };
+  allIds: string[];
 }
 
 export type Payload = {
-  id?: number;
+  id?: string;
   rooms?: Room[];
   room?: Room;
 };

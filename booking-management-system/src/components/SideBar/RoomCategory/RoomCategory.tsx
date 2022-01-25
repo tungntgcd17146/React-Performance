@@ -1,9 +1,10 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useRoom } from '../../../contexts/RoomsContext';
 import { fetchRoom, deleteRoom } from '../../../reducer/rooms/actions';
 
 import api from '../../../api/index.js';
 
+import { RoomEditModal } from './RoomEditModal';
 import style from './RoomCategory.module.css';
 import '../../../../public/images/deluxe-king-1.jpg';
 //import { Room } from '@/interface/roomCategory';
@@ -13,6 +14,26 @@ export const RoomCategory = () => {
 
   const { byId, allIds } = state;
 
+  const [editModalShow, setEditModalShow] = useState(false);
+
+  const handleCloseModal = () => {
+    setEditModalShow(false);
+  };
+
+  const handleShow = (id: number) => {
+    setEditModalShow(true);
+    // console.log('testValue:', byId[id])
+    const RoomId = byId[id]
+    return RoomId;
+  };
+
+  console.log('testValue:', handleShow)
+
+  // const handleCloseModal = () => {
+  //   setModalState(false);
+  // };
+
+
   //Retrieve Room category
   const retrieveCategory = async () => {
     const response = await api.get('/roomCategory');
@@ -20,7 +41,7 @@ export const RoomCategory = () => {
   };
 
   //Delete room category
-  const deleteCategory = async (id: number) => {
+  const deleteCategory = async (id: string) => {
     if (window.confirm('You sure to delete?')) {
       dispatch(deleteRoom({ id }));
       await api.delete(`/roomCategory/${id}`);
@@ -42,7 +63,7 @@ export const RoomCategory = () => {
       <h2>Room Category</h2>
       <div className={`mt-3 ${style.color} ${style.heightContent}`}>
         <div className="row mt-3">
-          {allIds.map((id: number) => {
+          {allIds.map((id: string) => {
             return (
               <div className="card mb-3" key={id}>
                 <div className="row g-0">
@@ -67,11 +88,11 @@ export const RoomCategory = () => {
                         className="btn btn-outline-danger mb-3">
                         Delete
                       </button>
-                      {/* <button
-                        onClick={handleShow}
+                      <button
+                        onClick={() => handleShow(id)}
                         className={`${style.button} btn btn-outline-primary mb-3`}>
                         Edit
-                      </button> */}
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -80,6 +101,7 @@ export const RoomCategory = () => {
           })}
         </div>
       </div>
+      {editModalShow && <RoomEditModal handleCloseModal={handleCloseModal} roomId={handleShow} />}
     </div>
   );
 };

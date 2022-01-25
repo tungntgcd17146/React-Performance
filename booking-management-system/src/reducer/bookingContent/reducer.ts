@@ -103,7 +103,7 @@ const reducer = (state: State, action: ActionInfos) => {
     //   };
 
     default:
-      return state;
+      return { ...state };
   }
 };
 
