@@ -1,14 +1,5 @@
-import {
-  FETCH_INFO,
-  ADD_INFO,
-  DELETE_INFO,
-  SORT_INFO
-  // PRICE_FILTER_INFO,
-  // ROOM_FILTER_INFO
-} from '../../constants/bookingInfos';
+import { FETCH_INFO, ADD_INFO, DELETE_INFO, SORT_INFO } from '../../constants/bookingInfos';
 import { Payload } from '../../interface/bookingContent';
-
-// import { PostInfo } from '../../interface/bookingContent';
 
 export const fetchInfos = (payload: Payload) => {
   return {
@@ -37,17 +28,3 @@ export const sortByName = (payload: Payload) => {
     payload: payload
   };
 };
-
-// export const filterPrice = (payload: string) => {
-//   return {
-//     type: PRICE_FILTER_INFO,
-//     payload: payload
-//   };
-// };
-
-// export const filterByRoom = (payload: string) => {
-//   return {
-//     type: ROOM_FILTER_INFO,
-//     payload: payload
-//   };
-// };

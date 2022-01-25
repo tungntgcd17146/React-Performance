@@ -1,19 +1,52 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, MutableRefObject } from 'react';
 import { Button, Modal } from 'react-bootstrap';
 
 import { useContext } from 'react';
 import { ThemeContext } from '../../../contexts/ThemeModeContext';
+import { useRoom } from '../../../contexts/RoomsContext';
+import { editRoom } from '../../../reducer/rooms/actions';
+import { Room } from '@/interface/roomCategory';
 
-export const RoomEditModal = ({ handleCloseModal, roomId }) => {
+import api from '../../../api/index.js';
+
+export interface Props {
+  handleCloseModal: () => void;
+  selectedId: string;
+}
+
+export const RoomEditModal = ({ handleCloseModal, selectedId }: Props) => {
   const context = useContext(ThemeContext);
 
   const [show, setShow] = useState(true);
 
-  console.log('testValue:', roomId)
+  const { state, dispatch } = useRoom();
+  const { byId } = state;
+
+  const nameEditRef = useRef() as MutableRefObject<HTMLInputElement>;
+  const priceEditRef = useRef() as MutableRefObject<HTMLInputElement>;
+  const availableEditRef = useRef() as MutableRefObject<HTMLInputElement>;
+  const imageRef = useRef() as MutableRefObject<HTMLInputElement>;
+
+  console.log('testValue:', selectedId);
 
   const handleExit = () => {
     setShow(false);
     handleCloseModal();
+  };
+
+  const handleUpdate = async () => {
+    const roomAfterEdit: Room = {
+      id: selectedId,
+      roomImage: imageRef.current.value,
+      roomName: nameEditRef.current.value,
+      totalRoom: parseInt(availableEditRef.current.value),
+      price: parseInt(priceEditRef.current.value)
+    };
+    handleExit();
+    if (roomAfterEdit) {
+      dispatch(editRoom({ room: roomAfterEdit }));
+      await api.put(`/roomCategory/${selectedId}`, roomAfterEdit);
+    }
   };
 
   return (
@@ -29,8 +62,8 @@ export const RoomEditModal = ({ handleCloseModal, roomId }) => {
                 Room type:
               </label>
               <input
-                //ref={nameRef}
-                defaultValue={123456}
+                ref={nameEditRef}
+                defaultValue={byId[selectedId].roomName}
                 type="text"
                 className="form-control"
                 id="exampleFormControlInput1"
@@ -44,7 +77,8 @@ export const RoomEditModal = ({ handleCloseModal, roomId }) => {
               </label>
               <div className="input-group">
                 <input
-                  //ref={priceRef}
+                  ref={priceEditRef}
+                  defaultValue={byId[selectedId].price}
                   type="number"
                   className="form-control"
                   id="exampleFormControlInput1"
@@ -61,7 +95,8 @@ export const RoomEditModal = ({ handleCloseModal, roomId }) => {
                 Room available:
               </label>
               <input
-                //ref={availableRef}
+                ref={availableEditRef}
+                defaultValue={byId[selectedId].totalRoom}
                 type="number"
                 className="form-control"
                 id="exampleFormControlInput1"
@@ -74,7 +109,7 @@ export const RoomEditModal = ({ handleCloseModal, roomId }) => {
                 Room image:
               </label>
               <input
-                //ref={imageRef}
+                ref={imageRef}
                 type="file"
                 className="form-control"
                 id="exampleFormControlInput1"
@@ -83,7 +118,7 @@ export const RoomEditModal = ({ handleCloseModal, roomId }) => {
             </div>
             <div className="col-12">
               <button
-                //onClick={handleSubmit}
+                onClick={handleUpdate}
                 type="submit"
                 className="btn btn-outline-success mb-3 w-50">
                 Submit
@@ -92,10 +127,7 @@ export const RoomEditModal = ({ handleCloseModal, roomId }) => {
           </form>
         </Modal.Body>
         <Modal.Footer>
-          <Button
-            variant="secondary"
-            //onClick={handleClose}
-          >
+          <Button variant="secondary" onClick={handleExit}>
             Close
           </Button>
         </Modal.Footer>

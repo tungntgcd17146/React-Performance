@@ -1,4 +1,4 @@
-import { FETCH_ROOM, ADD_ROOM, DELETE_ROOM } from '../../constants/roomCategory';
+import { FETCH_ROOM, ADD_ROOM, DELETE_ROOM, EDIT_ROOM } from '../../constants/roomCategory';
 
 import { Payload } from '../../interface/roomCategory';
 
@@ -19,6 +19,13 @@ export const addRoom = (payload: Payload) => {
 export const deleteRoom = (payload: Payload) => {
   return {
     type: DELETE_ROOM,
+    payload: payload
+  };
+};
+
+export const editRoom = (payload: Payload) => {
+  return {
+    type: EDIT_ROOM,
     payload: payload
   };
 };

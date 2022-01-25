@@ -34,7 +34,7 @@ export const Filter = () => {
           className="form-select"
           aria-label="Default select example">
           <option value="all">All</option>
-          {allIds.map((id: number) => {
+          {allIds.map((id: string) => {
             return (
               <option key={id} value={byId[id].roomName}>
                 {byId[id].roomName}

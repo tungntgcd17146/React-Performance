@@ -1,5 +1,5 @@
 /* eslint-disable no-case-declarations */
-import { FETCH_ROOM, ADD_ROOM, DELETE_ROOM } from '../../constants/roomCategory';
+import { FETCH_ROOM, ADD_ROOM, DELETE_ROOM, EDIT_ROOM } from '../../constants/roomCategory';
 import { convertArrayToObject } from '../../utils/helper/convert';
 
 import { State, ActionRooms } from '../../interface/roomCategory';
@@ -43,6 +43,17 @@ const reducer = (state: State, action: ActionRooms) => {
           ...state.byId
         },
         allIds: [...newArr]
+      };
+
+    case EDIT_ROOM:
+      const roomEdit = action.payload.room!;
+      state.byId[roomEdit.id] = roomEdit;
+
+      return {
+        byId: {
+          ...state.byId
+        },
+        allIds: [...state.allIds]
       };
 
     default:

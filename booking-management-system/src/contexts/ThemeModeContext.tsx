@@ -1,4 +1,4 @@
-import { useState, createContext, useEffect } from 'react';
+import { useState, createContext, useEffect, ReactNode } from 'react';
 
 type CreateContext = {
   theme: string;
@@ -11,7 +11,7 @@ const ThemeContext = createContext<CreateContext>({
 });
 
 export type Prop = {
-  children: string;
+  children: ReactNode;
 };
 
 const ThemeProvider = ({ children }: Prop) => {

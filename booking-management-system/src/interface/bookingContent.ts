@@ -1,5 +1,5 @@
 export interface Info {
-  id: number;
+  id: string;
   name: string;
   email: string;
   phone: string;
@@ -12,12 +12,12 @@ export interface Info {
 }
 
 export interface State {
-  byIdInfo: { [id: number]: Info };
-  allIdsInfo: number[];
+  byIdInfo: { [id: string]: Info };
+  allIdsInfo: string[];
 }
 
 export type Payload = {
-  id?: number;
+  id?: string;
   infos?: Info[];
   info?: Info;
   totalPrice?: boolean;

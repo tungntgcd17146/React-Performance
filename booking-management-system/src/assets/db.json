@@ -20,13 +20,6 @@
       "roomName": "Executive Suite Room",
       "totalRoom": 5,
       "price": 100
-    },
-    {
-      "id": "4a3c4b6c-be5d-4e9f-b03e-284cd820e1cc",
-      "roomImage": "",
-      "roomName": "asd",
-      "totalRoom": 23,
-      "price": 12
     }
   ],
   "bookingInfos": [

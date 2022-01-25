@@ -11,6 +11,7 @@ import '../../../../public/images/deluxe-king-1.jpg';
 
 export const RoomCategory = () => {
   const { state, dispatch } = useRoom();
+  const [selectedId, setSelectedId] = useState('');
 
   const { byId, allIds } = state;
 
@@ -20,19 +21,10 @@ export const RoomCategory = () => {
     setEditModalShow(false);
   };
 
-  const handleShow = (id: number) => {
+  const handleShow = (id: string) => {
     setEditModalShow(true);
-    // console.log('testValue:', byId[id])
-    const RoomId = byId[id]
-    return RoomId;
+    setSelectedId(id);
   };
-
-  console.log('testValue:', handleShow)
-
-  // const handleCloseModal = () => {
-  //   setModalState(false);
-  // };
-
 
   //Retrieve Room category
   const retrieveCategory = async () => {
@@ -96,12 +88,14 @@ export const RoomCategory = () => {
                     </div>
                   </div>
                 </div>
+                {editModalShow && (
+                  <RoomEditModal handleCloseModal={handleCloseModal} selectedId={selectedId} />
+                )}
               </div>
             );
           })}
         </div>
       </div>
-      {editModalShow && <RoomEditModal handleCloseModal={handleCloseModal} roomId={handleShow} />}
     </div>
   );
 };

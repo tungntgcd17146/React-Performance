@@ -1,4 +1,5 @@
 import React, { MutableRefObject, useState, useRef } from 'react';
+import { v4 as uuid } from 'uuid';
 import { Modal, Button } from 'react-bootstrap';
 import { useBookInfo } from '../../../contexts/BookingInfosContext';
 import { useRoom } from '../../../contexts/RoomsContext';
@@ -13,7 +14,7 @@ export const BookingCreate = () => {
   const [show, setShow] = useState(false);
   const [totalPrice, setTotalPrice] = useState(0);
 
-  const { stateInfo, dispatchInfo } = useBookInfo();
+  const { dispatchInfo } = useBookInfo();
 
   const { state } = useRoom();
   const { byId, allIds } = state;
@@ -45,7 +46,7 @@ export const BookingCreate = () => {
 
   const handleSubmit = async () => {
     const postInfo: Info = {
-      id: stateInfo.allIdsInfo.length + 1,
+      id: uuid(),
       name: nameRef.current.value,
       email: emailRef.current.value,
       phone: phoneRef.current.value,
@@ -146,7 +147,7 @@ export const BookingCreate = () => {
                 onChange={handlePick}
                 className="form-select"
                 aria-label="Default select example">
-                {allIds.map((id: number) => {
+                {allIds.map((id: string) => {
                   return (
                     <option ref={roomNameRef} key={id} value={byId[id].price}>
                       {byId[id].roomName}

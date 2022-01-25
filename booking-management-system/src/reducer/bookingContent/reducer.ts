@@ -11,7 +11,7 @@ import { convertArrayToObject } from '../../utils/helper/convert';
 import { ActionInfos, State } from '../../interface/bookingContent';
 
 interface Room {
-  id: number;
+  id: string;
 }
 
 //Init room category
@@ -46,7 +46,7 @@ const reducer = (state: State, action: ActionInfos) => {
 
     case DELETE_INFO:
       const newInfoId = action.payload.id;
-      const newArr = state.allIdsInfo.filter((item) => item !== newInfoId);
+      const newArr = state.allIdsInfo.filter((id) => id !== newInfoId);
 
       return {
         byIdInfo: {
@@ -74,33 +74,6 @@ const reducer = (state: State, action: ActionInfos) => {
         },
         allIdsInfo: [...state.allIdsInfo]
       };
-
-    // case PRICE_FILTER_INFO:
-    //   const priceRange = action.payload;
-    //   const realId = state.allIdsInfo.filter((item) => {
-    //     if (parseInt(priceRange) <= parseInt(state.byIdInfo[item].totalPrice))
-    //       return [...state.allIdsInfo];
-    //   });
-
-    //   return {
-    //     byIdInfo: {
-    //       ...state.byIdInfo
-    //     },
-    //     allIdsInfo: [...realId]
-    //   };
-
-    // case ROOM_FILTER_INFO:
-    //   const roomType = action.payload;
-    //   const newArrId = state.allIdsInfo.filter((item) => {
-    //     if (roomType === state.byIdInfo[item].roomName) return [...state.allIdsInfo];
-    //   });
-
-    //   return {
-    //     byIdInfo: {
-    //       ...state.byIdInfo
-    //     },
-    //     allIdsInfo: [...newArrId]
-    //   };
 
     default:
       return { ...state };
