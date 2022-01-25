@@ -1,16 +1,20 @@
-import { useState, createContext, useEffect } from 'react';
+import { useState, createContext, useEffect, ReactNode } from 'react';
 
-type ThemeContext = {
+type CreateContext = {
   theme: string;
   toggleTheme: () => void;
 };
 
-const ThemeContext = createContext<ThemeContext>({
+const ThemeContext = createContext<CreateContext>({
   theme: '',
   toggleTheme: () => {}
 });
 
-const ThemeProvider = ({ children }) => {
+export type Prop = {
+  children: ReactNode;
+};
+
+const ThemeProvider = ({ children }: Prop) => {
   const [theme, setTheme] = useState('light');
 
   useEffect(() => {
@@ -30,9 +34,7 @@ const ThemeProvider = ({ children }) => {
     toggleTheme
   };
 
-  return <ThemeContext.Provider value={value}>
-            {children}
-          </ThemeContext.Provider>;
+  return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>;
 };
 
 export { ThemeProvider, ThemeContext };

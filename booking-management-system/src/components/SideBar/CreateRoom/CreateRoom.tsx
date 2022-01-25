@@ -1,38 +1,40 @@
 import { MutableRefObject, useContext, useRef } from 'react';
 import { ThemeContext } from '../../../contexts/ThemeModeContext';
+import { v4 as uuid } from 'uuid';
 
-import { useRoom } from '../../../utils/hooks/hooks';
+import { useRoom } from '../../../contexts/RoomsContext';
 import { addRoom } from '../../../reducer/rooms/actions';
+
+import { Room } from '../../../interface/roomCategory';
 
 import api from '../../../api/index.js';
 
 export const CreateRooms = () => {
   const context = useContext(ThemeContext);
 
-  const [state, dispatch] = useRoom();
+  // eslint-disable-next-line no-unused-vars
+  const { state, dispatch } = useRoom();
 
   const nameRef = useRef() as MutableRefObject<HTMLInputElement>;
   const priceRef = useRef() as MutableRefObject<HTMLInputElement>;
   const availableRef = useRef() as MutableRefObject<HTMLInputElement>;
   const imageRef = useRef() as MutableRefObject<HTMLInputElement>;
 
-  // console.log(state.allIds)
-
   const handleSubmit = async () => {
-    const postRoom = {
-      id: state.allIds.length + 1,
+    const postRoom: Room = {
+      id: uuid(),
       roomImage: imageRef.current.value,
       roomName: nameRef.current.value,
-      totalRoom: availableRef.current.value,
-      price: priceRef.current.value
+      totalRoom: parseInt(availableRef.current.value),
+      price: parseInt(priceRef.current.value)
     };
     if (
       nameRef.current.value != '' &&
       priceRef.current.value != '' &&
       availableRef.current.value != ''
     ) {
-      dispatch(addRoom(postRoom));
       await api.post('/roomCategory', postRoom);
+      dispatch(addRoom({ room: postRoom }));
 
       nameRef.current.value = '';
       priceRef.current.value = '';
@@ -42,8 +44,6 @@ export const CreateRooms = () => {
       nameRef.current.focus();
     }
   };
-
-  // console.log(state)
 
   return (
     <form className="row mt-3">
@@ -64,14 +64,19 @@ export const CreateRooms = () => {
         <label htmlFor="exampleFormControlInput1" className={`form-label ${context.theme}`}>
           Price for 1 night:
         </label>
-        <input
-          ref={priceRef}
-          type="text"
-          className="form-control"
-          id="exampleFormControlInput1"
-          placeholder="Example: 70$..."
-          required
-        />
+        <div className="input-group">
+          <input
+            ref={priceRef}
+            type="number"
+            className="form-control"
+            id="exampleFormControlInput1"
+            placeholder="Example: 70$..."
+            required
+          />
+          <span className="input-group-text" id="basic-addon2">
+            $
+          </span>
+        </div>
       </div>
       <div className="col-12 mb-3">
         <label htmlFor="exampleFormControlInput1" className={`form-label ${context.theme}`}>

@@ -1,3 +1,17 @@
 .color {
   color: black;
 }
+
+.cardHeight {
+  min-height: 450px;
+}
+
+.emailHeight {
+  height: 40px;
+  font-size: 14px;
+}
+
+.heightContent {
+  height: 800px;
+  overflow-y: scroll;
+}

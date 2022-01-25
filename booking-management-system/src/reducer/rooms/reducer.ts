@@ -1,18 +1,21 @@
+/* eslint-disable no-case-declarations */
 import { FETCH_ROOM, ADD_ROOM, DELETE_ROOM, EDIT_ROOM } from '../../constants/roomCategory';
-import { convertArrayToObject } from '../../utils/helper/helper';
+import { convertArrayToObject } from '../../utils/helper/convert';
+
+import { State, ActionRooms } from '../../interface/roomCategory';
 
 //Init room category
-export const init = {
+export const initRooms: State = {
   byId: {},
   allIds: []
 };
 
 //Reducer
-const reducer = (state, action) => {
+const reducer = (state: State, action: ActionRooms) => {
   switch (action.type) {
     case FETCH_ROOM:
-      const rooms = action.payload;
-      const newById = convertArrayToObject(rooms, 'id');
+      const rooms = action.payload.rooms || [];
+      const newById = convertArrayToObject(rooms);
       const newIds = rooms.map((room) => room.id);
 
       return {
@@ -21,20 +24,30 @@ const reducer = (state, action) => {
       };
 
     case ADD_ROOM:
-      const newRoom = action.payload;
-      state.byId[state.allIds.length + 1] = newRoom;
+      const newRoom = action.payload.room!;
+      state.byId[newRoom.id] = newRoom;
 
       return {
         byId: {
           ...state.byId
         },
-        allIds: [...state.allIds, state.allIds.length + 1]
+        allIds: [...state.allIds, newRoom.id]
       };
 
     case DELETE_ROOM:
-      const roomId = action.payload;
-      delete state.byId[roomId];
-      state.allIds.splice(roomId - 1, 1);
+      const roomId = action.payload.id;
+      const newArr = state.allIds.filter((id) => id !== roomId);
+
+      return {
+        byId: {
+          ...state.byId
+        },
+        allIds: [...newArr]
+      };
+
+    case EDIT_ROOM:
+      const roomEdit = action.payload.room!;
+      state.byId[roomEdit.id] = roomEdit;
 
       return {
         byId: {
@@ -43,16 +56,8 @@ const reducer = (state, action) => {
         allIds: [...state.allIds]
       };
 
-    // case EDIT_ROOM:
-    //   return {
-    //     byId: {
-    //       ...state.byId
-    //     },
-    //     allIds: [...state.allIds]
-    //   };
-
     default:
-      throw new Error('invalid action');
+      return state;
   }
 };
 

@@ -1,17 +1,22 @@
-import React from 'react';
+import { useBookInfo } from '../../../contexts/BookingInfosContext';
+import { sortByName } from '../../../reducer/bookingContent/actions';
+import React, { useState } from 'react';
 
 export const ViewMode = () => {
+  // eslint-disable-next-line no-unused-vars
+  const { stateInfo, dispatchInfo } = useBookInfo();
+  const [toggleSort, setToggleSort] = useState(false);
+
+  const handleToggleSort = () => {
+    setToggleSort(!toggleSort);
+    dispatchInfo(sortByName({ totalPrice: toggleSort }));
+  };
+
   return (
-    <div className="col-3 form-check form-switch">
-      <label className="form-check-label" htmlFor="flexSwitchCheckChecked">
-        View
-      </label>
-      <input
-        className="form-check-input"
-        type="checkbox"
-        role="switch"
-        id="flexSwitchCheckChecked"
-      />
+    <div className="col-3">
+      <button onClick={handleToggleSort} type="submit" className="btn btn-outline-success w-100 ">
+        Sort Price {!toggleSort ? 'low to hight' : 'hight to low'}
+      </button>
     </div>
   );
 };

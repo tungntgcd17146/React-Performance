@@ -4,22 +4,22 @@
       "id": 1,
       "roomImage": "",
       "roomName": "Deluxe Room",
-      "totalRoom": 15,
-      "price": "20$"
+      "totalRoom": 20,
+      "price": 20
     },
     {
       "id": 2,
       "roomImage": "",
       "roomName": "Luxury Room",
-      "totalRoom": 10,
-      "price": "50$"
+      "totalRoom": 15,
+      "price": 50
     },
     {
       "id": 3,
       "roomImage": "",
       "roomName": "Executive Suite Room",
       "totalRoom": 5,
-      "price": "100$"
+      "price": 100
     }
   ],
   "bookingInfos": [
@@ -28,72 +28,48 @@
       "name": "TungNguyen",
       "email": "tung@gmail.com.vn",
       "phone": "053123123",
-      "checkIn": "",
-      "checkOut": "",
-      "roomNumber": 1,
-      "totalPrice": "",
-      "roomImage": "",
-      "roomName": "Deluxe Room"
+      "checkIn": "2022-01-24",
+      "checkOut": "2022-01-27",
+      "roomName": "Executive Suite Room",
+      "nightPrice": "100",
+      "roomNumber": "1",
+      "totalPrice": "300"
     },
     {
       "id": 2,
       "name": "Julies",
       "email": "Julies@gmail.com.vn",
       "phone": "012343123",
-      "checkIn": "",
-      "checkOut": "",
-      "roomNumber": 2,
-      "totalPrice": "",
-      "roomImage": "",
-      "roomName": "Luxury Room"
+      "checkIn": "2022-01-21",
+      "checkOut": "2022-01-25",
+      "roomName": "Executive Suite Room",
+      "nightPrice": "100",
+      "roomNumber": "2",
+      "totalPrice": "800"
     },
     {
       "id": 3,
-      "name": "HoangThanh",
-      "email": "HoangThanh@gmail.com.vn",
-      "phone": "053124567",
-      "checkIn": "",
-      "checkOut": "",
-      "roomNumber": 1,
-      "totalPrice": "",
-      "roomImage": "",
-      "roomName": "Luxury Room"
-    },
-    {
-      "id": 1,
       "name": "ChungPham",
       "email": "tung@gmail.com.vn",
       "phone": "053123123",
-      "checkIn": "",
-      "checkOut": "",
-      "roomNumber": 1,
-      "totalPrice": "",
-      "roomImage": "",
-      "roomName": "Deluxe Room"
+      "checkIn": "2022-01-21",
+      "checkOut": "2022-01-26",
+      "roomName": "Deluxe Room",
+      "nightPrice": "20",
+      "roomNumber": "2",
+      "totalPrice": "200"
     },
     {
-      "id": 2,
-      "name": "Baole",
-      "email": "Baole@gmail.com.vn",
+      "id": 4,
+      "name": "Addy",
+      "email": "Addy@gmail.com.vn",
       "phone": "053123123",
-      "checkIn": "",
-      "checkOut": "",
-      "roomNumber": 3,
-      "totalPrice": "",
-      "roomImage": "",
-      "roomName": "Luxury Room"
-    },
-    {
-      "id": 3,
-      "name": "TrangQuynh",
-      "email": "TrangQuynh@gmail.com.vn",
-      "phone": "033923123",
-      "checkIn": "",
-      "checkOut": "",
-      "roomNumber": 2,
-      "totalPrice": "",
-      "roomImage": "",
-      "roomName": "Luxury Room"
+      "checkIn": "2022-01-21",
+      "checkOut": "2022-01-26",
+      "roomName": "Deluxe Room",
+      "nightPrice": "20",
+      "roomNumber": "4",
+      "totalPrice": "400"
     }
   ]
 }
