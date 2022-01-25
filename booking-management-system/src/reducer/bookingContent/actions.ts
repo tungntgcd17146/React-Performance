@@ -1,66 +1,30 @@
-import {
-  FETCH_INFO,
-  ADD_INFO,
-  DELETE_INFO,
-  EDIT_INFO,
-  UPDATE_INFO,
-  PRICE_FILTER_INFO,
-  ROOM_FILTER_INFO,
-  SORT_INFO
-} from '../../constants/bookingInfos';
+import { FETCH_INFO, ADD_INFO, DELETE_INFO, SORT_INFO } from '../../constants/bookingInfos';
+import { Payload } from '../../interface/bookingContent';
 
-export const fetchInfos = (payload: string) => {
+export const fetchInfos = (payload: Payload) => {
   return {
     type: FETCH_INFO,
     payload: payload
   };
 };
 
-export const addInfo = (payload: string) => {
+export const addInfo = (payload: Payload) => {
   return {
     type: ADD_INFO,
     payload: payload
   };
 };
 
-export const deleteInfo = (payload: string) => {
+export const deleteInfo = (payload: Payload) => {
   return {
     type: DELETE_INFO,
     payload: payload
   };
 };
 
-// export const editInfo = (payload: string[]) => {
-//   return {
-//     type: EDIT_INFO,
-//     payload: payload
-//   };
-// };
-
-// export const updateInfo = (payload: string) => {
-//   return {
-//     type: UPDATE_INFO,
-//     payload: payload
-//   };
-// };
-
-export const filterPrice = (payload: string) => {
+export const sortByName = (payload: Payload) => {
   return {
-    type: PRICE_FILTER_INFO,
-    payload: payload
-  };
-};
-
-// export const filterByDate = (payload) => {
-//   return {
-//     type: DATE_FILTER_INFO,
-//     payload: payload
-//   };
-// };
-
-export const filterByRoom = (payload: string) => {
-  return {
-    type: ROOM_FILTER_INFO,
+    type: SORT_INFO,
     payload: payload
   };
 };

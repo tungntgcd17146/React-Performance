@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { render, screen } from '@testing-library/react';
-import { Search } from '../Navbar/Search/Search';
+import { Search } from './Search';
 
 describe('Test layout', () => {
   beforeEach(() => {

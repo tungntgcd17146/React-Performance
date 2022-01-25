@@ -1,14 +1,35 @@
-import { useReducer, createContext } from 'react';
-import reducer, { InitInfos } from '../reducer/bookingContent/reducer';
+// import { State, ActionRooms } from '@/interface/roomCategory';
 
-export const BookingInfoContext = createContext({});
+import { State, ActionInfos } from '@/interface/bookingContent';
+import { useReducer, createContext, ReactNode, useContext } from 'react';
+import reducer, { initInfos } from '../reducer/bookingContent/reducer';
 
-const InfoProvider = ({ children }: { children: string }) => {
-  const [state, dispatch] = useReducer(reducer, InitInfos);
+interface RoomContextProps {
+  stateInfo: State;
+  // eslint-disable-next-line no-unused-vars
+  dispatchInfo(action: ActionInfos): void;
+}
+
+export const BookingInfoContext = createContext({} as RoomContextProps);
+
+export type Props = {
+  children: ReactNode;
+};
+
+const InfoProvider = ({ children }: Props) => {
+  const [state, dispatch] = useReducer(reducer, initInfos);
 
   return (
-    <BookingInfoContext.Provider value={[state, dispatch]}>{children}</BookingInfoContext.Provider>
+    <BookingInfoContext.Provider value={{ stateInfo: state, dispatchInfo: dispatch }}>
+      {children}
+    </BookingInfoContext.Provider>
   );
+};
+
+export const useBookInfo = () => {
+  const { stateInfo, dispatchInfo } = useContext(BookingInfoContext);
+
+  return { stateInfo, dispatchInfo };
 };
 
 export default InfoProvider;

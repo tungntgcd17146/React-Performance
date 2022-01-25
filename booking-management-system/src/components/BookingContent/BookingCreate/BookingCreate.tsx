@@ -1,9 +1,12 @@
-import React, { MutableRefObject, useState, useEffect, useRef } from 'react';
+import React, { MutableRefObject, useState, useRef } from 'react';
+import { v4 as uuid } from 'uuid';
 import { Modal, Button } from 'react-bootstrap';
-import { useBookInfo, useRoom } from '../../../utils/hooks/hooks';
+import { useBookInfo } from '../../../contexts/BookingInfosContext';
+import { useRoom } from '../../../contexts/RoomsContext';
 
 import { addInfo } from '../../../reducer/bookingContent/actions';
-import { fetchRoom } from '../../../reducer/rooms/actions';
+
+import { Info } from '../../../interface/bookingContent';
 
 import api from '../../../api/index.js';
 
@@ -11,10 +14,9 @@ export const BookingCreate = () => {
   const [show, setShow] = useState(false);
   const [totalPrice, setTotalPrice] = useState(0);
 
-  const [stateInfo, dispatchInfo] = useBookInfo();
-  const { byIdInfo, allIdsInfo } = stateInfo;
+  const { dispatchInfo } = useBookInfo();
 
-  const [state, dispatch] = useRoom();
+  const { state } = useRoom();
   const { byId, allIds } = state;
 
   const nameRef = useRef() as MutableRefObject<HTMLInputElement>;
@@ -25,6 +27,7 @@ export const BookingCreate = () => {
   const valueRef = useRef() as MutableRefObject<HTMLSelectElement>;
   const roomNumberRef = useRef() as MutableRefObject<HTMLInputElement>;
   const totalPriceRef = useRef() as MutableRefObject<HTMLInputElement>;
+  const roomNameRef = useRef() as MutableRefObject<HTMLOptionElement>;
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -35,21 +38,22 @@ export const BookingCreate = () => {
         new Date(checkInRef.current.value).getTime()) /
         (1000 * 3600 * 24)
     );
-    const roomNumber = roomNumberRef.current.value;
-    const roomType = valueRef.current.value;
+    const roomNumber = parseInt(roomNumberRef.current.value);
+    const roomType = parseInt(valueRef.current.value);
     const totalPrice = totalDay * roomType * roomNumber;
     setTotalPrice(totalPrice);
   };
 
   const handleSubmit = async () => {
-    const postInfo = {
-      id: stateInfo.allIdsInfo.length + 1,
+    const postInfo: Info = {
+      id: uuid(),
       name: nameRef.current.value,
       email: emailRef.current.value,
       phone: phoneRef.current.value,
       checkIn: checkInRef.current.value,
       checkOut: checkOutRef.current.value,
-      roomName: valueRef.current.innerText,
+      nightPrice: valueRef.current.value,
+      roomName: roomNameRef.current.innerText,
       roomNumber: roomNumberRef.current.value,
       totalPrice: totalPriceRef.current.value
     };
@@ -59,9 +63,10 @@ export const BookingCreate = () => {
       phoneRef.current.value != '' &&
       checkInRef.current.value != '' &&
       checkOutRef.current.value != '' &&
-      roomNumberRef.current.value != ''
+      roomNumberRef.current.value != '' &&
+      postInfo
     ) {
-      dispatchInfo(addInfo(postInfo));
+      dispatchInfo(addInfo({ info: postInfo }));
       await api.post('/bookingInfos', postInfo);
 
       (nameRef.current.value = ''),
@@ -74,34 +79,7 @@ export const BookingCreate = () => {
       nameRef.current.focus();
       handleClose();
     }
-
-    const totalDay = Math.floor(
-      (new Date(checkOutRef.current.value).getTime() -
-        new Date(checkInRef.current.value).getTime()) /
-        (1000 * 3600 * 24)
-    );
-    // console.log('test date:', postInfo);
-    // console.log('test total date:', totalDay);
-    // console.log('test total price:', totalDay * valueRef.current.value);
   };
-  // console.log(valueRef.current.value)
-  // console.log(stateInfo.allIdsInfo);
-  console.log('render submit', stateInfo);
-
-  const retrieveCategory = async () => {
-    const response = await api.get('/roomCategory');
-    return response.data;
-  };
-
-  useEffect(() => {
-    const getRoomCategory = async () => {
-      const allRoom = await retrieveCategory();
-      if (allRoom) {
-        dispatch(fetchRoom(allRoom));
-      }
-    };
-    getRoomCategory();
-  }, []);
 
   return (
     <>
@@ -111,7 +89,7 @@ export const BookingCreate = () => {
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Modal</Modal.Title>
+          <Modal.Title>Booking Modal</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <form className="row mt-3">
@@ -168,12 +146,11 @@ export const BookingCreate = () => {
                 ref={valueRef}
                 onChange={handlePick}
                 className="form-select"
-                aria-label="Default select example"
-              >
-                {allIds.map((id: number) => {
+                aria-label="Default select example">
+                {allIds.map((id: string) => {
                   return (
-                    <option key={id} value={byId[id].price}>
-                      {byId[id].roomName} ({byId[id].price}$/1 night)
+                    <option ref={roomNameRef} key={id} value={byId[id].price}>
+                      {byId[id].roomName}
                     </option>
                   );
                 })}
@@ -197,8 +174,7 @@ export const BookingCreate = () => {
               <button
                 onClick={handleSubmit}
                 type="submit"
-                className="btn btn-outline-success w-100"
-              >
+                className="btn btn-outline-success w-100">
                 Submit
               </button>
             </div>
@@ -209,6 +185,7 @@ export const BookingCreate = () => {
                 type="number"
                 className="form-control"
                 value={totalPrice}
+                defaultValue={0}
               />
               <span className="input-group-text" id="basic-addon2">
                 $

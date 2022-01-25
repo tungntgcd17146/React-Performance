@@ -1,38 +1,40 @@
 import { MutableRefObject, useContext, useRef } from 'react';
 import { ThemeContext } from '../../../contexts/ThemeModeContext';
+import { v4 as uuid } from 'uuid';
 
-import { useRoom } from '../../../utils/hooks/hooks';
+import { useRoom } from '../../../contexts/RoomsContext';
 import { addRoom } from '../../../reducer/rooms/actions';
+
+import { Room } from '../../../interface/roomCategory';
 
 import api from '../../../api/index.js';
 
 export const CreateRooms = () => {
   const context = useContext(ThemeContext);
 
-  const [state, dispatch] = useRoom();
+  // eslint-disable-next-line no-unused-vars
+  const { state, dispatch } = useRoom();
 
   const nameRef = useRef() as MutableRefObject<HTMLInputElement>;
   const priceRef = useRef() as MutableRefObject<HTMLInputElement>;
   const availableRef = useRef() as MutableRefObject<HTMLInputElement>;
   const imageRef = useRef() as MutableRefObject<HTMLInputElement>;
 
-  // console.log(state.allIds)
-
   const handleSubmit = async () => {
-    const postRoom = {
-      id: state.allIds.length + 1,
+    const postRoom: Room = {
+      id: uuid(),
       roomImage: imageRef.current.value,
       roomName: nameRef.current.value,
-      totalRoom: availableRef.current.value,
-      price: priceRef.current.value
+      totalRoom: parseInt(availableRef.current.value),
+      price: parseInt(priceRef.current.value)
     };
     if (
       nameRef.current.value != '' &&
       priceRef.current.value != '' &&
       availableRef.current.value != ''
     ) {
-      dispatch(addRoom(postRoom));
       await api.post('/roomCategory', postRoom);
+      dispatch(addRoom({ room: postRoom }));
 
       nameRef.current.value = '';
       priceRef.current.value = '';
@@ -42,8 +44,6 @@ export const CreateRooms = () => {
       nameRef.current.focus();
     }
   };
-
-  // console.log('hello:',state)
 
   return (
     <form className="row mt-3">
