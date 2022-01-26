@@ -33,8 +33,9 @@ export const CreateRooms = () => {
       priceRef.current.value != '' &&
       availableRef.current.value != ''
     ) {
-      await api.post('/roomCategory', postRoom);
-      dispatch(addRoom({ room: postRoom }));
+      if (await api.post('/roomCategory', postRoom)) {
+        dispatch(addRoom({ room: postRoom }));
+      }
 
       nameRef.current.value = '';
       priceRef.current.value = '';

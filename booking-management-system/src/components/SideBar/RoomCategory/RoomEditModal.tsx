@@ -27,8 +27,6 @@ export const RoomEditModal = ({ handleCloseModal, selectedId }: Props) => {
   const availableEditRef = useRef() as MutableRefObject<HTMLInputElement>;
   const imageRef = useRef() as MutableRefObject<HTMLInputElement>;
 
-  console.log('testValue:', selectedId);
-
   const handleExit = () => {
     setShow(false);
     handleCloseModal();
@@ -44,8 +42,9 @@ export const RoomEditModal = ({ handleCloseModal, selectedId }: Props) => {
     };
     handleExit();
     if (roomAfterEdit) {
-      dispatch(editRoom({ room: roomAfterEdit }));
-      await api.put(`/roomCategory/${selectedId}`, roomAfterEdit);
+      if (await api.put(`/roomCategory/${selectedId}`, roomAfterEdit)) {
+        dispatch(editRoom({ room: roomAfterEdit }));
+      }
     }
   };
 

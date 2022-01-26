@@ -18,8 +18,9 @@ export const BookingInfos = () => {
   //Delete room category
   const deleteInfoBooking = async (id: string) => {
     if (window.confirm('You sure to delete?')) {
-      dispatchInfo(deleteInfo({ id }));
-      await api.delete(`/bookingInfos/${id}`);
+      if (await api.delete(`/bookingInfos/${id}`)) {
+        dispatchInfo(deleteInfo({ id }));
+      }
     }
   };
 

@@ -3,8 +3,7 @@ import { sortByName } from '../../../reducer/bookingContent/actions';
 import React, { useState } from 'react';
 
 export const ViewMode = () => {
-  // eslint-disable-next-line no-unused-vars
-  const { stateInfo, dispatchInfo } = useBookInfo();
+  const { dispatchInfo } = useBookInfo();
   const [toggleSort, setToggleSort] = useState(false);
 
   const handleToggleSort = () => {

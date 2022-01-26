@@ -66,8 +66,9 @@ export const BookingCreate = () => {
       roomNumberRef.current.value != '' &&
       postInfo
     ) {
-      dispatchInfo(addInfo({ info: postInfo }));
-      await api.post('/bookingInfos', postInfo);
+      if (await api.post('/bookingInfos', postInfo)) {
+        dispatchInfo(addInfo({ info: postInfo }));
+      }
 
       (nameRef.current.value = ''),
         (emailRef.current.value = ''),
