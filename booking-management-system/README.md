@@ -16,13 +16,13 @@ This is a [React](https://reactjs.org) + [TypeScript](https://www.typescriptlang
 1. Access the project directory.
 
    ```bash
-   cd booking-management-system
+   git clone
    ```
 
 2. Initialize a git repository.
 
    ```bash
-   git init
+   cd booking-management-system
    ```
 
 3. Install dependencies.

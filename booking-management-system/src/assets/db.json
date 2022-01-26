@@ -70,6 +70,30 @@
       "roomName": "Luxury Room",
       "roomNumber": "3",
       "totalPrice": "600"
+    },
+    {
+      "id": "e6785c07-e342-460c-8da5-1392f92b76e0",
+      "name": "Buggy",
+      "email": "Buggy@gmail.com",
+      "phone": "053123456",
+      "checkIn": "2022-01-26",
+      "checkOut": "2022-01-30",
+      "nightPrice": "100",
+      "roomName": "Executive Suite Room",
+      "roomNumber": "3",
+      "totalPrice": "1200"
+    },
+    {
+      "id": "f279ca34-cc4b-4746-a6cf-7963f8ea74cb",
+      "name": "TrangNguyen",
+      "email": "Trang@gmail.com",
+      "phone": "0123456123",
+      "checkIn": "2022-01-28",
+      "checkOut": "2022-01-30",
+      "nightPrice": "100",
+      "roomName": "Executive Suite Room",
+      "roomNumber": "1",
+      "totalPrice": "200"
     }
   ]
 }
