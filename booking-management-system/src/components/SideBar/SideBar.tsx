@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { CreateRooms } from './CreateRoom/CreateRoom';
+import { CreateRooms } from './RoomCreate/RoomCreate';
 import { RoomCategory } from './RoomCategory/RoomCategory';
 
 export const SideBar = () => {

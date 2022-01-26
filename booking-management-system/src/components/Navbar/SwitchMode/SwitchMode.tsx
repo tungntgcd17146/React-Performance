@@ -17,12 +17,9 @@ export const SwitchMode = () => {
         className="form-check-input"
         type="checkbox"
         role="switch"
-        id="flexSwitchCheckChecked"
         onChange={context.toggleTheme}
       />
-      <label
-        className="form-check-label"
-        htmlFor="flexSwitchCheckChecked">{`${context.theme.toUpperCase()} MODE`}</label>
+      <label className="form-check-label">{`${context.theme.toUpperCase()} MODE`}</label>
     </div>
   );
 };

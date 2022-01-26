@@ -1,12 +1,5 @@
 /* eslint-disable no-case-declarations */
-import {
-  FETCH_INFO,
-  ADD_INFO,
-  DELETE_INFO,
-  SORT_INFO
-  // PRICE_FILTER_INFO,
-  // ROOM_FILTER_INFO
-} from '../../constants/bookingInfos';
+import { FETCH_INFO, ADD_INFO, DELETE_INFO, SORT_INFO } from '../../constants/bookingInfos';
 import { convertArrayToObject } from '../../utils/helper/convert';
 import { ActionInfos, State } from '../../interface/bookingContent';
 

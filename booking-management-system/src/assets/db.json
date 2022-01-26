@@ -31,7 +31,7 @@
       "checkIn": "2022-01-27",
       "checkOut": "2022-01-29",
       "nightPrice": "20",
-      "roomName": "Executive Suite Room",
+      "roomName": "Deluxe Room",
       "roomNumber": "3",
       "totalPrice": "120"
     },
@@ -43,7 +43,7 @@
       "checkIn": "2022-01-26",
       "checkOut": "2022-01-28",
       "nightPrice": "50",
-      "roomName": "Executive Suite Room",
+      "roomName": "Luxury Room",
       "roomNumber": "2",
       "totalPrice": "200"
     },
@@ -67,7 +67,7 @@
       "checkIn": "2022-01-27",
       "checkOut": "2022-01-31",
       "nightPrice": "50",
-      "roomName": "Executive Suite Room",
+      "roomName": "Luxury Room",
       "roomNumber": "3",
       "totalPrice": "600"
     }
