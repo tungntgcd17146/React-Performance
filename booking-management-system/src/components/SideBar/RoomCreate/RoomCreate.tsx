@@ -17,7 +17,7 @@ export const CreateRooms = () => {
 
   const nameRef = useRef() as MutableRefObject<HTMLInputElement>;
   const priceRef = useRef() as MutableRefObject<HTMLInputElement>;
-  const availableRef = useRef() as MutableRefObject<HTMLInputElement>;
+  const roomAvailableRef = useRef() as MutableRefObject<HTMLInputElement>;
   const imageRef = useRef() as MutableRefObject<HTMLInputElement>;
 
   const handleSubmit = async () => {
@@ -25,13 +25,13 @@ export const CreateRooms = () => {
       id: uuid(),
       roomImage: imageRef.current.value,
       roomName: nameRef.current.value,
-      totalRoom: parseInt(availableRef.current.value),
+      totalRoom: parseInt(roomAvailableRef.current.value),
       price: parseInt(priceRef.current.value)
     };
     if (
       nameRef.current.value != '' &&
       priceRef.current.value != '' &&
-      availableRef.current.value != ''
+      roomAvailableRef.current.value != ''
     ) {
       if (await api.post('/roomCategory', postRoom)) {
         dispatch(addRoom({ room: postRoom }));
@@ -39,7 +39,7 @@ export const CreateRooms = () => {
 
       nameRef.current.value = '';
       priceRef.current.value = '';
-      availableRef.current.value = '';
+      roomAvailableRef.current.value = '';
       imageRef.current.value = '';
 
       nameRef.current.focus();
@@ -76,7 +76,7 @@ export const CreateRooms = () => {
       <div className="col-12 mb-3">
         <label className={`form-label ${context.theme}`}>Room available:</label>
         <input
-          ref={availableRef}
+          ref={roomAvailableRef}
           type="number"
           className="form-control"
           placeholder="number: 5-20"
