@@ -1,5 +1,5 @@
 export interface room {
-  id: string;
+  randomId: string;
   name: string;
   quantity: number;
   price: number;

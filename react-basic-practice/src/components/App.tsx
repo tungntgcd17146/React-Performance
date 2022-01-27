@@ -8,8 +8,8 @@ import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
-    <div className="app container mt-5">
-      <header className="app-header d-flex justify-content-center">
+    <div className="app container">
+      <header className="app-header d-flex justify-content-between">
         <RoomCreate />
         <RoomSearch />
         <ListTotal />

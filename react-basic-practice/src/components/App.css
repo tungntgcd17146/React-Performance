@@ -4,6 +4,14 @@
   flex-direction: column;
 }
 
+.app-header {
+  padding: 100px 200px 30px 200px;
+}
+
+.app-body {
+  padding: 0px 200px 0px 200px;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .app-logo {
     animation: App-logo-spin infinite 20s linear;
