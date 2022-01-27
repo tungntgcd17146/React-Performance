@@ -1,0 +1,13 @@
+.color {
+  color: black;
+}
+
+.heightContent {
+  height: 550px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.button {
+  margin-left: 10px;
+}
