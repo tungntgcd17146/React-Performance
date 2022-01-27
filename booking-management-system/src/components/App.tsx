@@ -1,14 +1,14 @@
-import { Navbar } from '../Navbar/Navbar';
-import { SideBar } from '../SideBar/SideBar';
-import { BookingContent } from '../BookingContent/BookingContent';
+import { Navbar } from './Navbar/Navbar';
+import { SideBar } from './SideBar/SideBar';
+import { BookingContent } from './BookingContent/BookingContent';
 
-import RoomsProvider from '../../contexts/RoomsContext';
+import RoomsProvider from '../contexts/RoomsContext';
 
 import { useContext } from 'react';
-import { ThemeContext } from '../../contexts/ThemeModeContext';
+import { ThemeContext } from '../contexts/ThemeModeContext';
 
 import './App.css';
-import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 const App = () => {
   const context = useContext(ThemeContext);

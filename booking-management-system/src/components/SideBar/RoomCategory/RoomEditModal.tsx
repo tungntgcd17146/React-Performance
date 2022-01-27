@@ -27,8 +27,6 @@ export const RoomEditModal = ({ handleCloseModal, selectedId }: Props) => {
   const availableEditRef = useRef() as MutableRefObject<HTMLInputElement>;
   const imageRef = useRef() as MutableRefObject<HTMLInputElement>;
 
-  console.log('testValue:', selectedId);
-
   const handleExit = () => {
     setShow(false);
     handleCloseModal();
@@ -44,8 +42,9 @@ export const RoomEditModal = ({ handleCloseModal, selectedId }: Props) => {
     };
     handleExit();
     if (roomAfterEdit) {
-      dispatch(editRoom({ room: roomAfterEdit }));
-      await api.put(`/roomCategory/${selectedId}`, roomAfterEdit);
+      if (await api.put(`/roomCategory/${selectedId}`, roomAfterEdit)) {
+        dispatch(editRoom({ room: roomAfterEdit }));
+      }
     }
   };
 
@@ -58,30 +57,24 @@ export const RoomEditModal = ({ handleCloseModal, selectedId }: Props) => {
         <Modal.Body>
           <form className="row mt-3">
             <div className="col-12 mb-3">
-              <label htmlFor="exampleFormControlInput1" className={`form-label ${context.theme}`}>
-                Room type:
-              </label>
+              <label className={`form-label ${context.theme}`}>Room type:</label>
               <input
                 ref={nameEditRef}
                 defaultValue={byId[selectedId].roomName}
                 type="text"
                 className="form-control"
-                id="exampleFormControlInput1"
                 placeholder="Example: Luxury room..."
                 required
               />
             </div>
             <div className="col-12 mb-3">
-              <label htmlFor="exampleFormControlInput1" className={`form-label ${context.theme}`}>
-                Price for 1 night:
-              </label>
+              <label className={`form-label ${context.theme}`}>Price for 1 night:</label>
               <div className="input-group">
                 <input
                   ref={priceEditRef}
                   defaultValue={byId[selectedId].price}
                   type="number"
                   className="form-control"
-                  id="exampleFormControlInput1"
                   placeholder="Example: 70$..."
                   required
                 />
@@ -91,28 +84,22 @@ export const RoomEditModal = ({ handleCloseModal, selectedId }: Props) => {
               </div>
             </div>
             <div className="col-12 mb-3">
-              <label htmlFor="exampleFormControlInput1" className={`form-label ${context.theme}`}>
-                Room available:
-              </label>
+              <label className={`form-label ${context.theme}`}>Room available:</label>
               <input
                 ref={availableEditRef}
                 defaultValue={byId[selectedId].totalRoom}
                 type="number"
                 className="form-control"
-                id="exampleFormControlInput1"
                 placeholder="number: 5-20"
                 required
               />
             </div>
             <div className="col-12 mb-3">
-              <label htmlFor="exampleFormControlInput1" className={`form-label ${context.theme}`}>
-                Room image:
-              </label>
+              <label className={`form-label ${context.theme}`}>Room image:</label>
               <input
                 ref={imageRef}
                 type="file"
                 className="form-control"
-                id="exampleFormControlInput1"
                 placeholder="name@example.com"
               />
             </div>
@@ -121,7 +108,7 @@ export const RoomEditModal = ({ handleCloseModal, selectedId }: Props) => {
                 onClick={handleUpdate}
                 type="submit"
                 className="btn btn-outline-success mb-3 w-50">
-                Submit
+                Update
               </button>
             </div>
           </form>

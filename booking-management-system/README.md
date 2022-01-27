@@ -13,16 +13,16 @@ This is a [React](https://reactjs.org) + [TypeScript](https://www.typescriptlang
 - [Prettier](https://prettier.io)
 
 ## Getting started
-1. Access the project directory.
+1. Clone a git repository.
+
+   ```bash
+   git clone git@gitlab.asoft-python.com:g-tungnguyen/react-training.git
+   ```
+
+2. Access the project directory.
 
    ```bash
    cd booking-management-system
-   ```
-
-2. Initialize a git repository.
-
-   ```bash
-   git init
    ```
 
 3. Install dependencies.

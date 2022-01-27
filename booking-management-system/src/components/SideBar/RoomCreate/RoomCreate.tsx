@@ -17,7 +17,7 @@ export const CreateRooms = () => {
 
   const nameRef = useRef() as MutableRefObject<HTMLInputElement>;
   const priceRef = useRef() as MutableRefObject<HTMLInputElement>;
-  const availableRef = useRef() as MutableRefObject<HTMLInputElement>;
+  const roomAvailableRef = useRef() as MutableRefObject<HTMLInputElement>;
   const imageRef = useRef() as MutableRefObject<HTMLInputElement>;
 
   const handleSubmit = async () => {
@@ -25,20 +25,21 @@ export const CreateRooms = () => {
       id: uuid(),
       roomImage: imageRef.current.value,
       roomName: nameRef.current.value,
-      totalRoom: parseInt(availableRef.current.value),
+      totalRoom: parseInt(roomAvailableRef.current.value),
       price: parseInt(priceRef.current.value)
     };
     if (
       nameRef.current.value != '' &&
       priceRef.current.value != '' &&
-      availableRef.current.value != ''
+      roomAvailableRef.current.value != ''
     ) {
-      await api.post('/roomCategory', postRoom);
-      dispatch(addRoom({ room: postRoom }));
+      if (await api.post('/roomCategory', postRoom)) {
+        dispatch(addRoom({ room: postRoom }));
+      }
 
       nameRef.current.value = '';
       priceRef.current.value = '';
-      availableRef.current.value = '';
+      roomAvailableRef.current.value = '';
       imageRef.current.value = '';
 
       nameRef.current.focus();
@@ -48,28 +49,22 @@ export const CreateRooms = () => {
   return (
     <form className="row mt-3">
       <div className="col-12 mb-3">
-        <label htmlFor="exampleFormControlInput1" className={`form-label ${context.theme}`}>
-          Room type:
-        </label>
+        <label className={`form-label ${context.theme}`}>Room type:</label>
         <input
           ref={nameRef}
           type="text"
           className="form-control"
-          id="exampleFormControlInput1"
           placeholder="Example: Luxury room..."
           required
         />
       </div>
       <div className="col-12 mb-3">
-        <label htmlFor="exampleFormControlInput1" className={`form-label ${context.theme}`}>
-          Price for 1 night:
-        </label>
+        <label className={`form-label ${context.theme}`}>Price for 1 night:</label>
         <div className="input-group">
           <input
             ref={priceRef}
             type="number"
             className="form-control"
-            id="exampleFormControlInput1"
             placeholder="Example: 70$..."
             required
           />
@@ -79,28 +74,22 @@ export const CreateRooms = () => {
         </div>
       </div>
       <div className="col-12 mb-3">
-        <label htmlFor="exampleFormControlInput1" className={`form-label ${context.theme}`}>
-          Room available:
-        </label>
+        <label className={`form-label ${context.theme}`}>Room available:</label>
         <input
-          ref={availableRef}
+          ref={roomAvailableRef}
           type="number"
           className="form-control"
-          id="exampleFormControlInput1"
           placeholder="number: 5-20"
           required
         />
       </div>
       <div className="col-12 mb-3">
-        <label htmlFor="exampleFormControlInput1" className={`form-label ${context.theme}`}>
-          Room image:
-        </label>
+        <label className={`form-label ${context.theme}`}>Room image:</label>
         <input
           ref={imageRef}
           type="file"
           className="form-control"
-          id="exampleFormControlInput1"
-          placeholder="name@example.com"
+          placeholder="iamge@example.com"
         />
       </div>
       <div className="col-12">

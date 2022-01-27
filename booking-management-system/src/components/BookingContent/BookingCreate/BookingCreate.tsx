@@ -66,8 +66,9 @@ export const BookingCreate = () => {
       roomNumberRef.current.value != '' &&
       postInfo
     ) {
-      dispatchInfo(addInfo({ info: postInfo }));
-      await api.post('/bookingInfos', postInfo);
+      if (await api.post('/bookingInfos', postInfo)) {
+        dispatchInfo(addInfo({ info: postInfo }));
+      }
 
       (nameRef.current.value = ''),
         (emailRef.current.value = ''),
@@ -94,14 +95,11 @@ export const BookingCreate = () => {
         <Modal.Body>
           <form className="row mt-3">
             <div className="col-12 mb-3">
-              <label htmlFor="exampleFormControlInput1" className={`form-label`}>
-                Customer name:
-              </label>
+              <label className={`form-label`}>Customer name:</label>
               <input
                 ref={nameRef}
                 type="text"
                 className="form-control"
-                id="exampleFormControlInput1"
                 placeholder="Example: Luxury room..."
                 required
               />
@@ -114,20 +112,16 @@ export const BookingCreate = () => {
                 ref={emailRef}
                 type="email"
                 className="form-control"
-                id="exampleFormControlInput1"
                 placeholder="Example: 70$..."
                 required
               />
             </div>
             <div className="col-12 mb-3">
-              <label htmlFor="exampleFormControlInput1" className={`form-label`}>
-                Phone number:
-              </label>
+              <label className={`form-label`}>Phone number:</label>
               <input
                 ref={phoneRef}
                 type="number"
                 className="form-control"
-                id="exampleFormControlInput1"
                 placeholder="number: 5-20"
                 required
               />
@@ -142,11 +136,7 @@ export const BookingCreate = () => {
             </div>
             <div className="col-9 mt-3">
               <label className="form-label ">Room type:</label>
-              <select
-                ref={valueRef}
-                onChange={handlePick}
-                className="form-select"
-                aria-label="Default select example">
+              <select ref={valueRef} onChange={handlePick} className="form-select">
                 {allIds.map((id: string) => {
                   return (
                     <option ref={roomNameRef} key={id} value={byId[id].price}>
@@ -157,15 +147,12 @@ export const BookingCreate = () => {
               </select>
             </div>
             <div className="col-3 mb-3 mt-3">
-              <label htmlFor="exampleFormControlInput1" className={`form-label`}>
-                Number:
-              </label>
+              <label className={`form-label`}>Number:</label>
               <input
                 onChange={handlePick}
                 ref={roomNumberRef}
                 type="number"
                 className="form-control"
-                id="exampleFormControlInput1"
                 placeholder="number: 5-20"
                 required
               />

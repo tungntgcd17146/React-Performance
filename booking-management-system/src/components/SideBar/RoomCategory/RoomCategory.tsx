@@ -35,8 +35,9 @@ export const RoomCategory = () => {
   //Delete room category
   const deleteCategory = async (id: string) => {
     if (window.confirm('You sure to delete?')) {
-      dispatch(deleteRoom({ id }));
-      await api.delete(`/roomCategory/${id}`);
+      if (await api.delete(`/roomCategory/${id}`)) {
+        dispatch(deleteRoom({ id }));
+      }
     }
   };
 
