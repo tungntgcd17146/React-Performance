@@ -1,6 +1,6 @@
 //import { useState } from 'react';
-import { Rooms } from './Room/Index';
-import { SortButton } from './SortButton/Index';
+import { Rooms } from './Room';
+import { SortButton } from './SortButton';
 
 export const RoomTable = () => {
   return (
