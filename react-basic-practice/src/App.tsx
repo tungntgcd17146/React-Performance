@@ -1,7 +1,7 @@
 import { InputSearch } from './components/InputSearch/Index';
 import { RoomCreate } from './components/AddRoom/Index';
 import { TotalNumber } from './components/TotalNumber/Index';
-import { RoomTable } from './components/RoomTable/RoomTable';
+import { RoomTable } from './components/RoomTable/Index';
 import './App.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
