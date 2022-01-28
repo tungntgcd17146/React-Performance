@@ -1,6 +1,6 @@
 //import { useState } from 'react';
-import { RoomList } from './RoomList';
-import { SortByName } from './SortByName';
+import { Rooms } from './Rooms';
+import { SortButton } from './SortButton';
 
 export const RoomTable = () => {
   return (
@@ -9,7 +9,7 @@ export const RoomTable = () => {
         <tr>
           <th scope="col">ID</th>
           <th scope="col">
-            Room name <SortByName />
+            Room name <SortButton />
           </th>
           <th scope="col">Unique code</th>
           <th scope="col">Price for 1 night</th>
@@ -18,7 +18,7 @@ export const RoomTable = () => {
         </tr>
       </thead>
       <tbody>
-        <RoomList />
+        <Rooms />
       </tbody>
     </table>
   );

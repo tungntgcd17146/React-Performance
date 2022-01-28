@@ -1,7 +1,7 @@
 import { FaSortAlphaDown, FaSortAlphaDownAlt } from 'react-icons/fa';
 import { useState } from 'react';
 
-export const SortByName = () => {
+export const SortButton = () => {
   const [toggleSort, setToggleSort] = useState(false);
 
   const toggleSortButton = () => {

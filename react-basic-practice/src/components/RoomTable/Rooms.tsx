@@ -1,6 +1,6 @@
 import { AiFillDelete } from 'react-icons/ai';
 
-export const RoomList = () => {
+export const Rooms = () => {
   return (
     <>
       <tr>
