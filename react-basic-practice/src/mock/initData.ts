@@ -1,6 +1,6 @@
-import { room } from '../interface/room';
+import { Room } from '../interface/room';
 
-export const rooms: room[] = [
+export const rooms: Room[] = [
   {
     randomId: '1',
     name: 'Deluxe Room',

@@ -1,4 +1,4 @@
-export interface room {
+export interface Room {
   randomId: string;
   name: string;
   quantity: number;
