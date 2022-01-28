@@ -1,5 +1,5 @@
 import { InputSearch } from './components/InputSearch';
-import { RoomCreate } from './components/AddRoom';
+import { AddButton } from './components/AddButton';
 import { TotalNumber } from './components/TotalNumber';
 import { RoomTable } from './components/RoomTable';
 import './App.css';
@@ -9,7 +9,7 @@ function App() {
   return (
     <div className="app container">
       <header className="app-header d-flex justify-content-between">
-        <RoomCreate />
+        <AddButton />
         <InputSearch />
         <TotalNumber />
       </header>
