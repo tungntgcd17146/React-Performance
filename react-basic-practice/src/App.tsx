@@ -32,7 +32,7 @@ function App() {
       <header className="app-header d-flex justify-content-between">
         <AddButton handleAdd={handleAddRoom} />
         <InputSearch />
-        <TotalNumber />
+        <TotalNumber totalRooms={roomsData} />
       </header>
       <section className="app-body">
         <RoomTable rooms={roomsData} />
