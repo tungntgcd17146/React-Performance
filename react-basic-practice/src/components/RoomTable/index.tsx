@@ -1,7 +1,12 @@
 import { Room } from './Room';
 import { SortButton } from './SortButton';
+import { RoomInterface } from '../../interface/room';
 
-export const RoomTable = () => (
+type Prop = {
+  rooms: RoomInterface[];
+};
+
+export const RoomTable = ({ rooms }: Prop) => (
   <table className="table table-hover table-bordered">
     <thead>
       <tr>
@@ -16,7 +21,9 @@ export const RoomTable = () => (
       </tr>
     </thead>
     <tbody>
-      <Room />
+      {rooms.map((room: RoomInterface, index: number) => {
+        return <Room key={room.id} listRoom={room} listIndex={index} />;
+      })}
     </tbody>
   </table>
 );
