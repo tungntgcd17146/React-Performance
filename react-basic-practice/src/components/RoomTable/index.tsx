@@ -1,12 +1,14 @@
+/* eslint-disable no-unused-vars */
 import { Room } from './Room';
 import { SortButton } from './SortButton';
 import { RoomInterface } from '../../interface/room';
 
-type Prop = {
+type Props = {
   rooms: RoomInterface[];
+  deleteRoom: (roomId: string) => void;
 };
 
-export const RoomTable = ({ rooms }: Prop) => (
+export const RoomTable = ({ rooms, deleteRoom }: Props) => (
   <table className="table table-hover table-bordered">
     <thead>
       <tr>
@@ -22,7 +24,7 @@ export const RoomTable = ({ rooms }: Prop) => (
     </thead>
     <tbody>
       {rooms.map((room: RoomInterface, index: number) => {
-        return <Room key={room.id} listRoom={room} listIndex={index} />;
+        return <Room key={room.id} listRoom={room} listIndex={index} handleDelete={deleteRoom} />;
       })}
     </tbody>
   </table>

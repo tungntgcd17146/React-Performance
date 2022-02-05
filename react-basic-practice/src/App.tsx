@@ -27,6 +27,11 @@ function App() {
     }
   };
 
+  const handleDeleteRoom = (roomId: string) => {
+    const roomsAfterDel = roomsData.filter((id) => id.id !== roomId);
+    setRoomsData(roomsAfterDel);
+  };
+
   return (
     <div className="app container">
       <header className="app-header d-flex justify-content-between">
@@ -35,7 +40,7 @@ function App() {
         <TotalNumber totalRooms={roomsData} />
       </header>
       <section className="app-body">
-        <RoomTable rooms={roomsData} />
+        <RoomTable rooms={roomsData} deleteRoom={handleDeleteRoom} />
       </section>
     </div>
   );
