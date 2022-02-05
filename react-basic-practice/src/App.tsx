@@ -14,6 +14,7 @@ import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   const [roomsData, setRoomsData] = useState(rooms);
+  const [inputSearch, setInputSearch] = useState('');
 
   const handleAddRoom = () => {
     const newRoom: RoomInterface = {
@@ -32,15 +33,23 @@ function App() {
     setRoomsData(roomsAfterDel);
   };
 
+  const roomAfterFilter = roomsData.filter((value) => {
+    if (inputSearch == '') {
+      return value;
+    } else if (value.name.toLowerCase().includes(inputSearch.toLowerCase())) {
+      return value;
+    }
+  });
+
   return (
     <div className="app container">
       <header className="app-header d-flex justify-content-between">
         <AddButton handleAdd={handleAddRoom} />
-        <InputSearch />
+        <InputSearch setInputSearch={setInputSearch} />
         <TotalNumber totalRooms={roomsData} />
       </header>
       <section className="app-body">
-        <RoomTable rooms={roomsData} deleteRoom={handleDeleteRoom} setRooms={setRoomsData} />
+        <RoomTable rooms={roomAfterFilter} deleteRoom={handleDeleteRoom} setRooms={setRoomsData} />
       </section>
     </div>
   );
