@@ -40,7 +40,7 @@ function App() {
         <TotalNumber totalRooms={roomsData} />
       </header>
       <section className="app-body">
-        <RoomTable rooms={roomsData} deleteRoom={handleDeleteRoom} />
+        <RoomTable rooms={roomsData} deleteRoom={handleDeleteRoom} setRooms={setRoomsData} />
       </section>
     </div>
   );
