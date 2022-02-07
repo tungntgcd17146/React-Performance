@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-vars */
 import { AiFillDelete } from 'react-icons/ai';
-
 import { RoomInterface } from '../../../interface/room';
 
 type Props = {
@@ -10,19 +9,21 @@ type Props = {
 };
 
 export const Room = ({ room, order, onDelete }: Props) => {
-  const onDeleteRoom = () => {
+  const handleDeleteRoom = () => {
     onDelete(room.id);
   };
+
+  const { name, id, price, quantity } = room;
 
   return (
     <tr>
       <th scope="row">{order}</th>
-      <td>{room.name}</td>
-      <td>{room.id}</td>
-      <td>{room.price} $</td>
-      <td>{room.quantity} room</td>
+      <td>{name}</td>
+      <td>{id}</td>
+      <td>{price} $</td>
+      <td>{quantity} room</td>
       <td>
-        <button onClick={onDeleteRoom} type="button" className="btn btn-outline-danger">
+        <button onClick={handleDeleteRoom} type="button" className="btn btn-outline-danger">
           <AiFillDelete />
         </button>
       </td>

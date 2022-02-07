@@ -35,11 +35,13 @@ function App() {
     setRoomsData(roomsAfterDel);
   };
 
-  const roomAfterFilter = roomsData.filter((value) => {
+  const roomsAfterFilter = roomsData.filter((value) => {
     
     if (inputSearch == '') {
       return value;
-    } else if (value.name.toLowerCase().includes(inputSearch.toLowerCase())) {
+    } 
+    
+    else if (value.name.toLowerCase().includes(inputSearch.toLowerCase())) {
       return value;
     }
   });
@@ -53,7 +55,7 @@ function App() {
       </header>
       <section className="app-body">
         <RoomTable
-          rooms={roomAfterFilter}
+          rooms={roomsAfterFilter}
           onDeleteRoom={handleDeleteRoom}
           setRooms={setRoomsData}
         />

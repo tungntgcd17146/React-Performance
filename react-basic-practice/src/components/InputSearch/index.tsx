@@ -5,7 +5,7 @@ type Prop = {
 };
 
 export const InputSearch = ({ onChangeValue }: Prop) => {
-  const onChangeInput = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleChangeInput = (event: ChangeEvent<HTMLInputElement>) => {
     onChangeValue(event.target.value);
   };
 
@@ -13,7 +13,7 @@ export const InputSearch = ({ onChangeValue }: Prop) => {
     <div className="input-group w-50">
       <span className="input-group-text">Input Search</span>
       <input
-        onChange={onChangeInput}
+        onChange={handleChangeInput}
         className="form-control me-2"
         type="search"
         placeholder="Search by room name"

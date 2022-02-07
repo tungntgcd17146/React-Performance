@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { FaSortAlphaDown, FaSortAlphaDownAlt } from 'react-icons/fa';
 import { Dispatch, SetStateAction, useState } from 'react';
 import { RoomInterface } from '../../../interface/room';
@@ -13,12 +14,14 @@ export const SortButton = ({ rooms, sortRooms }: Props) => {
   const toggleSortButton = () => {
     setToggleSort(!toggleSort);
     const sortAZ = rooms.sort((a, b) => {
+      
       if (a.name < b.name) {
         return -1;
       }
       return 0;
     });
     const sortZA = [...rooms].sort((a, b) => {
+      
       if (a.name > b.name) {
         return -1;
       }
