@@ -4,7 +4,7 @@ import { AddButton } from './components/AddButton';
 import { TotalNumber } from './components/TotalNumber';
 import { RoomTable } from './components/RoomTable';
 
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { rooms } from './mock/initData';
 import { RoomInterface } from './interface/room';
 
@@ -16,6 +16,7 @@ import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 function App() {
   const [roomsData, setRoomsData] = useState(rooms);
   const [inputSearch, setInputSearch] = useState('');
+  const [toggleSort, setToggleSort] = useState(false);
 
   const handleAddRoom = () => {
     const newRoom: RoomInterface = {
@@ -48,6 +49,25 @@ function App() {
     }
   });
 
+  const toggleSortButton = useCallback(() => {
+    setToggleSort(!toggleSort);
+    const sortAZ = roomsData.sort((a, b) => {
+      
+      if (a.name < b.name) {
+        return -1;
+      }
+      return 0;
+    });
+    const sortZA = [...roomsData].sort((a, b) => {
+      
+      if (a.name > b.name) {
+        return -1;
+      }
+      return 0;
+    });
+    setRoomsData(!toggleSort ? sortZA : sortAZ);
+  }, [toggleSort, roomsData]);
+
   return (
     <div className="app container">
       <header className="app-header d-flex justify-content-between">
@@ -59,7 +79,8 @@ function App() {
         <RoomTable
           rooms={roomsAfterFilter}
           onDeleteRoom={handleDeleteRoom}
-          setRooms={setRoomsData}
+          onSortButton={toggleSortButton}
+          onToggleSort={toggleSort}
         />
       </section>
     </div>
