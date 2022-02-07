@@ -1,9 +1,9 @@
 type Prop = {
-  handleAdd: () => void;
+  onClickAdd: () => void;
 };
 
-export const AddButton = ({ handleAdd }: Prop) => (
-  <button onClick={handleAdd} className="btn btn-outline-success">
+export const AddButton = ({ onClickAdd }: Prop) => (
+  <button onClick={onClickAdd} className="btn btn-outline-success">
     Create new room
   </button>
 );

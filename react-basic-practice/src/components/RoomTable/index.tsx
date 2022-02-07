@@ -6,11 +6,11 @@ import { Dispatch, SetStateAction } from 'react';
 
 type Props = {
   rooms: RoomInterface[];
-  deleteRoom: (roomId: string) => void;
+  onDeleteRoom: (roomId: string) => void;
   setRooms: Dispatch<SetStateAction<RoomInterface[]>>;
 };
 
-export const RoomTable = ({ rooms, deleteRoom, setRooms }: Props) => (
+export const RoomTable = ({ rooms, onDeleteRoom, setRooms }: Props) => (
   <table className="table table-hover table-bordered">
     <thead>
       <tr>
@@ -25,9 +25,9 @@ export const RoomTable = ({ rooms, deleteRoom, setRooms }: Props) => (
       </tr>
     </thead>
     <tbody>
-      {rooms.map((room: RoomInterface, index: number) => {
-        return <Room key={room.id} listRoom={room} listIndex={index} handleDelete={deleteRoom} />;
-      })}
+      {rooms.map((room: RoomInterface, index: number) => (
+        <Room key={room.id} room={room} order={index + 1} onDelete={onDeleteRoom} />
+      ))}
     </tbody>
   </table>
 );

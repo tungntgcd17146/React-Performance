@@ -4,24 +4,25 @@ import { AiFillDelete } from 'react-icons/ai';
 import { RoomInterface } from '../../../interface/room';
 
 type Props = {
-  listRoom: RoomInterface;
-  listIndex: number;
-  handleDelete: (roomId: string) => void;
+  room: RoomInterface;
+  order: number;
+  onDelete: (roomId: string) => void;
 };
 
-export const Room = ({ listRoom, listIndex, handleDelete }: Props) => {
+export const Room = ({ room, order, onDelete }: Props) => {
+  const onDeleteRoom = () => {
+    onDelete(room.id);
+  };
+
   return (
     <tr>
-      <th scope="row">{listIndex + 1}</th>
-      <td>{listRoom.name}</td>
-      <td>{listRoom.id}</td>
-      <td>{listRoom.price} $</td>
-      <td>{listRoom.quantity} room</td>
+      <th scope="row">{order}</th>
+      <td>{room.name}</td>
+      <td>{room.id}</td>
+      <td>{room.price} $</td>
+      <td>{room.quantity} room</td>
       <td>
-        <button
-          onClick={() => handleDelete(listRoom.id)}
-          type="button"
-          className="btn btn-outline-danger">
+        <button onClick={onDeleteRoom} type="button" className="btn btn-outline-danger">
           <AiFillDelete />
         </button>
       </td>

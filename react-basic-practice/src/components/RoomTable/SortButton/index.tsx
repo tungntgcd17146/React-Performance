@@ -12,7 +12,7 @@ export const SortButton = ({ rooms, sortRooms }: Props) => {
 
   const toggleSortButton = () => {
     setToggleSort(!toggleSort);
-    const sortAZ = [...rooms].sort((a, b) => {
+    const sortAZ = rooms.sort((a, b) => {
       if (a.name < b.name) {
         return -1;
       }

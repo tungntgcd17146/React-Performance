@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { InputSearch } from './components/InputSearch';
 import { AddButton } from './components/AddButton';
 import { TotalNumber } from './components/TotalNumber';
@@ -23,6 +24,7 @@ function App() {
       quantity: parseInt(getRandomQuantity(2)),
       price: getRandomPrice()
     };
+    
     if (newRoom) {
       setRoomsData([...roomsData, newRoom]);
     }
@@ -34,6 +36,7 @@ function App() {
   };
 
   const roomAfterFilter = roomsData.filter((value) => {
+    
     if (inputSearch == '') {
       return value;
     } else if (value.name.toLowerCase().includes(inputSearch.toLowerCase())) {
@@ -44,12 +47,16 @@ function App() {
   return (
     <div className="app container">
       <header className="app-header d-flex justify-content-between">
-        <AddButton handleAdd={handleAddRoom} />
-        <InputSearch setInputSearch={setInputSearch} />
+        <AddButton onClickAdd={handleAddRoom} />
+        <InputSearch onChangeValue={setInputSearch} />
         <TotalNumber totalRooms={roomsData} />
       </header>
       <section className="app-body">
-        <RoomTable rooms={roomAfterFilter} deleteRoom={handleDeleteRoom} setRooms={setRoomsData} />
+        <RoomTable
+          rooms={roomAfterFilter}
+          onDeleteRoom={handleDeleteRoom}
+          setRooms={setRoomsData}
+        />
       </section>
     </div>
   );
