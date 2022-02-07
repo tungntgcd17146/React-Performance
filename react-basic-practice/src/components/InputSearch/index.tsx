@@ -1,10 +1,10 @@
-import { ChangeEvent, Dispatch, SetStateAction } from 'react';
+import { ChangeEvent, Dispatch, SetStateAction, memo } from 'react';
 
 type Prop = {
   onChangeValue: Dispatch<SetStateAction<string>>;
 };
 
-export const InputSearch = ({ onChangeValue }: Prop) => {
+const InputSearch = ({ onChangeValue }: Prop) => {
   const handleChangeInput = (event: ChangeEvent<HTMLInputElement>) => {
     onChangeValue(event.target.value);
   };
@@ -22,3 +22,5 @@ export const InputSearch = ({ onChangeValue }: Prop) => {
     </div>
   );
 };
+
+export default memo(InputSearch);
