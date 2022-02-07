@@ -1,15 +1,29 @@
+/* eslint-disable no-unused-vars */
 import { AiFillDelete } from 'react-icons/ai';
+import { RoomInterface } from '../../../interface/room';
 
-export const Room = () => {
+type Props = {
+  room: RoomInterface;
+  order: number;
+  onDelete: (roomId: string) => void;
+};
+
+export const Room = ({ room, order, onDelete }: Props) => {
+  const handleDeleteRoom = () => {
+    onDelete(room.id);
+  };
+
+  const { name, id, price, quantity } = room;
+
   return (
     <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-      <td>@mdo</td>
+      <th scope="row">{order}</th>
+      <td>{name}</td>
+      <td>{id}</td>
+      <td>{price} $</td>
+      <td>{quantity} room</td>
       <td>
-        <button type="button" className="btn btn-outline-danger">
+        <button onClick={handleDeleteRoom} type="button" className="btn btn-outline-danger">
           <AiFillDelete />
         </button>
       </td>

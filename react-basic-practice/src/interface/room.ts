@@ -1,4 +1,4 @@
-export interface Room {
+export interface RoomInterface {
   id: string;
   name: string;
   quantity: number;

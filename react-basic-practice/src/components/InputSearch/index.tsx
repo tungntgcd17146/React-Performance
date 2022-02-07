@@ -1,8 +1,24 @@
-export const InputSearch = () => (
-  <form className="d-flex">
-    <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-    <button className="btn btn-outline-success" type="submit">
-      Search
-    </button>
-  </form>
-);
+import { ChangeEvent, Dispatch, SetStateAction } from 'react';
+
+type Prop = {
+  onChangeValue: Dispatch<SetStateAction<string>>;
+};
+
+export const InputSearch = ({ onChangeValue }: Prop) => {
+  const handleChangeInput = (event: ChangeEvent<HTMLInputElement>) => {
+    onChangeValue(event.target.value);
+  };
+
+  return (
+    <div className="input-group w-50">
+      <span className="input-group-text">Input Search</span>
+      <input
+        onChange={handleChangeInput}
+        className="form-control me-2"
+        type="search"
+        placeholder="Search by room name"
+        aria-label="Search"
+      />
+    </div>
+  );
+};
