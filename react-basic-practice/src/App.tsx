@@ -37,11 +37,13 @@ function App() {
 
   const roomsAfterFilter = roomsData.filter((value) => {
     
-    if (inputSearch == '') {
+    if (inputSearch === '') {
+      
       return value;
     } 
     
     else if (value.name.toLowerCase().includes(inputSearch.toLowerCase())) {
+      
       return value;
     }
   });
