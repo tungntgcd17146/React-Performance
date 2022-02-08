@@ -77,7 +77,7 @@ function App() {
       </header>
       <section className="app-body">
         <RoomTable
-          rooms={roomsAfterFilter}
+          onRoomsAfterFilter={roomsAfterFilter}
           onDeleteRoom={handleDeleteRoom}
           onSortButton={toggleSortButton}
           onToggleSort={toggleSort}

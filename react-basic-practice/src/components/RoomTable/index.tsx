@@ -4,13 +4,18 @@ import SortButton from './SortButton';
 import { RoomInterface } from '../../interface/room';
 
 type Props = {
-  rooms: RoomInterface[];
+  onRoomsAfterFilter: RoomInterface[];
   onDeleteRoom: (roomId: string) => void;
   onSortButton: () => void;
   onToggleSort: Boolean;
 };
 
-export const RoomTable = ({ rooms, onDeleteRoom, onSortButton, onToggleSort }: Props) => (
+export const RoomTable = ({
+  onRoomsAfterFilter,
+  onDeleteRoom,
+  onSortButton,
+  onToggleSort
+}: Props) => (
   <table className="table table-hover table-bordered">
     <thead>
       <tr>
@@ -25,8 +30,8 @@ export const RoomTable = ({ rooms, onDeleteRoom, onSortButton, onToggleSort }: P
       </tr>
     </thead>
     <tbody>
-      {rooms.map((room: RoomInterface, index: number) => (
-        <Room key={room.id} room={room} order={index + 1} onDelete={onDeleteRoom} />
+      {onRoomsAfterFilter.map((room: RoomInterface, index: number) => (
+        <Room key={room.id} onRoom={room} order={index + 1} onDelete={onDeleteRoom} />
       ))}
     </tbody>
   </table>

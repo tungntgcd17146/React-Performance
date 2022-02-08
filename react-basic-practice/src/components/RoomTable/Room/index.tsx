@@ -3,17 +3,17 @@ import { AiFillDelete } from 'react-icons/ai';
 import { RoomInterface } from '../../../interface/room';
 
 type Props = {
-  room: RoomInterface;
+  onRoom: RoomInterface;
   order: number;
   onDelete: (roomId: string) => void;
 };
 
-export const Room = ({ room, order, onDelete }: Props) => {
+export const Room = ({ onRoom, order, onDelete }: Props) => {
   const handleDeleteRoom = () => {
-    onDelete(room.id);
+    onDelete(onRoom.id);
   };
 
-  const { name, id, price, quantity } = room;
+  const { name, id, price, quantity } = onRoom;
 
   return (
     <tr>
