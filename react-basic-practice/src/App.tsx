@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import InputSearch from './components/InputSearch';
-import { AddButton } from './components/AddButton';
+import AddButton from './components/AddButton';
 import { TotalNumber } from './components/TotalNumber';
 import { RoomTable } from './components/RoomTable';
 
@@ -18,7 +18,7 @@ function App() {
   const [inputSearch, setInputSearch] = useState('');
   const [toggleSort, setToggleSort] = useState(false);
 
-  const handleAddRoom = () => {
+  const handleAddRoom = useCallback(() => {
     const newRoom: RoomInterface = {
       id: getRandomId(5),
       name: getRandomName(),
@@ -29,7 +29,7 @@ function App() {
     if (newRoom) {
       setRoomsData([...roomsData, newRoom]);
     }
-  };
+  }, [roomsData]);
 
   const handleDeleteRoom = (roomId: string) => {
     const roomsAfterDel = roomsData.filter((id) => id.id !== roomId);
