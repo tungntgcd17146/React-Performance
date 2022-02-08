@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 import InputSearch from './components/InputSearch';
 import AddButton from './components/AddButton';
-import TotalNumber from './components/TotalNumber';
+import { TotalNumber } from './components/TotalNumber';
 import { RoomTable } from './components/RoomTable';
 
 import { useCallback, useState } from 'react';
@@ -73,14 +73,14 @@ function App() {
       <header className="app-header d-flex justify-content-between">
         <AddButton onClickAdd={handleAddRoom} />
         <InputSearch onChangeValue={setInputSearch} />
-        <TotalNumber onTotalRooms={roomsAfterFilter} />
+        <TotalNumber totalRooms={roomsAfterFilter} />
       </header>
       <section className="app-body">
         <RoomTable
-          onRoomsAfterFilter={roomsAfterFilter}
+          roomsAfterFilter={roomsAfterFilter}
           onDeleteRoom={handleDeleteRoom}
           onSortButton={toggleSortButton}
-          onToggleSort={toggleSort}
+          toggleSort={toggleSort}
         />
       </section>
     </div>

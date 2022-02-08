@@ -2,15 +2,15 @@ import { useMemo } from 'react';
 import { RoomInterface } from '../../interface/room';
 
 type Prop = {
-  onTotalRooms: RoomInterface[];
+  totalRooms: RoomInterface[];
 };
 
-const TotalNumber = ({ onTotalRooms }: Prop) => {
+export const TotalNumber = ({ totalRooms }: Prop) => {
   const total = useMemo(() => {
-    const result = onTotalRooms.length;
+    const result = totalRooms.length;
 
     return result;
-  }, [onTotalRooms.length]);
+  }, [totalRooms.length]);
 
   return (
     <button type="button" className="btn btn-outline-primary" disabled>
@@ -18,5 +18,3 @@ const TotalNumber = ({ onTotalRooms }: Prop) => {
     </button>
   );
 };
-
-export default TotalNumber;

@@ -3,12 +3,12 @@ import { memo } from 'react';
 
 type Props = {
   onSortButton: () => void;
-  onToggleSort: Boolean;
+  toggleSort: Boolean;
 };
 
-const SortButton = ({ onSortButton, onToggleSort }: Props) => (
+const SortButton = ({ onSortButton, toggleSort }: Props) => (
   <button onClick={onSortButton} type="button" className="btn btn-outline-primary">
-    {!onToggleSort ? <FaSortAlphaDown /> : <FaSortAlphaDownAlt />}
+    {!toggleSort ? <FaSortAlphaDown /> : <FaSortAlphaDownAlt />}
   </button>
 );
 
