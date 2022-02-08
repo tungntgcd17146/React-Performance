@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 import InputSearch from './components/InputSearch';
 import AddButton from './components/AddButton';
-import { TotalNumber } from './components/TotalNumber';
+import TotalNumber from './components/TotalNumber';
 import { RoomTable } from './components/RoomTable';
 
 import { useCallback, useState } from 'react';
@@ -38,16 +38,16 @@ function App() {
 
   const roomsAfterFilter = roomsData.filter((value) => {
     
-    if (inputSearch === '') {
+      if (inputSearch === '') {
+        
+        return value;
+      } 
       
-      return value;
-    } 
-    
-    else if (value.name.toLowerCase().includes(inputSearch.toLowerCase())) {
-      
-      return value;
-    }
-  });
+      else if (value.name.toLowerCase().includes(inputSearch.toLowerCase())) {
+        
+        return value;
+      }
+    });
 
   const toggleSortButton = useCallback(() => {
     setToggleSort(!toggleSort);
@@ -73,7 +73,7 @@ function App() {
       <header className="app-header d-flex justify-content-between">
         <AddButton onClickAdd={handleAddRoom} />
         <InputSearch onChangeValue={setInputSearch} />
-        <TotalNumber totalRooms={roomsAfterFilter} />
+        <TotalNumber onTotalRooms={roomsAfterFilter} />
       </header>
       <section className="app-body">
         <RoomTable
