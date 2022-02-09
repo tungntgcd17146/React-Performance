@@ -25,7 +25,7 @@ export const RoomTable = ({ roomsAfterFilter, onDeleteRoom, onSortButton, toggle
     </thead>
     <tbody>
       {roomsAfterFilter.map((room: RoomInterface, index: number) => (
-        <Room key={room.id} Room={room} order={index + 1} onDelete={onDeleteRoom} />
+        <Room key={room.id} room={room} order={index + 1} onDelete={onDeleteRoom} />
       ))}
     </tbody>
   </table>
