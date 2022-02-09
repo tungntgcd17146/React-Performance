@@ -1,32 +1,31 @@
 /* eslint-disable no-unused-vars */
 import { Room } from './Room';
-import { SortButton } from './SortButton';
+import SortButton from './SortButton';
 import { RoomInterface } from '../../interface/room';
-import { Dispatch, SetStateAction } from 'react';
 
 type Props = {
-  rooms: RoomInterface[];
+  roomsAfterFilter: RoomInterface[];
   onDeleteRoom: (roomId: string) => void;
-  setRooms: Dispatch<SetStateAction<RoomInterface[]>>;
+  onSortButton: () => void;
+  toggleSort: Boolean;
 };
 
-export const RoomTable = ({ rooms, onDeleteRoom, setRooms }: Props) => (
+export const RoomTable = ({ roomsAfterFilter, onDeleteRoom, onSortButton, toggleSort }: Props) => (
   <table className="table table-hover table-bordered">
     <thead>
       <tr>
         <th scope="col">ID</th>
         <th scope="col">
-          Room name <SortButton sortRooms={setRooms} rooms={rooms} />
+          Room name <SortButton onSortButton={onSortButton} toggleSort={toggleSort} />
         </th>
-        <th scope="col">Unique code</th>
         <th scope="col">Price for 1 night</th>
         <th scope="col">Rooms available</th>
         <th scope="col">Config</th>
       </tr>
     </thead>
     <tbody>
-      {rooms.map((room: RoomInterface, index: number) => (
-        <Room key={room.id} room={room} order={index + 1} onDelete={onDeleteRoom} />
+      {roomsAfterFilter.map((room: RoomInterface, index: number) => (
+        <Room key={room.id} Room={room} order={index + 1} onDelete={onDeleteRoom} />
       ))}
     </tbody>
   </table>

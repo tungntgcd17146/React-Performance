@@ -1,40 +1,15 @@
-/* eslint-disable prettier/prettier */
 import { FaSortAlphaDown, FaSortAlphaDownAlt } from 'react-icons/fa';
-import { Dispatch, SetStateAction, useState } from 'react';
-import { RoomInterface } from '../../../interface/room';
+import { memo } from 'react';
 
 type Props = {
-  rooms: RoomInterface[];
-  sortRooms: Dispatch<SetStateAction<RoomInterface[]>>;
+  onSortButton: () => void;
+  toggleSort: Boolean;
 };
 
-export const SortButton = ({ rooms, sortRooms }: Props) => {
-  const [toggleSort, setToggleSort] = useState(false);
+const SortButton = ({ onSortButton, toggleSort }: Props) => (
+  <button onClick={onSortButton} type="button" className="btn btn-outline-primary">
+    {!toggleSort ? <FaSortAlphaDown /> : <FaSortAlphaDownAlt />}
+  </button>
+);
 
-  const toggleSortButton = () => {
-    setToggleSort(!toggleSort);
-    const sortAZ = rooms.sort((a, b) => {
-      
-      if (a.name < b.name) {
-        return -1;
-      }
-      return 0;
-    });
-    const sortZA = [...rooms].sort((a, b) => {
-      
-      if (a.name > b.name) {
-        return -1;
-      }
-      return 0;
-    });
-    sortRooms(!toggleSort ? sortZA : sortAZ);
-  };
-
-  return (
-    <>
-      <button onClick={toggleSortButton} type="button" className="btn btn-outline-primary">
-        {!toggleSort ? <FaSortAlphaDown /> : <FaSortAlphaDownAlt />}
-      </button>
-    </>
-  );
-};
+export default memo(SortButton);
