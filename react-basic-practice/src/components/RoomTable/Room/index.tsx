@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+import { memo } from 'react';
 import { AiFillDelete } from 'react-icons/ai';
 import { RoomInterface } from '../../../interface/room';
 
@@ -8,7 +9,7 @@ type Props = {
   onDelete: (roomId: string) => void;
 };
 
-export const Room = ({ room, order, onDelete }: Props) => {
+const Room = ({ room, order, onDelete }: Props) => {
   const handleDeleteRoom = () => {
     onDelete(room.id);
   };
@@ -31,3 +32,5 @@ export const Room = ({ room, order, onDelete }: Props) => {
     </tr>
   );
 };
+
+export default memo(Room);

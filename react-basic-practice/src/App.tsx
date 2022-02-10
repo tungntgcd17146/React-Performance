@@ -25,47 +25,34 @@ function App() {
       quantity: parseInt(getRandomQuantity(2)),
       price: getRandomPrice()
     };
-    
-    if (newRoom) {
-      setRoomsData([...roomsData, newRoom]);
-    }
+    setRoomsData([...roomsData, newRoom]);
   }, [roomsData]);
 
-  const handleDeleteRoom = (roomId: string) => {
-    const roomsAfterDel = roomsData.filter((id) => id.id !== roomId);
-    setRoomsData(roomsAfterDel);
-  };
+  const handleDeleteRoom = useCallback(
+    (roomId: string) => {
+      const roomsAfterDel = roomsData.filter((id) => id.id !== roomId);
+      setRoomsData(roomsAfterDel);
+    },
+    [roomsData]
+  );
 
   const roomsAfterFilter = roomsData.filter((value) => {
     
-      if (inputSearch === '') {
-        
-        return value;
-      } 
-      
-      else if (value.name.toLowerCase().includes(inputSearch.toLowerCase())) {
-        
-        return value;
-      }
-    });
+    if (inputSearch === '') {
+      return value;
+    } else if (value.name.toLowerCase().includes(inputSearch.toLowerCase())) {
+      return value;
+    }
+  });
 
   const toggleSortButton = useCallback(() => {
     setToggleSort(!toggleSort);
     const sortAZ = roomsData.sort((a, b) => {
-      
-      if (a.name < b.name) {
-        return -1;
-      }
-      return 0;
+      const isReversed = toggleSort === true ? 1 : -1;
+
+      return isReversed * a.name.localeCompare(b.name);
     });
-    const sortZA = [...roomsData].sort((a, b) => {
-      
-      if (a.name > b.name) {
-        return -1;
-      }
-      return 0;
-    });
-    setRoomsData(!toggleSort ? sortZA : sortAZ);
+    setRoomsData(sortAZ);
   }, [toggleSort, roomsData]);
 
   return (
