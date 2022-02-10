@@ -30,3 +30,5 @@ export const RoomTable = ({ roomsAfterFilter, onDeleteRoom, onSortButton, toggle
     </tbody>
   </table>
 );
+
+RoomTable.whyDidYouRender = true;

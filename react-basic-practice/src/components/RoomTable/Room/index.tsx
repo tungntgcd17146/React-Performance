@@ -34,3 +34,5 @@ const Room = ({ room, order, onDelete }: Props) => {
 };
 
 export default memo(Room);
+
+Room.whyDidYouRender = true;

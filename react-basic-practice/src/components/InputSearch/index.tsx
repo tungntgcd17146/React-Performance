@@ -24,3 +24,5 @@ const InputSearch = ({ onChangeValue }: Prop) => {
 };
 
 export default memo(InputSearch);
+
+InputSearch.whyDidYouRender = true;

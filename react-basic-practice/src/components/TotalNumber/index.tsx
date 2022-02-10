@@ -11,3 +11,5 @@ const TotalNumber = ({ totalRooms }: Prop) => (
 );
 
 export default memo(TotalNumber);
+
+TotalNumber.whyDidYouRender = true;

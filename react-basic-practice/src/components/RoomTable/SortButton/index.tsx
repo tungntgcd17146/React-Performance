@@ -13,3 +13,5 @@ const SortButton = ({ onSortButton, toggleSort }: Props) => (
 );
 
 export default memo(SortButton);
+
+SortButton.whyDidYouRender = true;
