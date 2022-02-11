@@ -1,11 +1,12 @@
 /* eslint-disable prettier/prettier */
+
 import InputSearch from './components/InputSearch';
 import AddButton from './components/AddButton';
 import TotalNumber from './components/TotalNumber';
 import { RoomTable } from './components/RoomTable';
 
 import { useCallback, useState } from 'react';
-import { rooms } from './mock/initData';
+import { initRooms } from './mock/initData';
 import { RoomInterface } from './interface/room';
 
 import { getRandomId, getRandomName, getRandomPrice, getRandomQuantity } from './helper/random';
@@ -14,7 +15,7 @@ import './App.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
-  const [roomsData, setRoomsData] = useState(rooms);
+  const [rooms, setRooms] = useState(initRooms);
   const [inputSearch, setInputSearch] = useState('');
   const [toggleSort, setToggleSort] = useState(false);
 
@@ -25,35 +26,33 @@ function App() {
       quantity: parseInt(getRandomQuantity(2)),
       price: getRandomPrice()
     };
-    setRoomsData([...roomsData, newRoom]);
-  }, [roomsData]);
+    setRooms([...rooms, newRoom]);
+  }, [rooms]);
 
   const handleDeleteRoom = useCallback(
     (roomId: string) => {
-      const roomsAfterDel = roomsData.filter((id) => id.id !== roomId);
-      setRoomsData(roomsAfterDel);
+      const roomsAfterDel = rooms.filter((id) => id.id !== roomId);
+      setRooms(roomsAfterDel);
     },
-    [roomsData]
+    [rooms]
   );
 
-  const roomsAfterFilter = roomsData.filter((value) => {
+  const roomsAfterFilter = rooms.filter((value) => {
     
-    if (inputSearch === '') {
-      return value;
-    } else if (value.name.toLowerCase().includes(inputSearch.toLowerCase())) {
+    if (inputSearch === '' || value.name.toLowerCase().includes(inputSearch.toLowerCase())) {
       return value;
     }
   });
 
   const toggleSortButton = useCallback(() => {
     setToggleSort(!toggleSort);
-    const sortAZ = roomsData.sort((a, b) => {
+    const sortAZ = rooms.sort((a, b) => {
       const isReversed = toggleSort === true ? 1 : -1;
 
       return isReversed * a.name.localeCompare(b.name);
     });
-    setRoomsData(sortAZ);
-  }, [toggleSort, roomsData]);
+    setRooms(sortAZ);
+  }, [toggleSort, rooms]);
 
   return (
     <div className="app container">

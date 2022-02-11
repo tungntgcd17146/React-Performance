@@ -1,6 +1,6 @@
 import { RoomInterface } from '../interface/room';
 
-export const rooms: RoomInterface[] = [
+export const initRooms: RoomInterface[] = [
   {
     id: 'bTvTk',
     name: 'Deluxe Room',
