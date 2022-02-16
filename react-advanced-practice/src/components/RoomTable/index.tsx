@@ -3,28 +3,13 @@ import Room from './Room';
 import SortButton from './SortButton';
 import { RoomInterface } from '../../interface/room';
 
-import { ErrorBoundary } from 'react-error-boundary';
+import ErrorBoundary from '../ErrorBoundaries';
 
 type Props = {
   roomsAfterFilter: RoomInterface[];
   onDeleteRoom: (roomId: string) => void;
   onSortButton: () => void;
   toggleSort: Boolean;
-};
-
-type ErrorFallbackProps = {
-  error: Error;
-  resetErrorBoundary: () => void;
-};
-
-const ErrorFallback = ({ error, resetErrorBoundary }: ErrorFallbackProps) => {
-  return (
-    <div role="alert">
-      <p>Something went wrong:</p>
-      <pre>{error.message}</pre>
-      <button onClick={resetErrorBoundary}>Try again</button>
-    </div>
-  );
 };
 
 const Bomb = () => {
@@ -53,7 +38,7 @@ export const RoomTable = ({ roomsAfterFilter, onDeleteRoom, onSortButton, toggle
       </tr>
     </thead>
     <tbody className="table-hover">
-      <ErrorBoundary FallbackComponent={ErrorFallback}>
+      <ErrorBoundary>
         {roomsAfterFilter.length === 0 ? (
           <Bomb />
         ) : (
