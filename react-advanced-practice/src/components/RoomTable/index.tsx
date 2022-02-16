@@ -11,19 +11,27 @@ type Props = {
 };
 
 export const RoomTable = ({ roomsAfterFilter, onDeleteRoom, onSortButton, toggleSort }: Props) => (
-  <table className="table table-hover table-bordered">
+  <table className="table-fill">
     <thead>
       <tr>
-        <th scope="col">ID</th>
-        <th scope="col">
+        <th className="text-left" scope="col">
+          ID
+        </th>
+        <th className="text-left" scope="col">
           Room name <SortButton onSortButton={onSortButton} toggleSort={toggleSort} />
         </th>
-        <th scope="col">Price for 1 night</th>
-        <th scope="col">Rooms available</th>
-        <th scope="col">Config</th>
+        <th className="text-left" scope="col">
+          Price for 1 night
+        </th>
+        <th className="text-left" scope="col">
+          Rooms available
+        </th>
+        <th className="text-left" scope="col">
+          Config
+        </th>
       </tr>
     </thead>
-    <tbody>
+    <tbody className="table-hover">
       {roomsAfterFilter.map((room: RoomInterface, index: number) => (
         <Room key={room.id} room={room} order={index + 1} onDelete={onDeleteRoom} />
       ))}

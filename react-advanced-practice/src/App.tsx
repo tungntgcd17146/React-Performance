@@ -54,13 +54,13 @@ function App() {
   }, [toggleSort, rooms]);
 
   return (
-    <div className="app container">
-      <header className="app-header d-flex justify-content-between">
+    <div className="container">
+      <header className="d-flex justify-content-between mt-5">
         <AddButton onClickAdd={handleAddRoom} />
         <InputSearch onChangeValue={setInputSearch} />
         <TotalNumber totalRooms={roomsAfterFilter.length} />
       </header>
-      <section className="app-body">
+      <section className="mt-5">
         <RoomTable
           roomsAfterFilter={roomsAfterFilter}
           onDeleteRoom={handleDeleteRoom}
