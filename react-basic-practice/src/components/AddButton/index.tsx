@@ -11,3 +11,5 @@ const AddButton = ({ onClickAdd }: Prop) => (
 );
 
 export default memo(AddButton);
+
+AddButton.whyDidYouRender = true;

@@ -1,11 +1,12 @@
 /* eslint-disable prettier/prettier */
+
 import InputSearch from './components/InputSearch';
 import AddButton from './components/AddButton';
-import { TotalNumber } from './components/TotalNumber';
+import TotalNumber from './components/TotalNumber';
 import { RoomTable } from './components/RoomTable';
 
 import { useCallback, useState } from 'react';
-import { rooms } from './mock/initData';
+import { initRooms } from './mock/initData';
 import { RoomInterface } from './interface/room';
 
 import { getRandomId, getRandomName, getRandomPrice, getRandomQuantity } from './helper/random';
@@ -14,7 +15,7 @@ import './App.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
-  const [roomsData, setRoomsData] = useState(rooms);
+  const [rooms, setRooms] = useState(initRooms);
   const [inputSearch, setInputSearch] = useState('');
   const [toggleSort, setToggleSort] = useState(false);
 
@@ -25,55 +26,39 @@ function App() {
       quantity: parseInt(getRandomQuantity(2)),
       price: getRandomPrice()
     };
+    setRooms(prevRooms => [...prevRooms, newRoom]);
+  }, []);
+
+  const handleDeleteRoom = useCallback(
+    (roomId: string) => {
+      setRooms(prevRooms => prevRooms.filter(room => room.id !== roomId));
+    },
+    []
+  );
+
+  const roomsAfterFilter = rooms.filter((value) => {
     
-    if (newRoom) {
-      setRoomsData([...roomsData, newRoom]);
+    if (inputSearch === '' || value.name.toLowerCase().includes(inputSearch.toLowerCase())) {
+      return value;
     }
-  }, [roomsData]);
-
-  const handleDeleteRoom = (roomId: string) => {
-    const roomsAfterDel = roomsData.filter((id) => id.id !== roomId);
-    setRoomsData(roomsAfterDel);
-  };
-
-  const roomsAfterFilter = roomsData.filter((value) => {
-    
-      if (inputSearch === '') {
-        
-        return value;
-      } 
-      
-      else if (value.name.toLowerCase().includes(inputSearch.toLowerCase())) {
-        
-        return value;
-      }
-    });
+  });
 
   const toggleSortButton = useCallback(() => {
     setToggleSort(!toggleSort);
-    const sortAZ = roomsData.sort((a, b) => {
-      
-      if (a.name < b.name) {
-        return -1;
-      }
-      return 0;
+    const sortAZ = rooms.sort((a, b) => {
+      const isReversed = toggleSort === true ? 1 : -1;
+
+      return isReversed * a.name.localeCompare(b.name);
     });
-    const sortZA = [...roomsData].sort((a, b) => {
-      
-      if (a.name > b.name) {
-        return -1;
-      }
-      return 0;
-    });
-    setRoomsData(!toggleSort ? sortZA : sortAZ);
-  }, [toggleSort, roomsData]);
+    setRooms(sortAZ);
+  }, [toggleSort, rooms]);
 
   return (
     <div className="app container">
       <header className="app-header d-flex justify-content-between">
         <AddButton onClickAdd={handleAddRoom} />
         <InputSearch onChangeValue={setInputSearch} />
-        <TotalNumber totalRooms={roomsAfterFilter} />
+        <TotalNumber totalRooms={roomsAfterFilter.length} />
       </header>
       <section className="app-body">
         <RoomTable
