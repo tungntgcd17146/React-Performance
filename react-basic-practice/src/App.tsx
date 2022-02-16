@@ -26,15 +26,14 @@ function App() {
       quantity: parseInt(getRandomQuantity(2)),
       price: getRandomPrice()
     };
-    setRooms([...rooms, newRoom]);
-  }, [rooms]);
+    setRooms(prevRooms => [...prevRooms, newRoom]);
+  }, []);
 
   const handleDeleteRoom = useCallback(
     (roomId: string) => {
-      const roomsAfterDel = rooms.filter((id) => id.id !== roomId);
-      setRooms(roomsAfterDel);
+      setRooms(prevRooms => prevRooms.filter(room => room.id !== roomId));
     },
-    [rooms]
+    []
   );
 
   const roomsAfterFilter = rooms.filter((value) => {
