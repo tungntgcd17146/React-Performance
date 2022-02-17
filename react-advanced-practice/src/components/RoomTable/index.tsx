@@ -11,10 +11,6 @@ type Props = {
 };
 
 export const RoomTable = ({ roomsAfterFilter, onDeleteRoom, onSortButton, toggleSort }: Props) => {
-  if (roomsAfterFilter.length === 0) {
-    throw new Error('Do not have any list!!');
-  }
-
   return (
     <table className="table-fill">
       <thead>
