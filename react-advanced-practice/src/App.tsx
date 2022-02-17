@@ -47,13 +47,12 @@ function App() {
 
   const toggleSortButton = useCallback(() => {
     setToggleSort(!toggleSort);
-    const sortAZ = rooms.sort((a, b) => {
+    setRooms(prevSortAZ => prevSortAZ.sort((a, b) => {
       const isReversed = toggleSort === true ? 1 : -1;
 
       return isReversed * a.name.localeCompare(b.name);
-    });
-    setRooms(sortAZ);
-  }, [toggleSort, rooms]);
+    }));
+  }, [toggleSort]);
 
   return (
     <div className="container">

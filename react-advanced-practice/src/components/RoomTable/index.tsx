@@ -40,4 +40,5 @@ export const RoomTable = ({ roomsAfterFilter, onDeleteRoom, onSortButton, toggle
     </table>
   );
 };
+
 RoomTable.whyDidYouRender = true;
