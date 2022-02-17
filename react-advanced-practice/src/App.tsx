@@ -11,6 +11,8 @@ import { RoomInterface } from './interface/room';
 
 import { getRandomId, getRandomName, getRandomPrice, getRandomQuantity } from './helper/random';
 
+import ErrorBoundary from './components/ErrorBoundaries';
+
 import './App.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
@@ -61,12 +63,14 @@ function App() {
         <TotalNumber totalRooms={roomsAfterFilter.length} />
       </header>
       <section className="mt-5">
-        <RoomTable
-          roomsAfterFilter={roomsAfterFilter}
-          onDeleteRoom={handleDeleteRoom}
-          onSortButton={toggleSortButton}
-          toggleSort={toggleSort}
-        />
+        <ErrorBoundary>
+          <RoomTable
+            roomsAfterFilter={roomsAfterFilter}
+            onDeleteRoom={handleDeleteRoom}
+            onSortButton={toggleSortButton}
+            toggleSort={toggleSort}
+          />
+        </ErrorBoundary>
       </section>
     </div>
   );

@@ -12,43 +12,42 @@ type Props = {
   toggleSort: Boolean;
 };
 
-const Bomb = () => {
-  throw new Error('Do not have any list!!');
+// const Bomb = () => {
+//   throw new Error('Do not have any list!!');
+// };
+
+export const RoomTable = ({ roomsAfterFilter, onDeleteRoom, onSortButton, toggleSort }: Props) => {
+  if (roomsAfterFilter.length === 0) {
+    throw new Error('Do not have any list!!');
+  }
+
+  return (
+    <table className="table-fill">
+      <thead>
+        <tr>
+          <th className="text-left" scope="col">
+            ID
+          </th>
+          <th className="text-left" scope="col">
+            Room name <SortButton onSortButton={onSortButton} toggleSort={toggleSort} />
+          </th>
+          <th className="text-left" scope="col">
+            Price for 1 night
+          </th>
+          <th className="text-left" scope="col">
+            Rooms available
+          </th>
+          <th className="text-left" scope="col">
+            Config
+          </th>
+        </tr>
+      </thead>
+      <tbody className="table-hover">
+        {roomsAfterFilter.map((room: RoomInterface, index: number) => (
+          <Room key={room.id} room={room} order={index + 1} onDelete={onDeleteRoom} />
+        ))}
+      </tbody>
+    </table>
+  );
 };
-
-export const RoomTable = ({ roomsAfterFilter, onDeleteRoom, onSortButton, toggleSort }: Props) => (
-  <table className="table-fill">
-    <thead>
-      <tr>
-        <th className="text-left" scope="col">
-          ID
-        </th>
-        <th className="text-left" scope="col">
-          Room name <SortButton onSortButton={onSortButton} toggleSort={toggleSort} />
-        </th>
-        <th className="text-left" scope="col">
-          Price for 1 night
-        </th>
-        <th className="text-left" scope="col">
-          Rooms available
-        </th>
-        <th className="text-left" scope="col">
-          Config
-        </th>
-      </tr>
-    </thead>
-    <tbody className="table-hover">
-      <ErrorBoundary>
-        {roomsAfterFilter.length === 0 ? (
-          <Bomb />
-        ) : (
-          roomsAfterFilter.map((room: RoomInterface, index: number) => (
-            <Room key={room.id} room={room} order={index + 1} onDelete={onDeleteRoom} />
-          ))
-        )}
-      </ErrorBoundary>
-    </tbody>
-  </table>
-);
-
 RoomTable.whyDidYouRender = true;
