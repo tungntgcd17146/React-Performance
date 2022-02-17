@@ -1,30 +1,31 @@
 import React, { ReactNode } from 'react';
-import PropTypes from 'prop-types';
+//import PropTypes from 'prop-types';
 
-type MyProps = {
+type Props = {
   children: ReactNode;
-  error: Error;
+  error?: string;
 };
-type MyState = {
+type State = {
   hasError: boolean;
 };
-class ErrorBoundary extends React.Component {
-  static propTypes: { children: PropTypes.Requitable<string> };
-  constructor(props: MyProps) {
-    super(props);
-  }
+class ErrorBoundary extends React.Component<Props, State> {
+  static defaultProps = {
+    error: 'Something went wrong!'
+  };
 
-  state: MyState = { hasError: false };
+  state: State = { hasError: false };
 
   static getDerivedStateFromError() {
     return { hasError: true };
   }
 
   render() {
+    const errorMessage = this.props.error;
+
     if (this.state.hasError) {
       return (
         <div>
-          <pre className="mt-3">Something went wrong!</pre>
+          <pre className="mt-3">{errorMessage}</pre>
         </div>
       );
     }
@@ -34,7 +35,3 @@ class ErrorBoundary extends React.Component {
 }
 
 export default ErrorBoundary;
-
-ErrorBoundary.propTypes = {
-  children: PropTypes.string
-};
