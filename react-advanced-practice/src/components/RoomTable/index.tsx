@@ -3,18 +3,12 @@ import Room from './Room';
 import SortButton from './SortButton';
 import { RoomInterface } from '../../interface/room';
 
-import ErrorBoundary from '../ErrorBoundaries';
-
 type Props = {
   roomsAfterFilter: RoomInterface[];
   onDeleteRoom: (roomId: string) => void;
   onSortButton: () => void;
   toggleSort: Boolean;
 };
-
-// const Bomb = () => {
-//   throw new Error('Do not have any list!!');
-// };
 
 export const RoomTable = ({ roomsAfterFilter, onDeleteRoom, onSortButton, toggleSort }: Props) => {
   if (roomsAfterFilter.length === 0) {

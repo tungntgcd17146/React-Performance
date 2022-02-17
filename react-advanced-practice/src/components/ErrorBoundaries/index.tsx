@@ -9,7 +9,7 @@ type MyState = {
   error: string;
 };
 class ErrorBoundary extends React.Component {
-  static propTypes: { children: PropTypes.Requitable<string> };
+  static propTypes: { children: PropTypes.Requitable<any> };
   constructor(props: MyProps) {
     super(props);
   }
@@ -22,7 +22,7 @@ class ErrorBoundary extends React.Component {
 
   componentDidCatch(error: Error) {
     this.setState({
-      error: error
+      error: error.toString()
     });
   }
 
@@ -30,7 +30,7 @@ class ErrorBoundary extends React.Component {
     if (this.state.hasError) {
       return (
         <div>
-          <pre className="mt-3">{this.state.error.toString()}</pre>
+          <pre className="mt-3">{this.state.error}</pre>
         </div>
       );
     }
@@ -42,5 +42,5 @@ class ErrorBoundary extends React.Component {
 export default ErrorBoundary;
 
 ErrorBoundary.propTypes = {
-  children: PropTypes.string
+  children: PropTypes.element
 };
