@@ -18,13 +18,15 @@ const Room = ({ room, order, onDelete }: Props) => {
 
   return (
     <tr>
-      <th scope="row">{order}</th>
-      <td>
+      <td className="text-left" scope="row">
+        {order}
+      </td>
+      <td className="text-left">
         {name} {id}
       </td>
-      <td>{price} $</td>
-      <td>{quantity} room</td>
-      <td>
+      <td className="text-left">{price} $</td>
+      <td className="text-left">{quantity} room</td>
+      <td className="text-left">
         <button onClick={handleDeleteRoom} type="button" className="btn btn-outline-danger">
           <AiFillDelete />
         </button>

@@ -1,3 +1,4 @@
+import { FaSearch } from 'react-icons/fa';
 import { ChangeEvent, Dispatch, SetStateAction, memo } from 'react';
 
 type Prop = {
@@ -10,8 +11,10 @@ const InputSearch = ({ onChangeValue }: Prop) => {
   };
 
   return (
-    <div className="input-group w-50">
-      <span className="input-group-text">Input Search</span>
+    <div className="input-group w-50 input-search">
+      <span className="input-group-text">
+        <FaSearch />
+      </span>
       <input
         onChange={handleChangeInput}
         className="form-control me-2"

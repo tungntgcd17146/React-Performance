@@ -10,25 +10,38 @@ type Props = {
   toggleSort: Boolean;
 };
 
-export const RoomTable = ({ roomsAfterFilter, onDeleteRoom, onSortButton, toggleSort }: Props) => (
-  <table className="table table-hover table-bordered">
-    <thead>
-      <tr>
-        <th scope="col">ID</th>
-        <th scope="col">
-          Room name <SortButton onSortButton={onSortButton} toggleSort={toggleSort} />
-        </th>
-        <th scope="col">Price for 1 night</th>
-        <th scope="col">Rooms available</th>
-        <th scope="col">Config</th>
-      </tr>
-    </thead>
-    <tbody>
-      {roomsAfterFilter.map((room: RoomInterface, index: number) => (
-        <Room key={room.id} room={room} order={index + 1} onDelete={onDeleteRoom} />
-      ))}
-    </tbody>
-  </table>
-);
+export const RoomTable = ({ roomsAfterFilter, onDeleteRoom, onSortButton, toggleSort }: Props) => {
+  if (roomsAfterFilter.length === 0) {
+    throw new Error('Do not have any list!!');
+  }
 
+  return (
+    <table className="table-fill">
+      <thead>
+        <tr>
+          <th className="text-left" scope="col">
+            ID
+          </th>
+          <th className="text-left" scope="col">
+            Room name <SortButton onSortButton={onSortButton} toggleSort={toggleSort} />
+          </th>
+          <th className="text-left" scope="col">
+            Price for 1 night
+          </th>
+          <th className="text-left" scope="col">
+            Rooms available
+          </th>
+          <th className="text-left" scope="col">
+            Config
+          </th>
+        </tr>
+      </thead>
+      <tbody className="table-hover">
+        {roomsAfterFilter.map((room: RoomInterface, index: number) => (
+          <Room key={room.id} room={room} order={index + 1} onDelete={onDeleteRoom} />
+        ))}
+      </tbody>
+    </table>
+  );
+};
 RoomTable.whyDidYouRender = true;

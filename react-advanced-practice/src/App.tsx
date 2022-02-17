@@ -11,6 +11,8 @@ import { RoomInterface } from './interface/room';
 
 import { getRandomId, getRandomName, getRandomPrice, getRandomQuantity } from './helper/random';
 
+import ErrorBoundary from './components/ErrorBoundaries';
+
 import './App.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
@@ -54,19 +56,21 @@ function App() {
   }, [toggleSort, rooms]);
 
   return (
-    <div className="app container">
-      <header className="app-header d-flex justify-content-between">
+    <div className="container">
+      <header className="d-flex justify-content-between mt-5">
         <AddButton onClickAdd={handleAddRoom} />
         <InputSearch onChangeValue={setInputSearch} />
         <TotalNumber totalRooms={roomsAfterFilter.length} />
       </header>
-      <section className="app-body">
-        <RoomTable
-          roomsAfterFilter={roomsAfterFilter}
-          onDeleteRoom={handleDeleteRoom}
-          onSortButton={toggleSortButton}
-          toggleSort={toggleSort}
-        />
+      <section className="mt-5">
+        <ErrorBoundary>
+          <RoomTable
+            roomsAfterFilter={roomsAfterFilter}
+            onDeleteRoom={handleDeleteRoom}
+            onSortButton={toggleSortButton}
+            toggleSort={toggleSort}
+          />
+        </ErrorBoundary>
       </section>
     </div>
   );
