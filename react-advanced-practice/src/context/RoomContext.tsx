@@ -16,7 +16,7 @@ interface RoomContextProps {
   setRooms: Dispatch<React.SetStateAction<RoomInterface[]>>;
   roomsAfterFilter: RoomInterface[];
   setInputSearch: Dispatch<SetStateAction<string>>;
-  toggleSortButton: () => void;
+  sortRooms: () => void;
   toggleSort: boolean;
 }
 
@@ -37,7 +37,7 @@ const RoomsProvider = ({ children }: Props) => {
     }
   });
 
-  const toggleSortButton = useCallback(() => {
+  const sortRooms = useCallback(() => {
     setToggleSort(!toggleSort);
     setRooms((prevSortAZ) =>
       prevSortAZ.sort((a, b) => {
@@ -50,17 +50,17 @@ const RoomsProvider = ({ children }: Props) => {
 
   return (
     <RoomsContext.Provider
-      value={{ rooms, setRooms, roomsAfterFilter, setInputSearch, toggleSortButton, toggleSort }}>
+      value={{ rooms, setRooms, roomsAfterFilter, setInputSearch, sortRooms, toggleSort }}>
       {children}
     </RoomsContext.Provider>
   );
 };
 
 export const useRoom = () => {
-  const { rooms, setRooms, roomsAfterFilter, setInputSearch, toggleSortButton, toggleSort } =
+  const { rooms, setRooms, roomsAfterFilter, setInputSearch, sortRooms, toggleSort } =
     useContext(RoomsContext);
 
-  return { rooms, setRooms, roomsAfterFilter, setInputSearch, toggleSortButton, toggleSort };
+  return { rooms, setRooms, roomsAfterFilter, setInputSearch, sortRooms, toggleSort };
 };
 
 export default RoomsProvider;

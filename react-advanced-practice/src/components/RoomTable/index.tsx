@@ -3,14 +3,9 @@ import Room from './Room';
 import SortButton from './SortButton';
 import { RoomInterface } from '../../interface/room';
 import { useRoom } from '../../context/RoomContext';
-import { useCallback } from 'react';
 
 export const RoomTable = () => {
-  const { setRooms, roomsAfterFilter, toggleSortButton, toggleSort } = useRoom();
-
-  const handleDeleteRoom = useCallback((roomId: string) => {
-    setRooms((prevRooms) => prevRooms.filter((room) => room.id !== roomId));
-  }, []);
+  const { setRooms, roomsAfterFilter, sortRooms, toggleSort } = useRoom();
 
   return (
     <table className="table-fill">
@@ -20,7 +15,7 @@ export const RoomTable = () => {
             ID
           </th>
           <th className="text-left" scope="col">
-            Room name <SortButton onToggleSortButton={toggleSortButton} toggleSort={toggleSort} />
+            Room name <SortButton onSortRooms={sortRooms} toggleSort={toggleSort} />
           </th>
           <th className="text-left" scope="col">
             Price for 1 night
@@ -35,7 +30,7 @@ export const RoomTable = () => {
       </thead>
       <tbody className="table-hover">
         {roomsAfterFilter.map((room: RoomInterface, index: number) => (
-          <Room key={room.id} room={room} order={index + 1} onDelete={handleDeleteRoom} />
+          <Room key={room.id} room={room} order={index + 1} setRooms={setRooms} />
         ))}
       </tbody>
     </table>
