@@ -13,14 +13,13 @@ import { initRooms } from '../mock/initData';
 import { RoomInterface } from '../interface/room';
 
 interface RoomContextProps {
-  rooms: RoomInterface[];
-  setRooms: Dispatch<React.SetStateAction<RoomInterface[]>>;
   roomsAfterFilter: RoomInterface[];
   setInputSearch: Dispatch<SetStateAction<string>>;
   sortRooms: () => void;
   toggleSort: boolean;
   addRoom: (value: RoomInterface) => void;
   deleteRoom: (id: string) => void;
+  numberList: number;
 }
 
 export const RoomsContext = createContext({} as RoomContextProps);
@@ -59,17 +58,18 @@ const RoomsProvider = ({ children }: Props) => {
     );
   }, [toggleSort]);
 
+  const numberList = roomsAfterFilter.length;
+
   return (
     <RoomsContext.Provider
       value={{
-        rooms,
-        setRooms,
         roomsAfterFilter,
         setInputSearch,
         sortRooms,
         toggleSort,
         addRoom,
-        deleteRoom
+        deleteRoom,
+        numberList
       }}>
       {children}
     </RoomsContext.Provider>

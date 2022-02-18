@@ -1,10 +1,11 @@
 import { FaSearch } from 'react-icons/fa';
-import { ChangeEvent, memo } from 'react';
-import { useRoom } from '../../context/RoomContext';
+import { ChangeEvent, Dispatch, memo, SetStateAction } from 'react';
 
-const InputSearch = () => {
-  const { setInputSearch } = useRoom();
+type Prop = {
+  setInputSearch: Dispatch<SetStateAction<string>>;
+};
 
+const InputSearch = ({ setInputSearch }: Prop) => {
   const handleChangeInput = (event: ChangeEvent<HTMLInputElement>) => {
     setInputSearch(event.target.value);
   };

@@ -1,5 +1,5 @@
+/* eslint-disable no-unused-vars */
 import { memo } from 'react';
-import { useRoom } from '../../context/RoomContext';
 import { RoomInterface } from '../../interface/room';
 
 import {
@@ -9,9 +9,11 @@ import {
   getRandomQuantity
 } from '../..//helper/random';
 
-const AddButton = () => {
-  const { addRoom } = useRoom();
+type Prop = {
+  addRoom: (value: RoomInterface) => void;
+};
 
+const AddButton = ({ addRoom }: Prop) => {
   const handleAddRoom = () => {
     const newRoom: RoomInterface = {
       id: getRandomId(5),
