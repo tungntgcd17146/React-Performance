@@ -6,16 +6,12 @@ import { RoomInterface } from '../../../interface/room';
 type Props = {
   room: RoomInterface;
   order: number;
-  setRooms: Dispatch<SetStateAction<RoomInterface[]>>;
+  onDeleteRoom: (id: string) => void;
 };
 
-const Room = ({ room, order, setRooms }: Props) => {
-  const handleDelete = useCallback((roomId: string) => {
-    setRooms((prevRooms) => prevRooms.filter((room) => room.id !== roomId));
-  }, []);
-
+const Room = ({ room, order, onDeleteRoom }: Props) => {
   const handleDeleteRoom = () => {
-    handleDelete(room.id);
+    onDeleteRoom(room.id);
   };
 
   const { name, id, price, quantity } = room;

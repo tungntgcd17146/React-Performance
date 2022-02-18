@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, {
   useContext,
   useState,
@@ -18,6 +19,8 @@ interface RoomContextProps {
   setInputSearch: Dispatch<SetStateAction<string>>;
   sortRooms: () => void;
   toggleSort: boolean;
+  addRoom: (value: RoomInterface) => void;
+  deleteRoom: (id: string) => void;
 }
 
 export const RoomsContext = createContext({} as RoomContextProps);
@@ -37,6 +40,14 @@ const RoomsProvider = ({ children }: Props) => {
     }
   });
 
+  const addRoom = useCallback((room: RoomInterface) => {
+    setRooms((prevRooms) => [...prevRooms, room]);
+  }, []);
+
+  const deleteRoom = useCallback((roomId: string) => {
+    setRooms((prevRooms) => prevRooms.filter((room) => room.id !== roomId));
+  }, []);
+
   const sortRooms = useCallback(() => {
     setToggleSort(!toggleSort);
     setRooms((prevSortAZ) =>
@@ -50,17 +61,23 @@ const RoomsProvider = ({ children }: Props) => {
 
   return (
     <RoomsContext.Provider
-      value={{ rooms, setRooms, roomsAfterFilter, setInputSearch, sortRooms, toggleSort }}>
+      value={{
+        rooms,
+        setRooms,
+        roomsAfterFilter,
+        setInputSearch,
+        sortRooms,
+        toggleSort,
+        addRoom,
+        deleteRoom
+      }}>
       {children}
     </RoomsContext.Provider>
   );
 };
 
 export const useRoom = () => {
-  const { rooms, setRooms, roomsAfterFilter, setInputSearch, sortRooms, toggleSort } =
-    useContext(RoomsContext);
-
-  return { rooms, setRooms, roomsAfterFilter, setInputSearch, sortRooms, toggleSort };
+  return useContext(RoomsContext);
 };
 
 export default RoomsProvider;

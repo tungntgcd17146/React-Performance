@@ -1,4 +1,4 @@
-import { memo, useCallback } from 'react';
+import { memo } from 'react';
 import { useRoom } from '../../context/RoomContext';
 import { RoomInterface } from '../../interface/room';
 
@@ -10,20 +10,20 @@ import {
 } from '../..//helper/random';
 
 const AddButton = () => {
-  const { setRooms } = useRoom();
+  const { addRoom } = useRoom();
 
-  const handleAddRoom = useCallback(() => {
+  const handleAddRoom = () => {
     const newRoom: RoomInterface = {
       id: getRandomId(5),
       name: getRandomName(),
       quantity: parseInt(getRandomQuantity(2)),
       price: getRandomPrice()
     };
-    setRooms((prevRooms) => [...prevRooms, newRoom]);
-  }, []);
+    addRoom(newRoom);
+  };
 
   return (
-    <button onClick={handleAddRoom} className="btn btn-outline-success">
+    <button onClick={handleAddRoom} className="btn btn-outline-danger">
       Create new room
     </button>
   );

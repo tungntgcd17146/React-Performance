@@ -5,7 +5,7 @@ import { RoomInterface } from '../../interface/room';
 import { useRoom } from '../../context/RoomContext';
 
 export const RoomTable = () => {
-  const { setRooms, roomsAfterFilter, sortRooms, toggleSort } = useRoom();
+  const { deleteRoom, roomsAfterFilter, sortRooms, toggleSort } = useRoom();
 
   return (
     <table className="table-fill">
@@ -30,7 +30,7 @@ export const RoomTable = () => {
       </thead>
       <tbody className="table-hover">
         {roomsAfterFilter.map((room: RoomInterface, index: number) => (
-          <Room key={room.id} room={room} order={index + 1} setRooms={setRooms} />
+          <Room key={room.id} room={room} order={index + 1} onDeleteRoom={deleteRoom} />
         ))}
       </tbody>
     </table>
