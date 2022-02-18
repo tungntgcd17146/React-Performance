@@ -6,7 +6,7 @@ import { useRoom } from '../../context/RoomContext';
 import { useCallback } from 'react';
 
 export const RoomTable = () => {
-  const { setRooms, roomsAfterFilter } = useRoom();
+  const { setRooms, roomsAfterFilter, toggleSortButton, toggleSort } = useRoom();
 
   const handleDeleteRoom = useCallback((roomId: string) => {
     setRooms((prevRooms) => prevRooms.filter((room) => room.id !== roomId));
@@ -20,7 +20,7 @@ export const RoomTable = () => {
             ID
           </th>
           <th className="text-left" scope="col">
-            Room name <SortButton />
+            Room name <SortButton onToggleSortButton={toggleSortButton} toggleSort={toggleSort} />
           </th>
           <th className="text-left" scope="col">
             Price for 1 night
