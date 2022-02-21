@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 /* eslint-disable no-unused-vars */
 import React, {
   useContext,
@@ -34,6 +35,7 @@ const RoomsProvider = ({ children }: Props) => {
   const [toggleSort, setToggleSort] = useState(false);
 
   const roomsAfterFilter = rooms.filter((value) => {
+    
     if (inputSearch === '' || value.name.toLowerCase().includes(inputSearch.toLowerCase())) {
       return value;
     }
@@ -76,8 +78,6 @@ const RoomsProvider = ({ children }: Props) => {
   );
 };
 
-export const useRoom = () => {
-  return useContext(RoomsContext);
-};
+export const useRoom = () => useContext(RoomsContext);
 
 export default RoomsProvider;
