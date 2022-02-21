@@ -1,13 +1,13 @@
 import { FaSearch } from 'react-icons/fa';
-import { ChangeEvent, Dispatch, SetStateAction, memo } from 'react';
+import { ChangeEvent, Dispatch, memo, SetStateAction } from 'react';
 
 type Prop = {
-  onChangeValue: Dispatch<SetStateAction<string>>;
+  setInputSearch: Dispatch<SetStateAction<string>>;
 };
 
-const InputSearch = ({ onChangeValue }: Prop) => {
+const InputSearch = ({ setInputSearch }: Prop) => {
   const handleChangeInput = (event: ChangeEvent<HTMLInputElement>) => {
-    onChangeValue(event.target.value);
+    setInputSearch(event.target.value);
   };
 
   return (

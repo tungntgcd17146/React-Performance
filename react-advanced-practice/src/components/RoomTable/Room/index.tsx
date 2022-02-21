@@ -1,17 +1,17 @@
 /* eslint-disable no-unused-vars */
-import { memo } from 'react';
+import { Dispatch, memo, SetStateAction, useCallback } from 'react';
 import { AiFillDelete } from 'react-icons/ai';
 import { RoomInterface } from '../../../interface/room';
 
 type Props = {
   room: RoomInterface;
   order: number;
-  onDelete: (roomId: string) => void;
+  onDeleteRoom: (id: string) => void;
 };
 
-const Room = ({ room, order, onDelete }: Props) => {
+const Room = ({ room, order, onDeleteRoom }: Props) => {
   const handleDeleteRoom = () => {
-    onDelete(room.id);
+    onDeleteRoom(room.id);
   };
 
   const { name, id, price, quantity } = room;

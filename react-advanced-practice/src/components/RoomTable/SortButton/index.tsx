@@ -2,12 +2,12 @@ import { FaSortAlphaDown, FaSortAlphaDownAlt } from 'react-icons/fa';
 import { memo } from 'react';
 
 type Props = {
-  onSortButton: () => void;
-  toggleSort: Boolean;
+  onSortRooms: () => void;
+  toggleSort: boolean;
 };
 
-const SortButton = ({ onSortButton, toggleSort }: Props) => (
-  <button onClick={onSortButton} type="button" className="btn btn-outline-primary">
+const SortButton = ({ onSortRooms, toggleSort }: Props) => (
+  <button onClick={onSortRooms} type="button" className="btn btn-outline-primary">
     {!toggleSort ? <FaSortAlphaDown /> : <FaSortAlphaDownAlt />}
   </button>
 );

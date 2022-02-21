@@ -2,15 +2,11 @@
 import Room from './Room';
 import SortButton from './SortButton';
 import { RoomInterface } from '../../interface/room';
+import { useRoom } from '../../context/RoomContext';
 
-type Props = {
-  roomsAfterFilter: RoomInterface[];
-  onDeleteRoom: (roomId: string) => void;
-  onSortButton: () => void;
-  toggleSort: Boolean;
-};
+export const RoomTable = () => {
+  const { deleteRoom, roomsAfterFilter, sortRooms, toggleSort } = useRoom();
 
-export const RoomTable = ({ roomsAfterFilter, onDeleteRoom, onSortButton, toggleSort }: Props) => {
   return (
     <table className="table-fill">
       <thead>
@@ -19,7 +15,7 @@ export const RoomTable = ({ roomsAfterFilter, onDeleteRoom, onSortButton, toggle
             ID
           </th>
           <th className="text-left" scope="col">
-            Room name <SortButton onSortButton={onSortButton} toggleSort={toggleSort} />
+            Room name <SortButton onSortRooms={sortRooms} toggleSort={toggleSort} />
           </th>
           <th className="text-left" scope="col">
             Price for 1 night
@@ -34,7 +30,7 @@ export const RoomTable = ({ roomsAfterFilter, onDeleteRoom, onSortButton, toggle
       </thead>
       <tbody className="table-hover">
         {roomsAfterFilter.map((room: RoomInterface, index: number) => (
-          <Room key={room.id} room={room} order={index + 1} onDelete={onDeleteRoom} />
+          <Room key={room.id} room={room} order={index + 1} onDeleteRoom={deleteRoom} />
         ))}
       </tbody>
     </table>
