@@ -4,7 +4,7 @@ import TotalNumber from './index';
 import { render } from '@testing-library/react';
 
 describe('Button test', () => {
-  test('Should render the right button show number list', () => {
+  test('Should render show number list button correctly', () => {
     const numberList = 5;
 
     const { getByRole } = render(<TotalNumber numberList={numberList} />);

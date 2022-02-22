@@ -2,32 +2,21 @@
 import { getRandomId, getRandomName, getRandomQuantity, getRandomPrice } from './random';
 
 describe('test random function', () => {
-  test('get random id', () => {
+  test('Get random id correctly with chosen length', () => {
     expect(getRandomId(10).length).toEqual(10);
   });
-  test('get random id', () => {
-    expect(getRandomId(5).length).toEqual(5);
-  });
-  test('get random id', () => {
-    expect(getRandomId(15).length).toEqual(15);
-  });
-  test('get random quantity', () => {
-    expect(getRandomQuantity(2).length).toEqual(2);
-  });
-  test('get random quantity', () => {
+
+  test('Get random quantity correctly with chosen length', () => {
     expect(getRandomQuantity(3).length).toEqual(3);
   });
-  test('get random quantity', () => {
-    expect(getRandomQuantity(4).length).toEqual(4);
-  });
 
-  const randomRoom = ['Deluxe Room', 'Luxury Room', 'Penhouse Room', 'Executive Room'];
-  test('get random name', () => {
+  test('Get random name correctly with some name defined', () => {
+    const randomRoom = ['Deluxe Room', 'Luxury Room', 'Penhouse Room', 'Executive Room'];
     expect(randomRoom.includes(getRandomName())).toBe(true);
   });
 
-  const randomPrice = [50, 100, 150, 200];
-  test('get random price', () => {
+  test('Get random price correctly with some name defined', () => {
+    const randomPrice = [50, 100, 150, 200];
     expect(randomPrice.includes(getRandomPrice())).toBe(true);
   });
 });

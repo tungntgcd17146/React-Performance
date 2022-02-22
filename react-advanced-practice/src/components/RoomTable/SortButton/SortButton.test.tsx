@@ -4,7 +4,7 @@ import SortButton from './index';
 import { render, fireEvent } from '@testing-library/react';
 
 describe('Sort button test', () => {
-  test('Should render the right button and the click event', () => {
+  test('Should render sort button correctly', () => {
     const onClick = jest.fn();
     const toggleSort = true && false;
 
@@ -12,6 +12,15 @@ describe('Sort button test', () => {
 
     const button = getByRole('button');
     expect(button).toBeInTheDocument();
+  });
+
+  test('Should sort button onClick event correctly', () => {
+    const onClick = jest.fn();
+    const toggleSort = true && false;
+
+    const { getByRole } = render(<SortButton onSortRooms={onClick} toggleSort={toggleSort} />);
+
+    const button = getByRole('button');
     fireEvent.click(button);
 
     expect(onClick).toHaveBeenCalledTimes(1);
