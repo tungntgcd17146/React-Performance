@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { Dispatch, memo, SetStateAction, useCallback } from 'react';
+import { memo } from 'react';
 import { AiFillDelete } from 'react-icons/ai';
 import { RoomInterface } from '../../../interface/room';
 

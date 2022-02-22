@@ -1,5 +1,4 @@
 /* eslint-disable no-undef */
-import { isStringObject, isNumberObject } from 'util/types';
 import { getRandomId, getRandomName, getRandomQuantity, getRandomPrice } from './random';
 
 describe('test random function', () => {
@@ -21,10 +20,14 @@ describe('test random function', () => {
   test('get random quantity', () => {
     expect(getRandomQuantity(4).length).toEqual(4);
   });
+
+  const randomRoom = ['Deluxe Room', 'Luxury Room', 'Penhouse Room', 'Executive Room'];
   test('get random name', () => {
-    expect(isStringObject(getRandomName())).toBe(false);
+    expect(randomRoom.includes(getRandomName())).toBe(true);
   });
+
+  const randomPrice = [50, 100, 150, 200];
   test('get random price', () => {
-    expect(isNumberObject(getRandomPrice())).toBe(false);
+    expect(randomPrice.includes(getRandomPrice())).toBe(true);
   });
 });
