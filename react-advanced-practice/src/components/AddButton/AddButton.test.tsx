@@ -4,7 +4,7 @@ import AddButton from './index';
 import { render, fireEvent } from '@testing-library/react';
 
 describe('Button test', () => {
-  test('Should render the specified label and register the click', () => {
+  test('Should render the right button and the click', () => {
     const onClick = jest.fn();
 
     const { getByRole } = render(<AddButton addRoom={onClick} />);
