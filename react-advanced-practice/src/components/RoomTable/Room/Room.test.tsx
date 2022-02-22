@@ -28,13 +28,11 @@ describe('Room component test', () => {
       quantity: 32,
       price: 50
     };
-    const order = 4;
-
-    const { getByRole } = render(<Room room={room} order={order} onDeleteRoom={onClickDelete} />);
-
+    const props = { room: room, order: 4, onDeleteRoom: onClickDelete };
+    const { getByRole } = render(<Room {...props} />);
     const button = getByRole('button');
-    fireEvent.click(button);
 
+    fireEvent.click(button);
     expect(onClickDelete).toHaveBeenCalledTimes(1);
   });
 });
