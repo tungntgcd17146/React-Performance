@@ -8,7 +8,11 @@ type Props = {
 
 const SortButton = ({ onSortRooms, toggleSort }: Props) => (
   <button onClick={onSortRooms} type="button" className="btn btn-outline-primary">
-    {!toggleSort ? <FaSortAlphaDown /> : <FaSortAlphaDownAlt />}
+    {!toggleSort ? (
+      <FaSortAlphaDown data-testid="sort-down" />
+    ) : (
+      <FaSortAlphaDownAlt data-testid="sort-up" />
+    )}
   </button>
 );
 

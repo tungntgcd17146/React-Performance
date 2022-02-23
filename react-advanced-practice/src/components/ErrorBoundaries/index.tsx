@@ -24,7 +24,9 @@ class ErrorBoundary extends React.Component<Props, State> {
     if (this.state.hasError) {
       return (
         <div>
-          <pre className="mt-3">{errorMessage}</pre>
+          <pre className="mt-3" data-testid="errorboundary">
+            {errorMessage}
+          </pre>
         </div>
       );
     }
