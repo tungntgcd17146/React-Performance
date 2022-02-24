@@ -2,20 +2,21 @@
 import React from 'react';
 import ErrorBoundary from './index';
 import { render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
 
 describe('Error Boundary', () => {
   test('Error Boundary', () => {
     const ThrowError = () => {
-      throw new Error('Test');
+      throw new Error('Test error');
     };
 
     render(
-      <ErrorBoundary error={'error'}>
+      <ErrorBoundary>
         <ThrowError />
       </ErrorBoundary>
     );
 
-    expect(screen.getByTestId('errorboundary')).toBe('Something went wrong!');
+    const errorMessage = screen.getByTestId('errorboundary');
+
+    expect(errorMessage.textContent).toBe('Something went wrong!');
   });
 });
