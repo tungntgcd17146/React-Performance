@@ -20,7 +20,4 @@ module.exports = {
     '!<rootDir>/interface/**',
     '!<rootDir>/main.tsx'
   ]
-  // testMatch: ['**/?(*.)test.ts?(x)'],
-  // collectCoverage: true,
-  // coveragePathIgnorePatterns: ['<rootDir>/context/']
 };
