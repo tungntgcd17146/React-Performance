@@ -22,6 +22,10 @@ describe('Input search test', () => {
   });
 
   test('Should input search call correctly', () => {
-    expect(props.setInputSearch).toHaveBeenCalledTimes(0);
+    render(<InputSearch setInputSearch={jest.fn()} />);
+    const input: HTMLInputElement = screen.getByTestId('add-word-input');
+    fireEvent.change(input, { target: { value: 'testing' } });
+
+    expect(props.setInputSearch).toHaveBeenCalledTimes(1);
   });
 });
