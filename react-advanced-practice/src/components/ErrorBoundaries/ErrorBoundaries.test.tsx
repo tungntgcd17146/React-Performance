@@ -15,6 +15,8 @@ describe('Error Boundary', () => {
       </ErrorBoundary>
     );
 
-    expect(screen.getByTestId('errorboundary')).toBeVisible();
+    const errorMessage = screen.getByTestId('errorboundary');
+
+    expect(errorMessage.textContent).toBe('Sorry.. there was an error');
   });
 });

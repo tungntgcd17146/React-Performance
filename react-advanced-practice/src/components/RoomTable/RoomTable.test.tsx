@@ -22,8 +22,6 @@ const numberList = 5;
 
 describe('Should RoomTable render correctly', () => {
   test('Should render Room correctly', () => {
-    // const onClick = jest.fn();
-
     render(
       <RoomsContext.Provider
         value={{

@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 module.exports = {
-  rootDir: './src',
+  rootDir: 'src',
   preset: 'ts-jest',
   testEnvironment: 'jsdom',
   coverageDirectory: 'coverage',
@@ -10,5 +10,17 @@ module.exports = {
   moduleDirectories: ['node_modules', './src'],
   moduleNameMapper: {
     '\\.(css)$': 'identity-obj-proxy'
-  }
+  },
+  collectCoverageFrom: [
+    '**/*.{ts,tsx}',
+    '!**/node_modules/**',
+    '!**/coverage/**',
+    '!<rootDir>/context/**',
+    '!<rootDir>/vite-env.d.ts',
+    '!<rootDir>/interface/**',
+    '!<rootDir>/main.tsx'
+  ]
+  // testMatch: ['**/?(*.)test.ts?(x)'],
+  // collectCoverage: true,
+  // coveragePathIgnorePatterns: ['<rootDir>/context/']
 };
