@@ -1,32 +1,30 @@
-import React, { ReactNode } from 'react';
+/* eslint-disable no-unused-vars */
+import React, { Component, ErrorInfo, ReactNode } from 'react';
 
-type Props = {
+interface Props {
   children: ReactNode;
-  error?: string;
-};
-type State = {
+}
+
+interface State {
   hasError: boolean;
-};
-class ErrorBoundary extends React.Component<Props, State> {
-  static defaultProps = {
-    error: 'Something went wrong!'
+}
+
+class ErrorBoundary extends Component<Props, State> {
+  public state: State = {
+    hasError: false
   };
 
-  state: State = { hasError: false };
-
-  static getDerivedStateFromError() {
+  public static getDerivedStateFromError(_: Error): State {
     return { hasError: true };
   }
 
-  render() {
-    const errorMessage = this.props.error;
+  public componentDidCatch(error: Error, errorInfo: ErrorInfo) {
+    console.error('Uncaught error:', error, errorInfo);
+  }
 
+  public render() {
     if (this.state.hasError) {
-      return (
-        <div>
-          <pre className="mt-3">{errorMessage}</pre>
-        </div>
-      );
+      return <h1 data-testid="errorboundary">Sorry.. there was an error</h1>;
     }
 
     return this.props.children;

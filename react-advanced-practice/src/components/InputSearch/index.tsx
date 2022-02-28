@@ -12,7 +12,7 @@ const InputSearch = ({ setInputSearch }: Prop) => {
 
   return (
     <div className="input-group w-50 input-search">
-      <span className="input-group-text">
+      <span className="input-group-text" data-testid="add-icon-search">
         <FaSearch />
       </span>
       <input
@@ -21,6 +21,7 @@ const InputSearch = ({ setInputSearch }: Prop) => {
         type="search"
         placeholder="Search by room name"
         aria-label="Search"
+        data-testid="add-word-input"
       />
     </div>
   );

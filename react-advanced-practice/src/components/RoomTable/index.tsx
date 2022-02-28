@@ -28,7 +28,7 @@ export const RoomTable = () => {
           </th>
         </tr>
       </thead>
-      <tbody className="table-hover">
+      <tbody className="table-hover" data-testid="room-components">
         {roomsAfterFilter.map((room: RoomInterface, index: number) => (
           <Room key={room.id} room={room} order={index + 1} onDeleteRoom={deleteRoom} />
         ))}
