@@ -13,7 +13,7 @@ describe('Input search test', () => {
   });
 
   test('Should input search onChange event correctly', () => {
-    render(<InputSearch setInputSearch={jest.fn()} />);
+    render(<InputSearch setInputSearch={props.setInputSearch} />);
 
     const input: HTMLInputElement = screen.getByTestId('add-word-input');
     fireEvent.change(input, { target: { value: 'testing' } });
@@ -22,10 +22,11 @@ describe('Input search test', () => {
   });
 
   test('Should input search call correctly', () => {
-    render(<InputSearch setInputSearch={jest.fn()} />);
+    render(<InputSearch setInputSearch={props.setInputSearch} />);
     const input: HTMLInputElement = screen.getByTestId('add-word-input');
+
     fireEvent.change(input, { target: { value: 'testing' } });
 
-    expect(props.setInputSearch).toHaveBeenCalledTimes(1);
+    expect(props.setInputSearch).toHaveBeenCalled();
   });
 });
