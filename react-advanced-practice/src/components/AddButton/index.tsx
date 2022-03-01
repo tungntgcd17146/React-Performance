@@ -1,7 +1,12 @@
 /* eslint-disable no-unused-vars */
 import { memo } from 'react';
 
-export type ButtonType = 'primary' | 'danger' | 'success' | 'secondary';
+export enum ButtonType {
+  primary = 'primary',
+  danger = 'danger',
+  success = 'success',
+  secondary = 'secondary'
+}
 
 type Props = {
   onClick: () => void;
