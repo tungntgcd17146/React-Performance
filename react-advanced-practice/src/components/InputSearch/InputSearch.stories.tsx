@@ -10,4 +10,4 @@ export default {
   argTypes: { setInputSearch: { action: 'hello onChange' } }
 } as ComponentMeta<typeof InputSearch>;
 
-export const Template: ComponentStory<typeof InputSearch> = (args) => <InputSearch {...args} />;
+export const Default: ComponentStory<typeof InputSearch> = (args) => <InputSearch {...args} />;

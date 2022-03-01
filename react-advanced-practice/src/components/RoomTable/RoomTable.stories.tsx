@@ -11,7 +11,7 @@ export default {
   component: RoomTable
 } as ComponentMeta<typeof RoomTable>;
 
-export const Template: ComponentStory<typeof RoomTable> = () => (
+export const Default: ComponentStory<typeof RoomTable> = () => (
   <RoomsProvider>
     <RoomTable />
   </RoomsProvider>

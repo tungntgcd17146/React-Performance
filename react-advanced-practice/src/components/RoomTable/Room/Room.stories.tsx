@@ -14,8 +14,8 @@ export default {
 
 const Template: ComponentStory<typeof Room> = (args) => <Room {...args} />;
 
-export const RoomTemplate = Template.bind({});
-RoomTemplate.args = {
+export const RoomDefault = Template.bind({});
+RoomDefault.args = {
   order: 1,
   room: {
     id: 'bTvTk',

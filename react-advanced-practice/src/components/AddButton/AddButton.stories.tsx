@@ -10,4 +10,4 @@ export default {
   argTypes: { addRoom: { action: 'hello click' } }
 } as ComponentMeta<typeof AddButton>;
 
-export const Template: ComponentStory<typeof AddButton> = (args) => <AddButton {...args} />;
+export const Default: ComponentStory<typeof AddButton> = (args) => <AddButton {...args} />;

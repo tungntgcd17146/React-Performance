@@ -9,9 +9,9 @@ export default {
   component: TotalNumber
 } as ComponentMeta<typeof TotalNumber>;
 
-const Template: ComponentStory<typeof TotalNumber> = (args) => <TotalNumber {...args} />;
+const Default: ComponentStory<typeof TotalNumber> = (args) => <TotalNumber {...args} />;
 
-export const number = Template.bind({});
-number.args = {
+export const Number = Default.bind({});
+Number.args = {
   numberList: 5
 };

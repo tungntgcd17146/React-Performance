@@ -12,14 +12,14 @@ export default {
   }
 } as ComponentMeta<typeof SortButton>;
 
-const Template: ComponentStory<typeof SortButton> = (args) => <SortButton {...args} />;
+const Default: ComponentStory<typeof SortButton> = (args) => <SortButton {...args} />;
 
-export const SortZA = Template.bind({});
+export const SortZA = Default.bind({});
 SortZA.args = {
   toggleSort: true
 };
 
-export const SortAZ = Template.bind({});
+export const SortAZ = Default.bind({});
 SortAZ.args = {
   toggleSort: false
 };
