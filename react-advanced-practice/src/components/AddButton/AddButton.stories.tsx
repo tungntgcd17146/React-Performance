@@ -27,7 +27,7 @@ DangerButton.args = {
 export const DisableButton = Default.bind({});
 DisableButton.args = {
   title: 'Disable Button',
-  type: 'danger',
+  type: 'secondary',
   status: true
 };
 
