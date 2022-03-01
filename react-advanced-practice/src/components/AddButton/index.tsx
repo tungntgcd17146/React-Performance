@@ -1,24 +1,20 @@
 /* eslint-disable no-unused-vars */
-import { memo, useState } from 'react';
+import { memo } from 'react';
 
-type Prop = {
-  onAddRoom: () => void;
+type ButtonType = 'primary' | 'danger' | 'success' | 'secondary';
+
+type Props = {
+  onClick: () => void;
   title: string;
-  type: string;
+  type: ButtonType;
   status: boolean;
 };
 
-const Button = ({ onAddRoom, title, type, status }: Prop) => {
-  const handleAdd = () => {
-    onAddRoom();
-  };
-
-  return (
-    <button onClick={handleAdd} className={`btn btn-outline-${type}`} disabled={status}>
-      {title}
-    </button>
-  );
-};
+const Button = ({ onClick, title, type, status }: Props) => (
+  <button onClick={onClick} className={`btn btn-outline-${type}`} disabled={status}>
+    {title}
+  </button>
+);
 
 export default memo(Button);
 
