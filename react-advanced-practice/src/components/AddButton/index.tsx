@@ -1,36 +1,25 @@
 /* eslint-disable no-unused-vars */
-import { memo } from 'react';
-import { RoomInterface } from '../../interface/room';
-
-import {
-  getRandomId,
-  getRandomName,
-  getRandomPrice,
-  getRandomQuantity
-} from '../..//helper/random';
+import { memo, useState } from 'react';
 
 type Prop = {
-  addRoom: (value: RoomInterface) => void;
+  onAddRoom: () => void;
+  title: string;
+  type: string;
+  status: boolean;
 };
 
-const AddButton = ({ addRoom }: Prop) => {
-  const handleAddRoom = () => {
-    const newRoom: RoomInterface = {
-      id: getRandomId(5),
-      name: getRandomName(),
-      quantity: parseInt(getRandomQuantity(2)),
-      price: getRandomPrice()
-    };
-    addRoom(newRoom);
+const Button = ({ onAddRoom, title, type, status }: Prop) => {
+  const handleAdd = () => {
+    onAddRoom();
   };
 
   return (
-    <button onClick={handleAddRoom} className="btn btn-outline-danger">
-      Create new room
+    <button onClick={handleAdd} className={`btn btn-outline-${type}`} disabled={status}>
+      {title}
     </button>
   );
 };
 
-export default memo(AddButton);
+export default memo(Button);
 
-AddButton.whyDidYouRender = true;
+Button.whyDidYouRender = true;

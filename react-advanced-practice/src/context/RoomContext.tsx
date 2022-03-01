@@ -12,13 +12,19 @@ import React, {
 
 import { initRooms } from '../mock/initData';
 import { RoomInterface } from '../interface/room';
+import {
+  getRandomId,
+  getRandomName,
+  getRandomPrice,
+  getRandomQuantity
+} from '../helper/random';
 
 interface RoomContextProps {
   roomsAfterFilter: RoomInterface[];
   setInputSearch: Dispatch<SetStateAction<string>>;
   sortRooms: () => void;
   toggleSort: boolean;
-  addRoom: (value: RoomInterface) => void;
+  addRoom: () => void;
   deleteRoom: (id: string) => void;
   numberList: number;
 }
@@ -41,8 +47,14 @@ const RoomsProvider = ({ children }: Props) => {
     }
   });
 
-  const addRoom = useCallback((room: RoomInterface) => {
-    setRooms((prevRooms) => [...prevRooms, room]);
+  const addRoom = useCallback(() => {
+    const newRoom: RoomInterface = {
+      id: getRandomId(5),
+      name: getRandomName(),
+      quantity: parseInt(getRandomQuantity(2)),
+      price: getRandomPrice()
+    };
+    setRooms((prevRooms) => [...prevRooms, newRoom]);
   }, []);
 
   const deleteRoom = useCallback((roomId: string) => {

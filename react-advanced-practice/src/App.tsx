@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import InputSearch from './components/InputSearch';
-import AddButton from './components/AddButton';
+import Button from './components/AddButton';
 import TotalNumber from './components/TotalNumber';
 import { RoomTable } from './components/RoomTable';
 
@@ -16,7 +16,7 @@ function App() {
   return (
     <div className="container">
       <header className="d-flex justify-content-between mt-5">
-        <AddButton addRoom={addRoom}/>
+        <Button onAddRoom={addRoom} title={'Add New Room'} type={'success'} status={false} />
         <InputSearch setInputSearch={setInputSearch}/>
         <TotalNumber numberList={numberList}/>
       </header>
@@ -30,3 +30,4 @@ function App() {
 }
 
 export default App;
+
