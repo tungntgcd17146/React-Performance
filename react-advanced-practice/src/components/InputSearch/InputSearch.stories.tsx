@@ -6,7 +6,8 @@ import InputSearch from './index';
 
 export default {
   title: 'Components/InputSearch',
-  component: InputSearch
+  component: InputSearch,
+  argTypes: { setInputSearch: { action: 'hello onChange' } }
 } as ComponentMeta<typeof InputSearch>;
 
 export const Template: ComponentStory<typeof InputSearch> = (args) => <InputSearch {...args} />;
