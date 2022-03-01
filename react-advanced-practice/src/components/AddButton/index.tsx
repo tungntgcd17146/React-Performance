@@ -1,12 +1,12 @@
 /* eslint-disable no-unused-vars */
 import { memo } from 'react';
 
-type ButtonType = 'primary' | 'danger' | 'success' | 'secondary';
+export type ButtonType = 'primary' | 'danger' | 'success' | 'secondary';
 
 type Props = {
   onClick: () => void;
   title: string;
-  type: ButtonType;
+  type?: ButtonType;
   status: boolean;
 };
 
