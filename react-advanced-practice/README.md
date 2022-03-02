@@ -41,15 +41,21 @@ This is a [React](https://reactjs.org) + [TypeScript](https://www.typescriptlang
 
 ## Other commands
 
-```Run Storybook with node =< v16
+1. Run Storybook with node =< v16.
+
+```bash
 yarn storybook
 ```
 
-```run unit test
+2. Run unit test.
+
+```bash
 yarn test
 ```
 
-```run test with coverage 
+3. Run test with coverage.
+
+```bash
 yarn test:coverage
 ```
 
