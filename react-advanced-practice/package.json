@@ -10,7 +10,7 @@
     "commit": "git-cz",
     "format": "prettier . --write --ignore-path .gitignore && git update-index --again",
     "lint": "eslint . --ext .ts,.tsx --fix --ignore-path .gitignore",
-    "serve": "npm run build && vite preview --port 3000",
+    "server": "npm run build && vite preview --port 3000",
     "typecheck": "tsc",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"

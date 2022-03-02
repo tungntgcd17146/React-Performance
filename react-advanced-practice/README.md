@@ -20,7 +20,7 @@ This is a [React](https://reactjs.org) + [TypeScript](https://www.typescriptlang
 2. Access the project directory.
 
    ```bash
-   cd react-basic-practice
+   cd react-advanced-practice
    ```
 
 3. Install dependencies.
@@ -41,6 +41,18 @@ This is a [React](https://reactjs.org) + [TypeScript](https://www.typescriptlang
 
 ## Other commands
 
+```Run Storybook with node =< v16
+yarn storybook
+```
+
+```run unit test
+yarn test
+```
+
+```run test with coverage 
+yarn test:coverage
+```
+
 ### Lint commands
 
 ```bash
@@ -56,5 +68,5 @@ yarn build
 ### Run the app in production mode at http://localhost:3000.
 
 ```bash
-yarn serve
+yarn server
 ```
