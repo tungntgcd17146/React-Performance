@@ -1,12 +1,12 @@
 /* eslint-disable prettier/prettier */
 import InputSearch from './components/InputSearch';
-import Button from './components/AddButton';
+import Button from './components/Button';
 import TotalNumber from './components/TotalNumber';
 import { RoomTable } from './components/RoomTable';
 
 import ErrorBoundary from './components/ErrorBoundaries';
 import { useRoom } from './context/RoomContext';
-import { ButtonType } from './components/AddButton/index'
+import { ButtonType } from './components/Button/index'
 
 import './App.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
