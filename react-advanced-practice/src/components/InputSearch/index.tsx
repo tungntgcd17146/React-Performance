@@ -1,6 +1,8 @@
 import { FaSearch } from 'react-icons/fa';
 import { ChangeEvent, Dispatch, memo, SetStateAction } from 'react';
 
+import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
+
 type Prop = {
   setInputSearch: Dispatch<SetStateAction<string>>;
 };

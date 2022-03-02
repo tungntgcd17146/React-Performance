@@ -1,36 +1,26 @@
 /* eslint-disable no-unused-vars */
 import { memo } from 'react';
-import { RoomInterface } from '../../interface/room';
 
-import {
-  getRandomId,
-  getRandomName,
-  getRandomPrice,
-  getRandomQuantity
-} from '../..//helper/random';
+export enum ButtonType {
+  primary = 'primary',
+  danger = 'danger',
+  success = 'success',
+  secondary = 'secondary'
+}
 
-type Prop = {
-  addRoom: (value: RoomInterface) => void;
+type Props = {
+  onClick: () => void;
+  title: string;
+  type?: ButtonType;
+  status: boolean;
 };
 
-const AddButton = ({ addRoom }: Prop) => {
-  const handleAddRoom = () => {
-    const newRoom: RoomInterface = {
-      id: getRandomId(5),
-      name: getRandomName(),
-      quantity: parseInt(getRandomQuantity(2)),
-      price: getRandomPrice()
-    };
-    addRoom(newRoom);
-  };
+const Button = ({ onClick, title, type, status }: Props) => (
+  <button onClick={onClick} className={`btn btn-outline-${type}`} disabled={status}>
+    {title}
+  </button>
+);
 
-  return (
-    <button onClick={handleAddRoom} className="btn btn-outline-danger">
-      Create new room
-    </button>
-  );
-};
+export default memo(Button);
 
-export default memo(AddButton);
-
-AddButton.whyDidYouRender = true;
+Button.whyDidYouRender = true;

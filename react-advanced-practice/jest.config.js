@@ -13,6 +13,7 @@ module.exports = {
   },
   collectCoverageFrom: [
     '**/*.{ts,tsx}',
+    '!**/*.stories.tsx',
     '!**/node_modules/**',
     '!**/coverage/**',
     '!<rootDir>/context/**',

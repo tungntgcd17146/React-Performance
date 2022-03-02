@@ -1,10 +1,14 @@
 /* eslint-disable no-undef */
 import React from 'react';
-import AddButton from './index';
+import Button from './index';
 import { shallow } from 'enzyme';
 
-const props = { addRoom: jest.fn() };
-const component = shallow(<AddButton {...props} />);
+const props = {
+  onClick: jest.fn(),
+  title: 'Add New Room',
+  status: false
+};
+const component = shallow(<Button {...props} />);
 
 describe('Add button test', () => {
   test('Should button onClick event correctly', () => {
@@ -12,6 +16,6 @@ describe('Add button test', () => {
     button.simulate('click');
 
     expect(button).toHaveLength(1);
-    expect(props.addRoom).toHaveBeenCalled();
+    expect(props.onClick).toHaveBeenCalled();
   });
 });
