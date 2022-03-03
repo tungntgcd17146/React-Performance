@@ -13,8 +13,8 @@ export default {
 
 const Default: ComponentStory<typeof Button> = (args) => <Button {...args} />;
 
-export const AddButton = Default.bind({});
-AddButton.args = {
+export const successButton = Default.bind({});
+successButton.args = {
   title: 'Add New Room',
   type: ButtonType.success
 };
@@ -32,8 +32,8 @@ DisableButton.args = {
   status: true
 };
 
-export const TotalNumberButton = Default.bind({});
-TotalNumberButton.args = {
+export const primaryButton = Default.bind({});
+primaryButton.args = {
   title: 'Total list',
   type: ButtonType.primary
 };

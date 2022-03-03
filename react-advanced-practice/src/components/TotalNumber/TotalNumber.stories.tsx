@@ -5,13 +5,13 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import TotalNumber from './index';
 
 export default {
-  title: 'Components/TotalNumber',
+  title: 'Components/NotifyButton',
   component: TotalNumber
 } as ComponentMeta<typeof TotalNumber>;
 
 const Default: ComponentStory<typeof TotalNumber> = (args) => <TotalNumber {...args} />;
 
-export const Number = Default.bind({});
-Number.args = {
+export const BadgeButton = Default.bind({});
+BadgeButton.args = {
   numberList: 5
 };

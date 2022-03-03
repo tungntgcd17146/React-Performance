@@ -5,7 +5,7 @@ module.exports = {
   testEnvironment: 'jsdom',
   coverageDirectory: 'coverage',
   coverageProvider: 'v8',
-  setupFilesAfterEnv: ['<rootDir>/infrastructure/tests/setup-tests.ts'],
+  setupFilesAfterEnv: ['<rootDir>/config/setup-tests.ts'],
   extensionsToTreatAsEsm: ['.ts', '.tsx'],
   moduleDirectories: ['node_modules', './src'],
   moduleNameMapper: {

@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import Room from './Room';
+import Room from './RoomRow';
 import SortButton from './SortButton';
 import { RoomInterface } from '../../interface/room';
 import { useRoom } from '../../context/RoomContext';

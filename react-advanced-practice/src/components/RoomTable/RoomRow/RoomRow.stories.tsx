@@ -5,17 +5,17 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import Room from './index';
 
 export default {
-  title: 'Components/Room',
+  title: 'Components/RoomRow',
   component: Room,
   argTypes: {
     onDeleteRoom: { action: 'Delete click' }
   }
 } as ComponentMeta<typeof Room>;
 
-const Template: ComponentStory<typeof Room> = (args) => <Room {...args} />;
+const Default: ComponentStory<typeof Room> = (args) => <Room {...args} />;
 
-export const RoomDefault = Template.bind({});
-RoomDefault.args = {
+export const RoomRowDefault = Default.bind({});
+RoomRowDefault.args = {
   order: 1,
   room: {
     id: 'bTvTk',
