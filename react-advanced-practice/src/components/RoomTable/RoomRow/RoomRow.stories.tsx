@@ -14,8 +14,8 @@ export default {
 
 const Default: ComponentStory<typeof Room> = (args) => <Room {...args} />;
 
-export const RoomRowDefault = Default.bind({});
-RoomRowDefault.args = {
+export const RoomRow = Default.bind({});
+RoomRow.args = {
   order: 1,
   room: {
     id: 'bTvTk',
