@@ -93,16 +93,12 @@ describe('Test handle action', () => {
 
   test('Toggle sort button action not change number list row correctly', async () => {
     const TestComponent = () => {
-      const { sortRooms, toggleSort, roomsAfterFilter } = useContext(RoomsContext);
+      const { sortRooms, roomsAfterFilter } = useContext(RoomsContext);
 
       return (
         <>
           <button onClick={sortRooms} data-testid="sort-button">
-            {!toggleSort ? (
-              <FaSortAlphaDown data-testid="sort-down" />
-            ) : (
-              <FaSortAlphaDownAlt data-testid="sort-up" />
-            )}
+            Sort Button
           </button>
           {roomsAfterFilter.map((room: RoomInterface) => (
             <li key={room.id} data-testid="li" />
@@ -118,13 +114,11 @@ describe('Test handle action', () => {
     );
     fireEvent.click(screen.getByTestId('sort-button'));
     const items = await screen.findAllByTestId('li');
-    const downIcon = screen.findAllByTestId('sort-down');
 
     expect(items).toHaveLength(3);
-    expect(downIcon).toBeInTheDocument;
   });
 
-  test('Toggle sort button action correctly', async () => {
+  test('Toggle sort button action change icon correctly', async () => {
     const TestComponent = () => {
       const { sortRooms, toggleSort } = useContext(RoomsContext);
 
@@ -146,13 +140,15 @@ describe('Test handle action', () => {
         <TestComponent />
       </RoomsProvider>
     );
-    const downIcon = screen.findAllByTestId('sort-down');
-    const upIcon = screen.findAllByTestId('sort-up');
+    const downIcon = await screen.findAllByTestId('sort-down');
 
     fireEvent.click(screen.getByTestId('sort-button'));
-    expect(downIcon).toBeInTheDocument;
+    expect(downIcon).toBeDefined;
+
+    const upIcon = await screen.findAllByTestId('sort-up');
 
     fireEvent.click(screen.getByTestId('sort-button'));
-    expect(upIcon).toBeInTheDocument;
+    expect(upIcon).toBeDefined;
+    expect(downIcon).not.toBeDefined;
   });
 });
