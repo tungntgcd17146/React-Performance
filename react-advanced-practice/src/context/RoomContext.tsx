@@ -93,6 +93,4 @@ const RoomsProvider = ({ children }: Props) => {
   );
 };
 
-export const useRoom = () => useContext(RoomsContext);
-
 export default RoomsProvider;
