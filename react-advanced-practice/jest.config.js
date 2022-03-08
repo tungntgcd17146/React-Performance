@@ -16,7 +16,6 @@ module.exports = {
     '!**/*.stories.tsx',
     '!**/node_modules/**',
     '!**/coverage/**',
-    '!<rootDir>/context/**',
     '!<rootDir>/vite-env.d.ts',
     '!<rootDir>/interface/**',
     '!<rootDir>/main.tsx'

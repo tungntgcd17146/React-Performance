@@ -5,7 +5,7 @@ import TotalNumber from './components/TotalNumber';
 import { RoomTable } from './components/RoomTable';
 
 import ErrorBoundary from './components/ErrorBoundaries';
-import { useRoom } from './context/RoomContext';
+import { useRoom } from './hooks/room';
 import { ButtonType } from './components/Button/index'
 
 import './App.css';

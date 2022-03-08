@@ -7,7 +7,8 @@ import React, {
   ReactNode,
   Dispatch,
   SetStateAction,
-  useCallback
+  useCallback,
+  useMemo
 } from 'react';
 
 import { initRooms } from '../mock/initData';
@@ -40,12 +41,14 @@ const RoomsProvider = ({ children }: Props) => {
   const [inputSearch, setInputSearch] = useState('');
   const [toggleSort, setToggleSort] = useState(false);
 
-  const roomsAfterFilter = rooms.filter((value) => {
-    
-    if (inputSearch === '' || value.name.toLowerCase().includes(inputSearch.toLowerCase())) {
-      return value;
-    }
-  });
+  const roomsAfterFilter = useMemo(() => 
+    rooms.filter((value) => {
+      
+      if (inputSearch === '' || value.name.toLowerCase().includes(inputSearch.toLowerCase())) {
+        return value;
+      }
+    })
+  , [rooms, inputSearch, toggleSort])
 
   const addRoom = useCallback(() => {
     const newRoom: RoomInterface = {
@@ -89,7 +92,5 @@ const RoomsProvider = ({ children }: Props) => {
     </RoomsContext.Provider>
   );
 };
-
-export const useRoom = () => useContext(RoomsContext);
 
 export default RoomsProvider;
