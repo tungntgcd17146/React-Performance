@@ -15,17 +15,7 @@ import { useState } from 'react'
 const Header = () => {
   const [isOpenDrawer, setIsOpenDrawer] = useState(false)
 
-  const toggleDrawer = (event: React.KeyboardEvent | React.MouseEvent) => {
-    if (
-      event &&
-      event.type === 'keydown' &&
-      ((event as React.KeyboardEvent).key === 'Tab' || (event as React.KeyboardEvent).key === 'Shift')
-    ) {
-      return
-    }
-
-    console.log('hello')
-
+  const toggleDrawer = () => {
     setIsOpenDrawer(!isOpenDrawer)
   }
 
@@ -58,13 +48,7 @@ const Header = () => {
   return (
     <div className='bg-white-600-500 p-[24px] h-[96px] flex flex-row justify-between content-center'>
       <Button children={<CommonIcon Icon={DragHandleIcon} />} onClick={toggleDrawer} />
-      <Drawer
-        PaperProps={{ sx: { width: '100%' } }}
-        anchor={'left'}
-        open={isOpenDrawer}
-        onClose={toggleDrawer}
-        onOpen={toggleDrawer}
-      >
+      <Drawer PaperProps={{ sx: { width: '100%' } }} anchor={'left'} open={isOpenDrawer} onClose={toggleDrawer}>
         {list()}
       </Drawer>
 

@@ -1,5 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 interface IconProps {
-  Icon: unknown
+  Icon: any
 }
 
 const CommonIcon = ({ Icon }: IconProps) => {
