@@ -1,0 +1,217 @@
+import { themes } from '@/themes'
+import { createTheme } from '@mui/material/styles'
+
+export const defaultTheme = (isDarkMode: boolean) =>
+  createTheme({
+    /**
+     * value         |0px     640px    768px   1024px   1240px
+     * key           |xs      sm       md       lg       xl
+     * screen width  |--------|--------|--------|--------|-------->
+     */
+    breakpoints: {
+      values: {
+        xs: 0,
+        sm: 640,
+        md: 768,
+        lg: 1024,
+        xl: 1240
+      }
+    },
+
+    palette: {
+      mode: isDarkMode ? 'dark' : 'light',
+      ...(isDarkMode
+        ? {
+            // palette values for dark Mode
+            action: {},
+            divider: '#1A1D1F',
+            background: {
+              default: '#1A1D1F',
+              paper: '#1A1D1F'
+            },
+            text: {
+              primary: '#6F767E',
+              secondary: '#FCFCFC'
+            }
+          }
+        : {
+            // palette values for light Mode
+            action: {},
+            divider: '#FCFCFC',
+            background: {
+              default: '#FCFCFC',
+              paper: '#FCFCFC'
+            },
+            text: {
+              primary: '#6F767E',
+              secondary: '#1A1D1F'
+            }
+          }),
+
+      //blue
+      info: {
+        light: themes.colors.blue[500],
+        main: themes.colors.blue[600],
+        dark: themes.colors.blue[700]
+      },
+
+      //white
+      primary: {
+        light: themes.colors.white[500],
+        main: themes.colors.white[600],
+        dark: themes.colors.white[700]
+      },
+      secondary: {
+        light: themes.colors.black[600],
+        main: themes.colors.black[700],
+        dark: themes.colors.black[800]
+      },
+
+      //red
+      error: {
+        main: themes.colors.red[500]
+      },
+
+      //yellow
+      warning: {
+        light: themes.colors.yellow[500],
+        main: themes.colors.yellow[600]
+      }
+    },
+    typography: {
+      fontFamily: ['Inter', 'sans-serif'].join(','),
+      h1: {
+        fontSize: '64px',
+        fontStyle: 'normal',
+        fontWeight: '600',
+        lineHeight: '64px' /* 100% */,
+        letterSpacing: '-1.92px'
+      },
+      h2: {
+        fontSize: '48px',
+        fontStyle: 'normal',
+        fontWeight: '600',
+        lineHeight: '48px' /* 100% */,
+        letterSpacing: '1.44px'
+      },
+      h3: {
+        fontSize: '40px',
+        fontStyle: 'normal',
+        fontWeight: '600',
+        lineHeight: '48px' /* 100% */,
+        letterSpacing: '-0.8px'
+      },
+      h4: {
+        fontSize: '32px',
+        fontStyle: 'normal',
+        fontWeight: '600',
+        lineHeight: '40px' /* 100% */,
+        letterSpacing: '-0.92px'
+      },
+      h5: {
+        fontSize: '24px',
+        fontStyle: 'normal',
+        fontWeight: '600',
+        lineHeight: '32px' /* 100% */,
+        letterSpacing: '-0.4px'
+      },
+      h6: {
+        fontSize: '20px',
+        fontStyle: 'normal',
+        fontWeight: '500',
+        lineHeight: '32px' /* 100% */,
+        letterSpacing: '-0.4px'
+      },
+      subtitle1: {
+        fontSize: '15px',
+        fontStyle: 'normal',
+        fontWeight: '600',
+        lineHeight: '24px' /* 160% */,
+        letterSpacing: '-0.15px'
+      },
+      subtitle2: {
+        fontSize: '15px',
+        fontStyle: 'normal',
+        fontWeight: '700',
+        lineHeight: '24px' /* 143% */,
+        letterSpacing: '-0.15px'
+      },
+      body1: {
+        fontSize: '14px',
+        fontStyle: 'normal',
+        fontWeight: '600',
+        lineHeight: '24px' /* 150% */,
+        letterSpacing: '-0.14px'
+      },
+      body2: {
+        fontSize: '15px',
+        fontStyle: 'normal',
+        fontWeight: '500',
+        lineHeight: '24px' /* 143% */,
+        letterSpacing: '-0.225px'
+      },
+      button: {
+        fontSize: '15px',
+        fontStyle: 'normal',
+        fontWeight: '700',
+        lineHeight: '24px' /* 143% */,
+        letterSpacing: '-0.15px'
+      },
+      caption: {
+        fontSize: '13px',
+        fontStyle: 'normal',
+        fontWeight: '600',
+        lineHeight: '16px' /* 143% */,
+        letterSpacing: '-0.13px'
+      },
+      overline: {
+        fontSize: '18px',
+        fontStyle: 'normal',
+        fontWeight: '600',
+        lineHeight: '32px' /* 143% */,
+        letterSpacing: '-0.36px'
+      }
+    },
+    spacing: 8,
+    components: {
+      MuiButtonBase: {
+        styleOverrides: {
+          root: {
+            ':hover': {
+              borderColor: 'black'
+            }
+          }
+        }
+      },
+      MuiButton: {
+        styleOverrides: {
+          root: {
+            textTransform: 'none',
+            ':hover': {
+              borderColor: 'black'
+            },
+
+            '.startIcon': {}
+          }
+        }
+      },
+      MuiListItemButton: {
+        styleOverrides: {
+          root: {
+            '.MuiButtonBase-root-MuiListItemButton-root.Mui-selected': {
+              backgroundColor: 'black'
+            }
+          }
+        }
+      },
+      MuiSwitch: {
+        styleOverrides: {
+          root: {
+            '.MuiSwitch-input': {
+              width: '200px'
+            }
+          }
+        }
+      }
+    }
+  })
