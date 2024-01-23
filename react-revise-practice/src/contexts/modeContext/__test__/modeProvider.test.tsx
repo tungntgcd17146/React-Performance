@@ -1,0 +1,34 @@
+import { fireEvent, render, screen } from '@/utils/testUtils'
+import { ModeProvider } from '../modeProvider'
+import { useMode } from '@/contexts/modeContext/useModeContext'
+
+const TestComponent = () => {
+  const { isDarkMode, toggleMode } = useMode()
+
+  return (
+    <div>
+      <p>Dark Mode: {isDarkMode ? 'Enabled' : 'Disabled'}</p>
+      <button onClick={toggleMode}>Toggle Dark Mode</button>
+    </div>
+  )
+}
+
+describe('ModeProvider', () => {
+  it('ModeProvider toggles dark mode correctly', async () => {
+    // Wrap the component tree with ModeProvider
+    const { unmount } = render(
+      <ModeProvider>
+        <TestComponent />
+      </ModeProvider>
+    )
+
+    // Toggle the mode
+    fireEvent.click(screen.getByText('Toggle Dark Mode'))
+
+    // Check if the mode is updated
+    expect(screen.getByText('Dark Mode: Enabled')).toBeTruthy()
+
+    // Clean up
+    unmount()
+  })
+})

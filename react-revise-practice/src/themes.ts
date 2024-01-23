@@ -9,7 +9,7 @@ export const themes = {
     // => @media (min-width: 1024px) { ... }
     lg: '1024px',
 
-    // => @media (min-width: 1280px) { ... }
+    // => @media (min-width: 1260px) { ... }
     xl: '1260px'
   },
   extend: {},
@@ -21,7 +21,7 @@ export const themes = {
     yellow: { 500: '#FFD88D', 600: '#FFBC99' },
     white: { 500: '#FFFFFF', 600: '#FCFCFC', 700: '#F4F4F4' },
     gray: { 500: '#EFEFEF', 600: '#9A9FA5', 700: '#6F767E', 800: '#6F767E', 900: '#6F767E66' },
-    black: { 500: '#33383F', 600: '#272B30', 700: '#1A1D1F', 800: '#111315', 900: '#33383F' }
+    black: { 400: '#000000', 500: '#33383F', 600: '#272B30', 700: '#1A1D1F', 800: '#111315', 900: '#33383F' }
   },
   fontSize: {
     xxs: '12px',
