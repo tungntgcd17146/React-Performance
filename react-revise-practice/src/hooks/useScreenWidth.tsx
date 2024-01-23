@@ -16,9 +16,7 @@ interface UseScreenWidth {
   matchedBreakpoint: boolean
   isMobile: boolean
   isTablet: boolean
-  isSmDesktop: boolean
   isDesktop: boolean
-  isLgDesktop: boolean
 }
 
 export type Options =
@@ -52,11 +50,9 @@ export type Options =
 const useScreenWidth = ({ only, up, down }: Options = {}): UseScreenWidth => {
   const theme = useTheme<Theme>()
 
-  const isMobile = useMediaQuery(theme.breakpoints.between('xs', 'sm'))
-  const isTablet = useMediaQuery(theme.breakpoints.between('sm', 'md'))
-  const isSmDesktop = useMediaQuery(theme.breakpoints.between('md', 'lg'))
-  const isDesktop = useMediaQuery(theme.breakpoints.between('lg', 'xl'))
-  const isLgDesktop = useMediaQuery(theme.breakpoints.up('xl'))
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
+  const isTablet = useMediaQuery(theme.breakpoints.between('sm', 'xl'))
+  const isDesktop = useMediaQuery(theme.breakpoints.up('xl'))
 
   // Set matching breakpoints from hook's arguments
   const [matchedBreakpoint, setMatchedBreakpoint] = React.useState<boolean>(false)
@@ -79,6 +75,7 @@ const useScreenWidth = ({ only, up, down }: Options = {}): UseScreenWidth => {
     const largerThan = matchedLarger && !matchedSmaller
     const smallerThan = matchedSmaller && !matchedLarger
 
+    console.log('betweenValue:', singleBreakpoint || betweenValue || largerThan || smallerThan)
     setMatchedBreakpoint(singleBreakpoint || betweenValue || largerThan || smallerThan)
   }, [betweenValue, exactBreakpoint, matchedLarger, matchedSmaller])
 
@@ -86,9 +83,7 @@ const useScreenWidth = ({ only, up, down }: Options = {}): UseScreenWidth => {
     matchedBreakpoint,
     isMobile,
     isTablet,
-    isSmDesktop,
-    isDesktop,
-    isLgDesktop
+    isDesktop
   }
 }
 

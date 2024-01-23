@@ -4,7 +4,7 @@ import { createTheme } from '@mui/material/styles'
 export const defaultTheme = (isDarkMode: boolean) =>
   createTheme({
     /**
-     * value         |0px     640px    768px   1024px   1240px
+     * value         |0px     640px    768px   1024px   1260px
      * key           |xs      sm       md       lg       xl
      * screen width  |--------|--------|--------|--------|-------->
      */
@@ -32,6 +32,9 @@ export const defaultTheme = (isDarkMode: boolean) =>
             text: {
               primary: '#6F767E',
               secondary: '#FCFCFC'
+            },
+            grey: {
+              100: '#272B30'
             }
           }
         : {
@@ -45,6 +48,9 @@ export const defaultTheme = (isDarkMode: boolean) =>
             text: {
               primary: '#6F767E',
               secondary: '#1A1D1F'
+            },
+            grey: {
+              100: '#EFEFEF'
             }
           }),
 
@@ -174,6 +180,21 @@ export const defaultTheme = (isDarkMode: boolean) =>
     },
     spacing: 8,
     components: {
+      MuiListItemIcon: {
+        styleOverrides: {
+          root: {
+            minWidth: 'unset',
+            color: 'unset'
+          }
+        }
+      },
+      MuiTypography: {
+        styleOverrides: {
+          root: {
+            fontSize: 'unset'
+          }
+        }
+      },
       MuiButtonBase: {
         styleOverrides: {
           root: {
