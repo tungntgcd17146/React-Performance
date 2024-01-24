@@ -15,9 +15,7 @@ const MockComponent = ({ ...props }: Options) => {
   if (value.matchedBreakpoint) return <div data-testid='matchedBreakpoint' />
   if (value.isMobile) return <div data-testid='isMobile' />
   if (value.isTablet) return <div data-testid='isTablet' />
-  if (value.isSmDesktop) return <div data-testid='isSmDesktop' />
   if (value.isDesktop) return <div data-testid='isDesktop' />
-  if (value.isLgDesktop) return <div data-testid='isLgDesktop' />
   return null
 }
 

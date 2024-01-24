@@ -11,7 +11,8 @@ const defaultProp = {
   index: 1,
   isSelected: false,
   go: '/shop',
-  onClick: vi.fn()
+  onClick: vi.fn(),
+  isShowText: true
 } as Props
 
 const setup = (overrideProps = {}) => {
@@ -38,7 +39,9 @@ describe('NavItem Test', () => {
   it('render NavItem with just icon when screen is tablet correctly', () => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     vi.spyOn(useScreenWidth, 'default').mockReturnValue({ isTablet: true } as any)
-    setup()
+    setup({
+      isShowText: false
+    })
 
     expect(screen.getByTestId('NavItem_ListItemIcon')).toBeTruthy()
     expect(screen.queryByTestId('NavItem_ListItemText')).toBeFalsy()

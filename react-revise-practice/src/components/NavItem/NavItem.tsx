@@ -1,24 +1,23 @@
 import { memo } from 'react'
 import { ListItem, ListItemButton, ListItemIcon, ListItemText, useTheme } from '@mui/material'
 import { themes } from '@/themes'
-import useScreenWidth from '@/hooks/useScreenWidth'
 import { Link } from 'react-router-dom'
 
 export interface Props {
   icon: React.ReactNode
   text: string
-  index: number
+  index?: number
   onClick?: () => void
   isSelected: boolean
   go: string
+  isShowText?: boolean
 }
 
-const NavItem = ({ icon, text, index, onClick, isSelected, go }: Props) => {
+const NavItem = ({ icon, text, index, onClick, isSelected, go, isShowText }: Props) => {
   const theme = useTheme()
-  const { isTablet } = useScreenWidth()
 
   return (
-    <Link data-testid='NavItem_Link' to={go} key={index + text} onClick={onClick} className='no-underline text-inherit'>
+    <Link data-testid='NavItem_Link' to={go} key={text} onClick={onClick} className='no-underline text-inherit'>
       <ListItem key={index} disablePadding>
         <ListItemButton
           data-testid='NavItem_ListItemButton'
@@ -42,7 +41,7 @@ const NavItem = ({ icon, text, index, onClick, isSelected, go }: Props) => {
           <ListItemIcon data-testid='NavItem_ListItemIcon' sx={{ width: '24px', height: '24px' }}>
             {icon}
           </ListItemIcon>
-          {!isTablet && (
+          {isShowText && (
             <ListItemText
               data-testid='NavItem_ListItemText'
               sx={{ fontSize: '15px', marginLeft: '12px' }}

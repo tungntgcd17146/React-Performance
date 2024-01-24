@@ -1,8 +1,9 @@
 import { themes } from '@/themes'
-import { createTheme } from '@mui/material/styles'
+import createTheme from '@mui/material/styles/createTheme'
 
 export const defaultTheme = (isDarkMode: boolean) =>
   createTheme({
+    direction: 'rtl',
     /**
      * value         |0px     640px    768px   1024px   1260px
      * key           |xs      sm       md       lg       xl
@@ -231,6 +232,13 @@ export const defaultTheme = (isDarkMode: boolean) =>
             '.MuiSwitch-input': {
               width: '200px'
             }
+          }
+        }
+      },
+      MuiDivider: {
+        styleOverrides: {
+          root: {
+            borderColor: 'unset'
           }
         }
       }
