@@ -26,7 +26,7 @@ export const defaultTheme = (isDarkMode: boolean) =>
             action: {},
             divider: '#1A1D1F',
             background: {
-              default: '#1A1D1F',
+              default: '#111315',
               paper: '#1A1D1F'
             },
             text: {
@@ -42,7 +42,7 @@ export const defaultTheme = (isDarkMode: boolean) =>
             action: {},
             divider: '#FCFCFC',
             background: {
-              default: '#FCFCFC',
+              default: '#F4F4F4',
               paper: '#FCFCFC'
             },
             text: {
