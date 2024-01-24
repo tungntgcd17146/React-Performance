@@ -1,16 +1,17 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App.tsx'
+import { RouterProvider } from 'react-router-dom'
 import './index.css'
 import { ModeProvider } from '@/contexts/modeContext/modeProvider'
+import { router } from '@/routes.tsx'
 
-export const rootElement = document.getElementById('root')!
+const rootElement = document.getElementById('root')!
 const root = ReactDOM.createRoot(rootElement!)
 
 root.render(
   <React.StrictMode>
     <ModeProvider>
-      <App />
+      <RouterProvider router={router} />
     </ModeProvider>
   </React.StrictMode>
 )

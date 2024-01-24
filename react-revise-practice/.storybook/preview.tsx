@@ -1,12 +1,13 @@
-import { defaultTheme } from '../src/materialTheme'
+import React from 'react'
 import type { Preview } from '@storybook/react'
 import 'tailwindcss/tailwind.css'
 
 import { CssBaseline, ThemeProvider } from '@mui/material'
 import { withThemeFromJSXProvider } from '@storybook/addon-themes'
+import { BrowserRouter } from 'react-router-dom'
 
+import { defaultTheme } from '../src/materialTheme'
 import { ModeProvider } from '../src/contexts/modeContext/modeProvider'
-import React from 'react'
 
 /* snipped for brevity */
 
@@ -24,9 +25,11 @@ export const decorators = [
   // Decorator for providing the mode (you may need to adjust the actual implementation)
   (Story, context) => {
     return (
-      <ModeProvider>
-        <Story {...context} />
-      </ModeProvider>
+      <BrowserRouter>
+        <ModeProvider>
+          <Story {...context} />
+        </ModeProvider>
+      </BrowserRouter>
     )
   }
 ]
