@@ -1,15 +1,15 @@
 import Box from '@mui/material/Box'
-import DragHandleIcon from '@mui/icons-material/DragHandle'
-import SearchIcon from '@mui/icons-material/Search'
-import CommonIcon from '@/components/Icon/Icon'
-import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline'
-import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone'
 import { useState } from 'react'
-
-import Drawer from '@/components/Drawer/Drawer'
 import { useMode } from '@/contexts/modeContext/useModeContext'
 import useScreenWidth from '@/hooks/useScreenWidth'
+
+import DragHandleIcon from '@mui/icons-material/DragHandle'
+import SearchIcon from '@mui/icons-material/Search'
+import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline'
+import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone'
 import IconButton from '@mui/material/IconButton'
+
+import Drawer from '@/components/Drawer/Drawer'
 
 const Header = () => {
   const [isOpenDrawer, setIsOpenDrawer] = useState(false)
@@ -37,7 +37,7 @@ const Header = () => {
         alignItems: 'center'
       }}
     >
-      {isMobile && <IconButton children={<CommonIcon Icon={DragHandleIcon} />} onClick={handleOpenDrawer} />}
+      {isMobile && <IconButton children={<DragHandleIcon />} onClick={handleOpenDrawer} />}
       <Drawer
         isOpen={isOpenDrawer}
         onOpen={handleOpenDrawer}
