@@ -199,8 +199,11 @@ export const defaultTheme = (isDarkMode: boolean) =>
       MuiButtonBase: {
         styleOverrides: {
           root: {
+            'MuiButton-root:hover': {
+              backgroundColor: 'unset'
+            },
             ':hover': {
-              borderColor: 'black'
+              borderColor: 'unset'
             }
           }
         }
@@ -210,7 +213,7 @@ export const defaultTheme = (isDarkMode: boolean) =>
           root: {
             textTransform: 'none',
             ':hover': {
-              borderColor: 'black'
+              borderColor: 'unset'
             },
 
             '.startIcon': {}

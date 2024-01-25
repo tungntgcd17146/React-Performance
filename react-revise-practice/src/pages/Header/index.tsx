@@ -9,6 +9,7 @@ import DragHandleIcon from '@mui/icons-material/DragHandle'
 import SearchIcon from '@mui/icons-material/Search'
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline'
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone'
+import AddIcon from '@mui/icons-material/Add'
 
 //components
 import IconButton from '@/components/IconButton'
@@ -16,6 +17,7 @@ import Drawer from '@/components/Drawer/'
 import Avatar from '@/components/Avatar'
 import Customer1 from '@/assets/customer1.png'
 import { themes } from '@/themes'
+import Button from '@/components/Button'
 
 const Header = () => {
   const [isOpenDrawer, setIsOpenDrawer] = useState(false)
@@ -54,7 +56,8 @@ const Header = () => {
       />
 
       <div className='flex flex-row gap-[24px]'>
-        <IconButton children={<SearchIcon />} size='large' />
+        {isMobile && <IconButton children={<SearchIcon />} size='large' />}
+        {!isMobile && <Button startIcon={<AddIcon />} children='Create' color='primary' />}
         <IconButton
           badgeContent={0}
           children={<ChatBubbleOutlineIcon />}

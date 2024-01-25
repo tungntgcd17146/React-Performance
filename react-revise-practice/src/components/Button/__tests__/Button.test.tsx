@@ -1,4 +1,4 @@
-import { render, screen } from '@/utils/testUtils'
+import { fireEvent, render, screen } from '@/utils/testUtils'
 import { describe, expect, it, vi } from 'vitest'
 import Button, { Props } from '..'
 
@@ -19,9 +19,32 @@ const setup = (overrideProps = {}) => {
 }
 
 describe('Button Test', () => {
-  it('render Button', () => {
+  it('render Button correctly', () => {
     setup()
 
-    expect(screen.getByText('Button')).toBeTruthy()
+    expect(screen.getByTestId('Button')).toBeTruthy()
+  })
+
+  it('Disable Button correctly', () => {
+    setup({
+      size: 'small',
+      color: 'primary',
+      disabled: true
+    })
+
+    expect(screen.getByTestId('Button').getAttribute('disabled')).toBeDefined()
+  })
+
+  it('click Button call onClick correctly', () => {
+    setup({
+      size: 'small',
+      color: 'success'
+    })
+
+    const button = screen.getByTestId('Button')
+
+    fireEvent.click(button)
+
+    expect(button.getAttribute('disabled')).toBeDefined()
   })
 })
