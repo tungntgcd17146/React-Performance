@@ -1,6 +1,11 @@
-import { Divider, Grid, IconButton, Drawer as MuiDrawer } from '@mui/material'
-import { List } from '@mui/material'
+import { memo, useMemo } from 'react'
 
+//MUI
+import { Drawer as MuiDrawer } from '@mui/material'
+import Grid from '@mui/material/Grid'
+import IconButton from '@mui/material/IconButton'
+import Divider from '@mui/material/Divider'
+import List from '@mui/material/List'
 import CloseIcon from '@mui/icons-material/Close'
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined'
 import DiamondOutlinedIcon from '@mui/icons-material/DiamondOutlined'
@@ -8,17 +13,17 @@ import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined
 import StorefrontOutlinedIcon from '@mui/icons-material/StorefrontOutlined'
 import DonutSmallOutlinedIcon from '@mui/icons-material/DonutSmallOutlined'
 import RecommendOutlinedIcon from '@mui/icons-material/RecommendOutlined'
-
-import DarkLogo from '@/assets/DarkLogo.png'
-import LightLogo from '@/assets/LightLogo.png'
-import useScreenWidth from '@/hooks/useScreenWidth'
-import NavItem from '@/components/NavItem/NavItem'
-import Logo from '@/components/Logo/Logo'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
-
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import { useTheme } from '@mui/material/styles'
-import { memo, useMemo } from 'react'
+
+//components
+import DarkLogo from '@/assets/DarkLogo.png'
+import LightLogo from '@/assets/LightLogo.png'
+import NavItem from '@/components/NavItem/'
+import Logo from '@/components/Logo/'
+
+import useScreenWidth from '@/hooks/useScreenWidth'
 
 export interface Props {
   isOpen: boolean
@@ -28,6 +33,7 @@ export interface Props {
   onOpen: () => void
 }
 
+//TODO: make it dynamic prop for this component
 export const listItems = [
   {
     text: 'Home',

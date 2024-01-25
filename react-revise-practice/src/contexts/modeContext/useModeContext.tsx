@@ -1,5 +1,5 @@
-import { ModeContext } from '@/contexts/modeContext/modeProvider'
 import { useContext } from 'react'
+import { ModeContext } from '@/contexts/modeContext/modeProvider'
 
 // Custom hook to consume the context
 const useMode = () => {

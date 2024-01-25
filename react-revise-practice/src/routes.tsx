@@ -1,5 +1,5 @@
-import Shop from '@/pages/Products/Shop.tsx'
 import App from './App.tsx'
+import Shop from '@/pages/Shop/index.tsx'
 
 import { createBrowserRouter, RouteObject } from 'react-router-dom'
 

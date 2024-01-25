@@ -1,7 +1,12 @@
 import { memo } from 'react'
-import { ListItem, ListItemButton, ListItemIcon, ListItemText, useTheme } from '@mui/material'
-import { themes } from '@/themes'
 import { Link } from 'react-router-dom'
+import { themes } from '@/themes'
+
+import { useTheme } from '@mui/material'
+import ListItemButton from '@mui/material/ListItemButton'
+import ListItemIcon from '@mui/material/ListItemIcon'
+import ListItem from '@mui/material/ListItem'
+import ListItemText from '@mui/material/ListItemText'
 
 export interface Props {
   icon: React.ReactNode

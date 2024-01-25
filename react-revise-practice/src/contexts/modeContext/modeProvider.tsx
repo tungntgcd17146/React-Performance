@@ -1,5 +1,5 @@
-import { useMediaQuery } from '@mui/material'
 import React, { createContext, useState } from 'react'
+import { useMediaQuery } from '@mui/material'
 
 interface ModeContextProps {
   isDarkMode: boolean

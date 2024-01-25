@@ -3,13 +3,15 @@ import { useState } from 'react'
 import { useMode } from '@/contexts/modeContext/useModeContext'
 import useScreenWidth from '@/hooks/useScreenWidth'
 
+//mui
 import DragHandleIcon from '@mui/icons-material/DragHandle'
 import SearchIcon from '@mui/icons-material/Search'
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline'
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone'
 import IconButton from '@mui/material/IconButton'
 
-import Drawer from '@/components/Drawer/Drawer'
+//components
+import Drawer from '@/components/Drawer/'
 
 const Header = () => {
   const [isOpenDrawer, setIsOpenDrawer] = useState(false)

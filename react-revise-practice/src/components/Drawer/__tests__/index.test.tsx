@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from '@/utils/testUtils'
 import { describe, expect, it, vi } from 'vitest'
-import Drawer, { Props, listItems } from './Drawer'
+import Drawer, { Props, listItems } from '..'
 
 import * as useScreenWidth from '@/hooks/useScreenWidth'
 import { BrowserRouter } from 'react-router-dom'

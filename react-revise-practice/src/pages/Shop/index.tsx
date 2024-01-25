@@ -1,12 +1,16 @@
-import Box from '@mui/material/Box/Box'
-import Button from '@/components/Button/Button'
-import IconButton from '@mui/material/IconButton'
 import { memo } from 'react'
 
 import CoverPhoto from '@/assets/CoverPhoto.png'
 
+//MUI
+import Box from '@mui/material/Box/Box'
+import IconButton from '@mui/material/IconButton'
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined'
 
+//components
+import Button from '@/components/Button/'
+
+//utils
 import { useMode } from '@/contexts/modeContext/useModeContext'
 import useScreenWidth from '@/hooks/useScreenWidth'
 

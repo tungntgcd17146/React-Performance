@@ -50,8 +50,8 @@ export type Options =
 const useScreenWidth = ({ only, up, down }: Options = {}): UseScreenWidth => {
   const theme = useTheme<Theme>()
 
-  const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
-  const isTablet = useMediaQuery(theme.breakpoints.between('sm', 'xl'))
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'))
+  const isTablet = useMediaQuery(theme.breakpoints.between('md', 'xl'))
   const isDesktop = useMediaQuery(theme.breakpoints.up('xl'))
 
   // Set matching breakpoints from hook's arguments

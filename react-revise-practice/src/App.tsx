@@ -1,11 +1,14 @@
-import CssBaseline from '@mui/material/CssBaseline/CssBaseline'
-import { defaultTheme } from '@/materialTheme'
-import Header from '@/pages/Header/Header'
+import { Outlet } from 'react-router-dom'
+
+import Header from '@/pages/Header'
 
 import { useMode } from './contexts/modeContext/useModeContext'
-import { Outlet } from 'react-router-dom'
+import { defaultTheme } from '@/materialTheme'
+
+import { ThemeProvider } from '@mui/material'
+import Grid from '@mui/material/Grid'
+import CssBaseline from '@mui/material/CssBaseline/CssBaseline'
 import StyledEngineProvider from '@mui/styled-engine/StyledEngineProvider'
-import { Grid, ThemeProvider } from '@mui/material'
 
 function App() {
   const { isDarkMode } = useMode()

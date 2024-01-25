@@ -1,6 +1,6 @@
 import { memo } from 'react'
 
-import { Button as MuiButton, ButtonProps, useTheme } from '@mui/material'
+import { ButtonProps, Button as MuiButton, useTheme } from '@mui/material'
 
 export interface Props extends ButtonProps {
   children?: React.ReactNode
