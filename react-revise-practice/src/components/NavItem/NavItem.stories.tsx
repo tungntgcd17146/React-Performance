@@ -28,7 +28,22 @@ export const NavItemBase: Story = {
     onClick: () => {
       console.log('clicked')
     },
-    go: '/'
+    go: '/',
+    isShowText: true
+  }
+}
+
+export const NavItemHiddenText: Story = {
+  args: {
+    icon: <HelpOutlineOutlinedIcon />,
+    text: 'Nav Item',
+    index: 1,
+    isSelected: false,
+    onClick: () => {
+      console.log('clicked')
+    },
+    go: '/',
+    isShowText: false
   }
 }
 
@@ -41,6 +56,7 @@ export const NavItemSelected: Story = {
     onClick: () => {
       console.log('clicked')
     },
-    go: '/'
+    go: '/',
+    isShowText: true
   }
 }

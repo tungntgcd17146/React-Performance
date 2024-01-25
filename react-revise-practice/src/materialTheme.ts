@@ -241,6 +241,17 @@ export const defaultTheme = (isDarkMode: boolean) =>
             borderColor: 'unset'
           }
         }
+      },
+      MuiIconButton: {
+        styleOverrides: {
+          root: {
+            color: 'unset',
+            ':hover': {
+              backgroundColor: 'unset',
+              borderColor: 'unset'
+            }
+          }
+        }
       }
     }
   })
