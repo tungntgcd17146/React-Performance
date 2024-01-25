@@ -24,7 +24,7 @@ const setup = (overrideProps = {}) => {
   return render(<Avatar {...props} />)
 }
 
-describe('NavItem Test', () => {
+describe('Avatar Test', () => {
   it('render Avatar correctly', () => {
     setup()
 
