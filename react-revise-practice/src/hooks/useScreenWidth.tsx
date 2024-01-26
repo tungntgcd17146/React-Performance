@@ -75,7 +75,6 @@ const useScreenWidth = ({ only, up, down }: Options = {}): UseScreenWidth => {
     const largerThan = matchedLarger && !matchedSmaller
     const smallerThan = matchedSmaller && !matchedLarger
 
-    console.log('betweenValue:', singleBreakpoint || betweenValue || largerThan || smallerThan)
     setMatchedBreakpoint(singleBreakpoint || betweenValue || largerThan || smallerThan)
   }, [betweenValue, exactBreakpoint, matchedLarger, matchedSmaller])
 

@@ -25,9 +25,6 @@ export const NavItemBase: Story = {
     text: 'Nav Item',
     index: 1,
     isSelected: false,
-    onClick: () => {
-      console.log('clicked')
-    },
     go: '/',
     isShowText: true
   }
@@ -39,9 +36,6 @@ export const NavItemHiddenText: Story = {
     text: 'Nav Item',
     index: 1,
     isSelected: false,
-    onClick: () => {
-      console.log('clicked')
-    },
     go: '/',
     isShowText: false
   }
@@ -53,9 +47,6 @@ export const NavItemSelected: Story = {
     text: 'Nav Item',
     index: 1,
     isSelected: true,
-    onClick: () => {
-      console.log('clicked')
-    },
     go: '/',
     isShowText: true
   }

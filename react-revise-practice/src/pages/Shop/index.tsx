@@ -29,9 +29,6 @@ const Shop = () => {
         size='medium'
         color='inherit'
         children='Button Toggle mode on the right'
-        onClick={() => {
-          console.log('hello word')
-        }}
       />
 
       <IconButton children={<HomeOutlinedIcon />} onClick={toggleMode} color={isDarkMode ? `primary` : `secondary`} />
