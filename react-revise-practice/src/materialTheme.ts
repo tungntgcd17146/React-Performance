@@ -36,7 +36,8 @@ export const defaultTheme = (isDarkMode: boolean) =>
             },
             grey: {
               100: '#272B30',
-              200: '#111315'
+              200: '#111315',
+              300: '#272B30'
             }
           }
         : {
@@ -53,7 +54,8 @@ export const defaultTheme = (isDarkMode: boolean) =>
             },
             grey: {
               100: '#EFEFEF',
-              200: '#FFFFFF'
+              200: '#FFFFFF',
+              300: '#FCFCFC'
             }
           }),
 
@@ -255,6 +257,14 @@ export const defaultTheme = (isDarkMode: boolean) =>
               backgroundColor: 'unset',
               borderColor: 'unset'
             }
+          }
+        }
+      },
+      MuiToggleButton: {
+        styleOverrides: {
+          root: {
+            textTransform: 'unset',
+            color: 'unset'
           }
         }
       }

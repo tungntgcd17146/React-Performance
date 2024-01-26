@@ -3,7 +3,7 @@ import { useMediaQuery } from '@mui/material'
 
 interface ModeContextProps {
   isDarkMode: boolean
-  toggleMode: () => void
+  toggleMode: (value: boolean) => void
 }
 // Create a context with initial state
 const ModeContext = createContext<ModeContextProps | undefined>(undefined)
@@ -16,8 +16,8 @@ const ModeProvider = ({ children }: { children: React.ReactNode }) => {
   const [isDarkMode, setIsDarkMode] = useState(prefersDarkMode)
 
   // Function to toggle the mode
-  const toggleMode = () => {
-    setIsDarkMode((prevMode) => !prevMode)
+  const toggleMode = (value: boolean) => {
+    setIsDarkMode(value)
   }
 
   return (

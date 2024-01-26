@@ -22,7 +22,9 @@ import DarkLogo from '@/assets/DarkLogo.png'
 import LightLogo from '@/assets/LightLogo.png'
 import NavItem from '@/components/NavItem/'
 import Logo from '@/components/Logo/'
+import SwitchMode from '@/components/SwitchMode'
 
+//utils
 import useScreenWidth from '@/hooks/useScreenWidth'
 
 export interface Props {
@@ -142,9 +144,10 @@ const Drawer = ({ isOpen, onClose, onOpen, mode }: Props) => {
           isSelected={false}
           isShowText={shouldShowFullContentOnDrawer}
         />
-      </Grid>
 
-      {/* switchMode */}
+        {/* switchMode */}
+        <SwitchMode isLargerDrawerOnTablet={isLargerDrawerOnTablet} />
+      </Grid>
     </Grid>
   )
 
