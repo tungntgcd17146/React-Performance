@@ -35,7 +35,8 @@ export const defaultTheme = (isDarkMode: boolean) =>
               secondary: '#FCFCFC'
             },
             grey: {
-              100: '#272B30'
+              100: '#272B30',
+              200: '#111315'
             }
           }
         : {
@@ -51,7 +52,8 @@ export const defaultTheme = (isDarkMode: boolean) =>
               secondary: '#1A1D1F'
             },
             grey: {
-              100: '#EFEFEF'
+              100: '#EFEFEF',
+              200: '#FFFFFF'
             }
           }),
 
@@ -199,8 +201,11 @@ export const defaultTheme = (isDarkMode: boolean) =>
       MuiButtonBase: {
         styleOverrides: {
           root: {
+            'MuiButton-root:hover': {
+              backgroundColor: 'unset'
+            },
             ':hover': {
-              borderColor: 'black'
+              borderColor: 'unset'
             }
           }
         }
@@ -210,7 +215,7 @@ export const defaultTheme = (isDarkMode: boolean) =>
           root: {
             textTransform: 'none',
             ':hover': {
-              borderColor: 'black'
+              borderColor: 'unset'
             },
 
             '.startIcon': {}
@@ -239,6 +244,17 @@ export const defaultTheme = (isDarkMode: boolean) =>
         styleOverrides: {
           root: {
             borderColor: 'unset'
+          }
+        }
+      },
+      MuiIconButton: {
+        styleOverrides: {
+          root: {
+            color: 'unset',
+            ':hover': {
+              backgroundColor: 'unset',
+              borderColor: 'unset'
+            }
           }
         }
       }

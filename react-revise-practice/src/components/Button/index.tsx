@@ -7,18 +7,21 @@ export interface Props extends ButtonProps {
   endIcon?: React.ReactNode
   startIcon?: React.ReactNode
   sx?: React.CSSProperties
+  disabled?: boolean
+  color: 'inherit' | 'primary' | 'success'
 
   onClick?: () => void
 }
 
 const Button = ({
   children,
-  color,
+  color = 'primary',
   endIcon,
   startIcon,
-  size,
+  size = 'medium',
   type = 'button',
   sx,
+  disabled,
 
   onClick,
   ...rest
@@ -29,35 +32,33 @@ const Button = ({
     const { palette } = theme
 
     switch (color) {
+      //Default button for dark/light mode
       case 'inherit':
+        return {
+          backgroundColor: palette.background.paper,
+          color: palette.text.secondary,
+          '&:hover': {
+            borderColor: palette.text.secondary
+          }
+        }
+
+      //blue button
+      case 'primary':
         return {
           backgroundColor: palette.info.main,
           color: palette.primary.main,
           '&:hover': {
-            borderColor: palette.info.dark
+            borderColor: palette.info.dark,
+            backgroundColor: palette.info.dark
           }
         }
-      case 'primary':
+
+      //button active
+      case 'success':
         return {
-          backgroundColor: palette.primary.main,
-          color: palette.secondary.main,
-          border: `2px solid #EFEFEF`,
-          '&:hover': {
-            backgroundColor: palette.primary.main,
-            border: `2px solid ${palette.secondary.dark}`
-          }
+          backgroundColor: palette.grey[100],
+          color: palette.text.secondary
         }
-      case 'secondary':
-        return {
-          backgroundColor: palette.secondary.main,
-          color: palette.primary.main,
-          boxShadow: `0 0 0 2px ${palette.secondary.light} inset`,
-          '&:hover': {
-            border: `2px solid ${palette.primary.main}`
-          }
-        }
-      default:
-        return ''
     }
   }
 
@@ -73,8 +74,6 @@ const Button = ({
           borderRadius: '12px',
           padding: '12px 20px'
         }
-      default:
-        return ''
     }
   }
 
@@ -82,7 +81,9 @@ const Button = ({
     minWidth: '100px',
     fontFamily: 'Inter',
     fontWeight: 700,
+    height: '48px',
     lineHeight: '20px',
+    border: `2px solid ${theme.palette.grey[100]}`,
     ':disabled': {
       opacity: 0.5,
       pointerEvents: 'none'
@@ -91,6 +92,7 @@ const Button = ({
 
   return (
     <MuiButton
+      data-testid='Button'
       color={color}
       startIcon={startIcon}
       endIcon={endIcon}
@@ -102,6 +104,7 @@ const Button = ({
         ...sx
       }}
       onClick={onClick}
+      disabled={disabled}
       {...rest}
     >
       {children}
