@@ -45,16 +45,16 @@ const Avatar = ({ BadgeIcon, onClick, size = 'medium', avtBackground, alt, src, 
     }
   }
 
+  const avtCommonStyle = {
+    width: getSize(size),
+    height: getSize(size),
+    backgroundColor: avtBackground,
+    cursor: 'pointer'
+  }
+
   if (!BadgeIcon) {
     return (
-      <MuiAvatar
-        data-testid='Avatar_MuiAvatar'
-        onClick={onClick}
-        sx={{ width: getSize(size), height: getSize(size), backgroundColor: avtBackground }}
-        alt={alt}
-        src={src}
-        {...rest}
-      />
+      <MuiAvatar data-testid='Avatar_MuiAvatar' onClick={onClick} sx={avtCommonStyle} alt={alt} src={src} {...rest} />
     )
   }
 
@@ -66,12 +66,7 @@ const Avatar = ({ BadgeIcon, onClick, size = 'medium', avtBackground, alt, src, 
       badgeContent={BadgeIcon}
       onClick={onClick}
     >
-      <MuiAvatar
-        sx={{ width: getSize(size), height: getSize(size), backgroundColor: avtBackground }}
-        alt={alt}
-        src={src}
-        {...rest}
-      />
+      <MuiAvatar sx={avtCommonStyle} alt={alt} src={src} {...rest} />
     </StyledBadge>
   )
 }

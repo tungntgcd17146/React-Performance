@@ -35,7 +35,8 @@ export const defaultTheme = (isDarkMode: boolean) =>
               secondary: '#FCFCFC'
             },
             grey: {
-              100: '#272B30'
+              100: '#272B30',
+              200: '#111315'
             }
           }
         : {
@@ -51,7 +52,8 @@ export const defaultTheme = (isDarkMode: boolean) =>
               secondary: '#1A1D1F'
             },
             grey: {
-              100: '#EFEFEF'
+              100: '#EFEFEF',
+              200: '#FFFFFF'
             }
           }),
 

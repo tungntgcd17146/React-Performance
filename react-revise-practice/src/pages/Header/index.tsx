@@ -10,6 +10,8 @@ import SearchIcon from '@mui/icons-material/Search'
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline'
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone'
 import AddIcon from '@mui/icons-material/Add'
+import Popper from '@mui/material/Popper'
+import Hidden from '@mui/material/Hidden'
 
 //components
 import IconButton from '@/components/IconButton'
@@ -18,13 +20,21 @@ import Avatar from '@/components/Avatar'
 import Customer1 from '@/assets/customer1.png'
 import { themes } from '@/themes'
 import Button from '@/components/Button'
+import SearchInput from '@/components/SearchInput'
 
 const Header = () => {
-  const [isOpenDrawer, setIsOpenDrawer] = useState(false)
+  const [isOpenDrawer, setIsOpenDrawer] = useState<boolean>(false)
+  const [searchIconAnchorEl, setSearchIconAnchorEl] = useState<null | HTMLElement>(null)
 
   const { isDarkMode, toggleMode } = useMode()
   const { isMobile, isTablet, isDesktop } = useScreenWidth()
   const theme = useTheme()
+
+  const handleClickMobileSearchIcon = (event: React.MouseEvent<HTMLElement>) => {
+    setSearchIconAnchorEl(searchIconAnchorEl ? null : event.currentTarget)
+  }
+
+  const openSearchInputPopup = Boolean(searchIconAnchorEl)
 
   const handleCloseDrawer = () => {
     setIsOpenDrawer(false)
@@ -43,9 +53,14 @@ const Header = () => {
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems: 'center'
+        alignItems: 'center',
+        backgroundColor: theme.palette.background.paper
       }}
     >
+      <Hidden mdDown>
+        <SearchInput searchWidth='356px' placeholder='Search or type a command' endHelper='⌘ F' />
+      </Hidden>
+
       {isMobile && <IconButton children={<DragHandleIcon />} onClick={handleOpenDrawer} />}
       <Drawer
         isOpen={isOpenDrawer}
@@ -56,8 +71,25 @@ const Header = () => {
       />
 
       <div className='flex flex-row gap-[24px]'>
-        {isMobile && <IconButton children={<SearchIcon />} size='large' />}
-        {!isMobile && <Button startIcon={<AddIcon />} children='Create' color='primary' />}
+        {/* search input on mobile */}
+        {isMobile && (
+          <div>
+            <IconButton onClick={handleClickMobileSearchIcon} children={<SearchIcon />} size='large' />
+            <Popper
+              open={openSearchInputPopup}
+              anchorEl={searchIconAnchorEl}
+              sx={{ backgroundColor: theme.palette.grey[200], width: '100%' }}
+            >
+              <Box sx={{ padding: ' 12px 16px' }}>
+                <SearchInput placeholder='Search or type a command' />
+              </Box>
+            </Popper>
+          </div>
+        )}
+
+        <Hidden lgDown>
+          <Button sx={{ width: '120px' }} startIcon={<AddIcon />} children='Create' color='primary' />
+        </Hidden>
         <IconButton
           badgeContent={0}
           children={<ChatBubbleOutlineIcon />}

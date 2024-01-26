@@ -81,6 +81,7 @@ const Button = ({
     minWidth: '100px',
     fontFamily: 'Inter',
     fontWeight: 700,
+    height: '48px',
     lineHeight: '20px',
     border: `2px solid ${theme.palette.grey[100]}`,
     ':disabled': {

@@ -10,7 +10,7 @@ export interface Props extends IconButtonProps {
   badgeContent?: number | string
   children: React.ReactNode
   badgeColor?: BadgeProps['color']
-  onClick?: () => void
+  onClick?: (event: React.MouseEvent<HTMLElement>) => void
 }
 
 const IconButton = ({ children, onClick, badgeColor = 'error', badgeContent, badgeProps, ...rest }: Props) => {
