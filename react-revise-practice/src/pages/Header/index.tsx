@@ -1,9 +1,9 @@
-import Box from '@mui/material/Box'
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import { useMode } from '@/contexts/modeContext/useModeContext'
 import useScreenWidth from '@/hooks/useScreenWidth'
 
 //mui
+import Box from '@mui/material/Box'
 import { useTheme } from '@mui/material'
 import DragHandleIcon from '@mui/icons-material/DragHandle'
 import SearchIcon from '@mui/icons-material/Search'
@@ -30,19 +30,22 @@ const Header = () => {
   const { isMobile, isTablet, isDesktop } = useScreenWidth()
   const theme = useTheme()
 
-  const handleClickMobileSearchIcon = (event: React.MouseEvent<HTMLElement>) => {
-    setSearchIconAnchorEl(searchIconAnchorEl ? null : event.currentTarget)
-  }
+  const handleClickMobileSearchIcon = useCallback(
+    (event: React.MouseEvent<HTMLElement>) => {
+      setSearchIconAnchorEl(searchIconAnchorEl ? null : event.currentTarget)
+    },
+    [searchIconAnchorEl]
+  )
 
   const openSearchInputPopup = Boolean(searchIconAnchorEl)
 
-  const handleCloseDrawer = () => {
+  const handleCloseDrawer = useCallback(() => {
     setIsOpenDrawer(false)
-  }
+  }, [setIsOpenDrawer])
 
-  const handleOpenDrawer = () => {
+  const handleOpenDrawer = useCallback(() => {
     setIsOpenDrawer(true)
-  }
+  }, [setIsOpenDrawer])
 
   return (
     <Box

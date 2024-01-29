@@ -4,6 +4,7 @@ import Drawer, { Props, listItems } from '..'
 
 import * as useScreenWidth from '@/hooks/useScreenWidth'
 import { BrowserRouter } from 'react-router-dom'
+import { ModeProvider } from '@/contexts/modeContext/modeProvider'
 
 const defaultProp = {
   isOpen: true,
@@ -21,7 +22,9 @@ const setup = (overrideProps = {}) => {
 
   return render(
     <BrowserRouter>
-      <Drawer {...props} />
+      <ModeProvider>
+        <Drawer {...props} />
+      </ModeProvider>
     </BrowserRouter>
   )
 }
@@ -58,8 +61,6 @@ describe('Drawer Test', () => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     vi.spyOn(useScreenWidth, 'default').mockReturnValue({ isDeskTop: true } as any)
     setup()
-
-    screen.debug()
 
     expect(screen.queryAllByTestId('NavItem_Link').length).toEqual(listItems.length + 1)
   })
