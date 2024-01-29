@@ -26,7 +26,7 @@ const Header = () => {
   const [isOpenDrawer, setIsOpenDrawer] = useState<boolean>(false)
   const [searchIconAnchorEl, setSearchIconAnchorEl] = useState<null | HTMLElement>(null)
 
-  const { isDarkMode, toggleMode } = useMode()
+  const { isDarkMode } = useMode()
   const { isMobile, isTablet, isDesktop } = useScreenWidth()
   const theme = useTheme()
 
@@ -65,13 +65,7 @@ const Header = () => {
       </Hidden>
 
       {isMobile && <IconButton children={<DragHandleIcon />} onClick={handleOpenDrawer} />}
-      <Drawer
-        isOpen={isOpenDrawer}
-        onOpen={handleOpenDrawer}
-        onClose={handleCloseDrawer}
-        onChangeMode={toggleMode}
-        mode={isDarkMode}
-      />
+      <Drawer isOpen={isOpenDrawer} onOpen={handleOpenDrawer} onClose={handleCloseDrawer} mode={isDarkMode} />
 
       <div className='flex flex-row gap-[24px]'>
         {/* search input on mobile */}

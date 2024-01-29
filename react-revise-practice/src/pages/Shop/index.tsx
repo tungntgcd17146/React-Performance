@@ -1,27 +1,104 @@
 import { memo } from 'react'
 
-import CoverPhoto from '@/assets/CoverPhoto.png'
+import CoverPhoto from '@/assets/CoverPhoto.jpg'
+import CoverPhotoMobile from '@/assets/CoverPhotoMobile.jpg'
 
 //MUI
 import Box from '@mui/material/Box/Box'
-import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined'
+import TwitterIcon from '@mui/icons-material/Twitter'
+import AddIcon from '@mui/icons-material/Add'
+import FacebookIcon from '@mui/icons-material/Facebook'
+import InstagramIcon from '@mui/icons-material/Instagram'
+import Divider from '@mui/material/Divider'
 
 //components
 import Button from '@/components/Button/'
 
+import Customer1 from '@/assets/customer1.png'
+
 //utils
 import useScreenWidth from '@/hooks/useScreenWidth'
+import { Grid, Typography } from '@mui/material'
+import Avatar from '@/components/Avatar'
+import { themes } from '@/themes'
+import { useTheme } from '@mui/material/styles'
+import IconButton from '@/components/IconButton'
 
 const Shop = () => {
-  const { isTablet, isDesktop } = useScreenWidth()
+  const { isMobile, isTablet, isDesktop } = useScreenWidth()
+  const theme = useTheme()
 
   return (
     <Box
       component='main'
-      sx={{ flexGrow: 1, p: 3, marginLeft: isTablet ? '80px' : isDesktop ? '330px' : '0px', padding: '0px' }}
+      sx={{
+        flexGrow: 1,
+        p: 3,
+        marginLeft: isTablet ? '80px' : isDesktop ? '330px' : '0px',
+        padding: '0px'
+      }}
+      display='flex'
+      flexDirection='column'
+      alignItems='center'
     >
-      <img src={CoverPhoto} alt='~/assets/CoverPhoto.png' className='w-full h-[252px]' />
-      <Button startIcon={<HomeOutlinedIcon />} size='medium' color='inherit' children='Button Demo' />
+      {isMobile ? (
+        <img src={CoverPhotoMobile} alt='~/assets/CoverPhotoMobile.png' className='w-full h-[252px]' />
+      ) : (
+        <img src={CoverPhoto} alt='~/assets/CoverPhoto.jpg' className='w-full h-[400px]' />
+      )}
+      <Grid container sx={{ maxWidth: '1200px', padding: '16px' }}>
+        {/* information */}
+        <Grid
+          container
+          display='flex'
+          justifyContent='center'
+          sx={{
+            padding: '24px 16px',
+            height: '100%',
+            width: '100%',
+            backgroundColor: theme.palette.background.paper,
+            borderRadius: '8px',
+            position: 'relative',
+            marginTop: isMobile ? '-200px' : '-64px'
+          }}
+        >
+          <Grid item xs={12} sm={12} lg={8} display='flex' flexDirection='row' sx={{ marginBottom: '12px' }}>
+            <Avatar
+              avtBackground={themes.colors.yellow[600]}
+              size='large'
+              src={Customer1}
+              alt='Customer1'
+              BadgeIcon={<AddIcon />}
+              sx={{ marginRight: '16px' }}
+            />
+            <Grid item display='flex' flexDirection='column'>
+              <Typography
+                sx={{ color: theme.palette.text.secondary, fontSize: isMobile ? '20px' : '32px' }}
+                variant='h4'
+              >
+                Chelsie Haley
+              </Typography>
+              <Typography sx={!isMobile ? { fontSize: '20px', marginTop: '8px' } : {}} variant='body2'>
+                Dream big. Think different.Do great!
+              </Typography>
+            </Grid>
+          </Grid>
+
+          {/* social contact */}
+          <Grid item xs={12} sm={12} lg={4} display='flex' flexDirection='row' justifyContent='space-between'>
+            <Grid display='flex' flexDirection='row'>
+              <IconButton sx={{ marginRight: '24px' }} children={<TwitterIcon />} />
+              <IconButton sx={{ marginRight: '24px' }} children={<FacebookIcon />} />
+              <IconButton sx={{ marginRight: '24px' }} children={<InstagramIcon />} />
+            </Grid>
+
+            <Button children='Follow' color='primary' sx={{ width: '120px' }} />
+          </Grid>
+          <Grid item xs={12}>
+            <Divider sx={{ margin: '20px 0px', color: theme.palette.grey[100] }} />
+          </Grid>
+        </Grid>
+      </Grid>
     </Box>
   )
 }

@@ -30,7 +30,6 @@ import useScreenWidth from '@/hooks/useScreenWidth'
 export interface Props {
   isOpen: boolean
   onClose: () => void
-  onChangeMode: () => void
   mode: boolean
   onOpen: () => void
 }
