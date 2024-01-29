@@ -275,6 +275,30 @@ export const defaultTheme = (isDarkMode: boolean) =>
             justifyContent: 'none'
           }
         }
+      },
+      MuiTab: {
+        styleOverrides: {
+          root: {
+            textTransform: 'none'
+          }
+        }
+      },
+      MuiFormControl: {
+        styleOverrides: {
+          root: {
+            margin: '0px'
+          }
+        }
+      },
+      MuiInputBase: {
+        styleOverrides: {
+          root: {
+            borderRadius: 'unset',
+            '&.MuiSelect': {
+              borderRadius: 'unset'
+            }
+          }
+        }
       }
     }
   })
