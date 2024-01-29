@@ -10,7 +10,16 @@ const routes: RouteObject[] = [
     errorElement: <div> Opp!!! Error page </div>,
     children: [
       { index: true, element: <Shop /> },
-      { element: <Shop />, path: '/shop' },
+      {
+        element: <Shop />,
+        path: '/shop',
+        children: [
+          {
+            path: '/shop/*',
+            element: <div> Tab not implemented yet</div>
+          }
+        ]
+      },
       {
         path: '/*',
         element: <div> Page not implemented yet</div>
