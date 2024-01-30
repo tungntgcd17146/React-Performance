@@ -10,6 +10,7 @@ export interface Props extends AvatarProps {
   avtBackground?: string
   BadgeIcon?: React.ReactNode
   onClick?: () => void
+  sx?: React.CSSProperties
 }
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
@@ -33,7 +34,7 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
   }
 }))
 
-const Avatar = ({ BadgeIcon, onClick, size = 'medium', avtBackground, alt, src, ...rest }: Props) => {
+const Avatar = ({ BadgeIcon, onClick, size = 'medium', avtBackground, alt, src, sx, ...rest }: Props) => {
   const getSize = (sizes?: 'small' | 'medium' | 'large') => {
     switch (sizes) {
       case 'small':
@@ -65,6 +66,7 @@ const Avatar = ({ BadgeIcon, onClick, size = 'medium', avtBackground, alt, src, 
       anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
       badgeContent={BadgeIcon}
       onClick={onClick}
+      sx={sx}
     >
       <MuiAvatar sx={avtCommonStyle} alt={alt} src={src} {...rest} />
     </StyledBadge>

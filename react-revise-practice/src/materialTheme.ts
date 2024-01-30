@@ -256,7 +256,8 @@ export const defaultTheme = (isDarkMode: boolean) =>
             ':hover': {
               backgroundColor: 'unset',
               borderColor: 'unset'
-            }
+            },
+            alignItems: 'unset'
           }
         }
       },
@@ -265,6 +266,37 @@ export const defaultTheme = (isDarkMode: boolean) =>
           root: {
             textTransform: 'unset',
             color: 'unset'
+          }
+        }
+      },
+      MuiGrid: {
+        styleOverrides: {
+          root: {
+            justifyContent: 'none'
+          }
+        }
+      },
+      MuiTab: {
+        styleOverrides: {
+          root: {
+            textTransform: 'none'
+          }
+        }
+      },
+      MuiFormControl: {
+        styleOverrides: {
+          root: {
+            margin: '0px'
+          }
+        }
+      },
+      MuiInputBase: {
+        styleOverrides: {
+          root: {
+            borderRadius: 'unset',
+            '&.MuiSelect': {
+              borderRadius: 'unset'
+            }
           }
         }
       }

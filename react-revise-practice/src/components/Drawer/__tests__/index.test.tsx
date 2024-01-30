@@ -1,17 +1,18 @@
 import { fireEvent, render, screen } from '@/utils/testUtils'
 import { describe, expect, it, vi } from 'vitest'
-import Drawer, { Props, listItems } from '..'
+import Drawer, { Props } from '..'
 
 import * as useScreenWidth from '@/hooks/useScreenWidth'
 import { BrowserRouter } from 'react-router-dom'
 import { ModeProvider } from '@/contexts/modeContext/modeProvider'
+import { listItems } from '@/pages/Header'
 
 const defaultProp = {
   isOpen: true,
   onClose: vi.fn(),
   onChangeMode: vi.fn(),
-  mode: false,
-  onOpen: vi.fn()
+  onOpen: vi.fn(),
+  listItems: listItems
 } as Props
 
 const setup = (overrideProps = {}) => {
@@ -62,7 +63,7 @@ describe('Drawer Test', () => {
     vi.spyOn(useScreenWidth, 'default').mockReturnValue({ isDeskTop: true } as any)
     setup()
 
-    expect(screen.queryAllByTestId('NavItem_Link').length).toEqual(listItems.length + 1)
+    expect(screen.queryAllByTestId('NavItem_ListItemButton').length).toEqual(listItems.length + 1)
   })
 
   it('should show ArrowForwardIcon icon on tablet', () => {

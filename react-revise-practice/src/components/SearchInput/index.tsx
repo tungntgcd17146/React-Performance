@@ -9,9 +9,10 @@ export interface Props extends InputBaseProps {
   endHelper?: React.ReactNode
   searchWidth?: string
   onClickEndHelper?: (event: React.MouseEvent<HTMLElement>) => void
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-const SearchInput = ({ endHelper, onClickEndHelper, searchWidth = '100%', ...rest }: Props) => {
+const SearchInput = ({ endHelper, onClickEndHelper, onChange, searchWidth = '100%', ...rest }: Props) => {
   const theme = useTheme()
 
   return (
@@ -25,6 +26,7 @@ const SearchInput = ({ endHelper, onClickEndHelper, searchWidth = '100%', ...res
         sx={{ position: 'absolute', left: '4px', top: '4px' }}
       />
       <InputBase
+        onChange={onChange}
         data-testid='SearchInput_InputBase'
         sx={{ width: '100%', height: '100%', fontSize: '15px' }}
         {...rest}
