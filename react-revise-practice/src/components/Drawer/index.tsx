@@ -1,4 +1,4 @@
-import { memo, useMemo } from 'react'
+import { memo, useCallback, useMemo } from 'react'
 
 //MUI
 import { Drawer as MuiDrawer } from '@mui/material'
@@ -38,6 +38,10 @@ const Drawer = ({ isOpen, onClose, onOpen, onNavItemClick, listItems }: Props) =
   const theme = useTheme()
   const { isDarkMode } = useMode()
 
+  const handleCloseDrawerOnMobile = useCallback(() => {
+    onClose()
+  }, [onClose])
+
   const isLargerDrawerOnTablet = useMemo(() => isTablet && isOpen, [isTablet, isOpen])
 
   const shouldShowFullContentOnDrawer = useMemo(
@@ -74,7 +78,7 @@ const Drawer = ({ isOpen, onClose, onOpen, onNavItemClick, listItems }: Props) =
 
             return (
               <NavItem
-                onNavItemClick={onNavItemClick}
+                onNavItemClick={isMobile ? handleCloseDrawerOnMobile : onNavItemClick}
                 go={go}
                 key={index}
                 icon={icon}

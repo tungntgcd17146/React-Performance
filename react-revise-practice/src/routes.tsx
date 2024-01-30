@@ -1,7 +1,9 @@
+import NotFoundPage from '@/components/PageNotFound/index.tsx'
 import App from './App.tsx'
 import Shop from '@/pages/Shop/index.tsx'
 
 import { createBrowserRouter, RouteObject } from 'react-router-dom'
+import Products from '@/pages/Shop/Products.tsx'
 
 const routes: RouteObject[] = [
   {
@@ -14,7 +16,7 @@ const routes: RouteObject[] = [
         element: <Shop />,
         path: '/shop',
         children: [
-          { index: true, element: <div> Products not implemented yet</div> },
+          { index: true, element: <Products /> },
           {
             path: '/shop/*',
             element: <div> Other Tab not implemented yet</div>
@@ -28,7 +30,13 @@ const routes: RouteObject[] = [
       },
       {
         path: '/*',
-        element: <div className='ml-[0px] md:ml-[430px]'> Page not implemented yet</div>
+        element: (
+          <NotFoundPage
+            headerContent='Oops'
+            body='This page does not exist.'
+            footer='This feature will be implemented in the future.'
+          />
+        )
       }
     ]
   }

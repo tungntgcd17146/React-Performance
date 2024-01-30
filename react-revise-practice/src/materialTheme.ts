@@ -193,13 +193,6 @@ export const defaultTheme = (isDarkMode: boolean) =>
           }
         }
       },
-      MuiTypography: {
-        styleOverrides: {
-          root: {
-            fontSize: 'unset'
-          }
-        }
-      },
       MuiButtonBase: {
         styleOverrides: {
           root: {
