@@ -1,4 +1,4 @@
-import { memo, useEffect } from 'react'
+import { memo } from 'react'
 
 import CoverPhoto from '@/assets/CoverPhoto.jpg'
 import CoverPhotoMobile from '@/assets/CoverPhotoMobile.jpg'
@@ -27,23 +27,25 @@ import { useTheme } from '@mui/material/styles'
 import IconButton from '@/components/IconButton'
 import Tabs from '@/components/Tabs'
 import Select from '@/components/Select'
+import useMatchPath from '@/hooks/useMatchPath'
+import { NavigateItem } from '@/types/navigateItem'
 
 //TODO: Constant for all options
-const tabItems = [
+const tabItems: NavigateItem[] = [
   {
     text: 'Products',
-    go: '/shop/products',
-    disabled: false
+    go: '/shop',
+    isDisabled: false
   },
   {
     text: 'Followers',
     go: '/shop/followers',
-    disabled: false
+    isDisabled: false
   },
   {
     text: 'Following',
     go: '/shop/following',
-    disabled: false
+    isDisabled: false
   }
 ]
 
@@ -65,13 +67,12 @@ const selectOption = [
 const Shop = () => {
   const { isMobile, isTablet, isDesktop } = useScreenWidth()
   const theme = useTheme()
+  const tabsSelected = useMatchPath(tabItems)
   const navigate = useNavigate()
 
-  //mounting
-  useEffect(() => {
-    navigate('/shop/products')
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  const handleChangeTab = (_event: React.SyntheticEvent, newValue: number) => {
+    navigate(tabItems[newValue].go!)
+  }
 
   return (
     <Box
@@ -146,7 +147,7 @@ const Shop = () => {
 
           <Grid container display='flex' justifyContent='space-between'>
             <Grid sx={{ marginBottom: '16px' }} item xs={12} md={8}>
-              <Tabs tabItems={tabItems} />
+              <Tabs tabItems={tabsSelected} onTabsChange={handleChangeTab} />
             </Grid>
 
             <Grid container sx={{ marginBottom: '32px' }} display='flex' justifyContent='space-between' xs={12} md={4}>

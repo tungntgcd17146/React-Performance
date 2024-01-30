@@ -16,12 +16,8 @@ const routes: RouteObject[] = [
         children: [
           { index: true, element: <div> Products not implemented yet</div> },
           {
-            path: '/shop/products',
-            element: <div> Products not implemented yet</div>
-          },
-          {
             path: '/shop/*',
-            element: <div> Tab not implemented yet</div>
+            element: <div> Other Tab not implemented yet</div>
           }
         ]
       },
