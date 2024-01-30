@@ -14,7 +14,7 @@ export interface Props {
   index?: number
   onClick?: () => void
   isSelected: boolean
-  go: string
+  go?: string
   isShowText?: boolean
 }
 
@@ -24,8 +24,10 @@ const NavItem = ({ icon, text, index, onClick, isSelected, go, isShowText }: Pro
 
   const handleClickItem = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     e.stopPropagation()
+    if (go) {
+      navigate(go)
+    }
     onClick?.()
-    navigate(go)
   }
 
   return (

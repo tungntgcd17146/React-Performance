@@ -9,12 +9,13 @@ import useScreenWidth from '@/hooks/useScreenWidth'
 import { useNavigate } from 'react-router-dom'
 
 // type
-import { TabItems } from '@/types/tabItems'
+import { NavigateItem } from '@/types/navigateItem'
+import useMatchPath from '@/hooks/useMatchPath'
 
 export interface Props {
   onTabClick?: (event: React.MouseEvent<HTMLElement>) => void
   onTabsChange?: (event: React.SyntheticEvent, newValue: number) => void
-  tabItems: TabItems[]
+  tabItems: NavigateItem[]
 }
 
 const StyledTab = styled(Tab)(({ theme }) => ({
@@ -30,6 +31,8 @@ const Tabs = ({ onTabClick, onTabsChange, tabItems }: Props) => {
   const [value, setValue] = useState(0)
   const { isMobile } = useScreenWidth()
   const navigate = useNavigate()
+
+  const tabsSelected = useMatchPath(tabItems)
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue)
@@ -51,10 +54,12 @@ const Tabs = ({ onTabClick, onTabsChange, tabItems }: Props) => {
           onChange={handleChange}
           aria-label='basic tabs example'
         >
-          {tabItems.map((item, index) => {
-            const { text, go, disabled } = item
+          {tabsSelected.map((item, index) => {
+            const { text, go, isDisabled } = item
 
-            return <StyledTab onClick={(e) => handleClickTabItem(go, e)} label={text} disabled={disabled} key={index} />
+            return (
+              <StyledTab onClick={(e) => handleClickTabItem(go!, e)} label={text} disabled={isDisabled} key={index} />
+            )
           })}
         </MuiTabs>
       </Box>

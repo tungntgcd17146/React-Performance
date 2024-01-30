@@ -1,4 +1,4 @@
-import { memo, useMemo } from 'react'
+import { memo, useEffect, useMemo } from 'react'
 
 //MUI
 import { Drawer as MuiDrawer } from '@mui/material'
@@ -26,6 +26,10 @@ import SwitchMode from '@/components/SwitchMode'
 
 //utils
 import useScreenWidth from '@/hooks/useScreenWidth'
+import useMatchPath from '@/hooks/useMatchPath'
+
+//types
+import { NavigateItem } from '@/types/navigateItem'
 
 export interface Props {
   isOpen: boolean
@@ -35,7 +39,7 @@ export interface Props {
 }
 
 //TODO: make it dynamic prop for this component
-export const listItems = [
+export const listItems: NavigateItem[] = [
   {
     text: 'Home',
     icon: <HomeOutlinedIcon />,
@@ -57,7 +61,7 @@ export const listItems = [
   {
     text: 'Shop',
     icon: <StorefrontOutlinedIcon />,
-    isSelected: true,
+    isSelected: false,
     go: '/shop'
   },
   {
@@ -85,6 +89,8 @@ const Drawer = ({ isOpen, onClose, onOpen, mode }: Props) => {
     [isLargerDrawerOnTablet, isDesktop, isMobile]
   )
 
+  const newSelectedNavItem = useMatchPath(listItems)
+
   const ListItem: React.ReactNode = (
     <Grid container display='flex' direction='column' justifyContent='space-between' height='100%' padding='16px'>
       <Grid item sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
@@ -107,7 +113,7 @@ const Drawer = ({ isOpen, onClose, onOpen, mode }: Props) => {
           <Logo logoImage={mode ? LightLogo : DarkLogo} />
         )}
         <List>
-          {listItems.map((item, index) => {
+          {newSelectedNavItem.map((item, index) => {
             const { text, icon, isSelected, go } = item
 
             return (
@@ -137,7 +143,6 @@ const Drawer = ({ isOpen, onClose, onOpen, mode }: Props) => {
         )}
         <Divider sx={{ color: theme.palette.grey[100], marginBottom: '12px' }} />
         <NavItem
-          go={'/helps'}
           icon={<HelpOutlineIcon />}
           text={'Help & Getting stated'}
           isSelected={false}

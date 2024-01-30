@@ -1,4 +1,4 @@
-import { memo } from 'react'
+import { memo, useEffect } from 'react'
 
 import CoverPhoto from '@/assets/CoverPhoto.jpg'
 import CoverPhotoMobile from '@/assets/CoverPhotoMobile.jpg'
@@ -16,7 +16,7 @@ import FilterAltOutlinedIcon from '@mui/icons-material/FilterAltOutlined'
 import Button from '@/components/Button/'
 
 import Customer1 from '@/assets/customer1.png'
-import { Outlet } from 'react-router-dom'
+import { Outlet, useNavigate } from 'react-router-dom'
 
 //utils
 import useScreenWidth from '@/hooks/useScreenWidth'
@@ -65,6 +65,13 @@ const selectOption = [
 const Shop = () => {
   const { isMobile, isTablet, isDesktop } = useScreenWidth()
   const theme = useTheme()
+  const navigate = useNavigate()
+
+  //mounting
+  useEffect(() => {
+    navigate('/shop/products')
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <Box
