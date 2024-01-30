@@ -12,13 +12,13 @@ export interface Props {
   icon: React.ReactNode
   text: string
   index?: number
-  onClick?: () => void
+  onNavItemClick?: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void
   isSelected: boolean
   go?: string
   isShowText?: boolean
 }
 
-const NavItem = ({ icon, text, index, onClick, isSelected, go, isShowText }: Props) => {
+const NavItem = ({ icon, text, index, onNavItemClick, isSelected, go, isShowText }: Props) => {
   const theme = useTheme()
   const navigate = useNavigate()
 
@@ -27,7 +27,7 @@ const NavItem = ({ icon, text, index, onClick, isSelected, go, isShowText }: Pro
     if (go) {
       navigate(go)
     }
-    onClick?.()
+    onNavItemClick?.(e)
   }
 
   return (

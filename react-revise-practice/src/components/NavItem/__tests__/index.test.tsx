@@ -11,7 +11,7 @@ const defaultProp = {
   index: 1,
   isSelected: false,
   go: '/shop',
-  onClick: vi.fn(),
+  onNavItemClick: vi.fn(),
   isShowText: true
 } as Props
 
@@ -58,8 +58,8 @@ describe('NavItem Test', () => {
   it('call onClick when click NavItem correctly', () => {
     setup()
 
-    fireEvent.click(screen.getByTestId('NavItem_Link'))
+    fireEvent.click(screen.getByTestId('NavItem_ListItemButton'))
 
-    expect(defaultProp.onClick).toBeCalled()
+    expect(defaultProp.onNavItemClick).toBeCalled()
   })
 })

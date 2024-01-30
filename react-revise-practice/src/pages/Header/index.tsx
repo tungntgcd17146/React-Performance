@@ -1,5 +1,4 @@
 import { useState, useCallback } from 'react'
-import { useMode } from '@/contexts/modeContext/useModeContext'
 import useScreenWidth from '@/hooks/useScreenWidth'
 
 //mui
@@ -12,6 +11,12 @@ import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone'
 import AddIcon from '@mui/icons-material/Add'
 import Popper from '@mui/material/Popper'
 import Hidden from '@mui/material/Hidden'
+import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined'
+import DiamondOutlinedIcon from '@mui/icons-material/DiamondOutlined'
+import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined'
+import StorefrontOutlinedIcon from '@mui/icons-material/StorefrontOutlined'
+import DonutSmallOutlinedIcon from '@mui/icons-material/DonutSmallOutlined'
+import RecommendOutlinedIcon from '@mui/icons-material/RecommendOutlined'
 
 //components
 import IconButton from '@/components/IconButton'
@@ -22,13 +27,58 @@ import { themes } from '@/themes'
 import Button from '@/components/Button'
 import SearchInput from '@/components/SearchInput'
 
+//types
+import { NavigateItem } from '@/types/navigateItem'
+import useMatchPath from '@/hooks/useMatchPath'
+
+//TODO: make it dynamic prop for this component
+export const listItems: NavigateItem[] = [
+  {
+    text: 'Home',
+    icon: <HomeOutlinedIcon />,
+    isSelected: false,
+    go: '/home'
+  },
+  {
+    text: 'Products',
+    icon: <DiamondOutlinedIcon />,
+    isSelected: false,
+    go: '/products'
+  },
+  {
+    text: 'Customers',
+    icon: <AccountCircleOutlinedIcon />,
+    isSelected: false,
+    go: '/customers'
+  },
+  {
+    text: 'Shop',
+    icon: <StorefrontOutlinedIcon />,
+    isSelected: false,
+    go: '/shop'
+  },
+  {
+    text: 'Income',
+    icon: <DonutSmallOutlinedIcon />,
+    isSelected: false,
+    go: '/income'
+  },
+  {
+    text: 'Promote',
+    icon: <RecommendOutlinedIcon />,
+    isSelected: false,
+    go: '/promote'
+  }
+]
+
 const Header = () => {
   const [isOpenDrawer, setIsOpenDrawer] = useState<boolean>(false)
   const [searchIconAnchorEl, setSearchIconAnchorEl] = useState<null | HTMLElement>(null)
 
-  const { isDarkMode } = useMode()
   const { isMobile, isTablet, isDesktop } = useScreenWidth()
   const theme = useTheme()
+
+  const newSelectedNavItem = useMatchPath(listItems)
 
   const handleClickMobileSearchIcon = useCallback(
     (event: React.MouseEvent<HTMLElement>) => {
@@ -65,7 +115,12 @@ const Header = () => {
       </Hidden>
 
       {isMobile && <IconButton children={<DragHandleIcon />} onClick={handleOpenDrawer} />}
-      <Drawer isOpen={isOpenDrawer} onOpen={handleOpenDrawer} onClose={handleCloseDrawer} mode={isDarkMode} />
+      <Drawer
+        isOpen={isOpenDrawer}
+        onOpen={handleOpenDrawer}
+        onClose={handleCloseDrawer}
+        listItems={newSelectedNavItem}
+      />
 
       <div className='flex flex-row gap-[24px]'>
         {/* search input on mobile */}

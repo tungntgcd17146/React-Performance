@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
 import Drawer from '.'
+import { listItems } from '@/pages/Header'
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
@@ -22,8 +23,7 @@ export const DrawerBase: Story = {
   args: {
     isOpen: true,
     onClose: () => void 0,
-    onChangeMode: () => void 0,
-    mode: true,
-    onOpen: () => void 0
+    onOpen: () => void 0,
+    listItems: listItems
   }
 }

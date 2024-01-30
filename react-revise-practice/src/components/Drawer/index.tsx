@@ -1,4 +1,4 @@
-import { memo, useEffect, useMemo } from 'react'
+import { memo, useMemo } from 'react'
 
 //MUI
 import { Drawer as MuiDrawer } from '@mui/material'
@@ -7,12 +7,6 @@ import IconButton from '@mui/material/IconButton'
 import Divider from '@mui/material/Divider'
 import List from '@mui/material/List'
 import CloseIcon from '@mui/icons-material/Close'
-import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined'
-import DiamondOutlinedIcon from '@mui/icons-material/DiamondOutlined'
-import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined'
-import StorefrontOutlinedIcon from '@mui/icons-material/StorefrontOutlined'
-import DonutSmallOutlinedIcon from '@mui/icons-material/DonutSmallOutlined'
-import RecommendOutlinedIcon from '@mui/icons-material/RecommendOutlined'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import { useTheme } from '@mui/material/styles'
@@ -26,61 +20,23 @@ import SwitchMode from '@/components/SwitchMode'
 
 //utils
 import useScreenWidth from '@/hooks/useScreenWidth'
-import useMatchPath from '@/hooks/useMatchPath'
 
 //types
 import { NavigateItem } from '@/types/navigateItem'
+import { useMode } from '@/contexts/modeContext/useModeContext'
 
 export interface Props {
   isOpen: boolean
   onClose: () => void
-  mode: boolean
   onOpen: () => void
+  listItems: NavigateItem[]
+  onNavItemClick?: (e: React.MouseEvent<HTMLElement>) => void
 }
 
-//TODO: make it dynamic prop for this component
-export const listItems: NavigateItem[] = [
-  {
-    text: 'Home',
-    icon: <HomeOutlinedIcon />,
-    isSelected: false,
-    go: '/home'
-  },
-  {
-    text: 'Products',
-    icon: <DiamondOutlinedIcon />,
-    isSelected: false,
-    go: '/products'
-  },
-  {
-    text: 'Customers',
-    icon: <AccountCircleOutlinedIcon />,
-    isSelected: false,
-    go: '/customers'
-  },
-  {
-    text: 'Shop',
-    icon: <StorefrontOutlinedIcon />,
-    isSelected: false,
-    go: '/shop'
-  },
-  {
-    text: 'Income',
-    icon: <DonutSmallOutlinedIcon />,
-    isSelected: false,
-    go: '/income'
-  },
-  {
-    text: 'Promote',
-    icon: <RecommendOutlinedIcon />,
-    isSelected: false,
-    go: '/promote'
-  }
-]
-
-const Drawer = ({ isOpen, onClose, onOpen, mode }: Props) => {
+const Drawer = ({ isOpen, onClose, onOpen, onNavItemClick, listItems }: Props) => {
   const { isMobile, isDesktop, isTablet } = useScreenWidth()
   const theme = useTheme()
+  const { isDarkMode } = useMode()
 
   const isLargerDrawerOnTablet = useMemo(() => isTablet && isOpen, [isTablet, isOpen])
 
@@ -89,7 +45,7 @@ const Drawer = ({ isOpen, onClose, onOpen, mode }: Props) => {
     [isLargerDrawerOnTablet, isDesktop, isMobile]
   )
 
-  const newSelectedNavItem = useMatchPath(listItems)
+  const logo = isDarkMode ? LightLogo : DarkLogo
 
   const ListItem: React.ReactNode = (
     <Grid container display='flex' direction='column' justifyContent='space-between' height='100%' padding='16px'>
@@ -107,23 +63,24 @@ const Drawer = ({ isOpen, onClose, onOpen, mode }: Props) => {
               <IconButton data-testid='Drawer_CloseIcon' children={<CloseIcon />} onClick={onClose} size='large' />
             )}
 
-            <Logo logoImage={mode ? LightLogo : DarkLogo} />
+            <Logo logoImage={logo} />
           </Grid>
         ) : (
-          <Logo logoImage={mode ? LightLogo : DarkLogo} />
+          <Logo logoImage={logo} />
         )}
         <List>
-          {newSelectedNavItem.map((item, index) => {
+          {listItems.map((item, index) => {
             const { text, icon, isSelected, go } = item
 
             return (
               <NavItem
+                onNavItemClick={onNavItemClick}
                 go={go}
                 key={index}
                 icon={icon}
                 text={text}
                 index={index}
-                isSelected={isSelected}
+                isSelected={isSelected!}
                 isShowText={shouldShowFullContentOnDrawer}
               />
             )
