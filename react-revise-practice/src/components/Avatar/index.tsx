@@ -10,7 +10,7 @@ export interface Props extends AvatarProps {
   avtBackground?: string
   BadgeIcon?: React.ReactNode
   onClick?: () => void
-  sx: React.CSSProperties
+  sx?: React.CSSProperties
 }
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
