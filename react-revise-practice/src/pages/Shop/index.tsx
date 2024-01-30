@@ -31,7 +31,7 @@ import useMatchPath from '@/hooks/useMatchPath'
 import { NavigateItem } from '@/types/navigateItem'
 
 //TODO: Constant for all options
-const tabItems: NavigateItem[] = [
+export const tabItems: NavigateItem[] = [
   {
     text: 'Products',
     go: '/shop',
@@ -49,7 +49,7 @@ const tabItems: NavigateItem[] = [
   }
 ]
 
-const selectOption = [
+export const selectOption = [
   {
     id: '1',
     name: 'Most recent'

@@ -55,7 +55,15 @@ const Tabs = ({ onTabClick, onTabsChange, tabItems }: Props) => {
           {tabItems.map((item, index) => {
             const { text, isDisabled } = item
 
-            return <StyledTab onClick={(e) => handleClickTabItem(e)} label={text} disabled={isDisabled} key={index} />
+            return (
+              <StyledTab
+                data-testid='Tabs_StyledTab'
+                onClick={(e) => handleClickTabItem(e)}
+                label={text}
+                disabled={isDisabled}
+                key={index}
+              />
+            )
           })}
         </MuiTabs>
       </Box>
