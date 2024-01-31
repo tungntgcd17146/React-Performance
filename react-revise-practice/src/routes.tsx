@@ -1,9 +1,9 @@
-import NotFoundPage from '@/components/PageNotFound/index.tsx'
 import App from './App.tsx'
-import Shop from '@/pages/Shop/index.tsx'
-
 import { createBrowserRouter, RouteObject } from 'react-router-dom'
-import Products from '@/pages/Shop/Products.tsx'
+
+import Shop from '@/pages/Shop/index.tsx'
+import Products from '@/pages/Shop/Products'
+import PageNotFound from '@/components/PageNotFound'
 
 const routes: RouteObject[] = [
   {
@@ -31,7 +31,7 @@ const routes: RouteObject[] = [
       {
         path: '/*',
         element: (
-          <NotFoundPage
+          <PageNotFound
             headerContent='Oops'
             body='This page does not exist.'
             footer='This feature will be implemented in the future.'
