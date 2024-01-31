@@ -1,7 +1,13 @@
-import { Typography, Grid } from '@mui/material'
-import { Link } from 'react-router-dom'
 import { themes } from '@/themes'
+
+//component
 import Button from '@/components/Button'
+
+//mui
+import Typography from '@mui/material/Typography'
+import Grid from '@mui/material/Grid'
+import Link from '@mui/material/Link'
+
 import useScreenWidth from '@/hooks/useScreenWidth'
 
 export interface Props {
