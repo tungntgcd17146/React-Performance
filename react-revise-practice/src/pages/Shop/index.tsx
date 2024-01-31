@@ -104,7 +104,7 @@ const Shop = () => {
             backgroundColor: theme.palette.background.paper,
             borderRadius: '8px',
             position: 'relative',
-            marginTop: isMobile ? '-200px' : '-64px'
+            marginTop: isMobile ? '-200px' : '-154px'
           }}
         >
           {/* information */}

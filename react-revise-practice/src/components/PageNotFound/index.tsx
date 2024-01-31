@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import { themes } from '@/themes'
 
 //component
@@ -65,4 +66,4 @@ const NotFoundPage = ({
   )
 }
 
-export default NotFoundPage
+export default memo(NotFoundPage)
