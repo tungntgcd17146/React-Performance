@@ -17,9 +17,9 @@ const Rating = ({ ratingPoint = 0, counter = 0 }: Props) => {
   return (
     <Box sx={{ display: 'flex', alignItems: 'center' }}>
       {counter > 0 ? (
-        <StarOutlinedIcon sx={{ color: themes.colors.yellow[700], marginRight: '8px' }} />
+        <StarOutlinedIcon data-testid='Rating_StarIcon' sx={{ color: themes.colors.yellow[700], marginRight: '8px' }} />
       ) : (
-        <StarBorderPurple500OutlinedIcon />
+        <StarBorderPurple500OutlinedIcon data-testid='Rating_StarIcon_No_Rating' />
       )}
       {!!counter && (
         <Typography variant='body1' sx={{ color: theme.palette.text.secondary }}>
