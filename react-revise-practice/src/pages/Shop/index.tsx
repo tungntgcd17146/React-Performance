@@ -10,11 +10,10 @@ import AddIcon from '@mui/icons-material/Add'
 import FacebookIcon from '@mui/icons-material/Facebook'
 import InstagramIcon from '@mui/icons-material/Instagram'
 import Divider from '@mui/material/Divider'
-import FilterAltOutlinedIcon from '@mui/icons-material/FilterAltOutlined'
 
 //components
 import Button from '@/components/Button/'
-
+import ProductFilter from '@/components/ProductFilter/'
 import Customer1 from '@/assets/customer1.png'
 import { Outlet, useNavigate } from 'react-router-dom'
 
@@ -158,19 +157,7 @@ const Shop = () => {
               </Grid>
 
               <Grid display='flex' justifyContent='center' alignItems={'center'} item xs={2}>
-                <IconButton
-                  sx={{
-                    marginLeft: '16px',
-                    boxShadow: `0 0 0 2px ${theme.palette.text.primary} inset`,
-                    borderRadius: '8px',
-                    ':hover': {
-                      backgroundColor: theme.palette.info.main,
-                      color: theme.palette.primary.main,
-                      borderColor: theme.palette.text.primary
-                    }
-                  }}
-                  children={<FilterAltOutlinedIcon />}
-                />
+                <ProductFilter />
               </Grid>
             </Grid>
           </Grid>

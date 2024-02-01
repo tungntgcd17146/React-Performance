@@ -7,6 +7,8 @@ import FormControl from '@mui/material/FormControl'
 import { Select as MuiSelect, SelectChangeEvent } from '@mui/material/'
 import { useTheme } from '@mui/material/styles'
 
+import IconButton from '@/components/IconButton'
+
 interface SelectOption {
   id: string
   name: string | number
@@ -14,9 +16,11 @@ interface SelectOption {
 export interface Props {
   options: SelectOption[]
   onChange?: (event: SelectChangeEvent) => void
+  sx?: React.CSSProperties
+  startIcon?: React.ReactNode
 }
 
-const Select = ({ options = [], onChange }: Props) => {
+const Select = ({ options = [], startIcon, sx, onChange }: Props) => {
   const theme = useTheme()
   const handleChange = (event: SelectChangeEvent) => {
     onChange?.(event)
@@ -24,12 +28,14 @@ const Select = ({ options = [], onChange }: Props) => {
 
   return (
     <Box sx={{ minWidth: 120 }}>
-      <FormControl size='small' fullWidth sx={{ m: 1, minWidth: 100 }}>
+      <FormControl size='small' fullWidth sx={{ m: 1, minHeight: 40, minWidth: 100, position: 'relative' }}>
+        {!!startIcon && <IconButton children={startIcon} sx={{ position: 'absolute', left: '10px' }} />}
         <MuiSelect
           sx={{
             '& .MuiOutlinedInput-notchedOutline': {
               borderRadius: '12px'
-            }
+            },
+            ...sx
           }}
           MenuProps={{
             PaperProps: {
@@ -42,7 +48,7 @@ const Select = ({ options = [], onChange }: Props) => {
           defaultValue={options[0].id}
           onChange={handleChange}
           displayEmpty
-          inputProps={{ 'aria-label': 'Without label' }}
+          inputProps={{ 'aria-label': 'Without label', sx: { marginLeft: startIcon ? '50px' : 0 } }}
         >
           {options?.map((item) => {
             const { id, name } = item
