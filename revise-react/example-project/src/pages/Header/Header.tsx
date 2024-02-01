@@ -3,56 +3,27 @@ import SearchIcon from '@mui/icons-material/Search'
 import CommonIcon from '~/components/Icon/Icon'
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline'
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone'
-
-import Drawer from '@mui/material/Drawer'
-import Button from '~/components/Button/Button'
-import { Box, Divider, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material'
-
-import InboxIcon from '@mui/icons-material/MoveToInbox'
-import MailIcon from '@mui/icons-material/Mail'
 import { useState } from 'react'
 
-const Header = () => {
+import Button from '~/components/Button/Button'
+import Drawer from '~/components/Drawer/Drawer'
+import { useMediaQuery } from '@mui/material'
+
+const Header = ({ onChangeMode, mode }) => {
   const [isOpenDrawer, setIsOpenDrawer] = useState(false)
 
   const toggleDrawer = () => {
     setIsOpenDrawer(!isOpenDrawer)
   }
 
-  const list = () => (
-    <Box role='presentation'>
-      <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-    </Box>
-  )
+  // const breakPoint = useMediaQuery('(max-width: 640px)')
 
   return (
     <div className='bg-white-600-500 p-[24px] h-[96px] flex flex-row justify-between content-center'>
       <Button children={<CommonIcon Icon={DragHandleIcon} />} onClick={toggleDrawer} />
-      <Drawer PaperProps={{ sx: { width: '100%' } }} anchor={'left'} open={isOpenDrawer} onClose={toggleDrawer}>
-        {list()}
-      </Drawer>
+      <Drawer isOpen={isOpenDrawer} onClose={toggleDrawer} onChangeMode={onChangeMode} mode={mode} />
 
-      <div className='flex flex-row'>
+      <div className='flex flex-row gap-[24px]'>
         <CommonIcon Icon={SearchIcon} />
         <CommonIcon Icon={ChatBubbleOutlineIcon} />
         <CommonIcon Icon={NotificationsNoneIcon} />
