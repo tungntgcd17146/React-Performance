@@ -4,6 +4,8 @@ import { createBrowserRouter, RouteObject } from 'react-router-dom'
 import Shop from '@/pages/Shop/index.tsx'
 import Products from '@/pages/Shop/Products'
 import PageNotFound from '@/components/PageNotFound'
+import Followers from '@/pages/Shop/Followers'
+import Following from '@/pages/Shop/Following'
 
 const routes: RouteObject[] = [
   {
@@ -17,6 +19,14 @@ const routes: RouteObject[] = [
         path: '/shop',
         children: [
           { index: true, element: <Products /> },
+          {
+            path: '/shop/followers',
+            element: <Followers />
+          },
+          {
+            path: '/shop/following',
+            element: <Following />
+          },
           {
             path: '/shop/*',
             element: <div> Other Tab not implemented yet</div>

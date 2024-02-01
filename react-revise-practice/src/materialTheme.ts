@@ -292,6 +292,13 @@ export const defaultTheme = (isDarkMode: boolean) =>
             }
           }
         }
+      },
+      MuiTypography: {
+        styleOverrides: {
+          root: {
+            textTransform: 'unset'
+          }
+        }
       }
     }
   })

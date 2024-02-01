@@ -74,6 +74,8 @@ const Shop = () => {
     navigate(tabItems[newValue].go!)
   }
 
+  const commonSocialIconStyle = { marginRight: '24px' }
+
   return (
     <Box
       component='main'
@@ -98,7 +100,7 @@ const Shop = () => {
           display='flex'
           justifyContent='center'
           sx={{
-            padding: '24px 16px',
+            padding: '24px',
             height: '100%',
             width: '100%',
             backgroundColor: theme.palette.background.paper,
@@ -133,9 +135,9 @@ const Shop = () => {
           {/* social contact */}
           <Grid item xs={12} sm={12} lg={4} display='flex' flexDirection='row' justifyContent='space-between'>
             <Grid display='flex' flexDirection='row'>
-              <IconButton sx={{ marginRight: '24px' }} children={<TwitterIcon />} />
-              <IconButton sx={{ marginRight: '24px' }} children={<FacebookIcon />} />
-              <IconButton sx={{ marginRight: '24px' }} children={<InstagramIcon />} />
+              <IconButton sx={commonSocialIconStyle} children={<TwitterIcon />} />
+              <IconButton sx={commonSocialIconStyle} children={<FacebookIcon />} />
+              <IconButton sx={commonSocialIconStyle} children={<InstagramIcon />} />
             </Grid>
 
             <Button children='Follow' color='primary' sx={{ width: '120px' }} />
