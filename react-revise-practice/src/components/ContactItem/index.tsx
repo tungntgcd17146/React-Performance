@@ -42,7 +42,7 @@ export interface UserContact {
   contactStatus: 'following' | 'follower'
 }
 
-const fakeData: UserContact = {
+export const fakeData: UserContact = {
   userName: 'Rosetta Gottlieb',
   productNumber: 12,
   followerNumber: 23,
@@ -60,13 +60,12 @@ const ContactItem = ({ user = fakeData, onChangeFollowButtonStatus, onClickMessa
   const theme = useTheme()
 
   useEffect(() => {
-    if (!user) return
-
     if (user.contactStatus === 'following') {
       setFollowButtonStatus('Unfollow')
     } else {
       setFollowButtonStatus('Follow')
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const { isMobile } = useScreenWidth()
@@ -134,13 +133,20 @@ const ContactItem = ({ user = fakeData, onChangeFollowButtonStatus, onClickMessa
             {/* action button */}
             <Grid sx={{ marginTop: '16px' }}>
               <Button
+                data-testid='ContactItem_FollowButton'
                 sx={{ marginRight: '8px' }}
                 children={followButtonStatus}
                 size='small'
                 color={followButtonStatus === 'Following' ? 'success' : 'inherit'}
                 onClick={handleClickFollow}
               />
-              <Button children='Message' size='small' color='primary' onClick={handleClickMessageButton} />
+              <Button
+                data-testid='ContactItem_MessageButton'
+                children='Message'
+                size='small'
+                color='primary'
+                onClick={handleClickMessageButton}
+              />
             </Grid>
           </Grid>
         </Grid>
