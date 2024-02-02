@@ -31,7 +31,8 @@ export default defineConfig({
         '**/*.config.@(js|jsx|ts|tsx)',
         '**/constants/**',
         '**/types/**',
-        '**/coverage/**'
+        '**/coverage/**',
+        '**/vite-env.d.ts'
       ]
     }
   }

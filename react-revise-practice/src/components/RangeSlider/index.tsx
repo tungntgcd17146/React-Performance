@@ -10,7 +10,7 @@ export interface Props extends SliderProps {
   defaultValue?: number[]
   onChangeValue?: (value: number[]) => void
 }
-const valuetext = (value: number) => {
+export const valuetext = (value: number) => {
   return `$${value}`
 }
 
@@ -34,6 +34,7 @@ const RangeSlider = ({
 
   return (
     <Slider
+      data-testid='RangeSlider'
       sx={{
         '& .MuiSlider-thumb': {
           border: `2px solid ${themes.colors.blue[600]}`,

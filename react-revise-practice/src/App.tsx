@@ -10,6 +10,7 @@ import Grid from '@mui/material/Grid'
 import CssBaseline from '@mui/material/CssBaseline/CssBaseline'
 import StyledEngineProvider from '@mui/styled-engine/StyledEngineProvider'
 import { useEffect } from 'react'
+import ErrorBoundary from '@/components/ErrorBoundary'
 
 function App() {
   const { isDarkMode } = useMode()
@@ -25,11 +26,13 @@ function App() {
     <StyledEngineProvider injectFirst>
       <ThemeProvider theme={defaultTheme(isDarkMode)}>
         <CssBaseline />
-        <Grid sx={{ display: 'flex', flexDirection: 'column' }}>
-          <Header />
+        <ErrorBoundary>
+          <Grid sx={{ display: 'flex', flexDirection: 'column' }}>
+            <Header />
 
-          <Outlet />
-        </Grid>
+            <Outlet />
+          </Grid>
+        </ErrorBoundary>
       </ThemeProvider>
     </StyledEngineProvider>
   )
