@@ -1,4 +1,4 @@
-import { memo, useState } from 'react'
+import { memo, useEffect, useState } from 'react'
 
 //mui
 import { Tabs as MuiTabs, styled } from '@mui/material'
@@ -9,11 +9,13 @@ import useScreenWidth from '@/hooks/useScreenWidth'
 
 // type
 import { NavigateItem } from '@/types/navigateItem'
+import { useNavigate } from 'react-router-dom'
 
 export interface Props {
   onTabClick?: (event: React.MouseEvent<HTMLElement>) => void
   onTabsChange?: (event: React.SyntheticEvent, newValue: number) => void
   tabItems: NavigateItem[]
+  sx?: React.CSSProperties
 }
 
 const StyledTab = styled(Tab)(({ theme }) => ({
@@ -29,9 +31,17 @@ const StyledTab = styled(Tab)(({ theme }) => ({
   }
 }))
 
-const Tabs = ({ onTabClick, onTabsChange, tabItems }: Props) => {
+const Tabs = ({ onTabClick, onTabsChange, tabItems, sx }: Props) => {
   const [value, setValue] = useState(0)
   const { isMobile } = useScreenWidth()
+
+  const navigate = useNavigate()
+
+  //selected first item tab by default
+  useEffect(() => {
+    navigate(tabItems[0].go!)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue)
@@ -43,7 +53,7 @@ const Tabs = ({ onTabClick, onTabsChange, tabItems }: Props) => {
   }
 
   return (
-    <Box sx={{ width: '100%' }}>
+    <Box sx={{ width: '100%', ...sx }}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider', width: '100%' }}>
         <MuiTabs
           TabIndicatorProps={{ sx: { height: '0px' } }}

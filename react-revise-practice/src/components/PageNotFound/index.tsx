@@ -16,12 +16,14 @@ export interface Props {
   body?: string
   footer?: string
   isError?: boolean
+  sx?: React.CSSProperties
 }
 const NotFoundPage = ({
   headerContent = '404',
   body = 'Oops! Page not found.',
   footer = ' The page you are looking for might be under construction or does not exist.',
-  isError = false
+  isError = false,
+  sx
 }: Props) => {
   const { isTablet, isDesktop } = useScreenWidth()
 
@@ -33,7 +35,8 @@ const NotFoundPage = ({
       sx={{
         textAlign: 'center',
         marginTop: '300px',
-        marginLeft: !isError && isTablet ? '80px' : !isError && isDesktop ? '330px' : '0px'
+        marginLeft: !isError && isTablet ? '80px' : !isError && isDesktop ? '330px' : '0px',
+        ...sx
       }}
     >
       <Typography

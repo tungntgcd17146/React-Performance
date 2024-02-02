@@ -33,7 +33,7 @@ import { NavigateItem } from '@/types/navigateItem'
 export const tabItems: NavigateItem[] = [
   {
     text: 'Products',
-    go: '/shop',
+    go: '/shop/products',
     isDisabled: false
   },
   {

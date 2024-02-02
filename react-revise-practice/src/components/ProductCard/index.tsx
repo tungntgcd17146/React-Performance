@@ -23,7 +23,7 @@ import { Product } from '@/pages/Shop/Products'
 export interface Props {
   onEditCard?: (e: React.MouseEvent<HTMLElement>) => void
   onDeleteCard?: (e: React.MouseEvent<HTMLElement>) => void
-  onViewCard?: (e: React.MouseEvent<HTMLElement>) => void
+  onViewCard?: (e: React.MouseEvent<HTMLElement>, id: number) => void
   product: Product
 }
 
@@ -56,9 +56,9 @@ const ProductCard = ({ onEditCard, onDeleteCard, onViewCard, product }: Props) =
   )
 
   const handleViewCard = useCallback(
-    (e: React.MouseEvent<HTMLElement>) => {
+    (e: React.MouseEvent<HTMLElement>, id: number) => {
       e.stopPropagation()
-      onViewCard?.(e)
+      onViewCard?.(e, id)
     },
     [onViewCard]
   )
@@ -127,7 +127,7 @@ const ProductCard = ({ onEditCard, onDeleteCard, onViewCard, product }: Props) =
               data-testid='ProductCard_IconButton_view'
               children={<ArrowForwardOutlinedIcon />}
               sx={imgIconCommonStyle}
-              onClick={handleViewCard}
+              onClick={(e) => handleViewCard(e, product.id)}
             />
           </Box>
         </Box>
