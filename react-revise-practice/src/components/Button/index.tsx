@@ -10,7 +10,7 @@ export interface Props extends ButtonProps {
   disabled?: boolean
   color: 'inherit' | 'primary' | 'success'
 
-  onClick?: () => void
+  onClick?: (e: React.MouseEvent<HTMLElement>) => void
 }
 
 const Button = ({

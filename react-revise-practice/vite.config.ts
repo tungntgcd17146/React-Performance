@@ -29,7 +29,9 @@ export default defineConfig({
         '**/.storybook/**',
         '**/.eslintrc.cjs',
         '**/*.config.@(js|jsx|ts|tsx)',
-        '**/constants/**'
+        '**/constants/**',
+        '**/types/**',
+        '**/coverage/**'
       ]
     }
   }

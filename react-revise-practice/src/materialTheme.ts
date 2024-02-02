@@ -3,7 +3,6 @@ import createTheme from '@mui/material/styles/createTheme'
 
 export const defaultTheme = (isDarkMode: boolean) =>
   createTheme({
-    direction: 'rtl',
     /**
      * value         |0px     640px    768px   1024px   1260px
      * key           |xs      sm       md       lg       xl
@@ -193,13 +192,6 @@ export const defaultTheme = (isDarkMode: boolean) =>
           }
         }
       },
-      MuiTypography: {
-        styleOverrides: {
-          root: {
-            fontSize: 'unset'
-          }
-        }
-      },
       MuiButtonBase: {
         styleOverrides: {
           root: {
@@ -296,7 +288,24 @@ export const defaultTheme = (isDarkMode: boolean) =>
             borderRadius: 'unset',
             '&.MuiSelect': {
               borderRadius: 'unset'
-            }
+            },
+            minHeight: '40px'
+          }
+        }
+      },
+      MuiTypography: {
+        styleOverrides: {
+          root: {
+            textTransform: 'unset'
+          }
+        }
+      },
+      MuiPopover: {
+        styleOverrides: {
+          paper: {
+            maxHeight: 'unset',
+            maxWidth: 'unset',
+            backgroundImage: 'unset'
           }
         }
       }

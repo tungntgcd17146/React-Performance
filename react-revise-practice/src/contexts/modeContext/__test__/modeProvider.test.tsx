@@ -5,10 +5,14 @@ import { useMode } from '@/contexts/modeContext/useModeContext'
 const TestComponent = () => {
   const { isDarkMode, toggleMode } = useMode()
 
+  const handleToggleMode = () => {
+    toggleMode(!isDarkMode)
+  }
+
   return (
     <div>
       <p>Dark Mode: {isDarkMode ? 'Enabled' : 'Disabled'}</p>
-      <button onClick={toggleMode}>Toggle Dark Mode</button>
+      <button onClick={handleToggleMode}>Toggle Dark Mode</button>
     </div>
   )
 }

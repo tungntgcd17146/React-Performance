@@ -1,9 +1,8 @@
-import { fireEvent, render, screen } from '@/utils/testUtils'
+import { render, screen } from '@/utils/testUtils'
 import { describe, expect, it, vi } from 'vitest'
 import SwitchMode, { Props } from '..'
 
 import * as useScreenWidth from '@/hooks/useScreenWidth'
-import * as useMode from '@/hooks/useScreenWidth'
 import { ModeProvider } from '@/contexts/modeContext/modeProvider'
 
 const defaultProp = {

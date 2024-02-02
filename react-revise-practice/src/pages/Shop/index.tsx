@@ -10,11 +10,10 @@ import AddIcon from '@mui/icons-material/Add'
 import FacebookIcon from '@mui/icons-material/Facebook'
 import InstagramIcon from '@mui/icons-material/Instagram'
 import Divider from '@mui/material/Divider'
-import FilterAltOutlinedIcon from '@mui/icons-material/FilterAltOutlined'
 
 //components
 import Button from '@/components/Button/'
-
+import ProductFilter from '@/components/ProductFilter/'
 import Customer1 from '@/assets/customer1.png'
 import { Outlet, useNavigate } from 'react-router-dom'
 
@@ -74,6 +73,8 @@ const Shop = () => {
     navigate(tabItems[newValue].go!)
   }
 
+  const commonSocialIconStyle = { marginRight: '24px' }
+
   return (
     <Box
       component='main'
@@ -98,13 +99,13 @@ const Shop = () => {
           display='flex'
           justifyContent='center'
           sx={{
-            padding: '24px 16px',
+            padding: '24px',
             height: '100%',
             width: '100%',
             backgroundColor: theme.palette.background.paper,
             borderRadius: '8px',
             position: 'relative',
-            marginTop: isMobile ? '-200px' : '-64px'
+            marginTop: isMobile ? '-200px' : '-154px'
           }}
         >
           {/* information */}
@@ -133,9 +134,9 @@ const Shop = () => {
           {/* social contact */}
           <Grid item xs={12} sm={12} lg={4} display='flex' flexDirection='row' justifyContent='space-between'>
             <Grid display='flex' flexDirection='row'>
-              <IconButton sx={{ marginRight: '24px' }} children={<TwitterIcon />} />
-              <IconButton sx={{ marginRight: '24px' }} children={<FacebookIcon />} />
-              <IconButton sx={{ marginRight: '24px' }} children={<InstagramIcon />} />
+              <IconButton sx={commonSocialIconStyle} children={<TwitterIcon />} />
+              <IconButton sx={commonSocialIconStyle} children={<FacebookIcon />} />
+              <IconButton sx={commonSocialIconStyle} children={<InstagramIcon />} />
             </Grid>
 
             <Button children='Follow' color='primary' sx={{ width: '120px' }} />
@@ -156,19 +157,7 @@ const Shop = () => {
               </Grid>
 
               <Grid display='flex' justifyContent='center' alignItems={'center'} item xs={2}>
-                <IconButton
-                  sx={{
-                    marginLeft: '16px',
-                    boxShadow: `0 0 0 2px ${theme.palette.text.primary} inset`,
-                    borderRadius: '8px',
-                    ':hover': {
-                      backgroundColor: theme.palette.info.main,
-                      color: theme.palette.primary.main,
-                      borderColor: theme.palette.text.primary
-                    }
-                  }}
-                  children={<FilterAltOutlinedIcon />}
-                />
+                <ProductFilter />
               </Grid>
             </Grid>
           </Grid>

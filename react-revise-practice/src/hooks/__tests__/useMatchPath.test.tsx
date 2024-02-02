@@ -58,7 +58,5 @@ it('returns correct values', async () => {
   vi.mocked(useMatches).mockReturnValue([{ pathname: '/shop' }] as any)
   setup()
 
-  screen.debug()
-
   expect(screen.getByTestId('isSelected').textContent).toEqual('Shop')
 })
