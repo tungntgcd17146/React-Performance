@@ -43,6 +43,7 @@ const ProductFilter = () => {
   return (
     <div>
       <IconButton
+        data-testid='ProductFilter_IconButton'
         onClick={handleClick}
         sx={{
           marginLeft: '16px',
@@ -58,6 +59,7 @@ const ProductFilter = () => {
       />
       <Backdrop sx={{ color: '#fff', zIndex: theme.zIndex.drawer + 1 }} open={open} onClick={handleClose} />
       <Popover
+        data-testid='ProductFilter_Popover'
         slotProps={{
           paper: {
             sx: isMobile
@@ -109,7 +111,7 @@ const ProductFilter = () => {
                 <IconButton
                   children={<CloseOutlinedIcon />}
                   onClick={handleClose}
-                  // size='small'
+                  data-testid='ProductFilter_CloseIconButton'
                   sx={{
                     borderRadius: '50%',
                     backgroundColor: theme.palette.grey[100]
