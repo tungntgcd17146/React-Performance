@@ -1,5 +1,6 @@
-import { memo } from 'react'
+import { memo, useCallback } from 'react'
 import { themes } from '@/themes'
+import { NavigateFunction, useNavigate } from 'react-router-dom'
 
 //component
 import Button from '@/components/Button'
@@ -7,9 +8,9 @@ import Button from '@/components/Button'
 //mui
 import Typography from '@mui/material/Typography'
 import Grid from '@mui/material/Grid'
-import Link from '@mui/material/Link'
 
 import useScreenWidth from '@/hooks/useScreenWidth'
+import { ROUTES } from '@/constants/routes'
 
 export interface Props {
   headerContent?: string
@@ -26,6 +27,11 @@ const NotFoundPage = ({
   sx
 }: Props) => {
   const { isTablet, isDesktop } = useScreenWidth()
+  const navigate: NavigateFunction = useNavigate()
+
+  const handleClick = useCallback(() => {
+    navigate(ROUTES.HOME)
+  }, [navigate])
 
   return (
     <Grid
@@ -62,7 +68,7 @@ const NotFoundPage = ({
       <Typography variant='body1' color='textSecondary' paragraph>
         {footer}
       </Typography>
-      <Button component={Link} href='/shop' variant='outlined' color='inherit'>
+      <Button data-testid='NotFoundPage_Button' onClick={handleClick} variant='outlined' color='inherit'>
         Go to Home
       </Button>
     </Grid>

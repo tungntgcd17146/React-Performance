@@ -1,4 +1,5 @@
 import { memo, useCallback, useEffect, useState } from 'react'
+import { themes } from '@/themes'
 
 //mui
 import Typography from '@mui/material/Typography'
@@ -17,7 +18,7 @@ import Product3 from '@/assets/Product3.jpg'
 import Avatar from '@/components/Avatar'
 import Button from '@/components/Button'
 
-import { themes } from '@/themes'
+//utils
 import useScreenWidth from '@/hooks/useScreenWidth'
 
 const imageData = [
@@ -90,7 +91,7 @@ const ContactItem = ({ user = fakeData, onChangeFollowButtonStatus, onClickMessa
   return (
     <Grid container display='flex' flexDirection='column'>
       <Grid display='flex' flexDirection='row' container>
-        <Grid display='flex' flexDirection='row' lg={6}>
+        <Grid item display='flex' flexDirection='row' lg={6}>
           {/* avatar */}
           <Avatar avtBackground={themes.colors.yellow[500]} src={User1} alt={User1} size='medium' />
 
@@ -151,7 +152,7 @@ const ContactItem = ({ user = fakeData, onChangeFollowButtonStatus, onClickMessa
           </Grid>
         </Grid>
 
-        <Grid lg={6} display='flex' justifyContent='flex-end'>
+        <Grid item lg={6} display='flex' justifyContent='flex-end'>
           {/* group img */}
           <Hidden lgDown>
             <ImageList sx={{ width: '480px', height: '128px' }} cols={3}>

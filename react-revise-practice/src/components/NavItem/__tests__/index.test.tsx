@@ -4,13 +4,14 @@ import NavItem, { Props } from '..'
 
 import * as useScreenWidth from '@/hooks/useScreenWidth'
 import { BrowserRouter } from 'react-router-dom'
+import { ROUTES } from '@/constants/routes'
 
 const defaultProp = {
   icon: <></>,
   text: 'Nav Item',
   index: 1,
   isSelected: false,
-  go: '/shop',
+  go: ROUTES.SHOP,
   onNavItemClick: vi.fn(),
   isShowText: true
 } as Props

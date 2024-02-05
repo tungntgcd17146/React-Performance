@@ -3,44 +3,17 @@ import { render, screen } from '../../utils/testUtils'
 
 import useMatchPath from '../useMatchPath'
 import { useMatches } from 'react-router-dom'
-import { NavigateItem } from '@/types/navigateItem'
 import { vi } from 'vitest'
+import { ROUTES } from '@/constants/routes'
 
 vi.mock('react-router-dom')
 
-export const mockListItems: NavigateItem[] = [
-  {
-    text: 'Home',
-    isSelected: false,
-    go: '/home'
-  },
-  {
-    text: 'Products',
-    isSelected: false,
-    go: '/products'
-  },
-  {
-    text: 'Customers',
-    isSelected: false,
-    go: '/customers'
-  },
-  {
-    text: 'Shop',
-    isSelected: false,
-    go: '/shop'
-  }
-]
-
-const defaultProp = {
-  listItems: mockListItems
-}
+const defaultProp = {}
 // TestComponent.jsx
-const MockComponent = ({ ...props }) => {
-  const newOptions = useMatchPath(props.listItems)
+const MockComponent = () => {
+  const isMatch = useMatchPath(ROUTES.SHOP)
 
-  const trueOption = newOptions.find((item) => item.isSelected)
-
-  if (trueOption) return <div data-testid='isSelected'>{trueOption.text}</div>
+  if (isMatch) return <div data-testid='isSelected'>{'Shop'}</div>
 
   return null
 }
@@ -55,7 +28,7 @@ const setup = (overrideProps = {}) => {
 }
 
 it('returns correct values', async () => {
-  vi.mocked(useMatches).mockReturnValue([{ pathname: '/shop' }] as any)
+  vi.mocked(useMatches).mockReturnValue([{ pathname: ROUTES.SHOP }] as any)
   setup()
 
   expect(screen.getByTestId('isSelected').textContent).toEqual('Shop')

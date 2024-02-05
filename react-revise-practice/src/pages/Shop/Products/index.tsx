@@ -18,7 +18,7 @@ export interface Product {
   productRatingCount: number
 }
 
-const demoValue = [
+export const demoValue = [
   {
     id: 1,
     productName: 'Product 1',

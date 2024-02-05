@@ -22,24 +22,31 @@ import { useNavigate } from 'react-router-dom'
 import Tabs from '@/components/Tabs'
 import Avatar from '@/components/Avatar'
 import Rating from '@/components/Rating'
-import ImageView from '@/components/ImageView'
+import ImageDrawer from '@/components/ImageDrawer'
 
-export interface Props {}
+import { ROUTES } from '@/constants/routes'
+
+import { demoValue } from '@/pages/Shop/Products'
 
 const ProductDetail = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
+
+  //TODO: demo product value
+  const product = demoValue[0]
 
   const theme = useTheme()
   const { isMobile } = useScreenWidth()
   const navigate = useNavigate()
 
   const handleClose = () => {
-    navigate('/')
+    navigate(ROUTES.HOME)
     setAnchorEl(null)
   }
 
   const open = Boolean(anchorEl)
   const id = open ? 'simple-popper' : undefined
+
+  const { productName, productCategory, productPrice, productRating, productRatingCount } = product
 
   return (
     <div>
@@ -110,7 +117,7 @@ const ProductDetail = () => {
               flexDirection='column'
             >
               <Grid container sx={{ marginBottom: '32px' }} display='flex' justifyContent='space-between'>
-                <Grid xs={12} md={6}>
+                <Grid item xs={12} md={6}>
                   <Tabs
                     sx={{ marginBottom: '16px' }}
                     tabItems={[{ text: 'Product' }, { text: 'Comments', isDisabled: true }]}
@@ -118,6 +125,7 @@ const ProductDetail = () => {
                 </Grid>
 
                 <Grid
+                  item
                   xs={12}
                   md={6}
                   display='flex'
@@ -132,7 +140,7 @@ const ProductDetail = () => {
                   />
 
                   <Button
-                    children={`$${85}`}
+                    children={`$${productPrice}`}
                     color='primary'
                     sx={{ borderTopRightRadius: '0px', borderBottomRightRadius: '0px' }}
                     endIcon={<Divider orientation='vertical' />}
@@ -150,7 +158,7 @@ const ProductDetail = () => {
               <Grid>
                 {/* Header */}
                 <Typography variant='h5' sx={{ marginBottom: '12px', color: theme.palette.text.secondary }}>
-                  Fleet - Travel shopping UI design kit
+                  {`Fleet - ${productName} ${productCategory}`}
                 </Typography>
                 <Typography variant='body1' sx={{ marginBottom: '12px', color: theme.palette.text.primary }}>
                   Elegant product mockup for your next project
@@ -167,13 +175,13 @@ const ProductDetail = () => {
                   <Typography variant='body1' sx={{ color: theme.palette.text.primary, marginLeft: '12px' }}>
                     by Chelsie Haley
                   </Typography>
-                  <Rating sx={{ marginLeft: '12px' }} ratingPoint={5} counter={5} />
+                  <Rating sx={{ marginLeft: '12px' }} ratingPoint={productRating} counter={productRatingCount} />
                 </Grid>
 
-                <ImageView />
+                <ImageDrawer />
 
                 <Grid container display='flex' flexDirection='row' justifyContent='space-between'>
-                  <Grid xs={12} lg={6}>
+                  <Grid item xs={12} lg={6}>
                     <Grid display='flex' flexDirection='row' sx={{ marginTop: '32px', marginBottom: '12px' }}>
                       <Chip
                         sx={{
@@ -199,11 +207,11 @@ const ProductDetail = () => {
                       product detail, notification...
                       <br />
                       <br />
-                      If you have any questions or requests, please feel free to leave them all in the comments section.{' '}
+                      If you have any questions or requests, please feel free to leave them all in the comments section.
                     </Typography>
                   </Grid>
 
-                  <Grid xs={12} lg={5}>
+                  <Grid item xs={12} lg={5}>
                     <Grid display='flex' flexDirection='row' sx={{ marginTop: '32px', marginBottom: '12px' }}>
                       <Chip
                         sx={{
@@ -224,9 +232,9 @@ const ProductDetail = () => {
                       { text: 'SaaS landing page ready' },
                       { text: 'Global styleguide' },
                       { text: 'Dark + light more ready' }
-                    ].map((item) => (
+                    ].map((item, index) => (
                       <>
-                        <Grid display='flex' flexDirection='row'>
+                        <Grid key={index} display='flex' flexDirection='row'>
                           <CheckIcon sx={{ color: themes.colors.green[500], marginRight: '12px' }} />
                           <Typography variant='body1' sx={{ color: theme.palette.text.secondary }}>
                             {item.text}
@@ -237,6 +245,7 @@ const ProductDetail = () => {
                     ))}
                   </Grid>
                 </Grid>
+                <Divider sx={{ marginTop: '64px', marginBottom: '64px', color: theme.palette.grey[100] }} />
               </Grid>
             </Grid>
           </Box>
