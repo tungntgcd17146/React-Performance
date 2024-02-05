@@ -1,6 +1,7 @@
 import App from './App.tsx'
 import { createBrowserRouter, RouteObject } from 'react-router-dom'
 
+//components
 import Shop from '@/pages/Shop/index.tsx'
 import Products from '@/pages/Shop/Products'
 import PageNotFound from '@/components/PageNotFound'
@@ -8,37 +9,41 @@ import Followers from '@/pages/Shop/Followers'
 import Following from '@/pages/Shop/Following'
 import ProductDetail from '@/pages/ProductDetail/index.tsx'
 
+//constants
+import { ROUTES } from '@/constants/routes.ts'
+
 const routes: RouteObject[] = [
   {
-    path: '/',
+    path: ROUTES.HOME,
     element: <App />,
-    errorElement: <div> Opp!!! Error page </div>,
+    errorElement: <PageNotFound isError headerContent='Opp!' body='Error page' />,
     children: [
       { index: true, element: <Shop /> },
       {
         element: <Shop />,
-        path: '/shop',
+        path: ROUTES.SHOP,
         children: [
+          { index: true, element: <Products /> },
           {
-            path: '/shop/products',
+            path: ROUTES.SHOP_PRODUCTS,
             element: <Products />
           },
           {
-            path: '/shop/followers',
+            path: ROUTES.SHOP_FOLLOWERS,
             element: <Followers />
           },
           {
-            path: '/shop/following',
+            path: ROUTES.SHOP_FOLLOWING,
             element: <Following />
           },
           {
-            path: '/shop/*',
-            element: <div> Other Tab not implemented yet</div>
+            path: `${ROUTES.SHOP}/*`,
+            element: <PageNotFound isError headerContent='Opp!' body='Other Tab not implemented yet' />
           }
         ]
       },
       {
-        path: '/product/:id',
+        path: ROUTES.PRODUCT_DETAIL,
         element: <ProductDetail />
       },
       {

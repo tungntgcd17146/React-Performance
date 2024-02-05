@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useEffect } from 'react'
 import useScreenWidth from '@/hooks/useScreenWidth'
 
 //mui
@@ -30,43 +30,39 @@ import SearchInput from '@/components/SearchInput'
 //types
 import { NavigateItem } from '@/types/navigateItem'
 import useMatchPath from '@/hooks/useMatchPath'
+import { useLocation, useNavigate } from 'react-router-dom'
+import { ROUTES } from '@/constants/routes'
 
 //TODO: make it dynamic prop for this component
 export const listItems: NavigateItem[] = [
   {
     text: 'Home',
     icon: <HomeOutlinedIcon />,
-    isSelected: false,
     go: '/home'
   },
   {
     text: 'Products',
     icon: <DiamondOutlinedIcon />,
-    isSelected: false,
     go: '/products'
   },
   {
     text: 'Customers',
     icon: <AccountCircleOutlinedIcon />,
-    isSelected: false,
     go: '/customers'
   },
   {
     text: 'Shop',
     icon: <StorefrontOutlinedIcon />,
-    isSelected: false,
-    go: '/shop'
+    go: ROUTES.SHOP
   },
   {
     text: 'Income',
     icon: <DonutSmallOutlinedIcon />,
-    isSelected: false,
     go: '/income'
   },
   {
     text: 'Promote',
     icon: <RecommendOutlinedIcon />,
-    isSelected: false,
     go: '/promote'
   }
 ]
@@ -77,8 +73,22 @@ const Header = () => {
 
   const { isMobile, isTablet, isDesktop } = useScreenWidth()
   const theme = useTheme()
+  const navigate = useNavigate()
+  const { pathname } = useLocation()
 
-  const newSelectedNavItem = useMatchPath(listItems)
+  //default select shop page when login app
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    if (pathname === ROUTES.HOME) {
+      navigate(ROUTES.SHOP)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pathname])
+
+  const selectedNavItem = listItems.map((item) => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    return { ...item, isSelected: useMatchPath(item.go!) }
+  })
 
   const handleClickMobileSearchIcon = useCallback(
     (event: React.MouseEvent<HTMLElement>) => {
@@ -115,12 +125,7 @@ const Header = () => {
       </Hidden>
 
       {isMobile && <IconButton children={<DragHandleIcon />} onClick={handleOpenDrawer} />}
-      <Drawer
-        isOpen={isOpenDrawer}
-        onOpen={handleOpenDrawer}
-        onClose={handleCloseDrawer}
-        listItems={newSelectedNavItem}
-      />
+      <Drawer isOpen={isOpenDrawer} onOpen={handleOpenDrawer} onClose={handleCloseDrawer} listItems={selectedNavItem} />
 
       <div className='flex flex-row gap-[24px]'>
         {/* search input on mobile */}

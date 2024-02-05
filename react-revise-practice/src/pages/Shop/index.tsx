@@ -1,4 +1,4 @@
-import { memo } from 'react'
+import { memo, useEffect } from 'react'
 
 import CoverPhoto from '@/assets/CoverPhoto.jpg'
 import CoverPhotoMobile from '@/assets/CoverPhotoMobile.jpg'
@@ -15,7 +15,7 @@ import Divider from '@mui/material/Divider'
 import Button from '@/components/Button/'
 import ProductFilter from '@/components/ProductFilter/'
 import Customer1 from '@/assets/customer1.png'
-import { Outlet, useNavigate } from 'react-router-dom'
+import { Outlet, useLocation, useNavigate } from 'react-router-dom'
 
 //utils
 import useScreenWidth from '@/hooks/useScreenWidth'
@@ -28,22 +28,23 @@ import Tabs from '@/components/Tabs'
 import Select from '@/components/Select'
 import useMatchPath from '@/hooks/useMatchPath'
 import { NavigateItem } from '@/types/navigateItem'
+import { ROUTES } from '@/constants/routes'
 
 //TODO: Constant for all options
 export const tabItems: NavigateItem[] = [
   {
     text: 'Products',
-    go: '/shop/products',
+    go: ROUTES.SHOP_PRODUCTS,
     isDisabled: false
   },
   {
     text: 'Followers',
-    go: '/shop/followers',
+    go: ROUTES.SHOP_FOLLOWERS,
     isDisabled: false
   },
   {
     text: 'Following',
-    go: '/shop/following',
+    go: ROUTES.SHOP_FOLLOWING,
     isDisabled: false
   }
 ]
@@ -66,8 +67,21 @@ export const selectOption = [
 const Shop = () => {
   const { isMobile, isTablet, isDesktop } = useScreenWidth()
   const theme = useTheme()
-  const tabsSelected = useMatchPath(tabItems)
   const navigate = useNavigate()
+  const { pathname } = useLocation()
+
+  //update item selected by current route
+  const tabsSelected = tabItems.map((item) => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    return { ...item, isSelected: useMatchPath(item.go!) }
+  })
+
+  useEffect(() => {
+    if (pathname === ROUTES.SHOP) {
+      // eslint-disable-next-line react-hooks/rules-of-hooks
+      navigate(tabItems[0].go!)
+    }
+  }, [navigate, pathname])
 
   const handleChangeTab = (_event: React.SyntheticEvent, newValue: number) => {
     navigate(tabItems[newValue].go!)
@@ -151,7 +165,7 @@ const Shop = () => {
               <Tabs tabItems={tabsSelected} onTabsChange={handleChangeTab} />
             </Grid>
 
-            <Grid container sx={{ marginBottom: '32px' }} display='flex' justifyContent='space-between' xs={12} md={4}>
+            <Grid item sx={{ marginBottom: '32px' }} display='flex' justifyContent='space-between' xs={12} md={4}>
               <Grid item xs={10}>
                 <Select options={selectOption} />
               </Grid>

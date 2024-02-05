@@ -24,6 +24,8 @@ import Avatar from '@/components/Avatar'
 import Rating from '@/components/Rating'
 import ImageDrawer from '@/components/ImageDrawer'
 
+import { ROUTES } from '@/constants/routes'
+
 import { Product, demoValue } from '@/pages/Shop/Products'
 
 export interface Props {
@@ -38,7 +40,7 @@ const ProductDetail = ({ product = demoValue[0] }: Props) => {
   const navigate = useNavigate()
 
   const handleClose = () => {
-    navigate('/')
+    navigate(ROUTES.HOME)
     setAnchorEl(null)
   }
 
@@ -116,7 +118,7 @@ const ProductDetail = ({ product = demoValue[0] }: Props) => {
               flexDirection='column'
             >
               <Grid container sx={{ marginBottom: '32px' }} display='flex' justifyContent='space-between'>
-                <Grid xs={12} md={6}>
+                <Grid item xs={12} md={6}>
                   <Tabs
                     sx={{ marginBottom: '16px' }}
                     tabItems={[{ text: 'Product' }, { text: 'Comments', isDisabled: true }]}
@@ -124,6 +126,7 @@ const ProductDetail = ({ product = demoValue[0] }: Props) => {
                 </Grid>
 
                 <Grid
+                  item
                   xs={12}
                   md={6}
                   display='flex'
@@ -179,7 +182,7 @@ const ProductDetail = ({ product = demoValue[0] }: Props) => {
                 <ImageDrawer />
 
                 <Grid container display='flex' flexDirection='row' justifyContent='space-between'>
-                  <Grid xs={12} lg={6}>
+                  <Grid item xs={12} lg={6}>
                     <Grid display='flex' flexDirection='row' sx={{ marginTop: '32px', marginBottom: '12px' }}>
                       <Chip
                         sx={{
@@ -209,7 +212,7 @@ const ProductDetail = ({ product = demoValue[0] }: Props) => {
                     </Typography>
                   </Grid>
 
-                  <Grid xs={12} lg={5}>
+                  <Grid item xs={12} lg={5}>
                     <Grid display='flex' flexDirection='row' sx={{ marginTop: '32px', marginBottom: '12px' }}>
                       <Chip
                         sx={{
@@ -230,9 +233,9 @@ const ProductDetail = ({ product = demoValue[0] }: Props) => {
                       { text: 'SaaS landing page ready' },
                       { text: 'Global styleguide' },
                       { text: 'Dark + light more ready' }
-                    ].map((item) => (
+                    ].map((item, index) => (
                       <>
-                        <Grid display='flex' flexDirection='row'>
+                        <Grid key={index} display='flex' flexDirection='row'>
                           <CheckIcon sx={{ color: themes.colors.green[500], marginRight: '12px' }} />
                           <Typography variant='body1' sx={{ color: theme.palette.text.secondary }}>
                             {item.text}
