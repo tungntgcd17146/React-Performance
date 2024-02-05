@@ -6,6 +6,7 @@ import Products from '@/pages/Shop/Products'
 import PageNotFound from '@/components/PageNotFound'
 import Followers from '@/pages/Shop/Followers'
 import Following from '@/pages/Shop/Following'
+import ProductDetail from '@/pages/ProductDetail/index.tsx'
 
 const routes: RouteObject[] = [
   {
@@ -18,7 +19,10 @@ const routes: RouteObject[] = [
         element: <Shop />,
         path: '/shop',
         children: [
-          { index: true, element: <Products /> },
+          {
+            path: '/shop/products',
+            element: <Products />
+          },
           {
             path: '/shop/followers',
             element: <Followers />
@@ -33,10 +37,9 @@ const routes: RouteObject[] = [
           }
         ]
       },
-
       {
         path: '/product/:id',
-        element: <div className='absolute'> Detail Prod not implemented yet</div>
+        element: <ProductDetail />
       },
       {
         path: '/*',

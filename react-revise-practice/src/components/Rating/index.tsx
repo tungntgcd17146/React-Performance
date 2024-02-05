@@ -10,12 +10,13 @@ import { Typography, useTheme } from '@mui/material'
 export interface Props {
   ratingPoint?: number
   counter?: number
+  sx?: React.CSSProperties
 }
 
-const Rating = ({ ratingPoint = 0, counter = 0 }: Props) => {
+const Rating = ({ ratingPoint = 0, counter = 0, sx }: Props) => {
   const theme = useTheme()
   return (
-    <Box sx={{ display: 'flex', alignItems: 'center' }}>
+    <Box sx={{ display: 'flex', alignItems: 'center', ...sx }}>
       {counter > 0 ? (
         <StarOutlinedIcon data-testid='Rating_StarIcon' sx={{ color: themes.colors.yellow[700], marginRight: '8px' }} />
       ) : (
