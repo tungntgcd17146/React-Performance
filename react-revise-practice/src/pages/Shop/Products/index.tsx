@@ -7,6 +7,7 @@ import Grid from '@mui/material/Grid'
 //helper
 import useScreenWidth from '@/hooks/useScreenWidth'
 import Button from '@/components/Button'
+import { useNavigate } from 'react-router-dom'
 
 export interface Product {
   id: number
@@ -17,7 +18,7 @@ export interface Product {
   productRatingCount: number
 }
 
-const demoValue = [
+export const demoValue = [
   {
     id: 1,
     productName: 'Product 1',
@@ -70,16 +71,24 @@ const demoValue = [
 
 const Products = () => {
   const { matchedBreakpoint } = useScreenWidth({ down: 'sm' })
+  const navigate = useNavigate()
 
   //TODO: action when click load more, call api to fetch products
   const handleClickLoadMore = useCallback(() => {}, [])
+
+  const handleClickViewCard = useCallback(
+    (_e: React.SyntheticEvent, id: number) => {
+      navigate(`/product/${id}`)
+    },
+    [navigate]
+  )
 
   return (
     <Grid container={!matchedBreakpoint}>
       {demoValue.map((product) => {
         return (
           <Grid key={product.id} sm={6} lg={4} item>
-            <ProductCard product={product} />
+            <ProductCard product={product} onViewCard={handleClickViewCard} />
           </Grid>
         )
       })}
