@@ -26,14 +26,13 @@ import ImageDrawer from '@/components/ImageDrawer'
 
 import { ROUTES } from '@/constants/routes'
 
-import { Product, demoValue } from '@/pages/Shop/Products'
+import { demoValue } from '@/pages/Shop/Products'
 
-export interface Props {
-  product: Product
-}
-
-const ProductDetail = ({ product = demoValue[0] }: Props) => {
+const ProductDetail = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
+
+  //TODO: demo product value
+  const product = demoValue[0]
 
   const theme = useTheme()
   const { isMobile } = useScreenWidth()
