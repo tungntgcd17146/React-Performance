@@ -22,11 +22,15 @@ import { useNavigate } from 'react-router-dom'
 import Tabs from '@/components/Tabs'
 import Avatar from '@/components/Avatar'
 import Rating from '@/components/Rating'
-import ImageView from '@/components/ImageView'
+import ImageDrawer from '@/components/ImageDrawer'
 
-export interface Props {}
+import { Product, demoValue } from '@/pages/Shop/Products'
 
-const ProductDetail = () => {
+export interface Props {
+  product: Product
+}
+
+const ProductDetail = ({ product = demoValue[0] }: Props) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
 
   const theme = useTheme()
@@ -40,6 +44,8 @@ const ProductDetail = () => {
 
   const open = Boolean(anchorEl)
   const id = open ? 'simple-popper' : undefined
+
+  const { productName, productCategory, productPrice, productRating, productRatingCount } = product
 
   return (
     <div>
@@ -132,7 +138,7 @@ const ProductDetail = () => {
                   />
 
                   <Button
-                    children={`$${85}`}
+                    children={`$${productPrice}`}
                     color='primary'
                     sx={{ borderTopRightRadius: '0px', borderBottomRightRadius: '0px' }}
                     endIcon={<Divider orientation='vertical' />}
@@ -150,7 +156,7 @@ const ProductDetail = () => {
               <Grid>
                 {/* Header */}
                 <Typography variant='h5' sx={{ marginBottom: '12px', color: theme.palette.text.secondary }}>
-                  Fleet - Travel shopping UI design kit
+                  {`Fleet - ${productName} ${productCategory}`}
                 </Typography>
                 <Typography variant='body1' sx={{ marginBottom: '12px', color: theme.palette.text.primary }}>
                   Elegant product mockup for your next project
@@ -167,10 +173,10 @@ const ProductDetail = () => {
                   <Typography variant='body1' sx={{ color: theme.palette.text.primary, marginLeft: '12px' }}>
                     by Chelsie Haley
                   </Typography>
-                  <Rating sx={{ marginLeft: '12px' }} ratingPoint={5} counter={5} />
+                  <Rating sx={{ marginLeft: '12px' }} ratingPoint={productRating} counter={productRatingCount} />
                 </Grid>
 
-                <ImageView />
+                <ImageDrawer />
 
                 <Grid container display='flex' flexDirection='row' justifyContent='space-between'>
                   <Grid xs={12} lg={6}>
@@ -199,7 +205,7 @@ const ProductDetail = () => {
                       product detail, notification...
                       <br />
                       <br />
-                      If you have any questions or requests, please feel free to leave them all in the comments section.{' '}
+                      If you have any questions or requests, please feel free to leave them all in the comments section.
                     </Typography>
                   </Grid>
 
@@ -237,6 +243,7 @@ const ProductDetail = () => {
                     ))}
                   </Grid>
                 </Grid>
+                <Divider sx={{ marginTop: '64px', marginBottom: '64px', color: theme.palette.grey[100] }} />
               </Grid>
             </Grid>
           </Box>
