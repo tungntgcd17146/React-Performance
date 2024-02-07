@@ -1,8 +1,12 @@
-import { render, screen } from '@/utils/testUtils'
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { fireEvent, render, screen } from '@/utils/testUtils'
 import { describe, expect, it, vi } from 'vitest'
 import NotFoundPage, { Props } from '..'
 
 import * as useScreenWidth from '@/hooks/useScreenWidth'
+import { useNavigate } from 'react-router-dom'
+
+vi.mock('react-router-dom')
 
 const defaultProp = {} as Props
 
@@ -17,7 +21,6 @@ const setup = (overrideProps = {}) => {
 
 describe('NotFoundPage Test', () => {
   it('render NotFoundPage with error 404 correctly', () => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     vi.spyOn(useScreenWidth, 'default').mockReturnValue({ isTablet: true, isDesktop: false } as any)
     setup()
 
@@ -25,15 +28,23 @@ describe('NotFoundPage Test', () => {
   })
 
   it('render NotFoundPage with error 404 on mobile correctly', () => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     vi.spyOn(useScreenWidth, 'default').mockReturnValue({ isTablet: false, isDesktop: false } as any)
     setup()
 
     expect(screen.getByText('404')).toBeTruthy()
   })
 
+  it('re-direct home page when click go home button correctly', () => {
+    vi.spyOn(useScreenWidth, 'default').mockReturnValue({ isTablet: false, isDesktop: false } as any)
+    const spyNavigate = vi.mocked(useNavigate).mockReturnValue(vi.fn() as any)
+    setup()
+
+    fireEvent.click(screen.getByTestId('NotFoundPage_Button'))
+
+    expect(spyNavigate).toBeCalled()
+  })
+
   it('render NotFoundPage with custom content correctly', () => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     vi.spyOn(useScreenWidth, 'default').mockReturnValue({ isTablet: false, isDesktop: true } as any)
     setup({
       headerContent: 'Oops',

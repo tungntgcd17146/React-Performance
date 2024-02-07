@@ -11,7 +11,7 @@ import IconButton from '@/components/IconButton'
 
 interface SelectOption {
   id: string
-  name: string | number
+  name?: string
 }
 export interface Props {
   options: SelectOption[]
@@ -45,7 +45,7 @@ const Select = ({ options = [], startIcon, sx, onChange }: Props) => {
               }
             }
           }}
-          defaultValue={options[0].id}
+          defaultValue={options[0].name}
           onChange={handleChange}
           displayEmpty
           inputProps={{ 'aria-label': 'Without label', sx: { marginLeft: startIcon ? '50px' : 0 } }}
@@ -61,7 +61,7 @@ const Select = ({ options = [], startIcon, sx, onChange }: Props) => {
                   }
                 }}
                 key={id}
-                value={id}
+                value={name}
               >
                 {name}
               </MenuItem>

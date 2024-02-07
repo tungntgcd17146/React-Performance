@@ -18,7 +18,8 @@ import Branch1 from '@/assets/Brand1.jpg'
 import IconButton from '@/components/IconButton'
 import Chip from '@/components/Chip'
 
-import { Product } from '@/pages/Shop/Products'
+//types
+import { Product } from '@/types'
 
 export interface Props {
   onEditCard?: (e: React.MouseEvent<HTMLElement>) => void

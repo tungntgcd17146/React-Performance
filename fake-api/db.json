@@ -1,5 +1,148 @@
 {
-  "products": [{ "id": 1, "title": "json-server", "author": "typicode" }],
-  "comments": [{ "id": 1, "body": "some comment", "postId": 1 }],
-  "users": [{ "id": 1, "name": "typicode" }]
+  "products": [
+    {
+      "id": 1,
+      "productName": "Product 1",
+      "productCategory": "Category 1",
+      "productPrice": 100,
+      "productRating": 4.5,
+      "productRatingCount": 100
+    },
+    {
+      "id": 2,
+      "productName": "Product 2",
+      "productCategory": "Category 2",
+      "productPrice": 0,
+      "productRating": 3.5,
+      "productRatingCount": 200
+    },
+    {
+      "id": 3,
+      "productName": "Product 3",
+      "productCategory": "Category 3",
+      "productPrice": 300,
+      "productRating": 2.5,
+      "productRatingCount": 300
+    },
+    {
+      "id": 4,
+      "productName": "Product 4",
+      "productCategory": "Category 4",
+      "productPrice": 400,
+      "productRating": 1.5,
+      "productRatingCount": 400
+    },
+    {
+      "id": 5,
+      "productName": "Product 5",
+      "productCategory": "Category 5",
+      "productPrice": 500,
+      "productRating": 5,
+      "productRatingCount": 500
+    },
+    {
+      "id": 6,
+      "productName": "Product 6",
+      "productCategory": "Category 6",
+      "productPrice": 0,
+      "productRating": 4,
+      "productRatingCount": 600
+    },
+    {
+      "id": 7,
+      "productName": "Product 7",
+      "productCategory": "Category 7",
+      "productPrice": 0,
+      "productRating": 4,
+      "productRatingCount": 600
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "userName": "Rosetta Gottlieb1",
+      "productNumber": 12,
+      "followerNumber": 23,
+      "contactStatus": "followers",
+      "most": "Most new"
+    },
+    {
+      "id": 2,
+      "userName": "Rosetta Gottlieb2",
+      "productNumber": 12,
+      "followerNumber": 23,
+      "contactStatus": "following",
+      "most": "Most recent"
+    },
+    {
+      "id": 3,
+      "userName": "Rosetta Gottlieb3",
+      "productNumber": 12,
+      "followerNumber": 23,
+      "contactStatus": "followers"
+    },
+    {
+      "id": 4,
+      "userName": "Rosetta Gottlieb4",
+      "productNumber": 12,
+      "followerNumber": 23,
+      "contactStatus": "following"
+    },
+    {
+      "id": 5,
+      "userName": "Rosetta Gottlieb5",
+      "productNumber": 12,
+      "followerNumber": 23,
+      "contactStatus": "followers"
+    },
+    {
+      "id": 6,
+      "userName": "Rosetta Gottlieb6",
+      "productNumber": 12,
+      "followerNumber": 23,
+      "contactStatus": "following"
+    },
+    {
+      "id": 7,
+      "userName": "Rosetta Gottlieb7",
+      "productNumber": 12,
+      "followerNumber": 23,
+      "contactStatus": "followers"
+    },
+    {
+      "id": 8,
+      "userName": "Rosetta Gottlieb8",
+      "productNumber": 12,
+      "followerNumber": 23,
+      "contactStatus": "followers"
+    },
+    {
+      "id": 9,
+      "userName": "Rosetta Gottlieb9",
+      "productNumber": 12,
+      "followerNumber": 23,
+      "contactStatus": "following"
+    },
+    {
+      "id": 10,
+      "userName": "Rosetta Gottlieb10",
+      "productNumber": 12,
+      "followerNumber": 23,
+      "contactStatus": "followers"
+    },
+    {
+      "id": 11,
+      "userName": "Rosetta Gottlieb11",
+      "productNumber": 12,
+      "followerNumber": 23,
+      "contactStatus": "following"
+    },
+    {
+      "id": 12,
+      "userName": "Rosetta Gottlieb12",
+      "productNumber": 12,
+      "followerNumber": 23,
+      "contactStatus": "followers"
+    }
+  ]
 }

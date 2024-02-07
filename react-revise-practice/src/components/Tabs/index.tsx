@@ -8,8 +8,7 @@ import Box from '@mui/material/Box'
 import useScreenWidth from '@/hooks/useScreenWidth'
 
 // type
-import { NavigateItem } from '@/types/navigateItem'
-import { useNavigate } from 'react-router-dom'
+import { NavigateItem } from '@/types'
 
 export interface Props {
   onTabClick?: (event: React.MouseEvent<HTMLElement>) => void
@@ -32,16 +31,14 @@ const StyledTab = styled(Tab)(({ theme }) => ({
 }))
 
 const Tabs = ({ onTabClick, onTabsChange, tabItems, sx }: Props) => {
-  const [value, setValue] = useState(0)
+  const [value, setValue] = useState<number | boolean>(false)
   const { isMobile } = useScreenWidth()
 
-  const navigate = useNavigate()
-
-  //selected first item tab by default
+  //first item selected when component mounting
   useEffect(() => {
-    navigate(tabItems[0].go!)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+    const idexSelected = tabItems.findIndex((item) => item.isSelected)
+    if (idexSelected !== -1) setValue(tabItems.findIndex((item) => item.isSelected))
+  }, [tabItems])
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue)
@@ -60,7 +57,7 @@ const Tabs = ({ onTabClick, onTabsChange, tabItems, sx }: Props) => {
           variant={isMobile ? 'fullWidth' : 'standard'}
           value={value}
           onChange={handleChange}
-          aria-label='basic tabs example'
+          aria-label='tabs'
         >
           {tabItems.map((item, index) => {
             const { text, isDisabled } = item
