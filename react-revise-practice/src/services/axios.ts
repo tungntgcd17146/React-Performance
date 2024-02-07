@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { BASE_URL } from '@/constants'
+import { BASE_URL } from '@/constants/environment'
 
 const getRequest = async <T>(url: string, queryParams?: object) => {
   const response = await axios.get<T>(`${BASE_URL}/${url}`, {
