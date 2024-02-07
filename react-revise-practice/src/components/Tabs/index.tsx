@@ -8,7 +8,7 @@ import Box from '@mui/material/Box'
 import useScreenWidth from '@/hooks/useScreenWidth'
 
 // type
-import { NavigateItem } from '@/types/navigateItem'
+import { NavigateItem } from '@/types'
 
 export interface Props {
   onTabClick?: (event: React.MouseEvent<HTMLElement>) => void
@@ -34,7 +34,7 @@ const Tabs = ({ onTabClick, onTabsChange, tabItems, sx }: Props) => {
   const [value, setValue] = useState<number | boolean>(false)
   const { isMobile } = useScreenWidth()
 
-  //update item selected when component mounting
+  //first item selected when component mounting
   useEffect(() => {
     const idexSelected = tabItems.findIndex((item) => item.isSelected)
     if (idexSelected !== -1) setValue(tabItems.findIndex((item) => item.isSelected))
@@ -57,7 +57,7 @@ const Tabs = ({ onTabClick, onTabsChange, tabItems, sx }: Props) => {
           variant={isMobile ? 'fullWidth' : 'standard'}
           value={value}
           onChange={handleChange}
-          aria-label='basic tabs example'
+          aria-label='tabs'
         >
           {tabItems.map((item, index) => {
             const { text, isDisabled } = item

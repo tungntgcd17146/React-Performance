@@ -28,7 +28,7 @@ import Button from '@/components/Button'
 import SearchInput from '@/components/SearchInput'
 
 //types
-import { NavigateItem } from '@/types/navigateItem'
+import { NavigateItem } from '@/types'
 import useMatchPath from '@/hooks/useMatchPath'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { ROUTES } from '@/constants/routes'

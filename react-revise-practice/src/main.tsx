@@ -5,13 +5,20 @@ import './index.css'
 import { ModeProvider } from '@/contexts/modeContext/modeProvider'
 import { router } from '@/routes.tsx'
 
+import { QueryClient, QueryClientProvider } from 'react-query'
+
 const rootElement = document.getElementById('root')!
 const root = ReactDOM.createRoot(rootElement!)
 
+// Create a client
+const queryClient = new QueryClient()
+
 root.render(
   <React.StrictMode>
-    <ModeProvider>
-      <RouterProvider router={router} />
-    </ModeProvider>
+    <QueryClientProvider client={queryClient}>
+      <ModeProvider>
+        <RouterProvider router={router} />
+      </ModeProvider>
+    </QueryClientProvider>
   </React.StrictMode>
 )
