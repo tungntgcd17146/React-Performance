@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
 import Tabs from '.'
-import { tabItems } from '@/pages/Shop'
+import { tabItems } from '@/constants/data'
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
@@ -28,5 +28,11 @@ export const TabsBase: Story = {
 export const TabsDisableItem: Story = {
   args: {
     tabItems: [...tabItems, { ...tabItems[2], text: 'Disable', isDisabled: true }]
+  }
+}
+
+export const TabsSelectedDefault: Story = {
+  args: {
+    tabItems: [...tabItems, { ...tabItems[2], text: 'Selected', isSelected: true }]
   }
 }

@@ -12,43 +12,15 @@ import Hidden from '@mui/material/Hidden'
 
 //components
 import User1 from '@/assets/User1.png'
-import Product1 from '@/assets/Product1.jpg'
-import Product2 from '@/assets/Product2.jpg'
-import Product3 from '@/assets/Product3.jpg'
 import Avatar from '@/components/Avatar'
 import Button from '@/components/Button'
 
 //utils
+import { userImageData } from '@/constants/data'
 import useScreenWidth from '@/hooks/useScreenWidth'
 
-const imageData = [
-  {
-    img: Product1,
-    imgTitle: 'product 1'
-  },
-  {
-    img: Product2,
-    imgTitle: 'product 2'
-  },
-  {
-    img: Product3,
-    imgTitle: 'product 3'
-  }
-]
-
-export interface UserContact {
-  userName: string
-  productNumber: number
-  followerNumber: number
-  contactStatus: 'following' | 'follower'
-}
-
-export const fakeData: UserContact = {
-  userName: 'Rosetta Gottlieb',
-  productNumber: 12,
-  followerNumber: 23,
-  contactStatus: 'follower'
-}
+//types
+import { UserContact } from '@/types'
 
 export interface Props {
   user: UserContact
@@ -56,7 +28,7 @@ export interface Props {
   onClickMessageButton?: (e: React.MouseEvent<HTMLElement>) => void
 }
 
-const ContactItem = ({ user = fakeData, onChangeFollowButtonStatus, onClickMessageButton }: Props) => {
+const ContactItem = ({ user, onChangeFollowButtonStatus, onClickMessageButton }: Props) => {
   const [followButtonStatus, setFollowButtonStatus] = useState<string>('')
   const theme = useTheme()
 
@@ -156,7 +128,7 @@ const ContactItem = ({ user = fakeData, onChangeFollowButtonStatus, onClickMessa
           {/* group img */}
           <Hidden lgDown>
             <ImageList sx={{ width: '480px', height: '128px' }} cols={3}>
-              {imageData.map((item) => (
+              {userImageData.map((item) => (
                 <ImageListItem key={item.img}>
                   <img
                     style={{ width: '100%', height: '115px', borderRadius: '12px' }}

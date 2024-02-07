@@ -1,6 +1,10 @@
-import { NavigateItem, ShopSelectInput, ShopTabs } from '@/types'
+import { NavigateItem, ShopSelectInput, ShopTabs, UserContact } from '@/types'
 
-//TODO: Constant for all options
+//img
+import Product1 from '@/assets/Product1.jpg'
+import Product2 from '@/assets/Product2.jpg'
+import Product3 from '@/assets/Product3.jpg'
+
 export const tabItems: NavigateItem[] = [
   {
     text: ShopTabs.PRODUCTS,
@@ -30,3 +34,26 @@ export const selectOption = [
     name: ShopSelectInput.POPULAR
   }
 ]
+
+export const userImageData = [
+  {
+    img: Product1,
+    imgTitle: 'product 1'
+  },
+  {
+    img: Product2,
+    imgTitle: 'product 2'
+  },
+  {
+    img: Product3,
+    imgTitle: 'product 3'
+  }
+]
+
+export const fakeUserContact: UserContact = {
+  id: 1,
+  userName: 'Rosetta Gottlieb',
+  productNumber: 12,
+  followerNumber: 23,
+  contactStatus: 'follower'
+}

@@ -63,7 +63,7 @@
       "userName": "Rosetta Gottlieb1",
       "productNumber": 12,
       "followerNumber": 23,
-      "contactStatus": "follower",
+      "contactStatus": "followers",
       "most": "Most new"
     },
     {
@@ -79,7 +79,7 @@
       "userName": "Rosetta Gottlieb3",
       "productNumber": 12,
       "followerNumber": 23,
-      "contactStatus": "follower"
+      "contactStatus": "followers"
     },
     {
       "id": 4,
@@ -93,7 +93,7 @@
       "userName": "Rosetta Gottlieb5",
       "productNumber": 12,
       "followerNumber": 23,
-      "contactStatus": "follower"
+      "contactStatus": "followers"
     },
     {
       "id": 6,
@@ -107,14 +107,14 @@
       "userName": "Rosetta Gottlieb7",
       "productNumber": 12,
       "followerNumber": 23,
-      "contactStatus": "follower"
+      "contactStatus": "followers"
     },
     {
       "id": 8,
       "userName": "Rosetta Gottlieb8",
       "productNumber": 12,
       "followerNumber": 23,
-      "contactStatus": "follower"
+      "contactStatus": "followers"
     },
     {
       "id": 9,
@@ -128,7 +128,7 @@
       "userName": "Rosetta Gottlieb10",
       "productNumber": 12,
       "followerNumber": 23,
-      "contactStatus": "follower"
+      "contactStatus": "followers"
     },
     {
       "id": 11,
@@ -142,7 +142,7 @@
       "userName": "Rosetta Gottlieb12",
       "productNumber": 12,
       "followerNumber": 23,
-      "contactStatus": "follower"
+      "contactStatus": "followers"
     }
   ]
 }

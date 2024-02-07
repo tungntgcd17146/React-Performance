@@ -1,8 +1,9 @@
 import { render, screen, describe, expect, it, vi, fireEvent } from '@/utils/testUtils'
-import ContactItem, { Props, fakeData } from '..'
+import ContactItem, { Props } from '..'
+import { fakeUserContact } from '@/constants/data'
 
 const defaultProp = {
-  user: fakeData,
+  user: fakeUserContact,
   onChangeFollowButtonStatus: vi.fn(),
   onClickMessageButton: vi.fn()
 } as Props
@@ -32,7 +33,7 @@ describe('ContactItem Test', () => {
   it('init Following for follow button correctly', async () => {
     setup({
       user: {
-        ...fakeData,
+        ...fakeUserContact,
         contactStatus: 'following'
       }
     })
@@ -45,7 +46,7 @@ describe('ContactItem Test', () => {
   it('call onChangeFollowButtonStatus when click FollowButton', () => {
     setup({
       user: {
-        ...fakeData,
+        ...fakeUserContact,
         contactStatus: 'following'
       }
     })
