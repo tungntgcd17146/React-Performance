@@ -1,4 +1,4 @@
-import { memo, useCallback, useState } from 'react'
+import { memo, useCallback, useMemo, useState } from 'react'
 
 //mui
 import Card from '@mui/material/Card'
@@ -57,21 +57,24 @@ const ProductCard = ({ onEditCard, onDeleteCard, onViewCard, product }: Props) =
   )
 
   const handleViewCard = useCallback(
-    (e: React.MouseEvent<HTMLElement>, id: number) => {
+    (e: React.MouseEvent<HTMLElement>) => {
       e.stopPropagation()
-      onViewCard?.(e, id)
+      onViewCard?.(e, product.id)
     },
-    [onViewCard]
+    [product.id, onViewCard]
   )
 
-  const imgIconCommonStyle = {
-    backgroundColor: theme.palette.primary.main,
-    marginRight: '16px',
-    ':hover': {
+  const imgIconCommonStyle = useMemo(
+    () => ({
       backgroundColor: theme.palette.primary.main,
-      color: theme.palette.info.main
-    }
-  }
+      marginRight: '16px',
+      ':hover': {
+        backgroundColor: theme.palette.primary.main,
+        color: theme.palette.info.main
+      }
+    }),
+    [theme.palette.info.main, theme.palette.primary.main]
+  )
 
   const { productName, productCategory, productPrice, productRating, productRatingCount } = product
 
@@ -114,21 +117,36 @@ const ProductCard = ({ onEditCard, onDeleteCard, onViewCard, product }: Props) =
           >
             <IconButton
               data-testid='ProductCard_IconButton_edit'
-              children={<EditOutlinedIcon />}
+              children={useMemo(
+                () => (
+                  <EditOutlinedIcon />
+                ),
+                []
+              )}
               sx={imgIconCommonStyle}
               onClick={handleEditCard}
             />
             <IconButton
               data-testid='ProductCard_IconButton_delete'
-              children={<DeleteOutlineOutlinedIcon />}
+              children={useMemo(
+                () => (
+                  <DeleteOutlineOutlinedIcon />
+                ),
+                []
+              )}
               sx={imgIconCommonStyle}
               onClick={handleDeleteCard}
             />
             <IconButton
               data-testid='ProductCard_IconButton_view'
-              children={<ArrowForwardOutlinedIcon />}
+              children={useMemo(
+                () => (
+                  <ArrowForwardOutlinedIcon />
+                ),
+                []
+              )}
               sx={imgIconCommonStyle}
-              onClick={(e) => handleViewCard(e, product.id)}
+              onClick={handleViewCard}
             />
           </Box>
         </Box>
