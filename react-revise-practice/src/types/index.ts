@@ -13,6 +13,7 @@ export enum ShopTabs {
 }
 
 export enum ShopSelectInput {
+  ALL = 'All',
   RECENT = 'Most recent',
   NEW = 'Most new',
   POPULAR = 'Most popular'
