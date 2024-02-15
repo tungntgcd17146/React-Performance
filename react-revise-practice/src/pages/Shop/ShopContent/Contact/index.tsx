@@ -1,4 +1,4 @@
-import { memo, useCallback } from 'react'
+import { memo } from 'react'
 
 //mui
 import Grid from '@mui/material/Grid'
@@ -6,7 +6,6 @@ import Grid from '@mui/material/Grid'
 //components
 // import ProductCard from '@/components/ProductCard'
 import ContactItem from '@/components/ContactItem'
-import Button from '@/components/Button'
 
 //helper
 import useScreenWidth from '@/hooks/useScreenWidth'
@@ -15,6 +14,7 @@ import CircularProgress from '@mui/material/CircularProgress'
 import PageNotFound from '@/components/PageNotFound'
 import { fetchContacts } from '@/api'
 import useQueryItems from '@/hooks/useQueryItems'
+import InfiniteScroll from '@/components/InfiniteScroll'
 
 export type ContactQuery = 'following' | 'followers'
 
@@ -35,9 +35,6 @@ const Contact = ({ contactQuery }: Props) => {
     isError
   } = useQueryItems({ key: ['contacts', contactQuery], queryFunction: fetchContacts(queryParams) })
 
-  //TODO: action when click load more, call api to fetch products
-  const handleClickLoadMore = useCallback(() => {}, [])
-
   if (isLoading)
     return (
       <Box sx={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'center' }}>
@@ -47,19 +44,17 @@ const Contact = ({ contactQuery }: Props) => {
   if (isError || !contacts) return <PageNotFound headerContent='Opp!' body='Error page' />
 
   return (
-    <Grid container={!matchedBreakpoint}>
-      {contacts.map((contactItem) => {
-        return (
-          <Grid key={contactItem.id} xs={12} item>
-            <ContactItem user={contactItem} />
-          </Grid>
-        )
-      })}
-
-      <Grid xs={12} sx={{ textAlign: 'center', marginTop: '24px' }} item>
-        <Button children='Load more' color='inherit' size='small' onClick={handleClickLoadMore} />
+    <InfiniteScroll maxHeight='800px' isHiddenActionButton>
+      <Grid container={!matchedBreakpoint}>
+        {contacts.map((contactItem) => {
+          return (
+            <Grid key={contactItem.id} xs={12} item>
+              <ContactItem user={contactItem} />
+            </Grid>
+          )
+        })}
       </Grid>
-    </Grid>
+    </InfiniteScroll>
   )
 }
 

@@ -22,16 +22,24 @@ export const tabItems: NavigateItem[] = [
 
 export const selectOption = [
   {
+    id: '0',
+    name: ShopSelectInput.ALL,
+    value: ShopSelectInput.ALL
+  },
+  {
     id: '1',
-    name: ShopSelectInput.RECENT
+    name: ShopSelectInput.RECENT,
+    value: ShopSelectInput.RECENT
   },
   {
     id: '2',
-    name: ShopSelectInput.NEW
+    name: ShopSelectInput.NEW,
+    value: ShopSelectInput.NEW
   },
   {
     id: '3',
-    name: ShopSelectInput.POPULAR
+    name: ShopSelectInput.POPULAR,
+    value: ShopSelectInput.POPULAR
   }
 ]
 

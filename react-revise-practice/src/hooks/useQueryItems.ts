@@ -3,7 +3,6 @@ import { useQuery } from 'react-query'
 type ApiResponse<T> = T[]
 
 const useQueryItems = <T>({ key, queryFunction }: { key: Array<unknown>; queryFunction: Promise<ApiResponse<T>> }) => {
-  console.log('query re-render')
   return useQuery({
     queryKey: key,
     queryFn: () => queryFunction,
