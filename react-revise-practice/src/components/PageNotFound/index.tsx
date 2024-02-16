@@ -22,13 +22,13 @@ export interface Props {
   actionButtonName?: string
 }
 const NotFoundPage = ({
-  headerContent,
+  headerContent = '404',
   body,
   footer,
   isErrorAppPage = false,
   sx,
   onClick,
-  actionButtonName
+  actionButtonName = 'Back to Home'
 }: Props) => {
   const { isTablet, isDesktop } = useScreenWidth()
   const navigate: NavigateFunction = useNavigate()
