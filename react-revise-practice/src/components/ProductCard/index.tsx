@@ -11,12 +11,14 @@ import Box from '@mui/material/Box'
 import ArrowForwardOutlinedIcon from '@mui/icons-material/ArrowForwardOutlined'
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined'
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
+import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined'
 
 //components
 import Rating from '@/components/Rating'
 import Branch1 from '@/assets/Brand1.jpg'
 import IconButton from '@/components/IconButton'
 import Chip from '@/components/Chip'
+import { themes } from '@/themes'
 
 export interface Props {
   onEditCard?: (e: React.MouseEvent<HTMLElement>) => void
@@ -27,6 +29,7 @@ export interface Props {
   productPrice: number
   productRating: number
   productRatingCount: number
+  popularity: string
   id: number
 }
 
@@ -39,7 +42,8 @@ const ProductCard = ({
   productCategory,
   productPrice,
   productRating,
-  productRatingCount
+  productRatingCount,
+  popularity
 }: Props) => {
   const [isExpandedCard, setIsExpandedCard] = useState(false)
   const theme = useTheme()
@@ -168,7 +172,17 @@ const ProductCard = ({
 
             <Chip price={productPrice} variant='filled' />
           </Box>
-          <Rating ratingPoint={productRating} counter={productRatingCount} />
+          <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+            <Typography
+              gutterBottom
+              variant='subtitle1'
+              sx={{ color: theme.palette.text.secondary, alignContent: 'center' }}
+            >
+              <FavoriteOutlinedIcon sx={{ color: themes.colors.red[500], marginRight: '8px' }} /> {popularity}
+            </Typography>
+
+            <Rating ratingPoint={productRating} counter={productRatingCount} />
+          </Box>
         </CardContent>
       </CardActionArea>
     </Card>

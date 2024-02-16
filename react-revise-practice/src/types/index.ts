@@ -26,6 +26,7 @@ export interface Product {
   productPrice: number
   productRating: number
   productRatingCount: number
+  popularity: string
 }
 
 export interface UserContact {

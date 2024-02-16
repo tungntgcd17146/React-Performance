@@ -9,43 +9,40 @@ import ContactItem from '@/components/ContactItem'
 
 //helper
 import useScreenWidth from '@/hooks/useScreenWidth'
-import Box from '@mui/material/Box'
-import CircularProgress from '@mui/material/CircularProgress'
-import PageNotFound from '@/components/PageNotFound'
 import { useContactsQuery } from '@/hooks/useContactsQuery'
 import InfiniteScroll from '@/components/InfiniteScroll'
 
 export type ContactQuery = 'following' | 'followers'
 
 export interface Props {
-  contactQuery: string
+  tabSelectedText: string
 }
 
-const Contact = ({ contactQuery }: Props) => {
+const Contact = ({ tabSelectedText }: Props) => {
   const { matchedBreakpoint } = useScreenWidth({ down: 'sm' })
 
-  const queryParams = {
-    contactStatus: contactQuery
+  const contactsQueryParams = {
+    contactStatus: tabSelectedText
   }
 
   const {
     data: response,
     isLoading,
     isError
-  } = useContactsQuery({ keys: ['contacts', contactQuery], params: queryParams })
+  } = useContactsQuery({ keys: ['contacts', tabSelectedText], params: contactsQueryParams })
 
   const contacts = response?.data
 
-  if (isLoading)
-    return (
-      <Box sx={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'center' }}>
-        <CircularProgress />
-      </Box>
-    )
-  if (isError || !contacts) return <PageNotFound headerContent='Opp!' body='Error page' />
+  if (!contacts) return
 
   return (
-    <InfiniteScroll maxHeight='800px' isHiddenLoadMore>
+    <InfiniteScroll
+      maxHeight='800px'
+      isLoading={isLoading}
+      isError={isError}
+      isEmptyItem={contacts.length === 0}
+      isHiddenLoadMore
+    >
       <Grid container={!matchedBreakpoint}>
         {contacts.map((contactItem) => {
           return (
