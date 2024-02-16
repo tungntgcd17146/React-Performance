@@ -72,11 +72,11 @@ const sortBySelect = [
 export interface Props {
   onSubmit?: (filterValue: FilterValue) => void
   onReset?: () => void
-  totalProducts: number
-  showingProducts: number
+  totalProducts?: number
+  showingProducts?: number
 }
 
-const ProductFilter = ({ onReset, onSubmit, totalProducts, showingProducts }: Props) => {
+const ProductFilter = ({ onReset, onSubmit, totalProducts = 0, showingProducts = 0 }: Props) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
 
   const [categoryChecked, setCategoryChecked] = useState<CheckboxOption[]>(checkboxesOptions)

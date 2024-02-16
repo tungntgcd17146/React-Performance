@@ -20,7 +20,7 @@ const ShopContent = () => {
   const [page, setPage] = useState(1)
 
   //TODO: state for search product name
-  const [searchProductName, setSearchProductName] = useState<string>('')
+  // const [searchProductName, setSearchProductName] = useState<string>('')
   const [popularitySelect, setPopularitySelect] = useState<string>(ShopSelect.ALL)
 
   const [isHiddenLoadMore, setIsHiddenLoadMore] = useState(false)
@@ -115,9 +115,9 @@ const ShopContent = () => {
 
   const handleSubmitFilterModal = useCallback(
     (filterData: FilterValue) => {
-      const { priceRange, rating, sortBy, searchProductName, categories } = filterData
+      const { priceRange, rating, sortBy, categories } = filterData
 
-      setSearchProductName(searchProductName)
+      // setSearchProductName(searchProductName)
       setPage(1)
 
       const minPriceRange = priceRange[0]
