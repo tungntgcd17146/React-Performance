@@ -16,22 +16,30 @@ export interface Props {
   headerContent?: string
   body?: string
   footer?: string
-  isError?: boolean
+  isErrorAppPage?: boolean
   sx?: React.CSSProperties
+  onClick?: (e: React.MouseEvent<HTMLElement>) => void
+  actionButtonName?: string
 }
 const NotFoundPage = ({
   headerContent = '404',
-  body = 'Oops! Page not found.',
-  footer = ' The page you are looking for might be under construction or does not exist.',
-  isError = false,
-  sx
+  body,
+  footer,
+  isErrorAppPage = false,
+  sx,
+  onClick,
+  actionButtonName = 'Back to Home'
 }: Props) => {
   const { isTablet, isDesktop } = useScreenWidth()
   const navigate: NavigateFunction = useNavigate()
 
-  const handleClick = useCallback(() => {
-    navigate(ROUTES.HOME)
-  }, [navigate])
+  const handleClick = useCallback(
+    (e: React.MouseEvent<HTMLElement>) => {
+      navigate(ROUTES.HOME)
+      onClick?.(e)
+    },
+    [navigate, onClick]
+  )
 
   return (
     <Grid
@@ -40,8 +48,9 @@ const NotFoundPage = ({
       alignItems='center'
       sx={{
         textAlign: 'center',
-        marginTop: '300px',
-        marginLeft: !isError && isTablet ? '80px' : !isError && isDesktop ? '330px' : '0px',
+        marginTop: '100px',
+        marginBottom: '100px',
+        marginLeft: !isErrorAppPage && isTablet ? '80px' : !isErrorAppPage && isDesktop ? '330px' : '0px',
         ...sx
       }}
     >
@@ -62,15 +71,21 @@ const NotFoundPage = ({
       >
         {headerContent}
       </Typography>
-      <Typography variant='h2' color='textSecondary' paragraph>
-        {body}
-      </Typography>
-      <Typography variant='body1' color='textSecondary' paragraph>
-        {footer}
-      </Typography>
-      <Button data-testid='NotFoundPage_Button' onClick={handleClick} variant='outlined' color='inherit'>
-        Go to Home
-      </Button>
+      {body && (
+        <Typography variant='h2' color='textSecondary' paragraph>
+          {body}
+        </Typography>
+      )}
+      {footer && (
+        <Typography variant='body1' color='textSecondary' paragraph>
+          {footer}
+        </Typography>
+      )}
+      {actionButtonName && (
+        <Button data-testid='NotFoundPage_Button' onClick={handleClick} variant='outlined' color='inherit'>
+          {actionButtonName}
+        </Button>
+      )}
     </Grid>
   )
 }

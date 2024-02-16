@@ -1,4 +1,4 @@
-import { memo } from 'react'
+import { memo, useMemo } from 'react'
 import SearchIcon from '@mui/icons-material/Search'
 
 import { InputBaseProps, useTheme } from '@mui/material'
@@ -15,6 +15,8 @@ export interface Props extends InputBaseProps {
 const SearchInput = ({ endHelper, onClickEndHelper, onChange, searchWidth = '100%', ...rest }: Props) => {
   const theme = useTheme()
 
+  const searchIconStyles = useMemo(() => ({ position: 'absolute', left: '4px', top: '4px' }), [])
+
   return (
     <div
       style={{ backgroundColor: theme.palette.grey[100], color: theme.palette.text.secondary, width: searchWidth }}
@@ -22,8 +24,13 @@ const SearchInput = ({ endHelper, onClickEndHelper, onChange, searchWidth = '100
     >
       <IconButton
         data-testid='SearchInput_SearchIcon'
-        children={<SearchIcon />}
-        sx={{ position: 'absolute', left: '4px', top: '4px' }}
+        children={useMemo(
+          () => (
+            <SearchIcon />
+          ),
+          []
+        )}
+        sx={searchIconStyles}
       />
       <InputBase
         onChange={onChange}

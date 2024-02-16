@@ -2,39 +2,35 @@ import { fireEvent, render, screen, describe, expect, it, vi } from '@/utils/tes
 import Checkboxes, { Props } from '..'
 
 const defaultProp = {
+  onChange: vi.fn(),
   checkboxOptions: [
     {
       id: '1',
       label: 'All Products',
-      labelPlacement: 'start',
-      onChange: vi.fn()
+      labelPlacement: 'start'
     },
     {
       id: '2',
       label: 'UI Kit',
-      labelPlacement: 'start',
-      onChange: vi.fn()
+      labelPlacement: 'start'
     },
     {
       id: '3',
       label: 'IIIustration',
-      labelPlacement: 'start',
-      onChange: vi.fn()
+      labelPlacement: 'start'
     },
     {
       id: '4',
       label: 'Wireframe Kit',
-      labelPlacement: 'start',
-      onChange: vi.fn()
+      labelPlacement: 'start'
     },
     {
       id: '5',
       label: 'Icons',
-      labelPlacement: 'start',
-      onChange: vi.fn()
+      labelPlacement: 'start'
     }
   ]
-} as Props
+} as unknown as Props
 
 const setup = (overrideProps = {}) => {
   const props = {
@@ -58,6 +54,6 @@ describe('Checkboxes Test', () => {
     const checkbox = screen.getAllByRole('checkbox')[0]
     fireEvent.click(checkbox)
 
-    expect(defaultProp.checkboxOptions[0].onChange).toBeCalled()
+    expect(defaultProp.onChange).toBeCalled()
   })
 })

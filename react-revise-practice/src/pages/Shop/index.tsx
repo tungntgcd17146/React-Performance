@@ -6,7 +6,7 @@ import Box from '@mui/material/Box/Box'
 import Grid from '@mui/material/Grid'
 
 //components
-import ShopBody from '@/pages/Shop/ShopContent'
+import ShopContent from '@/pages/Shop/ShopContent'
 import BackgroundImage from '@/pages/Shop/BackgroundImage'
 import OwnerInfo from '@/pages/Shop/OwnerInfo'
 
@@ -47,7 +47,7 @@ const Shop = () => {
           }}
         >
           <OwnerInfo />
-          <ShopBody />
+          <ShopContent />
         </Grid>
       </Grid>
     </Box>

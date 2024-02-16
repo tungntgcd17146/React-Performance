@@ -12,7 +12,8 @@ export enum ShopTabs {
   FOLLOWING = 'Following'
 }
 
-export enum ShopSelectInput {
+export enum ShopSelect {
+  ALL = 'All',
   RECENT = 'Most recent',
   NEW = 'Most new',
   POPULAR = 'Most popular'
@@ -25,6 +26,7 @@ export interface Product {
   productPrice: number
   productRating: number
   productRatingCount: number
+  popularity: string
 }
 
 export interface UserContact {
