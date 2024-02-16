@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
 import Select from '.'
-import { selectOption } from '@/pages/Shop'
+import { selectOption } from '@/constants/data'
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {

@@ -22,7 +22,7 @@ import SwitchMode from '@/components/SwitchMode'
 import useScreenWidth from '@/hooks/useScreenWidth'
 
 //types
-import { NavigateItem } from '@/types/navigateItem'
+import { NavigateItem } from '@/types'
 import { useMode } from '@/contexts/modeContext/useModeContext'
 
 export interface Props {

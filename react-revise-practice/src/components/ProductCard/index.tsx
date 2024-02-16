@@ -1,4 +1,4 @@
-import { memo, useCallback, useState } from 'react'
+import { memo, useCallback, useMemo, useState } from 'react'
 
 //mui
 import Card from '@mui/material/Card'
@@ -11,23 +11,40 @@ import Box from '@mui/material/Box'
 import ArrowForwardOutlinedIcon from '@mui/icons-material/ArrowForwardOutlined'
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined'
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
+import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined'
 
 //components
 import Rating from '@/components/Rating'
 import Branch1 from '@/assets/Brand1.jpg'
 import IconButton from '@/components/IconButton'
 import Chip from '@/components/Chip'
-
-import { Product } from '@/pages/Shop/Products'
+import { themes } from '@/themes'
 
 export interface Props {
   onEditCard?: (e: React.MouseEvent<HTMLElement>) => void
   onDeleteCard?: (e: React.MouseEvent<HTMLElement>) => void
   onViewCard?: (e: React.MouseEvent<HTMLElement>, id: number) => void
-  product: Product
+  productName: string
+  productCategory: string
+  productPrice: number
+  productRating: number
+  productRatingCount: number
+  popularity: string
+  id: number
 }
 
-const ProductCard = ({ onEditCard, onDeleteCard, onViewCard, product }: Props) => {
+const ProductCard = ({
+  onEditCard,
+  onDeleteCard,
+  onViewCard,
+  id,
+  productName,
+  productCategory,
+  productPrice,
+  productRating,
+  productRatingCount,
+  popularity
+}: Props) => {
   const [isExpandedCard, setIsExpandedCard] = useState(false)
   const theme = useTheme()
 
@@ -56,23 +73,24 @@ const ProductCard = ({ onEditCard, onDeleteCard, onViewCard, product }: Props) =
   )
 
   const handleViewCard = useCallback(
-    (e: React.MouseEvent<HTMLElement>, id: number) => {
+    (e: React.MouseEvent<HTMLElement>) => {
       e.stopPropagation()
       onViewCard?.(e, id)
     },
-    [onViewCard]
+    [id, onViewCard]
   )
 
-  const imgIconCommonStyle = {
-    backgroundColor: theme.palette.primary.main,
-    marginRight: '16px',
-    ':hover': {
+  const imgIconCommonStyle = useMemo(
+    () => ({
       backgroundColor: theme.palette.primary.main,
-      color: theme.palette.info.main
-    }
-  }
-
-  const { productName, productCategory, productPrice, productRating, productRatingCount } = product
+      marginRight: '16px',
+      ':hover': {
+        backgroundColor: theme.palette.primary.main,
+        color: theme.palette.info.main
+      }
+    }),
+    [theme.palette.info.main, theme.palette.primary.main]
+  )
 
   return (
     <Card
@@ -113,33 +131,58 @@ const ProductCard = ({ onEditCard, onDeleteCard, onViewCard, product }: Props) =
           >
             <IconButton
               data-testid='ProductCard_IconButton_edit'
-              children={<EditOutlinedIcon />}
+              children={useMemo(
+                () => (
+                  <EditOutlinedIcon />
+                ),
+                []
+              )}
               sx={imgIconCommonStyle}
               onClick={handleEditCard}
             />
             <IconButton
               data-testid='ProductCard_IconButton_delete'
-              children={<DeleteOutlineOutlinedIcon />}
+              children={useMemo(
+                () => (
+                  <DeleteOutlineOutlinedIcon />
+                ),
+                []
+              )}
               sx={imgIconCommonStyle}
               onClick={handleDeleteCard}
             />
             <IconButton
               data-testid='ProductCard_IconButton_view'
-              children={<ArrowForwardOutlinedIcon />}
+              children={useMemo(
+                () => (
+                  <ArrowForwardOutlinedIcon />
+                ),
+                []
+              )}
               sx={imgIconCommonStyle}
-              onClick={(e) => handleViewCard(e, product.id)}
+              onClick={handleViewCard}
             />
           </Box>
         </Box>
         <CardContent sx={{ display: 'flex', flexDirection: 'column' }}>
           <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
             <Typography gutterBottom variant='subtitle1' sx={{ color: theme.palette.text.secondary }}>
-              {productName} {productCategory}
+              {productName} ({productCategory})
             </Typography>
 
             <Chip price={productPrice} variant='filled' />
           </Box>
-          <Rating ratingPoint={productRating} counter={productRatingCount} />
+          <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+            <Typography
+              gutterBottom
+              variant='subtitle1'
+              sx={{ color: theme.palette.text.secondary, alignContent: 'center' }}
+            >
+              <FavoriteOutlinedIcon sx={{ color: themes.colors.red[500], marginRight: '8px' }} /> {popularity}
+            </Typography>
+
+            <Rating ratingPoint={productRating} counter={productRatingCount} />
+          </Box>
         </CardContent>
       </CardActionArea>
     </Card>

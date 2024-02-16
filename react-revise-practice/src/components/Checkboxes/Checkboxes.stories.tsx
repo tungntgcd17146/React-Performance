@@ -24,27 +24,32 @@ export const CheckboxesGroupsLeftLabel: Story = {
       {
         id: '1',
         label: 'All Products',
-        labelPlacement: 'start'
+        labelPlacement: 'start',
+        isChecked: false
       },
       {
         id: '2',
         label: 'UI Kit',
-        labelPlacement: 'start'
+        labelPlacement: 'start',
+        isChecked: false
       },
       {
         id: '3',
         label: 'IIIustration',
-        labelPlacement: 'start'
+        labelPlacement: 'start',
+        isChecked: false
       },
       {
         id: '4',
         label: 'Wireframe Kit',
-        labelPlacement: 'start'
+        labelPlacement: 'start',
+        isChecked: false
       },
       {
         id: '5',
         label: 'Icons',
-        labelPlacement: 'start'
+        labelPlacement: 'start',
+        isChecked: false
       }
     ]
   }
@@ -56,27 +61,32 @@ export const CheckboxesGroupsRightLabel: Story = {
       {
         id: '1',
         label: 'All Products',
-        labelPlacement: 'end'
+        labelPlacement: 'end',
+        isChecked: false
       },
       {
         id: '2',
         label: 'UI Kit',
-        labelPlacement: 'end'
+        labelPlacement: 'end',
+        isChecked: false
       },
       {
         id: '3',
         label: 'IIIustration',
-        labelPlacement: 'end'
+        labelPlacement: 'end',
+        isChecked: false
       },
       {
         id: '4',
         label: 'Wireframe Kit',
-        labelPlacement: 'end'
+        labelPlacement: 'end',
+        isChecked: false
       },
       {
         id: '5',
         label: 'Icons',
-        labelPlacement: 'end'
+        labelPlacement: 'end',
+        isChecked: false
       }
     ]
   }

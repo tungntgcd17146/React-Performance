@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import ContactItem, { fakeData } from '.'
+import ContactItem from '.'
+import { fakeUserContact } from '@/constants/data'
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
@@ -20,14 +21,14 @@ type Story = StoryObj<typeof meta>
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 export const ContactItemFollowers: Story = {
   args: {
-    user: fakeData
+    user: fakeUserContact
   }
 }
 
 export const ContactItemFollowing: Story = {
   args: {
     user: {
-      ...fakeData,
+      ...fakeUserContact,
       contactStatus: 'following'
     }
   }

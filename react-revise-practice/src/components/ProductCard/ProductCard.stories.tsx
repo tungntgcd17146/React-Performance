@@ -20,26 +20,24 @@ type Story = StoryObj<typeof meta>
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 export const ProductCardBase: Story = {
   args: {
-    product: {
-      id: 1,
-      productName: 'Product',
-      productCategory: 'Category',
-      productPrice: 100,
-      productRating: 4.5,
-      productRatingCount: 100
-    }
+    id: 1,
+    productName: 'Product',
+    productCategory: 'Category',
+    productPrice: 100,
+    productRating: 4.5,
+    productRatingCount: 100,
+    popularity: 'Most popular'
   }
 }
 
 export const ProductCardPriceWithEmptyRating: Story = {
   args: {
-    product: {
-      id: 2,
-      productName: 'Product',
-      productCategory: 'Category',
-      productPrice: 100,
-      productRating: 0,
-      productRatingCount: 0
-    }
+    id: 2,
+    productName: 'Product',
+    productCategory: 'Category',
+    productPrice: 100,
+    productRating: 0,
+    productRatingCount: 0,
+    popularity: 'Most popular'
   }
 }

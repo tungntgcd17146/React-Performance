@@ -3,7 +3,7 @@ import { describe, expect, it, vi } from 'vitest'
 import Tabs, { Props } from '..'
 import * as useScreenWidth from '@/hooks/useScreenWidth'
 
-import { tabItems } from '@/pages/Shop'
+import { tabItems } from '@/constants/data'
 
 const defaultProp = {
   onTabClick: vi.fn(),

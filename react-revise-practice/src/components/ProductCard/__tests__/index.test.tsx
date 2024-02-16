@@ -2,14 +2,13 @@ import { render, screen, describe, expect, it, vi, fireEvent } from '@/utils/tes
 import ProductCard, { Props } from '..'
 
 const defaultProp = {
-  product: {
-    id: 1,
-    productName: 'Product',
-    productCategory: 'Category',
-    productPrice: 100,
-    productRating: 4.5,
-    productRatingCount: 100
-  },
+  id: 1,
+  productName: 'Product',
+  productCategory: 'Category',
+  productPrice: 100,
+  productRating: 4.5,
+  productRatingCount: 100,
+  popularity: 'Most popular',
   onEditCard: vi.fn(),
   onDeleteCard: vi.fn(),
   onViewCard: vi.fn()
@@ -28,7 +27,7 @@ describe('ProductCard Test', () => {
   it('render ProductCard correctly', () => {
     setup()
 
-    expect(screen.getByText('Product Category')).toBeTruthy()
+    expect(screen.getByText('Product (Category)')).toBeTruthy()
     expect(screen.getByText('4.5')).toBeTruthy()
     expect(screen.getByText('(100)')).toBeTruthy()
   })

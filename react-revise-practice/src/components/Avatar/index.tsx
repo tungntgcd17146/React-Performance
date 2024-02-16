@@ -10,7 +10,8 @@ export interface Props extends AvatarProps {
   avtBackground?: string
   BadgeIcon?: React.ReactNode
   onClick?: () => void
-  sx?: React.CSSProperties
+  badgeSx?: React.CSSProperties
+  badgeAnchorOrigin?: { vertical: 'top' | 'bottom'; horizontal: 'left' | 'right' }
 }
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
@@ -34,7 +35,18 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
   }
 }))
 
-const Avatar = ({ BadgeIcon, onClick, size = 'medium', avtBackground, alt, src, sx, ...rest }: Props) => {
+const Avatar = ({
+  BadgeIcon,
+  onClick,
+  size = 'medium',
+  avtBackground,
+  alt,
+  src,
+  sx,
+  badgeSx,
+  badgeAnchorOrigin = { vertical: 'bottom', horizontal: 'right' },
+  ...rest
+}: Props) => {
   const getSize = (sizes?: 'small' | 'medium' | 'large') => {
     switch (sizes) {
       case 'small':
@@ -55,7 +67,14 @@ const Avatar = ({ BadgeIcon, onClick, size = 'medium', avtBackground, alt, src, 
 
   if (!BadgeIcon) {
     return (
-      <MuiAvatar data-testid='Avatar_MuiAvatar' onClick={onClick} sx={avtCommonStyle} alt={alt} src={src} {...rest} />
+      <MuiAvatar
+        sx={{ ...avtCommonStyle, ...sx }}
+        data-testid='Avatar_MuiAvatar'
+        onClick={onClick}
+        alt={alt}
+        src={src}
+        {...rest}
+      />
     )
   }
 
@@ -63,12 +82,12 @@ const Avatar = ({ BadgeIcon, onClick, size = 'medium', avtBackground, alt, src, 
     <StyledBadge
       data-testid='Avatar_StyledBadge'
       overlap='circular'
-      anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+      anchorOrigin={badgeAnchorOrigin}
       badgeContent={BadgeIcon}
       onClick={onClick}
-      sx={sx}
+      sx={badgeSx}
     >
-      <MuiAvatar sx={avtCommonStyle} alt={alt} src={src} {...rest} />
+      <MuiAvatar sx={{ ...avtCommonStyle, ...sx }} alt={alt} src={src} {...rest} />
     </StyledBadge>
   )
 }

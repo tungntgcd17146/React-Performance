@@ -20,13 +20,15 @@ type Story = StoryObj<typeof meta>
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 export const SearchInputBase: Story = {
   args: {
-    searchWidth: '300px'
+    searchWidth: '300px',
+    placeholder: 'Search ...'
   }
 }
 
 export const SearchInputWithEndHelper: Story = {
   args: {
     endHelper: '⌘ F',
-    searchWidth: '300px'
+    searchWidth: '300px',
+    placeholder: 'Search ...'
   }
 }

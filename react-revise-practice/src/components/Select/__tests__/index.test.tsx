@@ -1,8 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { fireEvent, render, screen } from '@/utils/testUtils'
 import { describe, expect, it, vi } from 'vitest'
 import Tabs, { Props } from '..'
 
-import { selectOption } from '@/pages/Shop'
+import { selectOption } from '@/constants/data'
 
 const defaultProp = {
   options: selectOption,
@@ -32,8 +33,8 @@ describe('Tabs Test', () => {
 
     fireEvent.mouseDown(selectInput)
 
-    expect(await screen.findByText(defaultProp.options[1].name)).toBeTruthy()
-    expect(await screen.findByText(defaultProp.options[2].name)).toBeTruthy()
+    expect(await screen.findByText(defaultProp.options[1].name as any)).toBeTruthy()
+    expect(await screen.findByText(defaultProp.options[2].name as any)).toBeTruthy()
   })
 
   it('select item on dropdown call onChange correctly', async () => {
@@ -43,7 +44,7 @@ describe('Tabs Test', () => {
 
     fireEvent.mouseDown(selectInput)
 
-    const secondItem = await screen.findByText(defaultProp.options[1].name)
+    const secondItem = await screen.findByText(defaultProp.options[1].name as any)
 
     fireEvent.click(secondItem)
 

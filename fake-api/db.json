@@ -1,5 +1,290 @@
 {
-  "products": [{ "id": 1, "title": "json-server", "author": "typicode" }],
-  "comments": [{ "id": 1, "body": "some comment", "postId": 1 }],
-  "users": [{ "id": 1, "name": "typicode" }]
+  "products": [
+    {
+      "id": 1,
+      "productName": "Charkar Template",
+      "productCategory": "UI Kit",
+      "productPrice": 100,
+      "productRating": 4.5,
+      "productRatingCount": 100,
+      "popularity": "Most popular",
+      "createdAt": "2022-01-01T12:00:00Z"
+    },
+    {
+      "id": 2,
+      "productName": "Notifications",
+      "productCategory": "Icons",
+      "productPrice": 13,
+      "productRating": 3.5,
+      "productRatingCount": 200,
+      "popularity": "Most popular",
+      "createdAt": "2022-01-02T12:00:00Z"
+    },
+    {
+      "id": 3,
+      "productName": "MUI template",
+      "productCategory": "UI Kit",
+      "productPrice": 67,
+      "productRating": 2.5,
+      "productRatingCount": 300,
+      "popularity": "Most popular",
+      "createdAt": "2022-01-14T12:00:00Z"
+    },
+    {
+      "id": 4,
+      "productName": "Bootstrap template",
+      "productCategory": "UI Kit",
+      "productPrice": 100,
+      "productRating": 1.5,
+      "productRatingCount": 400,
+      "popularity": "Most popular",
+      "createdAt": "2022-01-05T12:00:00Z"
+    },
+    {
+      "id": 5,
+      "productName": "Hometown",
+      "productCategory": "IIIustration",
+      "productPrice": 11,
+      "productRating": 5,
+      "productRatingCount": 500,
+      "popularity": "Most popular",
+      "createdAt": "2022-01-15T12:00:00Z"
+    },
+    {
+      "id": 6,
+      "productName": "Chachacha template",
+      "productCategory": "UI Kit",
+      "productPrice": 23,
+      "productRating": 4.3,
+      "productRatingCount": 600,
+      "popularity": "Most new",
+      "createdAt": "2022-01-04T12:00:00Z"
+    },
+    {
+      "id": 7,
+      "productName": "Switch",
+      "productCategory": "Icons",
+      "productPrice": 43,
+      "productRating": 4.2,
+      "productRatingCount": 231,
+      "popularity": "Most recent",
+      "createdAt": "2022-01-16T12:00:00Z"
+    },
+    {
+      "id": 8,
+      "productName": "Favorite",
+      "productCategory": "IIIustration",
+      "productPrice": 45,
+      "productRating": 4.7,
+      "productRatingCount": 234,
+      "popularity": "Most recent",
+      "createdAt": "2022-01-03T12:00:00Z"
+    },
+    {
+      "id": 9,
+      "productName": "Shelf Introduction",
+      "productCategory": "IIIustration",
+      "productPrice": 12,
+      "productRating": 4.9,
+      "productRatingCount": 111,
+      "popularity": "Most recent",
+      "createdAt": "2022-01-19T12:00:00Z"
+    },
+    {
+      "id": 10,
+      "productName": "Shelf Review",
+      "productCategory": "IIIustration",
+      "productPrice": 23,
+      "productRating": 4.1,
+      "productRatingCount": 252,
+      "popularity": "Most recent",
+      "createdAt": "2022-01-06T12:00:00Z"
+    },
+    {
+      "id": 11,
+      "productName": "UpNext",
+      "productCategory": "Icons",
+      "productPrice": 22,
+      "productRating": 3.2,
+      "productRatingCount": 123,
+      "popularity": "Most recent",
+      "createdAt": "2022-01-07T12:00:00Z"
+    },
+    {
+      "id": 12,
+      "productName": "Product 7",
+      "productCategory": "IIIustration",
+      "productPrice": 33,
+      "productRating": 3.3,
+      "productRatingCount": 600,
+      "popularity": "Most recent",
+      "createdAt": "2022-01-17T12:00:00Z"
+    },
+    {
+      "id": 13,
+      "productName": "Product 7",
+      "productCategory": "IIIustration",
+      "productPrice": 44,
+      "productRating": 3.4,
+      "productRatingCount": 333,
+      "popularity": "Most recent",
+      "createdAt": "2022-01-18T12:00:00Z"
+    },
+    {
+      "id": 14,
+      "productName": "UpTo",
+      "productCategory": "Icons",
+      "productPrice": 55,
+      "productRating": 2.6,
+      "productRatingCount": 555,
+      "popularity": "Most recent",
+      "createdAt": "2022-01-08T12:00:00Z"
+    },
+    {
+      "id": 15,
+      "productName": "Product 7",
+      "productCategory": "IIIustration",
+      "productPrice": 66,
+      "productRating": 2.8,
+      "productRatingCount": 600,
+      "popularity": "Most recent",
+      "createdAt": "2022-01-09T12:00:00Z"
+    },
+    {
+      "id": 16,
+      "productName": "Product 7",
+      "productCategory": "Wireframe Kit",
+      "productPrice": 77,
+      "productRating": 1.8,
+      "productRatingCount": 164,
+      "popularity": "Most recent",
+      "createdAt": "2022-01-20T12:00:00Z"
+    },
+    {
+      "id": 17,
+      "productName": "Product 7",
+      "productCategory": "IIIustration",
+      "productPrice": 88,
+      "productRating": 4.9,
+      "productRatingCount": 1251,
+      "popularity": "Most recent",
+      "createdAt": "2022-01-10T12:00:00Z"
+    },
+    {
+      "id": 18,
+      "productName": "Product 7",
+      "productCategory": "Wireframe Kit",
+      "productPrice": 99,
+      "productRating": 4.2,
+      "productRatingCount": 601,
+      "popularity": "Most recent",
+      "createdAt": "2022-01-13T12:00:00Z"
+    },
+    {
+      "id": 19,
+      "productName": "Product 7",
+      "productCategory": "Icons",
+      "productPrice": 24,
+      "productRating": 4.3,
+      "productRatingCount": 235,
+      "popularity": "Most recent",
+      "createdAt": "2022-01-12T12:00:00Z"
+    },
+    {
+      "id": 20,
+      "productName": "Product 7",
+      "productCategory": "Wireframe Kit",
+      "productPrice": 54,
+      "productRating": 4.6,
+      "productRatingCount": 603,
+      "popularity": "Most recent",
+      "createdAt": "2022-01-11T12:00:00Z"
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "userName": "Rosetta Gottlieb1",
+      "productNumber": 12,
+      "followerNumber": 23,
+      "contactStatus": "followers"
+    },
+    {
+      "id": 2,
+      "userName": "Rosetta Gottlieb2",
+      "productNumber": 12,
+      "followerNumber": 23,
+      "contactStatus": "following"
+    },
+    {
+      "id": 3,
+      "userName": "Rosetta Gottlieb3",
+      "productNumber": 12,
+      "followerNumber": 23,
+      "contactStatus": "followers"
+    },
+    {
+      "id": 4,
+      "userName": "Rosetta Gottlieb4",
+      "productNumber": 12,
+      "followerNumber": 23,
+      "contactStatus": "following"
+    },
+    {
+      "id": 5,
+      "userName": "Rosetta Gottlieb5",
+      "productNumber": 12,
+      "followerNumber": 23,
+      "contactStatus": "followers"
+    },
+    {
+      "id": 6,
+      "userName": "Rosetta Gottlieb6",
+      "productNumber": 12,
+      "followerNumber": 23,
+      "contactStatus": "following"
+    },
+    {
+      "id": 7,
+      "userName": "Rosetta Gottlieb7",
+      "productNumber": 12,
+      "followerNumber": 23,
+      "contactStatus": "followers"
+    },
+    {
+      "id": 8,
+      "userName": "Rosetta Gottlieb8",
+      "productNumber": 12,
+      "followerNumber": 23,
+      "contactStatus": "followers"
+    },
+    {
+      "id": 9,
+      "userName": "Rosetta Gottlieb9",
+      "productNumber": 12,
+      "followerNumber": 23,
+      "contactStatus": "following"
+    },
+    {
+      "id": 10,
+      "userName": "Rosetta Gottlieb10",
+      "productNumber": 12,
+      "followerNumber": 23,
+      "contactStatus": "followers"
+    },
+    {
+      "id": 11,
+      "userName": "Rosetta Gottlieb11",
+      "productNumber": 12,
+      "followerNumber": 23,
+      "contactStatus": "following"
+    },
+    {
+      "id": 12,
+      "userName": "Rosetta Gottlieb12",
+      "productNumber": 12,
+      "followerNumber": 23,
+      "contactStatus": "followers"
+    }
+  ]
 }
