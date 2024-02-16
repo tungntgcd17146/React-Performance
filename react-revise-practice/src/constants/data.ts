@@ -1,4 +1,4 @@
-import { NavigateItem, ShopSelectInput, ShopTabs, UserContact } from '@/types'
+import { NavigateItem, ShopSelect, ShopTabs, UserContact } from '@/types'
 
 //img
 import Product1 from '@/assets/Product1.jpg'
@@ -23,23 +23,23 @@ export const tabItems: NavigateItem[] = [
 export const selectOption = [
   {
     id: '0',
-    name: ShopSelectInput.ALL,
-    value: ShopSelectInput.ALL
+    name: ShopSelect.ALL,
+    value: ShopSelect.ALL
   },
   {
     id: '1',
-    name: ShopSelectInput.RECENT,
-    value: ShopSelectInput.RECENT
+    name: ShopSelect.RECENT,
+    value: ShopSelect.RECENT
   },
   {
     id: '2',
-    name: ShopSelectInput.NEW,
-    value: ShopSelectInput.NEW
+    name: ShopSelect.NEW,
+    value: ShopSelect.NEW
   },
   {
     id: '3',
-    name: ShopSelectInput.POPULAR,
-    value: ShopSelectInput.POPULAR
+    name: ShopSelect.POPULAR,
+    value: ShopSelect.POPULAR
   }
 ]
 

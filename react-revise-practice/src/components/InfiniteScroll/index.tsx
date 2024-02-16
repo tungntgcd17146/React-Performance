@@ -11,10 +11,8 @@ export interface Props {
   isLoading?: boolean
   isError?: boolean
   isEmptyItem?: boolean
-  isHiddenActionButton?: boolean
-  onClickLoadMore?: () => void
-  onClickShowLess?: () => void
   isHiddenLoadMore?: boolean
+  onClickLoadMore?: () => void
 }
 
 const InfiniteScroll = ({
@@ -24,18 +22,11 @@ const InfiniteScroll = ({
   isError,
   isEmptyItem,
   onClickLoadMore,
-  onClickShowLess,
-  isHiddenActionButton = false,
-  isHiddenLoadMore
+  isHiddenLoadMore = false
 }: Props) => {
-  //TODO: action when click load more, call api to fetch products
   const handleClickLoadMore = useCallback(() => {
     onClickLoadMore?.()
   }, [onClickLoadMore])
-
-  const handleClickShowLess = useCallback(() => {
-    onClickShowLess?.()
-  }, [onClickShowLess])
 
   if (isLoading) {
     return (
@@ -65,13 +56,9 @@ const InfiniteScroll = ({
     >
       {children}
 
-      {!isHiddenActionButton && (
+      {!isHiddenLoadMore && (
         <Grid xs={12} sx={{ textAlign: 'center', marginTop: '24px' }} item>
-          {isHiddenLoadMore ? (
-            <Button children='Show less' color='inherit' size='small' onClick={handleClickShowLess} />
-          ) : (
-            <Button children='Load more' color='inherit' size='small' onClick={handleClickLoadMore} />
-          )}
+          <Button children='Load more' color='inherit' size='small' onClick={handleClickLoadMore} />
         </Grid>
       )}
     </div>

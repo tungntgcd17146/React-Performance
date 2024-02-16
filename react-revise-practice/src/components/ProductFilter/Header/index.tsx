@@ -11,8 +11,8 @@ import { memo, useMemo } from 'react'
 
 interface Props {
   onClickHeaderButton: (e: React.MouseEvent<HTMLElement>) => void
-  showingProduct: string
-  totalProduct: string
+  showingProduct: number
+  totalProduct: number
 }
 
 const FilterModalHeader = ({ onClickHeaderButton, totalProduct, showingProduct }: Props) => {

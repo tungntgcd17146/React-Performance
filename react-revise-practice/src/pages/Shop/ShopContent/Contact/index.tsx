@@ -29,10 +29,12 @@ const Contact = ({ contactQuery }: Props) => {
   }
 
   const {
-    data: contacts,
+    data: response,
     isLoading,
     isError
   } = useContactsQuery({ keys: ['contacts', contactQuery], params: queryParams })
+
+  const contacts = response?.data
 
   if (isLoading)
     return (
@@ -43,7 +45,7 @@ const Contact = ({ contactQuery }: Props) => {
   if (isError || !contacts) return <PageNotFound headerContent='Opp!' body='Error page' />
 
   return (
-    <InfiniteScroll maxHeight='800px' isHiddenActionButton>
+    <InfiniteScroll maxHeight='800px' isHiddenLoadMore>
       <Grid container={!matchedBreakpoint}>
         {contacts.map((contactItem) => {
           return (

@@ -13,7 +13,7 @@ const routes: RouteObject[] = [
   {
     path: ROUTES.HOME,
     element: <App />,
-    errorElement: <PageNotFound isError headerContent='Opp!' body='Error page' />,
+    errorElement: <PageNotFound isErrorAppPage headerContent='Opp!' body='Error page' />,
     children: [
       { index: true, element: <Shop /> },
       {

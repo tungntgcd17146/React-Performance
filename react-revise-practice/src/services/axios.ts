@@ -5,7 +5,7 @@ const getRequest = async <T>(url: string, queryParams?: object) => {
   const response = await axios.get<T>(`${BASE_URL}/${url}`, {
     params: queryParams
   })
-  return response.data
+  return response
 }
 
 const getRequestById = async <T>(url: string, id: string, queryParams?: object): Promise<T> => {

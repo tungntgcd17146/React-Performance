@@ -65,7 +65,7 @@ const Tabs = ({ onTabClick, onTabsChange, tabItems, sx }: Props) => {
             return (
               <StyledTab
                 data-testid='Tabs_StyledTab'
-                onClick={(e) => handleClickTabItem(e)}
+                onClick={handleClickTabItem}
                 label={text}
                 disabled={isDisabled}
                 key={index}
