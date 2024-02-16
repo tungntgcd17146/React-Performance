@@ -1,12 +1,12 @@
 import { getRequest, getRequestById } from '@/services/axios'
 import { Product, UserContact } from '@/types'
 
-const fetchContacts = async (queryParams?: { [key: string]: string }) => {
+const fetchContacts = async (queryParams?: object) => {
   const response = await getRequest<UserContact[]>('users', queryParams)
   return response
 }
 
-const fetchProducts = async (queryParams?: { [key: string]: string }) => {
+const fetchProducts = async (queryParams?: object) => {
   const response = await getRequest<Product[]>('products', queryParams)
   return response
 }

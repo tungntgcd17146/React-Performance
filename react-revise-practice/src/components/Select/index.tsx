@@ -30,8 +30,6 @@ const Select = ({ options = [], startIcon, sx, onChange, selectedValue, label }:
     onChange?.(event)
   }
 
-  console.log(' select rerender:', selectedValue)
-
   return (
     <Box sx={{ minWidth: 120 }}>
       {label && (

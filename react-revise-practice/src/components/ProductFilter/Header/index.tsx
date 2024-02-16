@@ -11,9 +11,11 @@ import { memo, useMemo } from 'react'
 
 interface Props {
   onClickHeaderButton: (e: React.MouseEvent<HTMLElement>) => void
+  showingProduct: string
+  totalProduct: string
 }
 
-const FilterModalHeader = ({ onClickHeaderButton }: Props) => {
+const FilterModalHeader = ({ onClickHeaderButton, totalProduct, showingProduct }: Props) => {
   const theme = useTheme()
   const { isMobile } = useScreenWidth()
 
@@ -40,7 +42,7 @@ const FilterModalHeader = ({ onClickHeaderButton }: Props) => {
       <Grid display='flex' flexDirection='row' alignItems='center'>
         <Chip variant='filled' sx={chipStyle} />
         <Typography variant='h4' sx={{ marginLeft: '16px', fontSize: '18px', color: theme.palette.text.secondary }}>
-          Showing 9 of 32 products
+          Showing {showingProduct} of {totalProduct} products
         </Typography>
       </Grid>
 

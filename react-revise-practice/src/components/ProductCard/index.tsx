@@ -18,17 +18,29 @@ import Branch1 from '@/assets/Brand1.jpg'
 import IconButton from '@/components/IconButton'
 import Chip from '@/components/Chip'
 
-//types
-import { Product } from '@/types'
-
 export interface Props {
   onEditCard?: (e: React.MouseEvent<HTMLElement>) => void
   onDeleteCard?: (e: React.MouseEvent<HTMLElement>) => void
   onViewCard?: (e: React.MouseEvent<HTMLElement>, id: number) => void
-  product: Product
+  productName: string
+  productCategory: string
+  productPrice: number
+  productRating: number
+  productRatingCount: number
+  id: number
 }
 
-const ProductCard = ({ onEditCard, onDeleteCard, onViewCard, product }: Props) => {
+const ProductCard = ({
+  onEditCard,
+  onDeleteCard,
+  onViewCard,
+  id,
+  productName,
+  productCategory,
+  productPrice,
+  productRating,
+  productRatingCount
+}: Props) => {
   const [isExpandedCard, setIsExpandedCard] = useState(false)
   const theme = useTheme()
 
@@ -59,9 +71,9 @@ const ProductCard = ({ onEditCard, onDeleteCard, onViewCard, product }: Props) =
   const handleViewCard = useCallback(
     (e: React.MouseEvent<HTMLElement>) => {
       e.stopPropagation()
-      onViewCard?.(e, product.id)
+      onViewCard?.(e, id)
     },
-    [product.id, onViewCard]
+    [id, onViewCard]
   )
 
   const imgIconCommonStyle = useMemo(
@@ -75,8 +87,6 @@ const ProductCard = ({ onEditCard, onDeleteCard, onViewCard, product }: Props) =
     }),
     [theme.palette.info.main, theme.palette.primary.main]
   )
-
-  const { productName, productCategory, productPrice, productRating, productRatingCount } = product
 
   return (
     <Card
@@ -153,7 +163,7 @@ const ProductCard = ({ onEditCard, onDeleteCard, onViewCard, product }: Props) =
         <CardContent sx={{ display: 'flex', flexDirection: 'column' }}>
           <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
             <Typography gutterBottom variant='subtitle1' sx={{ color: theme.palette.text.secondary }}>
-              {productName} {productCategory}
+              {productName} ({productCategory})
             </Typography>
 
             <Chip price={productPrice} variant='filled' />

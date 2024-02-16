@@ -49,7 +49,13 @@ const Checkboxes = ({ checkboxOptions, onChange, label }: Props) => {
               key={id}
               sx={formControlLabelStyles}
               control={
-                <MuiCheckbox checked={isChecked} id={id} value={label} sx={muiCheckboxStyles} onChange={onChange} />
+                <MuiCheckbox
+                  checked={isChecked}
+                  id={id}
+                  value={label}
+                  sx={muiCheckboxStyles}
+                  onChange={onChange}
+                />
               }
               label={label}
               labelPlacement={labelPlacement}

@@ -12,8 +12,7 @@ import useScreenWidth from '@/hooks/useScreenWidth'
 import Box from '@mui/material/Box'
 import CircularProgress from '@mui/material/CircularProgress'
 import PageNotFound from '@/components/PageNotFound'
-import { fetchContacts } from '@/api'
-import useQueryItems from '@/hooks/useQueryItems'
+import { useContactsQuery } from '@/hooks/useContactsQuery'
 import InfiniteScroll from '@/components/InfiniteScroll'
 
 export type ContactQuery = 'following' | 'followers'
@@ -33,7 +32,7 @@ const Contact = ({ contactQuery }: Props) => {
     data: contacts,
     isLoading,
     isError
-  } = useQueryItems({ key: ['contacts', contactQuery], queryFunction: fetchContacts(queryParams) })
+  } = useContactsQuery({ keys: ['contacts', contactQuery], params: queryParams })
 
   if (isLoading)
     return (

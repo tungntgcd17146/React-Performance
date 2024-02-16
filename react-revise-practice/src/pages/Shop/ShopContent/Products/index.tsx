@@ -27,9 +27,19 @@ const Products = ({ products }: Props) => {
   return (
     <Grid container={!matchedBreakpoint}>
       {products.map((product) => {
+        const { productName, productCategory, productPrice, productRating, productRatingCount, id } = product
+
         return (
-          <Grid key={product.id} sm={6} lg={4} item>
-            <ProductCard product={product} onViewCard={handleClickViewCard} />
+          <Grid key={id} sm={6} lg={4} item>
+            <ProductCard
+              id={id}
+              productName={productName}
+              productCategory={productCategory}
+              productPrice={productPrice}
+              productRating={productRating}
+              productRatingCount={productRatingCount}
+              onViewCard={handleClickViewCard}
+            />
           </Grid>
         )
       })}
