@@ -109,6 +109,7 @@ const Header = () => {
 
   return (
     <Box
+      data-testid='Header'
       sx={{
         marginLeft: isTablet ? '80px' : isDesktop ? '330px' : '0px',
         padding: '24px',
@@ -121,24 +122,42 @@ const Header = () => {
       }}
     >
       <Hidden mdDown>
-        <SearchInput searchWidth='356px' placeholder='Search or type a command' endHelper='⌘ F' />
+        <SearchInput
+          data-testid='Header_SearchInput'
+          searchWidth='356px'
+          placeholder='Search or type a command'
+          endHelper='⌘ F'
+        />
       </Hidden>
 
-      {isMobile && <IconButton children={<DragHandleIcon />} onClick={handleOpenDrawer} />}
-      <Drawer isOpen={isOpenDrawer} onOpen={handleOpenDrawer} onClose={handleCloseDrawer} listItems={selectedNavItem} />
+      {isMobile && (
+        <IconButton data-testid='Header_MenuIcon' children={<DragHandleIcon />} onClick={handleOpenDrawer} />
+      )}
+      <Drawer
+        data-testid='Header_Drawer'
+        isOpen={isOpenDrawer}
+        onOpen={handleOpenDrawer}
+        onClose={handleCloseDrawer}
+        listItems={selectedNavItem}
+      />
 
       <div className='flex flex-row gap-[24px]'>
         {/* search input on mobile */}
         {isMobile && (
           <div>
-            <IconButton onClick={handleClickMobileSearchIcon} children={<SearchIcon />} size='large' />
+            <IconButton
+              data-testid='Header_SearchInputIcon_Mobile'
+              onClick={handleClickMobileSearchIcon}
+              children={<SearchIcon />}
+              size='large'
+            />
             <Popper
               open={openSearchInputPopup}
               anchorEl={searchIconAnchorEl}
               sx={{ backgroundColor: theme.palette.grey[200], width: '100%' }}
             >
               <Box sx={{ padding: ' 12px 16px' }}>
-                <SearchInput placeholder='Search or type a command' />
+                <SearchInput data-testid='Header_SearchInput_Mobile' placeholder='Search or type a command' />
               </Box>
             </Popper>
           </div>

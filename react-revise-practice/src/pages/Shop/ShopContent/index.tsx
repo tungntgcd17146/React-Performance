@@ -1,4 +1,4 @@
-import ProductFilter, { FilterValue } from '@/components/ProductFilter'
+import ProductFilter, { FilterValue } from '@/pages/Shop/ShopContent/ProductFilter'
 import Select from '@/components/Select'
 import Tabs from '@/components/Tabs'
 import Contact from '@/pages/Shop/ShopContent/Contact'
@@ -20,7 +20,7 @@ const ShopContent = () => {
   const [page, setPage] = useState(1)
 
   //TODO: state for search product name
-  const [searchProductName, setSearchProductName] = useState<string>('')
+  // const [searchProductName, setSearchProductName] = useState<string>('')
   const [popularitySelect, setPopularitySelect] = useState<string>(ShopSelect.ALL)
 
   const [isHiddenLoadMore, setIsHiddenLoadMore] = useState(false)

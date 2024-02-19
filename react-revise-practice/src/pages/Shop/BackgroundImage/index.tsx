@@ -9,10 +9,19 @@ const BackgroundImage = () => {
   const { isMobile } = useScreenWidth()
 
   if (isMobile) {
-    return <img src={CoverPhotoMobile} alt='~/assets/CoverPhotoMobile.png' className='w-full h-[252px]' />
+    return (
+      <img
+        data-testid='BackgroundImage_Mobile'
+        src={CoverPhotoMobile}
+        alt='~/assets/CoverPhotoMobile.png'
+        className='w-full h-[252px]'
+      />
+    )
   }
 
-  return <img src={CoverPhoto} alt='~/assets/CoverPhoto.jpg' className='w-full h-[400px]' />
+  return (
+    <img data-testid='BackgroundImage' src={CoverPhoto} alt='~/assets/CoverPhoto.jpg' className='w-full h-[400px]' />
+  )
 }
 
 export default memo(BackgroundImage)

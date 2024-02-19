@@ -118,6 +118,7 @@ const Drawer = ({ isOpen, onClose, onOpen, onNavItemClick, listItems }: Props) =
 
   return (
     <MuiDrawer
+      data-testid='Drawer'
       sx={{
         flexShrink: 0,
         whiteSpace: 'nowrap',

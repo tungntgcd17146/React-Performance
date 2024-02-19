@@ -178,7 +178,8 @@ const ProductCard = ({
               variant='subtitle1'
               sx={{ color: theme.palette.text.secondary, alignContent: 'center' }}
             >
-              <FavoriteOutlinedIcon sx={{ color: themes.colors.red[500], marginRight: '8px' }} /> {popularity}
+              <FavoriteOutlinedIcon sx={useMemo(() => ({ color: themes.colors.red[500], marginRight: '8px' }), [])} />{' '}
+              {popularity}
             </Typography>
 
             <Rating ratingPoint={productRating} counter={productRatingCount} />
