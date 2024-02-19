@@ -28,6 +28,6 @@ export const NotFoundPageCustom: Story = {
 
 export const NotFoundPagePriceBase: Story = {
   args: {
-    isError: true
+    isBrowserError: true
   }
 }
