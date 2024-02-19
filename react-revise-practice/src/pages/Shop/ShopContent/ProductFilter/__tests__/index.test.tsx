@@ -3,7 +3,12 @@ import ProductFilter, { Props } from '..'
 
 import * as useScreenWidth from '@/hooks/useScreenWidth'
 
-const defaultProp = {} as Props
+const defaultProp = {
+  onReset: vi.fn(),
+  onSubmit: vi.fn(),
+  totalProducts: 0,
+  showingProducts: 0
+} as Props
 
 const setup = (overrideProps = {}) => {
   const props = {
@@ -35,5 +40,49 @@ describe('ProductFilter Test', () => {
     fireEvent.click(screen.getByTestId('ProductFilter_CloseIconButton'))
 
     await waitFor(() => expect(screen.queryByTestId('ProductFilter_Popover')).toBeFalsy())
+  })
+
+  it('call onReset when click Reset button', () => {
+    setup()
+
+    fireEvent.click(screen.getByTestId('ProductFilter_IconButton'))
+
+    const search = screen.getByPlaceholderText('Search for products')
+    fireEvent.change(search, { target: { value: 'test' } })
+
+    fireEvent.click(screen.getByText('Reset'))
+
+    expect(defaultProp.onReset).toBeCalled()
+  })
+
+  it('change to close button when reset filter modal', async () => {
+    setup()
+
+    fireEvent.click(screen.getByTestId('ProductFilter_IconButton'))
+
+    const checkedBoxes = screen.getAllByRole('checkbox')
+
+    fireEvent.click(checkedBoxes[0])
+    fireEvent.click(checkedBoxes[1])
+    fireEvent.click(checkedBoxes[1])
+
+    fireEvent.click(screen.getByText('Reset'))
+
+    expect(defaultProp.onReset).toBeCalled()
+
+    await waitFor(() => expect(screen.queryByText('Reset')).toBeFalsy())
+  })
+
+  it('call onSubmit when click Apply button', () => {
+    setup()
+
+    fireEvent.click(screen.getByTestId('ProductFilter_IconButton'))
+
+    const search = screen.getByPlaceholderText('Search for products')
+    fireEvent.change(search, { target: { value: 'test' } })
+
+    fireEvent.click(screen.getByText('Apply'))
+
+    expect(defaultProp.onSubmit).toBeCalled()
   })
 })

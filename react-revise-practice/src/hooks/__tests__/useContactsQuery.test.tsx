@@ -45,7 +45,7 @@ describe('useContactsQuery', () => {
     ]
 
     // Mock the API function
-    fetchContacts.mockResolvedValue(mockContacts)
+    ;(fetchContacts as any).mockResolvedValue(mockContacts)
 
     // Render the component with the QueryClientProvider
     render(

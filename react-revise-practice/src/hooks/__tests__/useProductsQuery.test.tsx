@@ -44,7 +44,7 @@ describe('useProductsQuery', () => {
       // ... more products
     ]
     // Mock the API function
-    fetchProducts.mockResolvedValue(mockProducts)
+    ;(fetchProducts as any).mockResolvedValue(mockProducts)
 
     // Render the component with the QueryClientProvider
     render(

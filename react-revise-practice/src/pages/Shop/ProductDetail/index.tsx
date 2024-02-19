@@ -1,4 +1,4 @@
-import { memo, useState } from 'react'
+import { useState } from 'react'
 import { useQuery } from 'react-query'
 import { themes } from '@/themes'
 import { fetchProductById } from '@/api'
@@ -46,9 +46,10 @@ const ProductDetail = () => {
   if (isLoading)
     return (
       <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100vh' }}>
-        <CircularProgress />
+        <CircularProgress data-testid='ProductDetail_Loading' />
       </Box>
     )
+
   if (isError || !product) return <PageNotFound headerContent='Opp!' body='Error page' />
 
   const open = Boolean(anchorEl)
@@ -88,7 +89,7 @@ const ProductDetail = () => {
       >
         {/* Header */}
         <Grid item sx={{ margin: '24px 42px' }} display='flex' alignItems='center' justifyContent='space-between'>
-          <Button children='Edit product' color='inherit' />
+          <Button data-testid='ProductDetail_EditButton' children='Edit product' color='inherit' />
 
           <IconButton
             children={<CloseOutlinedIcon />}
@@ -167,4 +168,4 @@ const ProductDetail = () => {
   )
 }
 
-export default memo(ProductDetail)
+export default ProductDetail

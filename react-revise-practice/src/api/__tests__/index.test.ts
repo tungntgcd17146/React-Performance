@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import axios from 'axios'
 import { vi } from 'vitest'
 import { fetchContacts, fetchProducts, fetchProductById } from '@/api/index'
@@ -30,7 +31,7 @@ describe('API Service', () => {
   })
 
   it('fetches contacts successfully', async () => {
-    axios.get.mockResolvedValue({ data: mockData.contacts })
+    ;(axios.get as any).mockResolvedValue({ data: mockData.contacts })
 
     const result = await fetchContacts()
 
@@ -41,7 +42,7 @@ describe('API Service', () => {
   })
 
   it('fetches products successfully', async () => {
-    axios.get.mockResolvedValue({ data: mockData.products })
+    ;(axios.get as any).mockResolvedValue({ data: mockData.products })
 
     const result = await fetchProducts()
 
@@ -53,7 +54,7 @@ describe('API Service', () => {
 
   it('fetches a product by id successfully', async () => {
     const productId = '1'
-    axios.get.mockResolvedValue({ data: mockData.products[0] })
+    ;(axios.get as any).mockResolvedValue({ data: mockData.products[0] })
 
     const result = await fetchProductById(productId)
 

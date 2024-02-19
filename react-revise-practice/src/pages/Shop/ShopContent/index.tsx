@@ -19,8 +19,6 @@ const ShopContent = () => {
   const [products, setProducts] = useState<Product[]>([])
   const [page, setPage] = useState(1)
 
-  //TODO: state for search product name
-  // const [searchProductName, setSearchProductName] = useState<string>('')
   const [popularitySelect, setPopularitySelect] = useState<string>(ShopSelect.ALL)
 
   const [isHiddenLoadMore, setIsHiddenLoadMore] = useState(false)
@@ -47,6 +45,7 @@ const ShopContent = () => {
       _page: page,
       _limit: 6
     })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page])
 
   //if showing product is less than total product should show load more
@@ -56,6 +55,7 @@ const ShopContent = () => {
     } else {
       setIsHiddenLoadMore(false)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [products])
 
   //set products state when get more data from server
@@ -67,6 +67,7 @@ const ShopContent = () => {
         setProducts([...products, ...productsResponse])
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [productsResponse])
 
   const tabSelectedText = tabItems[tabSelected].text
@@ -115,9 +116,7 @@ const ShopContent = () => {
 
   const handleSubmitFilterModal = useCallback(
     (filterData: FilterValue) => {
-      const { priceRange, rating, sortBy, searchProductName, categories } = filterData
-
-      setSearchProductName(searchProductName)
+      const { priceRange, rating, sortBy, searchInput, categories } = filterData
       setPage(1)
 
       const minPriceRange = priceRange[0]
@@ -131,6 +130,7 @@ const ShopContent = () => {
 
         productRating_gte: rating,
         productCategory: categories,
+        q: searchInput, //searching
         _sort: 'createdAt', // Sorting by createdAt property from API
         _order: sortBy === 'New' ? 'desc' : 'asc',
         _page: 1,

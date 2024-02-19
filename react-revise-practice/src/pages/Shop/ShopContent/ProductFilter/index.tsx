@@ -22,7 +22,7 @@ import useScreenWidth from '@/hooks/useScreenWidth'
 import { themes } from '@/themes'
 
 export interface FilterValue {
-  searchProductName: string
+  searchInput: string
   sortBy: string
   categories: string[]
   priceRange: number[]
@@ -139,7 +139,7 @@ const ProductFilter = ({ onReset, onSubmit, totalProducts = 0, showingProducts =
       rating: selectedRatingValue
     }
 
-    onSubmit?.(filterApplyValue as unknown as FilterValue)
+    onSubmit?.(filterApplyValue)
     handleClose()
   }, [categoryValue, handleClose, onSubmit, rangeSlideValue, searchInput, selectedRatingValue, selectedSortByValue])
 

@@ -12,6 +12,7 @@ import Customer1 from '@/assets/customer1.png'
 //utils
 import useScreenWidth from '@/hooks/useScreenWidth'
 import { themes } from '@/themes'
+import { FeatureProduct } from '@/types'
 
 //mui
 import { useTheme } from '@mui/material'
@@ -21,6 +22,7 @@ import FileDownloadIcon from '@mui/icons-material/FileDownload'
 import CheckIcon from '@mui/icons-material/Check'
 import Divider from '@mui/material/Divider'
 import Typography from '@mui/material/Typography'
+import { fakeFeatureForProductData, fakeProductOverview } from '@/constants/data'
 
 export interface Props {
   productName: string
@@ -28,8 +30,18 @@ export interface Props {
   productPrice: number
   productRating: number
   productRatingCount: number
+  productOverview?: string
+  productFeature?: FeatureProduct[]
 }
-const DetailContent = ({ productName, productCategory, productPrice, productRating, productRatingCount }: Props) => {
+const DetailContent = ({
+  productName,
+  productCategory,
+  productPrice,
+  productRating,
+  productRatingCount,
+  productOverview = fakeProductOverview,
+  productFeature = fakeFeatureForProductData
+}: Props) => {
   const theme = useTheme()
   const { isDesktop, isMobile } = useScreenWidth()
 
@@ -137,20 +149,11 @@ const DetailContent = ({ productName, productCategory, productPrice, productRati
                 </Typography>
               </Grid>
               <Typography variant='body1' sx={{ color: theme.palette.text.secondary }}>
-                Meet Node - a crypto NFT marketplace iOS UI design kit for Figma, Sketch, and Adobe XD. The kit includes
-                126 stylish mobile screens in light and dark mode, a bunch of crypto 3D illustrations, 1 SaaS landing
-                page with full premade breakpoints, and hundreds of components to help you ship your next crypto, NFT
-                product faster.
-                <br />
-                <br />
-                Types of screens included: onboarding, connect wallet, home feed, profile, upload, menu, search, product
-                detail, notification...
-                <br />
-                <br />
-                If you have any questions or requests, please feel free to leave them all in the comments section.
+                {productOverview}
               </Typography>
             </Grid>
 
+            {/* Product features */}
             <Grid item xs={12} lg={5}>
               <Grid display='flex' flexDirection='row' sx={{ marginTop: '32px', marginBottom: '12px' }}>
                 <Chip
@@ -167,12 +170,7 @@ const DetailContent = ({ productName, productCategory, productPrice, productRati
                 </Typography>
               </Grid>
 
-              {[
-                { text: '128 prebuilt screens' },
-                { text: 'SaaS landing page ready' },
-                { text: 'Global styleguide' },
-                { text: 'Dark + light more ready' }
-              ].map((item, index) => (
+              {productFeature.map((item, index) => (
                 <div key={index}>
                   <Grid display='flex' flexDirection='row'>
                     <CheckIcon sx={{ color: themes.colors.green[500], marginRight: '12px' }} />

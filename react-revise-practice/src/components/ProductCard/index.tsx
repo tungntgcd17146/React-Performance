@@ -94,6 +94,7 @@ const ProductCard = ({
 
   return (
     <Card
+      data-testid='ProductCard'
       sx={{
         maxWidth: 560,
         maxHeight: 276,

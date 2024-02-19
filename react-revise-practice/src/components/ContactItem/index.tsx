@@ -63,7 +63,7 @@ const ContactItem = ({ user, onChangeFollowButtonStatus, onClickMessageButton }:
   return (
     <Grid container display='flex' flexDirection='column'>
       <Grid display='flex' flexDirection='row' container>
-        <Grid item display='flex' flexDirection='row' lg={6}>
+        <Grid data-testid='ContactItem' item display='flex' flexDirection='row' lg={6}>
           {/* avatar */}
           <Avatar avtBackground={themes.colors.yellow[500]} src={User1} alt={User1} size='medium' />
 
