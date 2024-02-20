@@ -85,6 +85,7 @@ const DetailContent = ({
             justifyContent={!isMobile ? 'flex-end' : 'flex-start'}
           >
             <Button
+              aria-label='favorite'
               children='32'
               color='inherit'
               sx={{ marginRight: '16px' }}
@@ -92,12 +93,14 @@ const DetailContent = ({
             />
 
             <Button
+              aria-label='product-price'
               children={`$${productPrice}`}
               color='primary'
               sx={{ borderTopRightRadius: '0px', borderBottomRightRadius: '0px' }}
               endIcon={<Divider orientation='vertical' />}
             />
             <Button
+              aria-label='download'
               children='Download'
               color='primary'
               sx={{ borderTopLeftRadius: '0px', borderBottomLeftRadius: '0px' }}

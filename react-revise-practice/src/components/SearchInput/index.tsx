@@ -29,6 +29,7 @@ const SearchInput = ({ endHelper, onClickEndHelper, onChange, searchWidth = '100
       className='rounded-[12px] h-[48px] pl-[42px] pr-[68px] relative'
     >
       <IconButton
+        aria-label='search'
         data-testid='SearchInput_SearchIcon'
         children={useMemo(
           () => (

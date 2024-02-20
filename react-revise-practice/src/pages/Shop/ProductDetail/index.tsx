@@ -88,9 +88,15 @@ const ProductDetail = () => {
       >
         {/* Header */}
         <Grid item sx={{ margin: '24px 42px' }} display='flex' alignItems='center' justifyContent='space-between'>
-          <Button data-testid='ProductDetail_EditButton' children='Edit product' color='inherit' />
+          <Button
+            aria-label='edit-product'
+            data-testid='ProductDetail_EditButton'
+            children='Edit product'
+            color='inherit'
+          />
 
           <IconButton
+            aria-label='detail-product-close'
             children={<CloseOutlinedIcon />}
             onClick={handleClose}
             data-testid='ProductDetail_CloseIconButton'
@@ -147,6 +153,7 @@ const ProductDetail = () => {
                 size='medium'
               />
               <IconButton
+                aria-label='like-product'
                 sx={{
                   backgroundColor: theme.palette.grey[300],
                   borderRadius: '50%',

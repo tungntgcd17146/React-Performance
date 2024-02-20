@@ -103,17 +103,19 @@ const Drawer = ({ isOpen, onClose, onOpen, onNavItemClick, listItems }: Props) =
           />
         )}
         <Divider sx={{ color: theme.palette.grey[100], marginBottom: '12px' }} />
-        <NavItem
-          icon={useMemo(
-            () => (
-              <HelpOutlineIcon />
-            ),
-            []
-          )}
-          text={'Help & Getting stated'}
-          isSelected={false}
-          isShowText={shouldShowFullContentOnDrawer}
-        />
+        <List>
+          <NavItem
+            icon={useMemo(
+              () => (
+                <HelpOutlineIcon />
+              ),
+              []
+            )}
+            text={'Help & Getting stated'}
+            isSelected={false}
+            isShowText={shouldShowFullContentOnDrawer}
+          />
+        </List>
 
         {/* switchMode */}
         <SwitchMode isLargerDrawerOnTablet={isLargerDrawerOnTablet} />

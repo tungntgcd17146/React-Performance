@@ -49,6 +49,7 @@ const FilterModalHeader = ({ onClickHeaderButton, totalProduct = 0, showingProdu
       <Grid>
         {isMobile && (
           <IconButton
+            aria-label='close-drawer-mobile'
             children={<CloseOutlinedIcon />}
             onClick={onClickHeaderButton}
             data-testid='ProductFilter_CloseIconButton'

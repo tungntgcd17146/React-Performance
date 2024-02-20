@@ -191,6 +191,7 @@ const ProductFilter = ({ onReset, onSubmit, totalProducts = 0, showingProducts =
   return (
     <div>
       <IconButton
+        aria-label='filter-product-icon-button'
         data-testid='ProductFilter_IconButton'
         onClick={handleClick}
         sx={useMemo(
@@ -295,11 +296,13 @@ const ProductFilter = ({ onReset, onSubmit, totalProducts = 0, showingProducts =
 
           <Grid item sx={{ marginBottom: '24px' }} justifyContent='flex-end' display='flex'>
             <Button
+              aria-label='close-reset'
               children={isDisableActionButton ? 'Close' : 'Reset'}
               color='inherit'
               onClick={isDisableActionButton ? handleClose : handleReset}
             />
             <Button
+              aria-label='apply-button'
               children='Apply'
               color='primary'
               sx={applyButtonStyles}

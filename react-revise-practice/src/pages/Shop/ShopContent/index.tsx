@@ -1,7 +1,7 @@
 import ProductFilter, { FilterValue } from '@/pages/Shop/ShopContent/ProductFilter'
 import Select from '@/components/Select'
 import Tabs from '@/components/Tabs'
-import Contacts from '@/pages/Shop/ShopContent/Contact'
+import Contacts from '@/pages/Shop/ShopContent/Contacts'
 import Products from '@/pages/Shop/ShopContent/Products'
 import Grid from '@mui/material/Grid'
 import { memo, useCallback, useEffect, useMemo, useState } from 'react'

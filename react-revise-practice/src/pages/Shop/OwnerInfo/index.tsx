@@ -28,7 +28,7 @@ const OwnerInfo = ({ name, description, avatar = Customer1, onClickFollow }: Pro
   const theme = useTheme()
   const { isMobile } = useScreenWidth()
 
-  const commonSocialIconStyle = { marginRight: '24px' }
+  const commonSocialIconStyles = { marginRight: '24px' }
 
   return (
     <>
@@ -51,7 +51,10 @@ const OwnerInfo = ({ name, description, avatar = Customer1, onClickFollow }: Pro
           <Typography sx={{ color: theme.palette.text.secondary, fontSize: isMobile ? '20px' : '32px' }} variant='h4'>
             {name}
           </Typography>
-          <Typography sx={!isMobile ? { fontSize: '20px', marginTop: '8px' } : {}} variant='body2'>
+          <Typography
+            sx={{ color: theme.palette.text.primary, ...(!isMobile ? { fontSize: '20px', marginTop: '8px' } : {}) }}
+            variant='body2'
+          >
             {description}
           </Typography>
         </Grid>
@@ -60,12 +63,13 @@ const OwnerInfo = ({ name, description, avatar = Customer1, onClickFollow }: Pro
       {/* social contact */}
       <Grid item xs={12} sm={12} lg={4} display='flex' flexDirection='row' justifyContent='space-between'>
         <Grid display='flex' flexDirection='row' alignItems='flex-start'>
-          <IconButton sx={commonSocialIconStyle} children={<TwitterIcon />} />
-          <IconButton sx={commonSocialIconStyle} children={<FacebookIcon />} />
-          <IconButton sx={commonSocialIconStyle} children={<InstagramIcon />} />
+          <IconButton aria-label='personal-twitter' sx={commonSocialIconStyles} children={<TwitterIcon />} />
+          <IconButton aria-label='personal-facebook' sx={commonSocialIconStyles} children={<FacebookIcon />} />
+          <IconButton aria-label='personal-instagram' sx={commonSocialIconStyles} children={<InstagramIcon />} />
         </Grid>
 
         <Button
+          aria-label='follow-button'
           data-testid='OwnerInfo_Follow_Button'
           onClick={onClickFollow}
           children='Follow'

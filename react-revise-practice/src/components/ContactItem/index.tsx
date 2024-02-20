@@ -106,6 +106,7 @@ const ContactItem = ({ user, onChangeFollowButtonStatus, onClickMessageButton }:
             {/* action button */}
             <Grid sx={{ marginTop: '16px' }}>
               <Button
+                aria-label='follow-user'
                 data-testid='ContactItem_FollowButton'
                 sx={useMemo(() => ({ marginRight: '8px' }), [])}
                 children={followButtonStatus}
@@ -114,6 +115,7 @@ const ContactItem = ({ user, onChangeFollowButtonStatus, onClickMessageButton }:
                 onClick={handleClickFollow}
               />
               <Button
+                aria-label='message-user'
                 data-testid='ContactItem_MessageButton'
                 children='Message'
                 size='small'

@@ -82,7 +82,13 @@ const NotFoundPage = ({
         </Typography>
       )}
       {actionButtonName && (
-        <Button data-testid='NotFoundPage_Button' onClick={handleClick} variant='outlined' color='inherit'>
+        <Button
+          aria-label='action-button'
+          data-testid='NotFoundPage_Button'
+          onClick={handleClick}
+          variant='outlined'
+          color='inherit'
+        >
           {actionButtonName}
         </Button>
       )}

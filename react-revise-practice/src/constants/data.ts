@@ -73,14 +73,14 @@ export const fakeFeatureForProductData: FeatureProduct[] = [
   { text: 'Dark + light more ready' }
 ]
 
-export const fakeProductOverview = `Meet Node - a crypto NFT marketplace iOS UI design kit for Figma, Sketch, and Adobe XD. The kit includes
+export const fakeProductOverview = `Meet Node - a crypto NFT marketplace iOS UI design kit for Figma, Sketch, and Adobe XD. The kit includes 
+
 126 stylish mobile screens in light and dark mode, a bunch of crypto 3D illustrations, 1 SaaS landing
+
 page with full premade breakpoints, and hundreds of components to help you ship your next crypto, NFT
 product faster.
-<br />
-<br />
+
 Types of screens included: onboarding, connect wallet, home feed, profile, upload, menu, search, product
 detail, notification...
-<br />
-<br />
+
 If you have any questions or requests, please feel free to leave them all in the comments section.`

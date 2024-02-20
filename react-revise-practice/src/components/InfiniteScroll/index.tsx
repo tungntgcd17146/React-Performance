@@ -62,6 +62,7 @@ const InfiniteScroll = ({
       {!isHiddenLoadMore && (
         <Grid xs={12} sx={{ textAlign: 'center', marginTop: '24px' }} item>
           <Button
+            aria-label='load-more'
             data-testid='InfiniteScroll_LoadMoreButton'
             children='Load more'
             color='inherit'

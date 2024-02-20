@@ -75,6 +75,7 @@ const SwitchMode = ({ isLargerDrawerOnTablet, customWidth = '100%' }: Props) => 
   if (isTablet && !isLargerDrawerOnTablet) {
     return (
       <IconButton
+        aria-label='dark-mode-icon'
         data-testid='SwitchMode_IconButton'
         size='medium'
         children={mode === 'light' ? <LightModeIcon /> : <DarkModeOutlinedIcon />}
