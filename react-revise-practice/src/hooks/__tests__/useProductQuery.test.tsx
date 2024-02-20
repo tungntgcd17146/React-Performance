@@ -1,16 +1,16 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { render, waitFor, screen } from '@testing-library/react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { useContactsQuery } from '../useContactsQuery'
 import { vi } from 'vitest'
-import { fetchContacts } from '@/api'
+import { fetchProductById } from '@/api'
+import { useProductQuery } from '@/hooks/useProductQuery'
 
 vi.mock('@/api', () => ({
-  fetchContacts: vi.fn()
+  fetchProductById: vi.fn()
 }))
 
 const TestComponent = () => {
-  const query = useContactsQuery({ keys: 'someKeys' })
+  const query = useProductQuery({ keys: '1', idParam: '1' })
 
   return (
     <div>
@@ -18,9 +18,7 @@ const TestComponent = () => {
       {query.error ? 'Error: ' + query.error : null}
       {query.data ? (
         <ul>
-          {(query.data as any).map((contact: any) => (
-            <li key={contact.id}>{contact.userName}</li>
-          ))}
+          <li key={query.data.id}>{query.data.productName}</li>
         </ul>
       ) : null}
     </div>
@@ -35,17 +33,14 @@ describe('useContactsQuery', () => {
   })
 
   it('fetches contacts successfully', async () => {
-    const mockContacts = [
-      {
-        id: 1,
-        userName: 'John Doe'
-        // ... other properties
-      }
-      // ... more contacts
-    ]
+    const mockContacts = {
+      id: 1,
+      productName: 'John Doe'
+      // ... other properties
+    }
 
     // Mock the API function
-    ;(fetchContacts as any).mockResolvedValue(mockContacts)
+    ;(fetchProductById as any).mockResolvedValue(mockContacts)
 
     // Render the component with the QueryClientProvider
     render(
@@ -62,7 +57,7 @@ describe('useContactsQuery', () => {
     const dataElement = await screen.findByText('John Doe')
 
     // Assert that the hook behaves as expected
-    expect(fetchContacts).toHaveBeenCalledWith(undefined) // Assuming params is undefined in your case
+    expect(fetchProductById).toHaveBeenCalledWith('1') // Assuming params is undefined in your case
     expect(errorElement).toBeNull()
     expect(dataElement).toBeTruthy()
   })

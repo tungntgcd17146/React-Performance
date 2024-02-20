@@ -5,11 +5,9 @@ import ProductDetail from '../'
 import * as useScreenWidth from '@/hooks/useScreenWidth'
 import { fakeFeatureForProductData, fakeProductOverview } from '@/constants/data'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { fetchProductById } from '@/api'
+import { useProductQuery } from '@/hooks/useProductQuery'
 
-vi.mock('@/api', () => ({
-  fetchProductById: vi.fn()
-}))
+vi.mock('@/hooks/useProductQuery')
 
 vi.mock('react-router-dom')
 
@@ -52,26 +50,29 @@ describe('ProductDetail Test', () => {
   afterEach(() => {
     vi.clearAllMocks()
   })
-  it('render ProductDetail correctly after fetching product data', async () => {
+  it('render loading correctly when fetching product data', () => {
     vi.spyOn(useScreenWidth, 'default').mockReturnValue({ isMobile: true, isTablet: false, isDesktop: false } as any)
 
     // Mock the API function
-    ;(fetchProductById as any).mockResolvedValue(mockProduct)
+    ;(useProductQuery as any).mockReturnValue({
+      data: mockProduct,
+      isLoading: true,
+      isError: false
+    })
     setup()
 
     expect(screen.getByTestId('ProductDetail_Loading')).toBeTruthy()
-
-    await waitFor(() => {
-      expect(screen.getByTestId('ProductDetail_CloseIconButton')).toBeTruthy()
-      expect(screen.getByTestId('ProductDetail_EditButton')).toBeTruthy()
-    })
   })
 
-  it('go back shop page when click close', async () => {
+  it('render product detail correctly and go back shop page when click close', async () => {
     vi.spyOn(useScreenWidth, 'default').mockReturnValue({ isMobile: false, isTablet: false, isDesktop: true } as any)
 
     // Mock the API function
-    ;(fetchProductById as any).mockResolvedValue(mockProduct)
+    ;(useProductQuery as any).mockReturnValue({
+      data: mockProduct,
+      isLoading: false,
+      isError: false
+    })
     setup()
 
     await waitFor(() => {
@@ -82,13 +83,15 @@ describe('ProductDetail Test', () => {
   })
 
   it('show Error page when fetch product data error', async () => {
-    vi.restoreAllMocks()
     vi.spyOn(useScreenWidth, 'default').mockReturnValue({ isMobile: false, isTablet: false, isDesktop: true } as any)
 
+    // Mock the API function
+    ;(useProductQuery as any).mockReturnValue({
+      data: mockProduct,
+      isLoading: false,
+      isError: true
+    })
     setup()
-
-    // Mock undefined value for the API function
-    ;(fetchProductById as any).mockResolvedValue(undefined)
 
     await waitFor(() => {
       expect(screen.getByText('Error page')).toBeTruthy()

@@ -3,7 +3,7 @@ import { describe, expect, it, vi } from 'vitest'
 import ImageDrawer, { Props } from '..'
 
 import * as useScreenWidth from '@/hooks/useScreenWidth'
-import DarkProductDetail from '@/assets/ProductDetailImgDark.jpg'
+import DarkProductDetail from '/assets/ProductDetailImgDark.jpg'
 
 const defaultProp = {
   image: DarkProductDetail

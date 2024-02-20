@@ -59,7 +59,7 @@ const OwnerInfo = ({ name, description, avatar = Customer1, onClickFollow }: Pro
 
       {/* social contact */}
       <Grid item xs={12} sm={12} lg={4} display='flex' flexDirection='row' justifyContent='space-between'>
-        <Grid display='flex' flexDirection='row'>
+        <Grid display='flex' flexDirection='row' alignItems='flex-start'>
           <IconButton sx={commonSocialIconStyle} children={<TwitterIcon />} />
           <IconButton sx={commonSocialIconStyle} children={<FacebookIcon />} />
           <IconButton sx={commonSocialIconStyle} children={<InstagramIcon />} />

@@ -1,8 +1,7 @@
 import { useState } from 'react'
-import { useQuery } from '@tanstack/react-query'
 import { themes } from '@/themes'
-import { fetchProductById } from '@/api'
 import useScreenWidth from '@/hooks/useScreenWidth'
+import { useProductQuery } from '@/hooks/useProductQuery'
 
 //mui
 import Box from '@mui/material/Box'
@@ -33,11 +32,7 @@ const ProductDetail = () => {
 
   const { id } = useParams()
 
-  const {
-    data: product,
-    isLoading,
-    isError
-  } = useQuery({ queryKey: ['product'], queryFn: () => fetchProductById(id!) })
+  const { data: product, isLoading, isError } = useProductQuery({ keys: id, idParam: id! })
 
   const theme = useTheme()
   const { isMobile } = useScreenWidth()

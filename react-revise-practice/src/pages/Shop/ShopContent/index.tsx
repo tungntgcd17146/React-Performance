@@ -1,7 +1,7 @@
 import ProductFilter, { FilterValue } from '@/pages/Shop/ShopContent/ProductFilter'
 import Select from '@/components/Select'
 import Tabs from '@/components/Tabs'
-import Contact from '@/pages/Shop/ShopContent/Contact'
+import Contacts from '@/pages/Shop/ShopContent/Contact'
 import Products from '@/pages/Shop/ShopContent/Products'
 import Grid from '@mui/material/Grid'
 import { memo, useCallback, useEffect, useMemo, useState } from 'react'
@@ -154,12 +154,12 @@ const ShopContent = () => {
         </Grid>
 
         {isProductsTabs && (
-          <Grid item display='flex' justifyContent='space-between' xs={12} md={4}>
+          <Grid item display='flex' justifyContent='space-between' alignItems='center' xs={12} md={4}>
             <Grid item xs={10}>
               <Select options={selectOption} onChange={handleSelectFilterByPopularity} />
             </Grid>
 
-            <Grid display='flex' justifyContent='center' alignItems={'center'} item xs={2}>
+            <Grid display='flex' justifyContent='center' alignItems='center' item xs={2}>
               <ProductFilter
                 totalProducts={totalProducts}
                 showingProducts={showingProducts}
@@ -184,7 +184,7 @@ const ShopContent = () => {
             <Products products={products} />
           </InfiniteScroll>
         ) : (
-          <Contact tabSelectedText={tabSelectedText.toLowerCase()} />
+          <Contacts tabSelectedText={tabSelectedText.toLowerCase()} />
         )}
       </Grid>
     </>

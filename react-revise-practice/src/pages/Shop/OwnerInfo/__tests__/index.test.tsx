@@ -3,7 +3,7 @@ import { fireEvent, render, screen } from '@/utils/testUtils'
 import { describe, expect, it, vi } from 'vitest'
 import OwnerInfo from '../'
 import * as useScreenWidth from '@/hooks/useScreenWidth'
-import Customer1 from '@/assets/customer1.png'
+import Customer1 from '/assets/customer1.png'
 
 const defaultProp = {
   name: 'Chelsie Haley',
