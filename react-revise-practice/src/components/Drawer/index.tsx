@@ -12,8 +12,8 @@ import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import { useTheme } from '@mui/material/styles'
 
 //components
-import DarkLogo from '@/assets/DarkLogo.png'
-import LightLogo from '@/assets/LightLogo.png'
+import DarkLogo from '/assets/DarkLogo.png'
+import LightLogo from '/assets/LightLogo.png'
 import NavItem from '@/components/NavItem/'
 import Logo from '@/components/Logo/'
 import SwitchMode from '@/components/SwitchMode'
@@ -104,7 +104,12 @@ const Drawer = ({ isOpen, onClose, onOpen, onNavItemClick, listItems }: Props) =
         )}
         <Divider sx={{ color: theme.palette.grey[100], marginBottom: '12px' }} />
         <NavItem
-          icon={<HelpOutlineIcon />}
+          icon={useMemo(
+            () => (
+              <HelpOutlineIcon />
+            ),
+            []
+          )}
           text={'Help & Getting stated'}
           isSelected={false}
           isShowText={shouldShowFullContentOnDrawer}
@@ -118,6 +123,7 @@ const Drawer = ({ isOpen, onClose, onOpen, onNavItemClick, listItems }: Props) =
 
   return (
     <MuiDrawer
+      data-testid='Drawer'
       sx={{
         flexShrink: 0,
         whiteSpace: 'nowrap',

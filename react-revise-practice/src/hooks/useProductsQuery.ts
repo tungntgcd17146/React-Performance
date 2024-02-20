@@ -1,5 +1,5 @@
 import { fetchProducts } from '@/api'
-import { useQuery } from 'react-query'
+import { useQuery } from '@tanstack/react-query'
 
 export const useProductsQuery = ({ keys, params }: { keys: unknown; params?: object }) =>
   useQuery({

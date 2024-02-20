@@ -11,6 +11,7 @@ import ContactItem from '@/components/ContactItem'
 import useScreenWidth from '@/hooks/useScreenWidth'
 import { useContactsQuery } from '@/hooks/useContactsQuery'
 import InfiniteScroll from '@/components/InfiniteScroll'
+import PageNotFound from '@/components/PageNotFound'
 
 export type ContactQuery = 'following' | 'followers'
 
@@ -18,7 +19,7 @@ export interface Props {
   tabSelectedText: string
 }
 
-const Contact = ({ tabSelectedText }: Props) => {
+const Contacts = ({ tabSelectedText }: Props) => {
   const { matchedBreakpoint } = useScreenWidth({ down: 'sm' })
 
   const contactsQueryParams = {
@@ -33,7 +34,7 @@ const Contact = ({ tabSelectedText }: Props) => {
 
   const contacts = response?.data
 
-  if (!contacts) return
+  if (!contacts) return <PageNotFound isBrowserError headerContent='Opp!' body='No item found' />
 
   return (
     <InfiniteScroll
@@ -56,4 +57,4 @@ const Contact = ({ tabSelectedText }: Props) => {
   )
 }
 
-export default memo(Contact)
+export default memo(Contacts)

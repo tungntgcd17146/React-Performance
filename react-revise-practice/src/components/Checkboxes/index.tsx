@@ -1,11 +1,12 @@
 import * as React from 'react'
-import FormGroup from '@mui/material/FormGroup'
-import FormControlLabel from '@mui/material/FormControlLabel'
+import { memo, useMemo } from 'react'
 
 //mui
+import FormGroup from '@mui/material/FormGroup'
+import FormControlLabel from '@mui/material/FormControlLabel'
 import Typography from '@mui/material/Typography'
 import { Checkbox as MuiCheckbox, useTheme } from '@mui/material'
-import { memo, useMemo } from 'react'
+import Box from '@mui/material/Box'
 
 export interface CheckboxOption {
   id: string
@@ -19,9 +20,10 @@ export interface Props {
   checkboxOptions: CheckboxOption[]
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
   label?: string
+  wrapperStyles?: React.CSSProperties
 }
 
-const Checkboxes = ({ checkboxOptions, onChange, label }: Props) => {
+const Checkboxes = ({ checkboxOptions, onChange, label, wrapperStyles }: Props) => {
   const theme = useTheme()
 
   const formControlLabelStyles = useMemo(
@@ -35,7 +37,7 @@ const Checkboxes = ({ checkboxOptions, onChange, label }: Props) => {
   )
 
   return (
-    <>
+    <Box sx={wrapperStyles}>
       {label && (
         <Typography variant='body1' sx={{ marginBottom: '8px' }}>
           {label}
@@ -49,13 +51,7 @@ const Checkboxes = ({ checkboxOptions, onChange, label }: Props) => {
               key={id}
               sx={formControlLabelStyles}
               control={
-                <MuiCheckbox
-                  checked={isChecked}
-                  id={id}
-                  value={label}
-                  sx={muiCheckboxStyles}
-                  onChange={onChange}
-                />
+                <MuiCheckbox checked={isChecked} id={id} value={label} sx={muiCheckboxStyles} onChange={onChange} />
               }
               label={label}
               labelPlacement={labelPlacement}
@@ -63,7 +59,7 @@ const Checkboxes = ({ checkboxOptions, onChange, label }: Props) => {
           )
         })}
       </FormGroup>
-    </>
+    </Box>
   )
 }
 

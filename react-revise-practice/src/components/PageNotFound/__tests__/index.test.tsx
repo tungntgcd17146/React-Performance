@@ -50,7 +50,7 @@ describe('NotFoundPage Test', () => {
       headerContent: 'Oops',
       body: 'This page does not exist.',
       footer: 'This feature will be implemented in the future.',
-      isError: false
+      isBrowserError: false
     })
 
     expect(screen.getByText('Oops')).toBeTruthy()

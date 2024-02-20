@@ -16,7 +16,7 @@ export interface Props {
   headerContent?: string
   body?: string
   footer?: string
-  isErrorAppPage?: boolean
+  isBrowserError?: boolean
   sx?: React.CSSProperties
   onClick?: (e: React.MouseEvent<HTMLElement>) => void
   actionButtonName?: string
@@ -25,7 +25,7 @@ const NotFoundPage = ({
   headerContent = '404',
   body,
   footer,
-  isErrorAppPage = false,
+  isBrowserError = false,
   sx,
   onClick,
   actionButtonName = 'Back to Home'
@@ -50,7 +50,7 @@ const NotFoundPage = ({
         textAlign: 'center',
         marginTop: '100px',
         marginBottom: '100px',
-        marginLeft: !isErrorAppPage && isTablet ? '80px' : !isErrorAppPage && isDesktop ? '330px' : '0px',
+        marginLeft: !isBrowserError && isTablet ? '80px' : !isBrowserError && isDesktop ? '330px' : '0px',
         ...sx
       }}
     >

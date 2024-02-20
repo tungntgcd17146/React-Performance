@@ -22,7 +22,7 @@ import useScreenWidth from '@/hooks/useScreenWidth'
 import { themes } from '@/themes'
 
 export interface FilterValue {
-  searchProductName: string
+  searchInput: string
   sortBy: string
   categories: string[]
   priceRange: number[]
@@ -72,11 +72,11 @@ const sortBySelect = [
 export interface Props {
   onSubmit?: (filterValue: FilterValue) => void
   onReset?: () => void
-  totalProducts: number
-  showingProducts: number
+  totalProducts?: number
+  showingProducts?: number
 }
 
-const ProductFilter = ({ onReset, onSubmit, totalProducts, showingProducts }: Props) => {
+const ProductFilter = ({ onReset, onSubmit, totalProducts = 0, showingProducts = 0 }: Props) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
 
   const [categoryChecked, setCategoryChecked] = useState<CheckboxOption[]>(checkboxesOptions)
@@ -139,7 +139,7 @@ const ProductFilter = ({ onReset, onSubmit, totalProducts, showingProducts }: Pr
       rating: selectedRatingValue
     }
 
-    onSubmit?.(filterApplyValue as unknown as FilterValue)
+    onSubmit?.(filterApplyValue)
     handleClose()
   }, [categoryValue, handleClose, onSubmit, rangeSlideValue, searchInput, selectedRatingValue, selectedSortByValue])
 
@@ -185,6 +185,8 @@ const ProductFilter = ({ onReset, onSubmit, totalProducts, showingProducts }: Pr
   const iconHelperSelectStyles = useMemo(() => ({ color: themes.colors.red[500] }), [])
 
   const startIcon = useMemo(() => <FavoriteOutlinedIcon sx={iconHelperSelectStyles} />, [iconHelperSelectStyles])
+
+  const commonMarginBottom = useMemo(() => ({ marginBottom: '24px' }), [])
 
   return (
     <div>
@@ -251,38 +253,45 @@ const ProductFilter = ({ onReset, onSubmit, totalProducts, showingProducts }: Pr
             onClickHeaderButton={handleClose}
           />
 
-          <Grid item sx={{ marginBottom: '24px' }}>
-            <SearchInput value={searchInput} placeholder='Search for products' onChange={handleSearch} />
-          </Grid>
+          <SearchInput
+            wrapperStyle={commonMarginBottom}
+            value={searchInput}
+            placeholder='Search for products'
+            onChange={handleSearch}
+          />
 
-          <Grid item sx={{ marginBottom: '24px' }}>
-            <Select
-              label='Sort by'
-              selectedValue={selectedSortByValue}
-              onChange={handleSelectSortByChange}
-              sx={selectStyles}
-              options={sortBySelect}
-            />
-          </Grid>
+          <Select
+            wrapperStyle={commonMarginBottom}
+            label='Sort by'
+            selectedValue={selectedSortByValue}
+            onChange={handleSelectSortByChange}
+            sx={selectStyles}
+            options={sortBySelect}
+          />
 
-          <Grid item sx={{ marginBottom: '24px' }}>
-            <Checkboxes label='Showing' onChange={handleCheckboxChange} checkboxOptions={categoryChecked} />
-          </Grid>
+          <Checkboxes
+            wrapperStyles={commonMarginBottom}
+            label='Showing'
+            onChange={handleCheckboxChange}
+            checkboxOptions={categoryChecked}
+          />
 
-          <Grid item sx={{ marginBottom: '24px' }}>
-            <RangeSlider label='Price' defaultValue={rangeSlideValue} onChangeValue={handleRangeSliderChange} />
-          </Grid>
+          <RangeSlider
+            wrapperStyles={commonMarginBottom}
+            label='Price'
+            defaultValue={rangeSlideValue}
+            onChangeValue={handleRangeSliderChange}
+          />
 
-          <Grid item sx={{ marginBottom: '24px' }}>
-            <Select
-              label='Rating'
-              selectedValue={selectedRatingValue}
-              onChange={handleSelectRatingChange}
-              startIcon={startIcon}
-              sx={selectStyles}
-              options={ratingSelect}
-            />
-          </Grid>
+          <Select
+            wrapperStyle={commonMarginBottom}
+            label='Rating'
+            selectedValue={selectedRatingValue}
+            onChange={handleSelectRatingChange}
+            startIcon={startIcon}
+            sx={selectStyles}
+            options={ratingSelect}
+          />
 
           <Grid item sx={{ marginBottom: '24px' }} justifyContent='flex-end' display='flex'>
             <Button

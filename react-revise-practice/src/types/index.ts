@@ -29,6 +29,10 @@ export interface Product {
   popularity: string
 }
 
+export interface FeatureProduct {
+  text: string
+}
+
 export interface UserContact {
   id: number
   userName: string
