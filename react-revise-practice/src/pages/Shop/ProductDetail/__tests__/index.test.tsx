@@ -4,7 +4,7 @@ import { describe, expect, it, vi } from 'vitest'
 import ProductDetail from '../'
 import * as useScreenWidth from '@/hooks/useScreenWidth'
 import { fakeFeatureForProductData, fakeProductOverview } from '@/constants/data'
-import { QueryClient, QueryClientProvider } from 'react-query'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { fetchProductById } from '@/api'
 
 vi.mock('@/api', () => ({

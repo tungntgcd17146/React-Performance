@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useQuery } from 'react-query'
+import { useQuery } from '@tanstack/react-query'
 import { themes } from '@/themes'
 import { fetchProductById } from '@/api'
 import useScreenWidth from '@/hooks/useScreenWidth'
@@ -20,8 +20,8 @@ import IconButton from '@/components/IconButton'
 import Button from '@/components/Button'
 import { useNavigate, useParams } from 'react-router-dom'
 import Avatar from '@/components/Avatar'
-import User1 from '@/assets/User1.png'
-import Figma from '@/assets/figma.png'
+import User1 from '/assets/User1.png'
+import Figma from '/assets/figma.png'
 
 //constants
 import { ROUTES } from '@/constants/routes'
@@ -33,7 +33,11 @@ const ProductDetail = () => {
 
   const { id } = useParams()
 
-  const { data: product, isLoading, isError } = useQuery({ queryKey: 'product', queryFn: () => fetchProductById(id!) })
+  const {
+    data: product,
+    isLoading,
+    isError
+  } = useQuery({ queryKey: ['product'], queryFn: () => fetchProductById(id!) })
 
   const theme = useTheme()
   const { isMobile } = useScreenWidth()

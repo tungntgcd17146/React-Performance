@@ -3,7 +3,7 @@ import { render, screen } from '@/utils/testUtils'
 import { describe, expect, it, vi } from 'vitest'
 import Shop from '../'
 import * as useScreenWidth from '@/hooks/useScreenWidth'
-import { QueryClient, QueryClientProvider } from 'react-query'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 const defaultProp = {}
 

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { render, screen, waitFor } from '@testing-library/react'
-import { QueryClient, QueryClientProvider } from 'react-query'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { useProductsQuery } from '../useProductsQuery' // Replace with the actual path to your hook file
 import { vi } from 'vitest'
 import { fetchProducts } from '@/api'

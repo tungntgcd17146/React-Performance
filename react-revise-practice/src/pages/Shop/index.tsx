@@ -9,7 +9,7 @@ import Grid from '@mui/material/Grid'
 import ShopContent from '@/pages/Shop/ShopContent'
 import BackgroundImage from '@/pages/Shop/BackgroundImage'
 import OwnerInfo from '@/pages/Shop/OwnerInfo'
-import Customer1 from '@/assets/customer1.png'
+import Customer1 from '/assets/customer1.png'
 
 //utils
 import useScreenWidth from '@/hooks/useScreenWidth'

@@ -2,7 +2,7 @@
 import { render, screen } from '@/utils/testUtils'
 import { describe, expect, it, vi } from 'vitest'
 import Contacts from '../'
-import { QueryClient, QueryClientProvider } from 'react-query'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { useContactsQuery } from '@/hooks/useContactsQuery'
 import * as useScreenWidth from '@/hooks/useScreenWidth'
 

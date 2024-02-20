@@ -175,7 +175,7 @@ const ShopContent = () => {
         {isProductsTabs ? (
           <InfiniteScroll
             maxHeight='1000px'
-            isEmptyItem={!products || showingProducts === 0}
+            isEmptyItem={showingProducts === 0}
             isError={isProductsError}
             isLoading={isProductsLoading}
             onClickLoadMore={handleClickLoadMore}

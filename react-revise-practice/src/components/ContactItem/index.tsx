@@ -11,7 +11,7 @@ import ImageListItem from '@mui/material/ImageListItem'
 import Hidden from '@mui/material/Hidden'
 
 //components
-import User1 from '@/assets/User1.png'
+import User1 from '/assets/User1.png'
 import Avatar from '@/components/Avatar'
 import Button from '@/components/Button'
 

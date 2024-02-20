@@ -1,7 +1,7 @@
 import { memo } from 'react'
 
-import CoverPhoto from '@/assets/CoverPhoto.jpg'
-import CoverPhotoMobile from '@/assets/CoverPhotoMobile.jpg'
+import CoverPhoto from '/assets/CoverPhoto.jpg'
+import CoverPhotoMobile from '/assets/CoverPhotoMobile.jpg'
 
 import useScreenWidth from '@/hooks/useScreenWidth'
 
@@ -14,7 +14,7 @@ const BackgroundImage = () => {
         data-testid='BackgroundImage_Mobile'
         src={CoverPhotoMobile}
         alt='~/assets/CoverPhotoMobile.png'
-        className='w-full h-[252px]'
+        className='w-full h-[252px] object-cover'
       />
     )
   }
@@ -24,7 +24,7 @@ const BackgroundImage = () => {
       data-testid='BackgroundImage'
       src={CoverPhoto}
       alt='~/assets/CoverPhoto.jpg'
-      className='w-[1300px] h-[400px]'
+      className='w-full h-[400px] object-cover'
     />
   )
 }

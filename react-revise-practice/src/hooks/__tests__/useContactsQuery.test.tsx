@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { render, waitFor, screen } from '@testing-library/react'
-import { QueryClient, QueryClientProvider } from 'react-query'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { useContactsQuery } from '../useContactsQuery'
 import { vi } from 'vitest'
 import { fetchContacts } from '@/api'

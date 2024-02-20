@@ -2,7 +2,7 @@
 import { fireEvent, render, screen, waitFor } from '@/utils/testUtils'
 import { describe, expect, it, vi } from 'vitest'
 import ShopContent from '../'
-import { QueryClient, QueryClientProvider } from 'react-query'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { useProductsQuery } from '@/hooks/useProductsQuery'
 
 vi.mock('@/hooks/useProductsQuery')
