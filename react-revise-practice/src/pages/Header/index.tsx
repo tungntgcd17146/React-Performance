@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from 'react'
+import { useState, useCallback, useEffect, useMemo } from 'react'
 import useScreenWidth from '@/hooks/useScreenWidth'
 
 //mui
@@ -33,7 +33,6 @@ import useMatchPath from '@/hooks/useMatchPath'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { ROUTES } from '@/constants/routes'
 
-//TODO: make it dynamic prop for this component
 export const listItems: NavigateItem[] = [
   {
     text: 'Home',
@@ -107,6 +106,11 @@ const Header = () => {
     setIsOpenDrawer(true)
   }, [setIsOpenDrawer])
 
+  const iconButtonStyles = useMemo(
+    () => ({ ':hover': { color: theme.palette.text.secondary } }),
+    [theme.palette.text.secondary]
+  )
+
   return (
     <Box
       data-testid='Header'
@@ -164,19 +168,39 @@ const Header = () => {
         )}
 
         <Hidden lgDown>
-          <Button sx={{ width: '120px' }} startIcon={<AddIcon />} children='Create' color='primary' />
+          <Button
+            sx={useMemo(() => ({ width: '120px' }), [])}
+            startIcon={useMemo(
+              () => (
+                <AddIcon />
+              ),
+              []
+            )}
+            children='Create'
+            color='primary'
+          />
         </Hidden>
         <IconButton
           badgeContent={0}
-          children={<ChatBubbleOutlineIcon />}
+          children={useMemo(
+            () => (
+              <ChatBubbleOutlineIcon />
+            ),
+            []
+          )}
           size='large'
-          sx={{ ':hover': { color: theme.palette.text.secondary } }}
+          sx={iconButtonStyles}
         />
         <IconButton
           badgeContent={0}
-          children={<NotificationsNoneIcon />}
+          children={useMemo(
+            () => (
+              <NotificationsNoneIcon />
+            ),
+            []
+          )}
           size='large'
-          sx={{ ':hover': { color: theme.palette.text.secondary } }}
+          sx={iconButtonStyles}
         />
 
         <Avatar avtBackground={themes.colors.yellow[600]} size='small' src={Customer1} alt='Customer1' />

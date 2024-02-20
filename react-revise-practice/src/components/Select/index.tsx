@@ -1,4 +1,4 @@
-import { memo } from 'react'
+import { memo, useMemo } from 'react'
 
 //mui
 import Box from '@mui/material/Box'
@@ -22,23 +22,26 @@ export interface Props {
   startIcon?: React.ReactNode
   selectedValue?: string
   label?: string
+  wrapperStyle?: React.CSSProperties
 }
 
-const Select = ({ options = [], startIcon, sx, onChange, selectedValue, label }: Props) => {
+const Select = ({ options = [], startIcon, sx, onChange, selectedValue, label, wrapperStyle }: Props) => {
   const theme = useTheme()
   const handleChange = (event: SelectChangeEvent) => {
     onChange?.(event)
   }
 
+  const startIconStyles = useMemo(() => ({ position: 'absolute', left: '10px' }), [])
+
   return (
-    <Box sx={{ minWidth: 120 }}>
+    <Box sx={{ minWidth: 120, ...wrapperStyle }}>
       {label && (
         <Typography variant='body1' sx={{ marginBottom: '8px' }}>
           {label}
         </Typography>
       )}
       <FormControl size='small' fullWidth sx={{ m: 1, minHeight: 40, minWidth: 100, position: 'relative' }}>
-        {!!startIcon && <IconButton children={startIcon} sx={{ position: 'absolute', left: '10px' }} />}
+        {!!startIcon && <IconButton children={startIcon} sx={startIconStyles} />}
         <MuiSelect
           data-testid='Select'
           value={selectedValue}

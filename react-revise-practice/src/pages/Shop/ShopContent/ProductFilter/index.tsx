@@ -186,6 +186,8 @@ const ProductFilter = ({ onReset, onSubmit, totalProducts = 0, showingProducts =
 
   const startIcon = useMemo(() => <FavoriteOutlinedIcon sx={iconHelperSelectStyles} />, [iconHelperSelectStyles])
 
+  const commonMarginBottom = useMemo(() => ({ marginBottom: '24px' }), [])
+
   return (
     <div>
       <IconButton
@@ -251,38 +253,45 @@ const ProductFilter = ({ onReset, onSubmit, totalProducts = 0, showingProducts =
             onClickHeaderButton={handleClose}
           />
 
-          <Grid item sx={{ marginBottom: '24px' }}>
-            <SearchInput value={searchInput} placeholder='Search for products' onChange={handleSearch} />
-          </Grid>
+          <SearchInput
+            wrapperStyle={commonMarginBottom}
+            value={searchInput}
+            placeholder='Search for products'
+            onChange={handleSearch}
+          />
 
-          <Grid item sx={{ marginBottom: '24px' }}>
-            <Select
-              label='Sort by'
-              selectedValue={selectedSortByValue}
-              onChange={handleSelectSortByChange}
-              sx={selectStyles}
-              options={sortBySelect}
-            />
-          </Grid>
+          <Select
+            wrapperStyle={commonMarginBottom}
+            label='Sort by'
+            selectedValue={selectedSortByValue}
+            onChange={handleSelectSortByChange}
+            sx={selectStyles}
+            options={sortBySelect}
+          />
 
-          <Grid item sx={{ marginBottom: '24px' }}>
-            <Checkboxes label='Showing' onChange={handleCheckboxChange} checkboxOptions={categoryChecked} />
-          </Grid>
+          <Checkboxes
+            wrapperStyles={commonMarginBottom}
+            label='Showing'
+            onChange={handleCheckboxChange}
+            checkboxOptions={categoryChecked}
+          />
 
-          <Grid item sx={{ marginBottom: '24px' }}>
-            <RangeSlider label='Price' defaultValue={rangeSlideValue} onChangeValue={handleRangeSliderChange} />
-          </Grid>
+          <RangeSlider
+            wrapperStyles={commonMarginBottom}
+            label='Price'
+            defaultValue={rangeSlideValue}
+            onChangeValue={handleRangeSliderChange}
+          />
 
-          <Grid item sx={{ marginBottom: '24px' }}>
-            <Select
-              label='Rating'
-              selectedValue={selectedRatingValue}
-              onChange={handleSelectRatingChange}
-              startIcon={startIcon}
-              sx={selectStyles}
-              options={ratingSelect}
-            />
-          </Grid>
+          <Select
+            wrapperStyle={commonMarginBottom}
+            label='Rating'
+            selectedValue={selectedRatingValue}
+            onChange={handleSelectRatingChange}
+            startIcon={startIcon}
+            sx={selectStyles}
+            options={ratingSelect}
+          />
 
           <Grid item sx={{ marginBottom: '24px' }} justifyContent='flex-end' display='flex'>
             <Button

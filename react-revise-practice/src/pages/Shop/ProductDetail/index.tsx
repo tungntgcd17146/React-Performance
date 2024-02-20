@@ -61,13 +61,13 @@ const ProductDetail = () => {
     <div>
       <Backdrop sx={{ color: '#fff', zIndex: theme.zIndex.drawer + 1 }} open={open} onClick={handleClose} />
       <Popover
+        sx={{ maxHeight: '100vh' }}
         data-testid='ProductDetail_Popover'
         slotProps={{
           paper: {
             sx: {
               width: '100%',
               height: '100%',
-              maxHeight: '100vh',
               top: '0px !important',
               left: '0px !important',
               background: theme.palette.background.default

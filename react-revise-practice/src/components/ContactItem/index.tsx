@@ -1,4 +1,4 @@
-import { memo, useCallback, useEffect, useState } from 'react'
+import { memo, useCallback, useEffect, useMemo, useState } from 'react'
 import { themes } from '@/themes'
 
 //mui
@@ -107,7 +107,7 @@ const ContactItem = ({ user, onChangeFollowButtonStatus, onClickMessageButton }:
             <Grid sx={{ marginTop: '16px' }}>
               <Button
                 data-testid='ContactItem_FollowButton'
-                sx={{ marginRight: '8px' }}
+                sx={useMemo(() => ({ marginRight: '8px' }), [])}
                 children={followButtonStatus}
                 size='small'
                 color={followButtonStatus === 'Following' ? 'success' : 'inherit'}

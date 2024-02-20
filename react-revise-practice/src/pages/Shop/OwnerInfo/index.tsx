@@ -1,4 +1,4 @@
-import { memo } from 'react'
+import { memo, useMemo } from 'react'
 
 import Avatar from '@/components/Avatar'
 import IconButton from '@/components/IconButton'
@@ -39,7 +39,12 @@ const OwnerInfo = ({ name, description, avatar = Customer1, onClickFollow }: Pro
           size='large'
           src={avatar}
           alt='Customer1'
-          BadgeIcon={<AddIcon />}
+          BadgeIcon={useMemo(
+            () => (
+              <AddIcon />
+            ),
+            []
+          )}
           badgeSx={{ marginRight: '16px' }}
         />
         <Grid item display='flex' flexDirection='column'>

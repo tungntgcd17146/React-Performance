@@ -20,7 +20,12 @@ const BackgroundImage = () => {
   }
 
   return (
-    <img data-testid='BackgroundImage' src={CoverPhoto} alt='~/assets/CoverPhoto.jpg' className='w-full h-[400px]' />
+    <img
+      data-testid='BackgroundImage'
+      src={CoverPhoto}
+      alt='~/assets/CoverPhoto.jpg'
+      className='w-[1300px] h-[400px]'
+    />
   )
 }
 

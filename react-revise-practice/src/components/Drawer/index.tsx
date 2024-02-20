@@ -104,7 +104,12 @@ const Drawer = ({ isOpen, onClose, onOpen, onNavItemClick, listItems }: Props) =
         )}
         <Divider sx={{ color: theme.palette.grey[100], marginBottom: '12px' }} />
         <NavItem
-          icon={<HelpOutlineIcon />}
+          icon={useMemo(
+            () => (
+              <HelpOutlineIcon />
+            ),
+            []
+          )}
           text={'Help & Getting stated'}
           isSelected={false}
           isShowText={shouldShowFullContentOnDrawer}
