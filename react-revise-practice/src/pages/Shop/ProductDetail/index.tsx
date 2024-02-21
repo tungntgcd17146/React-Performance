@@ -4,14 +4,12 @@ import useScreenWidth from '@/hooks/useScreenWidth'
 import { useProductQuery } from '@/hooks/useProductQuery'
 
 //mui
-import Box from '@mui/material/Box'
 import Popover from '@mui/material/Popover'
 import Hidden from '@mui/material/Hidden'
 import Backdrop from '@mui/material/Backdrop'
 import Grid from '@mui/material/Grid'
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined'
 import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined'
-import CircularProgress from '@mui/material/CircularProgress'
 import { useTheme } from '@mui/material'
 
 //components
@@ -19,8 +17,9 @@ import IconButton from '@/components/IconButton'
 import Button from '@/components/Button'
 import { useNavigate, useParams } from 'react-router-dom'
 import Avatar from '@/components/Avatar'
-import User1 from '/assets/User1.png'
-import Figma from '/assets/figma.png'
+import User1 from '/assets/User1.webp'
+import Figma from '/assets/figma.webp'
+import Loading from '@/components/Loading'
 
 //constants
 import { ROUTES } from '@/constants/routes'
@@ -42,12 +41,7 @@ const ProductDetail = () => {
     navigate(ROUTES.HOME)
     setAnchorEl(null)
   }
-  if (isLoading)
-    return (
-      <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100vh' }}>
-        <CircularProgress data-testid='ProductDetail_Loading' />
-      </Box>
-    )
+  if (isLoading) return <Loading dataTestId='ProductDetail_Loading' />
 
   if (isError || !product) return <PageNotFound headerContent='Opp!' body='Error page' />
 
@@ -88,9 +82,15 @@ const ProductDetail = () => {
       >
         {/* Header */}
         <Grid item sx={{ margin: '24px 42px' }} display='flex' alignItems='center' justifyContent='space-between'>
-          <Button data-testid='ProductDetail_EditButton' children='Edit product' color='inherit' />
+          <Button
+            aria-label='edit-product'
+            data-testid='ProductDetail_EditButton'
+            children='Edit product'
+            color='inherit'
+          />
 
           <IconButton
+            aria-label='detail-product-close'
             children={<CloseOutlinedIcon />}
             onClick={handleClose}
             data-testid='ProductDetail_CloseIconButton'
@@ -147,6 +147,7 @@ const ProductDetail = () => {
                 size='medium'
               />
               <IconButton
+                aria-label='like-product'
                 sx={{
                   backgroundColor: theme.palette.grey[300],
                   borderRadius: '50%',

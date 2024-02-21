@@ -1,13 +1,16 @@
+import { lazy, Suspense } from 'react'
 import App from './App.tsx'
 import { createBrowserRouter, RouteObject } from 'react-router-dom'
 
 //components
 import Shop from '@/pages/Shop/index.tsx'
-import PageNotFound from '@/components/PageNotFound'
-import ProductDetail from '@/pages/Shop/ProductDetail/index.tsx'
+import Loading from '@/components/Loading/index.tsx'
+import PageNotFound from '@/components/PageNotFound/index.tsx'
 
 //constants
 import { ROUTES } from '@/constants/routes.ts'
+
+const ProductDetail = lazy(() => import('@/pages/Shop/ProductDetail/index.tsx'))
 
 const routes: RouteObject[] = [
   {
@@ -22,7 +25,11 @@ const routes: RouteObject[] = [
       },
       {
         path: ROUTES.PRODUCT_DETAIL,
-        element: <ProductDetail />
+        element: (
+          <Suspense fallback={<Loading />}>
+            <ProductDetail />
+          </Suspense>
+        )
       },
       {
         path: '/*',

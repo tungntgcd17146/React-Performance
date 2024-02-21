@@ -30,7 +30,7 @@ export const defaultTheme = (isDarkMode: boolean) =>
               paper: '#1A1D1F'
             },
             text: {
-              primary: '#6F767E',
+              primary: '#ABABB5', //'#6F767E' by design
               secondary: '#FCFCFC'
             },
             grey: {
@@ -289,7 +289,8 @@ export const defaultTheme = (isDarkMode: boolean) =>
             '&.MuiSelect': {
               borderRadius: 'unset'
             },
-            minHeight: '40px'
+            minHeight: '40px',
+            color: 'currentColor'
           }
         }
       },

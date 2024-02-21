@@ -1,7 +1,7 @@
 import React, { memo, useState } from 'react'
 import { Modal, Fade } from '@mui/material'
 
-import LightProductDetail from '/assets/ProductDetailImgLight.jpg'
+import LightProductDetail from '/assets/ProductDetailImgLight.webp'
 import useScreenWidth from '@/hooks/useScreenWidth'
 
 export interface Props {

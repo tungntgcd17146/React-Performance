@@ -41,7 +41,7 @@ const Select = ({ options = [], startIcon, sx, onChange, selectedValue, label, w
         </Typography>
       )}
       <FormControl size='small' fullWidth sx={{ m: 1, minHeight: 40, minWidth: 100, position: 'relative' }}>
-        {!!startIcon && <IconButton children={startIcon} sx={startIconStyles} />}
+        {!!startIcon && <IconButton aria-label='start-icon' children={startIcon} sx={startIconStyles} />}
         <MuiSelect
           data-testid='Select'
           value={selectedValue}

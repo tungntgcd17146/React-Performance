@@ -22,7 +22,7 @@ import RecommendOutlinedIcon from '@mui/icons-material/RecommendOutlined'
 import IconButton from '@/components/IconButton'
 import Drawer from '@/components/Drawer/'
 import Avatar from '@/components/Avatar'
-import Customer1 from '/assets/customer1.png'
+import Customer1 from '/assets/customer1.webp'
 import { themes } from '@/themes'
 import Button from '@/components/Button'
 import SearchInput from '@/components/SearchInput'
@@ -135,7 +135,12 @@ const Header = () => {
       </Hidden>
 
       {isMobile && (
-        <IconButton data-testid='Header_MenuIcon' children={<DragHandleIcon />} onClick={handleOpenDrawer} />
+        <IconButton
+          aria-label='open'
+          data-testid='Header_MenuIcon'
+          children={<DragHandleIcon />}
+          onClick={handleOpenDrawer}
+        />
       )}
       <Drawer
         data-testid='Header_Drawer'
@@ -150,6 +155,7 @@ const Header = () => {
         {isMobile && (
           <div>
             <IconButton
+              aria-label='search-mobile'
               data-testid='Header_SearchInputIcon_Mobile'
               onClick={handleClickMobileSearchIcon}
               children={<SearchIcon />}
@@ -169,6 +175,7 @@ const Header = () => {
 
         <Hidden lgDown>
           <Button
+            aria-label='create'
             sx={useMemo(() => ({ width: '120px' }), [])}
             startIcon={useMemo(
               () => (
@@ -181,6 +188,7 @@ const Header = () => {
           />
         </Hidden>
         <IconButton
+          aria-label='chat-icon'
           badgeContent={0}
           children={useMemo(
             () => (
@@ -192,6 +200,7 @@ const Header = () => {
           sx={iconButtonStyles}
         />
         <IconButton
+          aria-label='notification-icon'
           badgeContent={0}
           children={useMemo(
             () => (
