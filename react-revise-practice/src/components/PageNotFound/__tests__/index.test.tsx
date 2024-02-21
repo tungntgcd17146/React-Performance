@@ -8,7 +8,9 @@ import { useNavigate } from 'react-router-dom'
 
 vi.mock('react-router-dom')
 
-const defaultProp = {} as Props
+const defaultProp = {
+  onClick: vi.fn()
+} as Props
 
 const setup = (overrideProps = {}) => {
   const props = {
@@ -32,6 +34,15 @@ describe('NotFoundPage Test', () => {
     setup()
 
     expect(screen.getByText('404')).toBeTruthy()
+  })
+
+  it('hidden action button correctly', () => {
+    vi.spyOn(useScreenWidth, 'default').mockReturnValue({ isTablet: false, isDesktop: false } as any)
+    setup({
+      isHiddenActionButton: true
+    })
+
+    expect(screen.queryByTestId('NotFoundPage_Button')).toBeFalsy()
   })
 
   it('re-direct home page when click go home button correctly', () => {

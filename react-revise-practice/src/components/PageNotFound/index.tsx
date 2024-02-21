@@ -20,6 +20,7 @@ export interface Props {
   sx?: React.CSSProperties
   onClick?: (e: React.MouseEvent<HTMLElement>) => void
   actionButtonName?: string
+  isHiddenActionButton?: boolean
 }
 const NotFoundPage = ({
   headerContent = '404',
@@ -28,15 +29,18 @@ const NotFoundPage = ({
   isBrowserError = false,
   sx,
   onClick,
-  actionButtonName = 'Back to Home'
+  actionButtonName = 'Back to Home',
+  isHiddenActionButton = false
 }: Props) => {
   const { isTablet, isDesktop } = useScreenWidth()
   const navigate: NavigateFunction = useNavigate()
 
   const handleClick = useCallback(
     (e: React.MouseEvent<HTMLElement>) => {
+      if (onClick) {
+        onClick?.(e)
+      }
       navigate(ROUTES.HOME)
-      onClick?.(e)
     },
     [navigate, onClick]
   )
@@ -81,7 +85,7 @@ const NotFoundPage = ({
           {footer}
         </Typography>
       )}
-      {actionButtonName && (
+      {!isHiddenActionButton && (
         <Button
           aria-label='action-button'
           data-testid='NotFoundPage_Button'
