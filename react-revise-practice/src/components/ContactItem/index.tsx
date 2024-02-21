@@ -1,4 +1,4 @@
-import { memo, useCallback, useEffect, useState } from 'react'
+import { memo, useCallback, useEffect, useMemo, useState } from 'react'
 import { themes } from '@/themes'
 
 //mui
@@ -11,7 +11,7 @@ import ImageListItem from '@mui/material/ImageListItem'
 import Hidden from '@mui/material/Hidden'
 
 //components
-import User1 from '@/assets/User1.png'
+import User1 from '/assets/User1.png'
 import Avatar from '@/components/Avatar'
 import Button from '@/components/Button'
 
@@ -63,7 +63,7 @@ const ContactItem = ({ user, onChangeFollowButtonStatus, onClickMessageButton }:
   return (
     <Grid container display='flex' flexDirection='column'>
       <Grid display='flex' flexDirection='row' container>
-        <Grid item display='flex' flexDirection='row' lg={6}>
+        <Grid data-testid='ContactItem' item display='flex' flexDirection='row' lg={6}>
           {/* avatar */}
           <Avatar avtBackground={themes.colors.yellow[500]} src={User1} alt={User1} size='medium' />
 
@@ -107,7 +107,7 @@ const ContactItem = ({ user, onChangeFollowButtonStatus, onClickMessageButton }:
             <Grid sx={{ marginTop: '16px' }}>
               <Button
                 data-testid='ContactItem_FollowButton'
-                sx={{ marginRight: '8px' }}
+                sx={useMemo(() => ({ marginRight: '8px' }), [])}
                 children={followButtonStatus}
                 size='small'
                 color={followButtonStatus === 'Following' ? 'success' : 'inherit'}

@@ -10,16 +10,22 @@ export interface Props extends InputBaseProps {
   searchWidth?: string
   onClickEndHelper?: (event: React.MouseEvent<HTMLElement>) => void
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
+  wrapperStyle?: React.CSSProperties
 }
 
-const SearchInput = ({ endHelper, onClickEndHelper, onChange, searchWidth = '100%', ...rest }: Props) => {
+const SearchInput = ({ endHelper, onClickEndHelper, onChange, searchWidth = '100%', wrapperStyle, ...rest }: Props) => {
   const theme = useTheme()
 
   const searchIconStyles = useMemo(() => ({ position: 'absolute', left: '4px', top: '4px' }), [])
 
   return (
     <div
-      style={{ backgroundColor: theme.palette.grey[100], color: theme.palette.text.secondary, width: searchWidth }}
+      style={{
+        backgroundColor: theme.palette.grey[100],
+        color: theme.palette.text.secondary,
+        width: searchWidth,
+        ...wrapperStyle
+      }}
       className='rounded-[12px] h-[48px] pl-[42px] pr-[68px] relative'
     >
       <IconButton

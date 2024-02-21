@@ -1,9 +1,9 @@
-import { memo } from 'react'
+import { memo, useMemo } from 'react'
 
 import Avatar from '@/components/Avatar'
 import IconButton from '@/components/IconButton'
 import Button from '@/components/Button'
-import Customer1 from '@/assets/customer1.png'
+import Customer1 from '/assets/customer1.png'
 
 import { useTheme } from '@mui/material'
 import Typography from '@mui/material/Typography'
@@ -17,7 +17,14 @@ import Divider from '@mui/material/Divider'
 import { themes } from '@/themes'
 import useScreenWidth from '@/hooks/useScreenWidth'
 
-const OwnerInfo = () => {
+export interface Props {
+  name?: string
+  description?: string
+  avatar?: string
+  onClickFollow?: () => void
+}
+
+const OwnerInfo = ({ name, description, avatar = Customer1, onClickFollow }: Props) => {
   const theme = useTheme()
   const { isMobile } = useScreenWidth()
 
@@ -30,30 +37,41 @@ const OwnerInfo = () => {
         <Avatar
           avtBackground={themes.colors.yellow[600]}
           size='large'
-          src={Customer1}
+          src={avatar}
           alt='Customer1'
-          BadgeIcon={<AddIcon />}
+          BadgeIcon={useMemo(
+            () => (
+              <AddIcon />
+            ),
+            []
+          )}
           badgeSx={{ marginRight: '16px' }}
         />
         <Grid item display='flex' flexDirection='column'>
           <Typography sx={{ color: theme.palette.text.secondary, fontSize: isMobile ? '20px' : '32px' }} variant='h4'>
-            Chelsie Haley
+            {name}
           </Typography>
           <Typography sx={!isMobile ? { fontSize: '20px', marginTop: '8px' } : {}} variant='body2'>
-            Dream big. Think different.Do great!
+            {description}
           </Typography>
         </Grid>
       </Grid>
 
       {/* social contact */}
       <Grid item xs={12} sm={12} lg={4} display='flex' flexDirection='row' justifyContent='space-between'>
-        <Grid display='flex' flexDirection='row'>
+        <Grid display='flex' flexDirection='row' alignItems='flex-start'>
           <IconButton sx={commonSocialIconStyle} children={<TwitterIcon />} />
           <IconButton sx={commonSocialIconStyle} children={<FacebookIcon />} />
           <IconButton sx={commonSocialIconStyle} children={<InstagramIcon />} />
         </Grid>
 
-        <Button children='Follow' color='primary' sx={{ width: '120px' }} />
+        <Button
+          data-testid='OwnerInfo_Follow_Button'
+          onClick={onClickFollow}
+          children='Follow'
+          color='primary'
+          sx={{ width: '120px' }}
+        />
       </Grid>
 
       <Grid item xs={12}>

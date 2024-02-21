@@ -2,7 +2,7 @@ import { fireEvent, render, screen } from '@/utils/testUtils'
 import { describe, expect, it, vi } from 'vitest'
 import Avatar, { Props } from '..'
 
-import Customer1 from '@/assets/customer1.png'
+import Customer1 from '/assets/customer1.png'
 import { themes } from '@/themes'
 
 import DragHandleIcon from '@mui/icons-material/DragHandle'

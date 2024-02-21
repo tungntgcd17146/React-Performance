@@ -30,18 +30,21 @@ const InfiniteScroll = ({
 
   if (isLoading) {
     return (
-      <Box sx={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'center' }}>
+      <Box
+        data-testid='InfiniteScroll_Loading'
+        sx={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'center' }}
+      >
         <CircularProgress />
       </Box>
     )
   }
 
   if (isError) {
-    return <PageNotFound isErrorAppPage headerContent='Opp!' body='Error page' />
+    return <PageNotFound isBrowserError headerContent='Opp!' body='Error page' />
   }
 
   if (isEmptyItem) {
-    return <PageNotFound isErrorAppPage headerContent='Opp!' body='No item found' />
+    return <PageNotFound isBrowserError headerContent='Opp!' body='No item found' />
   }
 
   return (
@@ -58,7 +61,13 @@ const InfiniteScroll = ({
 
       {!isHiddenLoadMore && (
         <Grid xs={12} sx={{ textAlign: 'center', marginTop: '24px' }} item>
-          <Button children='Load more' color='inherit' size='small' onClick={handleClickLoadMore} />
+          <Button
+            data-testid='InfiniteScroll_LoadMoreButton'
+            children='Load more'
+            color='inherit'
+            size='small'
+            onClick={handleClickLoadMore}
+          />
         </Grid>
       )}
     </div>

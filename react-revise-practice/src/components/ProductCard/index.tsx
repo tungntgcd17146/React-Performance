@@ -11,14 +11,13 @@ import Box from '@mui/material/Box'
 import ArrowForwardOutlinedIcon from '@mui/icons-material/ArrowForwardOutlined'
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined'
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
-import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined'
+import Grid from '@mui/material/Grid'
 
 //components
 import Rating from '@/components/Rating'
-import Branch1 from '@/assets/Brand1.jpg'
+import Branch1 from '/assets/Brand1.jpg'
 import IconButton from '@/components/IconButton'
 import Chip from '@/components/Chip'
-import { themes } from '@/themes'
 
 export interface Props {
   onEditCard?: (e: React.MouseEvent<HTMLElement>) => void
@@ -94,6 +93,7 @@ const ProductCard = ({
 
   return (
     <Card
+      data-testid='ProductCard'
       sx={{
         maxWidth: 560,
         maxHeight: 276,
@@ -172,17 +172,17 @@ const ProductCard = ({
 
             <Chip price={productPrice} variant='filled' />
           </Box>
-          <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+          <Grid sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
             <Typography
               gutterBottom
               variant='subtitle1'
               sx={{ color: theme.palette.text.secondary, alignContent: 'center' }}
             >
-              <FavoriteOutlinedIcon sx={{ color: themes.colors.red[500], marginRight: '8px' }} /> {popularity}
+              {popularity}
             </Typography>
 
             <Rating ratingPoint={productRating} counter={productRatingCount} />
-          </Box>
+          </Grid>
         </CardContent>
       </CardActionArea>
     </Card>

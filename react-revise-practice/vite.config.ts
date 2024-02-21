@@ -36,7 +36,12 @@ export default defineConfig({
         '**/constants/**',
         '**/types/**',
         '**/coverage/**',
-        '**/vite-env.d.ts'
+        '**/vite-env.d.ts',
+        '**/wdyr.ts',
+        '**/routes.tsx',
+        '**/App.tsx',
+        '**/main.tsx',
+        '**/materialTheme.ts'
       ]
     }
   }

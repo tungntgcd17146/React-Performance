@@ -11,11 +11,11 @@ import { memo, useMemo } from 'react'
 
 interface Props {
   onClickHeaderButton: (e: React.MouseEvent<HTMLElement>) => void
-  showingProduct: number
-  totalProduct: number
+  showingProduct?: number
+  totalProduct?: number
 }
 
-const FilterModalHeader = ({ onClickHeaderButton, totalProduct, showingProduct }: Props) => {
+const FilterModalHeader = ({ onClickHeaderButton, totalProduct = 0, showingProduct = 0 }: Props) => {
   const theme = useTheme()
   const { isMobile } = useScreenWidth()
 
