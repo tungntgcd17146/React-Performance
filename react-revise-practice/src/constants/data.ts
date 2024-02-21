@@ -1,9 +1,9 @@
 import { FeatureProduct, NavigateItem, ShopSelect, ShopTabs, UserContact } from '@/types'
 
 //img
-import Product1 from '/assets/Product1.jpg'
-import Product2 from '/assets/Product2.jpg'
-import Product3 from '/assets/Product3.jpg'
+import Product1 from '/assets/Product1.webp'
+import Product2 from '/assets/Product2.webp'
+import Product3 from '/assets/Product3.webp'
 
 export const tabItems: NavigateItem[] = [
   {

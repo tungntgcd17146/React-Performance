@@ -13,7 +13,7 @@ import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
 
 //components
 import Rating from '@/components/Rating'
-import Branch1 from '/assets/Brand1.jpg'
+import Branch1 from '/assets/Brand1.webp'
 import IconButton from '@/components/IconButton'
 import Chip from '@/components/Chip'
 

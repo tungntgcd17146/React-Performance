@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import Customer1 from '/assets/customer1.png'
+import Customer1 from '/assets/customer1.webp'
 
 import DragHandleIcon from '@mui/icons-material/DragHandle'
 

@@ -12,8 +12,8 @@ import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import { useTheme } from '@mui/material/styles'
 
 //components
-import DarkLogo from '/assets/DarkLogo.png'
-import LightLogo from '/assets/LightLogo.png'
+import DarkLogo from '/assets/DarkLogo.webp'
+import LightLogo from '/assets/LightLogo.webp'
 import NavItem from '@/components/NavItem/'
 import Logo from '@/components/Logo/'
 import SwitchMode from '@/components/SwitchMode'

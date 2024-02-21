@@ -3,7 +3,7 @@ import { memo, useMemo } from 'react'
 import Avatar from '@/components/Avatar'
 import IconButton from '@/components/IconButton'
 import Button from '@/components/Button'
-import Customer1 from '/assets/customer1.png'
+import Customer1 from '/assets/customer1.webp'
 
 import { useTheme } from '@mui/material'
 import Typography from '@mui/material/Typography'

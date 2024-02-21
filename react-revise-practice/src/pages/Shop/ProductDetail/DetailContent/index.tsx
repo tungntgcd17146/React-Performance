@@ -7,7 +7,7 @@ import Rating from '@/components/Rating'
 import ImageDrawer from '@/components/ImageDrawer'
 import Chip from '@/components/Chip'
 import Avatar from '@/components/Avatar'
-import Customer1 from '/assets/customer1.png'
+import Customer1 from '/assets/customer1.webp'
 
 //utils
 import useScreenWidth from '@/hooks/useScreenWidth'
