@@ -1,30 +1,39 @@
+import { Suspense, lazy, useCallback, useEffect, useMemo, useState } from 'react'
+import { useProductsQuery } from '@/hooks/useProductsQuery'
+import { Product, ShopSelect, ShopTabs } from '@/types'
+import { selectOption, tabItems } from '@/constants/data'
+
+//mui
+import { SelectChangeEvent } from '@mui/material/Select'
+import Grid from '@mui/material/Grid'
+import FilterAltOutlinedIcon from '@mui/icons-material/FilterAltOutlined'
+
+//components
 import ProductFilter, { FilterValue } from '@/components/ProductFilter'
 import Select from '@/components/Select'
 import Tabs from '@/components/Tabs'
-import Contact from '@/pages/Shop/ShopContent/Contact'
 import Products from '@/pages/Shop/ShopContent/Products'
-import Grid from '@mui/material/Grid'
-import { memo, useCallback, useEffect, useMemo, useState } from 'react'
-
-import { SelectChangeEvent } from '@mui/material/Select'
-import { useProductsQuery } from '@/hooks/useProductsQuery'
-import { selectOption, tabItems } from '@/constants/data'
-import { Product, ShopSelect, ShopTabs } from '@/types'
 import InfiniteScroll from '@/components/InfiniteScroll'
+import Loading from '@/components/Loading'
+import IconButton from '@/components/IconButton'
+import { useTheme } from '@mui/material'
+
+const Contacts = lazy(() => import('@/pages/Shop/ShopContent/Contacts'))
 
 const ShopContent = () => {
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   //Tab state for init selected default is first item
   const [tabSelected, setTabSelected] = useState(0)
 
   const [products, setProducts] = useState<Product[]>([])
   const [page, setPage] = useState(1)
 
-  //TODO: state for search product name
-  // const [searchProductName, setSearchProductName] = useState<string>('')
   const [popularitySelect, setPopularitySelect] = useState<string>(ShopSelect.ALL)
 
   const [isHiddenLoadMore, setIsHiddenLoadMore] = useState(false)
   const [productsQueryParam, setProductsQueryParam] = useState<object>({})
+
+  const theme = useTheme()
 
   //query
   const {
@@ -47,6 +56,7 @@ const ShopContent = () => {
       _page: page,
       _limit: 6
     })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page])
 
   //if showing product is less than total product should show load more
@@ -56,6 +66,7 @@ const ShopContent = () => {
     } else {
       setIsHiddenLoadMore(false)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [products])
 
   //set products state when get more data from server
@@ -67,6 +78,7 @@ const ShopContent = () => {
         setProducts([...products, ...productsResponse])
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [productsResponse])
 
   const tabSelectedText = tabItems[tabSelected].text
@@ -115,9 +127,7 @@ const ShopContent = () => {
 
   const handleSubmitFilterModal = useCallback(
     (filterData: FilterValue) => {
-      const { priceRange, rating, sortBy, categories } = filterData
-
-      // setSearchProductName(searchProductName)
+      const { priceRange, rating, sortBy, searchInput, categories } = filterData
       setPage(1)
 
       const minPriceRange = priceRange[0]
@@ -131,6 +141,7 @@ const ShopContent = () => {
 
         productRating_gte: rating,
         productCategory: categories,
+        q: searchInput, //searching product name
         _sort: 'createdAt', // Sorting by createdAt property from API
         _order: sortBy === 'New' ? 'desc' : 'asc',
         _page: 1,
@@ -146,6 +157,32 @@ const ShopContent = () => {
 
   const isProductsTabs = tabSelectedText === ShopTabs.PRODUCTS
 
+  const filterButtonStyles = useMemo(
+    () => ({
+      marginLeft: '16px',
+      boxShadow: `0 0 0 2px ${theme.palette.text.primary} inset`,
+      borderRadius: '8px',
+      ':hover': {
+        backgroundColor: theme.palette.info.main,
+        color: theme.palette.primary.main,
+        borderColor: theme.palette.text.primary
+      }
+    }),
+    [theme.palette.text.primary, theme.palette.info.main, theme.palette.primary.main]
+  )
+  const filterIcon = useMemo(() => <FilterAltOutlinedIcon />, [])
+
+  const handleClickFilterButton = useCallback(
+    (event: React.MouseEvent<HTMLElement>) => {
+      setAnchorEl(anchorEl ? null : event.currentTarget)
+    },
+    [anchorEl]
+  )
+
+  const handleCloseFilterModal = useCallback(() => {
+    setAnchorEl(null)
+  }, [])
+
   return (
     <>
       <Grid container display='flex' sx={{ marginBottom: '32px' }} justifyContent='space-between'>
@@ -154,17 +191,26 @@ const ShopContent = () => {
         </Grid>
 
         {isProductsTabs && (
-          <Grid item display='flex' justifyContent='space-between' xs={12} md={4}>
+          <Grid item display='flex' justifyContent='space-between' alignItems='center' xs={12} md={4}>
             <Grid item xs={10}>
               <Select options={selectOption} onChange={handleSelectFilterByPopularity} />
             </Grid>
 
-            <Grid display='flex' justifyContent='center' alignItems={'center'} item xs={2}>
+            <Grid display='flex' justifyContent='center' alignItems='center' item xs={2}>
+              <IconButton
+                aria-label='filter-product-icon-button'
+                data-testid='ProductFilter_IconButton'
+                onClick={handleClickFilterButton}
+                sx={filterButtonStyles}
+                children={filterIcon}
+              />
               <ProductFilter
+                anchorEl={anchorEl}
                 totalProducts={totalProducts}
                 showingProducts={showingProducts}
                 onReset={handleResetFilterModal}
                 onSubmit={handleSubmitFilterModal}
+                onCloseModal={handleCloseFilterModal}
               />
             </Grid>
           </Grid>
@@ -175,7 +221,7 @@ const ShopContent = () => {
         {isProductsTabs ? (
           <InfiniteScroll
             maxHeight='1000px'
-            isEmptyItem={!products || showingProducts === 0}
+            isEmptyItem={showingProducts === 0}
             isError={isProductsError}
             isLoading={isProductsLoading}
             onClickLoadMore={handleClickLoadMore}
@@ -184,11 +230,13 @@ const ShopContent = () => {
             <Products products={products} />
           </InfiniteScroll>
         ) : (
-          <Contact tabSelectedText={tabSelectedText.toLowerCase()} />
+          <Suspense fallback={<Loading />}>
+            <Contacts tabSelectedText={tabSelectedText.toLowerCase()} />
+          </Suspense>
         )}
       </Grid>
     </>
   )
 }
 
-export default memo(ShopContent)
+export default ShopContent

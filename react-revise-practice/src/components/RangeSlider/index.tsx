@@ -1,11 +1,12 @@
 import * as React from 'react'
+import { memo } from 'react'
 import { useTheme } from '@mui/material'
 import { themes } from '@/themes'
 
 //mui
 import Typography from '@mui/material/Typography'
 import Slider, { SliderProps } from '@mui/material/Slider'
-import { memo } from 'react'
+import Box from '@mui/material/Box'
 
 export interface Props extends SliderProps {
   valueLabelFormat?: (value: number) => string
@@ -14,6 +15,7 @@ export interface Props extends SliderProps {
   defaultValue?: number[]
   onChangeValue?: (value: number[]) => void
   label?: string
+  wrapperStyles?: React.CSSProperties
 }
 export const valuetext = (value: number) => {
   return `$${value}`
@@ -26,6 +28,7 @@ const RangeSlider = ({
   max = 100,
   defaultValue = [20, 40],
   onChangeValue,
+  wrapperStyles,
   ...rest
 }: Props) => {
   const [value, setValue] = React.useState<number[]>(defaultValue)
@@ -54,7 +57,7 @@ const RangeSlider = ({
   )
 
   return (
-    <>
+    <Box sx={wrapperStyles}>
       {label && (
         <Typography variant='body1' sx={{ marginBottom: '8px' }}>
           {label}
@@ -71,7 +74,7 @@ const RangeSlider = ({
         valueLabelFormat={valueLabelFormat}
         {...rest}
       />
-    </>
+    </Box>
   )
 }
 

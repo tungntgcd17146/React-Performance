@@ -16,27 +16,31 @@ export interface Props {
   headerContent?: string
   body?: string
   footer?: string
-  isErrorAppPage?: boolean
+  isBrowserError?: boolean
   sx?: React.CSSProperties
   onClick?: (e: React.MouseEvent<HTMLElement>) => void
   actionButtonName?: string
+  isHiddenActionButton?: boolean
 }
 const NotFoundPage = ({
   headerContent = '404',
   body,
   footer,
-  isErrorAppPage = false,
+  isBrowserError = false,
   sx,
   onClick,
-  actionButtonName = 'Back to Home'
+  actionButtonName = 'Back to Home',
+  isHiddenActionButton = false
 }: Props) => {
   const { isTablet, isDesktop } = useScreenWidth()
   const navigate: NavigateFunction = useNavigate()
 
   const handleClick = useCallback(
     (e: React.MouseEvent<HTMLElement>) => {
+      if (onClick) {
+        onClick?.(e)
+      }
       navigate(ROUTES.HOME)
-      onClick?.(e)
     },
     [navigate, onClick]
   )
@@ -50,7 +54,7 @@ const NotFoundPage = ({
         textAlign: 'center',
         marginTop: '100px',
         marginBottom: '100px',
-        marginLeft: !isErrorAppPage && isTablet ? '80px' : !isErrorAppPage && isDesktop ? '330px' : '0px',
+        marginLeft: !isBrowserError && isTablet ? '80px' : !isBrowserError && isDesktop ? '330px' : '0px',
         ...sx
       }}
     >
@@ -81,8 +85,14 @@ const NotFoundPage = ({
           {footer}
         </Typography>
       )}
-      {actionButtonName && (
-        <Button data-testid='NotFoundPage_Button' onClick={handleClick} variant='outlined' color='inherit'>
+      {!isHiddenActionButton && (
+        <Button
+          aria-label='action-button'
+          data-testid='NotFoundPage_Button'
+          onClick={handleClick}
+          variant='outlined'
+          color='inherit'
+        >
           {actionButtonName}
         </Button>
       )}

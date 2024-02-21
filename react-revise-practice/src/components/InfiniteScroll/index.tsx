@@ -1,9 +1,10 @@
-import Button from '@/components/Button'
-import PageNotFound from '@/components/PageNotFound'
-import Box from '@mui/material/Box'
-import CircularProgress from '@mui/material/CircularProgress'
-import Grid from '@mui/material/Grid'
 import React, { memo, useCallback } from 'react'
+import Button from '@/components/Button'
+import Loading from '@/components/Loading'
+import PageNotFound from '@/components/PageNotFound'
+
+//mui
+import Grid from '@mui/material/Grid'
 
 export interface Props {
   maxHeight?: string
@@ -29,19 +30,15 @@ const InfiniteScroll = ({
   }, [onClickLoadMore])
 
   if (isLoading) {
-    return (
-      <Box sx={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'center' }}>
-        <CircularProgress />
-      </Box>
-    )
+    return <Loading dataTestId='InfiniteScroll_Loading' />
   }
 
   if (isError) {
-    return <PageNotFound isErrorAppPage headerContent='Opp!' body='Error page' />
+    return <PageNotFound isBrowserError headerContent='Opp!' body='Error page' />
   }
 
   if (isEmptyItem) {
-    return <PageNotFound isErrorAppPage headerContent='Opp!' body='No item found' />
+    return <PageNotFound isHiddenActionButton isBrowserError headerContent='Opp!' body='No item found' />
   }
 
   return (
@@ -58,7 +55,14 @@ const InfiniteScroll = ({
 
       {!isHiddenLoadMore && (
         <Grid xs={12} sx={{ textAlign: 'center', marginTop: '24px' }} item>
-          <Button children='Load more' color='inherit' size='small' onClick={handleClickLoadMore} />
+          <Button
+            aria-label='load-more'
+            data-testid='InfiniteScroll_LoadMoreButton'
+            children='Load more'
+            color='inherit'
+            size='small'
+            onClick={handleClickLoadMore}
+          />
         </Grid>
       )}
     </div>

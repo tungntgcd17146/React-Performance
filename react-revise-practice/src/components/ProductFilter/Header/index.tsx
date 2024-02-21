@@ -1,21 +1,24 @@
-//mui
-import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined'
+import { memo, useMemo } from 'react'
+
 import Chip from '@/components/Chip'
 import IconButton from '@/components/IconButton'
+
 import useScreenWidth from '@/hooks/useScreenWidth'
 import { themes } from '@/themes'
+
+//mui
+import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined'
 import { useTheme } from '@mui/material'
 import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
-import { memo, useMemo } from 'react'
 
 interface Props {
-  onClickHeaderButton: (e: React.MouseEvent<HTMLElement>) => void
-  showingProduct: number
-  totalProduct: number
+  onClickHeaderButton?: (e: React.MouseEvent<HTMLElement>) => void
+  showingProduct?: number
+  totalProduct?: number
 }
 
-const FilterModalHeader = ({ onClickHeaderButton, totalProduct, showingProduct }: Props) => {
+const FilterModalHeader = ({ onClickHeaderButton, totalProduct = 0, showingProduct = 0 }: Props) => {
   const theme = useTheme()
   const { isMobile } = useScreenWidth()
 
@@ -49,6 +52,7 @@ const FilterModalHeader = ({ onClickHeaderButton, totalProduct, showingProduct }
       <Grid>
         {isMobile && (
           <IconButton
+            aria-label='close-drawer-mobile'
             children={<CloseOutlinedIcon />}
             onClick={onClickHeaderButton}
             data-testid='ProductFilter_CloseIconButton'

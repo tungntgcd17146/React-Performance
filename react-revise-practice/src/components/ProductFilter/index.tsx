@@ -1,7 +1,6 @@
 import { memo, useCallback, useEffect, useMemo, useState } from 'react'
 
 //mui
-import FilterAltOutlinedIcon from '@mui/icons-material/FilterAltOutlined'
 import Popover from '@mui/material/Popover'
 import { SelectChangeEvent, useTheme } from '@mui/material'
 import Backdrop from '@mui/material/Backdrop'
@@ -10,7 +9,6 @@ import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined'
 import Checkboxes, { CheckboxOption } from '@/components/Checkboxes'
 
 //components
-import IconButton from '@/components/IconButton'
 import SearchInput from '@/components/SearchInput'
 import FilterModalHeader from './Header'
 import Select from '@/components/Select'
@@ -22,7 +20,7 @@ import useScreenWidth from '@/hooks/useScreenWidth'
 import { themes } from '@/themes'
 
 export interface FilterValue {
-  searchProductName: string
+  searchInput: string
   sortBy: string
   categories: string[]
   priceRange: number[]
@@ -74,11 +72,18 @@ export interface Props {
   onReset?: () => void
   totalProducts?: number
   showingProducts?: number
+  onCloseModal?: () => void
+  anchorEl: HTMLElement | null
 }
 
-const ProductFilter = ({ onReset, onSubmit, totalProducts = 0, showingProducts = 0 }: Props) => {
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
-
+const ProductFilter = ({
+  anchorEl,
+  onReset,
+  onSubmit,
+  onCloseModal,
+  totalProducts = 0,
+  showingProducts = 0
+}: Props) => {
   const [categoryChecked, setCategoryChecked] = useState<CheckboxOption[]>(checkboxesOptions)
 
   const [searchInput, setSearchInput] = useState('')
@@ -94,6 +99,7 @@ const ProductFilter = ({ onReset, onSubmit, totalProducts = 0, showingProducts =
   const { isMobile } = useScreenWidth()
 
   useEffect(() => {
+    //when all value is default disable apply button
     setIsDisableActionButton(
       searchInput === '' &&
         categoryValue.length === 0 &&
@@ -103,17 +109,6 @@ const ProductFilter = ({ onReset, onSubmit, totalProducts = 0, showingProducts =
         rangeSlideValue[1] === 0
     )
   }, [searchInput, categoryValue, selectedSortByValue, selectedRatingValue, rangeSlideValue])
-
-  const handleClick = useCallback(
-    (event: React.MouseEvent<HTMLElement>) => {
-      setAnchorEl(anchorEl ? null : event.currentTarget)
-    },
-    [anchorEl]
-  )
-
-  const handleClose = useCallback(() => {
-    setAnchorEl(null)
-  }, [])
 
   const open = Boolean(anchorEl)
   const id = open ? 'simple-popper' : undefined
@@ -139,9 +134,9 @@ const ProductFilter = ({ onReset, onSubmit, totalProducts = 0, showingProducts =
       rating: selectedRatingValue
     }
 
-    onSubmit?.(filterApplyValue as unknown as FilterValue)
-    handleClose()
-  }, [categoryValue, handleClose, onSubmit, rangeSlideValue, searchInput, selectedRatingValue, selectedSortByValue])
+    onSubmit?.(filterApplyValue)
+    onCloseModal?.()
+  }, [categoryValue, onCloseModal, onSubmit, rangeSlideValue, searchInput, selectedRatingValue, selectedSortByValue])
 
   const handleSelectRatingChange = useCallback((value: SelectChangeEvent) => {
     setSelectedRatingValue(value.target.value)
@@ -186,35 +181,14 @@ const ProductFilter = ({ onReset, onSubmit, totalProducts = 0, showingProducts =
 
   const startIcon = useMemo(() => <FavoriteOutlinedIcon sx={iconHelperSelectStyles} />, [iconHelperSelectStyles])
 
+  const commonMarginBottom = useMemo(() => ({ marginBottom: '24px' }), [])
+
   return (
     <div>
-      <IconButton
-        data-testid='ProductFilter_IconButton'
-        onClick={handleClick}
-        sx={useMemo(
-          () => ({
-            marginLeft: '16px',
-            boxShadow: `0 0 0 2px ${theme.palette.text.primary} inset`,
-            borderRadius: '8px',
-            ':hover': {
-              backgroundColor: theme.palette.info.main,
-              color: theme.palette.primary.main,
-              borderColor: theme.palette.text.primary
-            }
-          }),
-          [theme.palette.text.primary, theme.palette.info.main, theme.palette.primary.main]
-        )}
-        children={useMemo(
-          () => (
-            <FilterAltOutlinedIcon />
-          ),
-          []
-        )}
-      />
       <Backdrop
         sx={{ color: themes.colors.white[500], zIndex: theme.zIndex.drawer + 1 }}
         open={open}
-        onClick={handleClose}
+        onClick={onCloseModal}
       />
       <Popover
         data-testid='ProductFilter_Popover'
@@ -233,7 +207,7 @@ const ProductFilter = ({ onReset, onSubmit, totalProducts = 0, showingProducts =
         id={id}
         open={open}
         anchorEl={isMobile ? null : anchorEl}
-        onClose={handleClose}
+        onClose={onCloseModal}
         anchorOrigin={{
           vertical: 'top',
           horizontal: 'left'
@@ -248,49 +222,58 @@ const ProductFilter = ({ onReset, onSubmit, totalProducts = 0, showingProducts =
           <FilterModalHeader
             totalProduct={totalProducts}
             showingProduct={showingProducts}
-            onClickHeaderButton={handleClose}
+            onClickHeaderButton={onCloseModal}
           />
 
-          <Grid item sx={{ marginBottom: '24px' }}>
-            <SearchInput value={searchInput} placeholder='Search for products' onChange={handleSearch} />
-          </Grid>
+          <SearchInput
+            wrapperStyle={commonMarginBottom}
+            value={searchInput}
+            placeholder='Search for products'
+            onChange={handleSearch}
+          />
 
-          <Grid item sx={{ marginBottom: '24px' }}>
-            <Select
-              label='Sort by'
-              selectedValue={selectedSortByValue}
-              onChange={handleSelectSortByChange}
-              sx={selectStyles}
-              options={sortBySelect}
-            />
-          </Grid>
+          <Select
+            wrapperStyle={commonMarginBottom}
+            label='Sort by'
+            selectedValue={selectedSortByValue}
+            onChange={handleSelectSortByChange}
+            sx={selectStyles}
+            options={sortBySelect}
+          />
 
-          <Grid item sx={{ marginBottom: '24px' }}>
-            <Checkboxes label='Showing' onChange={handleCheckboxChange} checkboxOptions={categoryChecked} />
-          </Grid>
+          <Checkboxes
+            wrapperStyles={commonMarginBottom}
+            label='Showing'
+            onChange={handleCheckboxChange}
+            checkboxOptions={categoryChecked}
+          />
 
-          <Grid item sx={{ marginBottom: '24px' }}>
-            <RangeSlider label='Price' defaultValue={rangeSlideValue} onChangeValue={handleRangeSliderChange} />
-          </Grid>
+          <RangeSlider
+            wrapperStyles={commonMarginBottom}
+            label='Price'
+            defaultValue={rangeSlideValue}
+            onChangeValue={handleRangeSliderChange}
+          />
 
-          <Grid item sx={{ marginBottom: '24px' }}>
-            <Select
-              label='Rating'
-              selectedValue={selectedRatingValue}
-              onChange={handleSelectRatingChange}
-              startIcon={startIcon}
-              sx={selectStyles}
-              options={ratingSelect}
-            />
-          </Grid>
+          <Select
+            wrapperStyle={commonMarginBottom}
+            label='Rating'
+            selectedValue={selectedRatingValue}
+            onChange={handleSelectRatingChange}
+            startIcon={startIcon}
+            sx={selectStyles}
+            options={ratingSelect}
+          />
 
           <Grid item sx={{ marginBottom: '24px' }} justifyContent='flex-end' display='flex'>
             <Button
+              aria-label='close-reset'
               children={isDisableActionButton ? 'Close' : 'Reset'}
               color='inherit'
-              onClick={isDisableActionButton ? handleClose : handleReset}
+              onClick={isDisableActionButton ? onCloseModal : handleReset}
             />
             <Button
+              aria-label='apply-button'
               children='Apply'
               color='primary'
               sx={applyButtonStyles}

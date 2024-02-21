@@ -1,9 +1,9 @@
-import { NavigateItem, ShopSelect, ShopTabs, UserContact } from '@/types'
+import { FeatureProduct, NavigateItem, ShopSelect, ShopTabs, UserContact } from '@/types'
 
 //img
-import Product1 from '@/assets/Product1.jpg'
-import Product2 from '@/assets/Product2.jpg'
-import Product3 from '@/assets/Product3.jpg'
+import Product1 from '/assets/Product1.webp'
+import Product2 from '/assets/Product2.webp'
+import Product3 from '/assets/Product3.webp'
 
 export const tabItems: NavigateItem[] = [
   {
@@ -65,3 +65,22 @@ export const fakeUserContact: UserContact = {
   followerNumber: 23,
   contactStatus: 'follower'
 }
+
+export const fakeFeatureForProductData: FeatureProduct[] = [
+  { text: '128 prebuilt screens' },
+  { text: 'SaaS landing page ready' },
+  { text: 'Global styleguide' },
+  { text: 'Dark + light more ready' }
+]
+
+export const fakeProductOverview = `Meet Node - a crypto NFT marketplace iOS UI design kit for Figma, Sketch, and Adobe XD. The kit includes 
+
+126 stylish mobile screens in light and dark mode, a bunch of crypto 3D illustrations, 1 SaaS landing
+
+page with full premade breakpoints, and hundreds of components to help you ship your next crypto, NFT
+product faster.
+
+Types of screens included: onboarding, connect wallet, home feed, profile, upload, menu, search, product
+detail, notification...
+
+If you have any questions or requests, please feel free to leave them all in the comments section.`

@@ -21,6 +21,9 @@ type Story = StoryObj<typeof meta>
 export const ProductFilterBase: Story = {
   args: {
     totalProducts: 100,
-    showingProducts: 10
+    showingProducts: 10,
+    onSubmit: () => {},
+    onReset: () => {},
+    anchorEl: (<button />) as unknown as HTMLElement
   }
 }

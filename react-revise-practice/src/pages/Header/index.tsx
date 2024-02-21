@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from 'react'
+import { useState, useCallback, useEffect, useMemo } from 'react'
 import useScreenWidth from '@/hooks/useScreenWidth'
 
 //mui
@@ -22,7 +22,7 @@ import RecommendOutlinedIcon from '@mui/icons-material/RecommendOutlined'
 import IconButton from '@/components/IconButton'
 import Drawer from '@/components/Drawer/'
 import Avatar from '@/components/Avatar'
-import Customer1 from '@/assets/customer1.png'
+import Customer1 from '/assets/customer1.webp'
 import { themes } from '@/themes'
 import Button from '@/components/Button'
 import SearchInput from '@/components/SearchInput'
@@ -33,7 +33,6 @@ import useMatchPath from '@/hooks/useMatchPath'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { ROUTES } from '@/constants/routes'
 
-//TODO: make it dynamic prop for this component
 export const listItems: NavigateItem[] = [
   {
     text: 'Home',
@@ -107,8 +106,14 @@ const Header = () => {
     setIsOpenDrawer(true)
   }, [setIsOpenDrawer])
 
+  const iconButtonStyles = useMemo(
+    () => ({ ':hover': { color: theme.palette.text.secondary } }),
+    [theme.palette.text.secondary]
+  )
+
   return (
     <Box
+      data-testid='Header'
       sx={{
         marginLeft: isTablet ? '80px' : isDesktop ? '330px' : '0px',
         padding: '24px',
@@ -121,43 +126,90 @@ const Header = () => {
       }}
     >
       <Hidden mdDown>
-        <SearchInput searchWidth='356px' placeholder='Search or type a command' endHelper='⌘ F' />
+        <SearchInput
+          data-testid='Header_SearchInput'
+          searchWidth='356px'
+          placeholder='Search or type a command'
+          endHelper='⌘ F'
+        />
       </Hidden>
 
-      {isMobile && <IconButton children={<DragHandleIcon />} onClick={handleOpenDrawer} />}
-      <Drawer isOpen={isOpenDrawer} onOpen={handleOpenDrawer} onClose={handleCloseDrawer} listItems={selectedNavItem} />
+      {isMobile && (
+        <IconButton
+          aria-label='open'
+          data-testid='Header_MenuIcon'
+          children={<DragHandleIcon />}
+          onClick={handleOpenDrawer}
+        />
+      )}
+      <Drawer
+        data-testid='Header_Drawer'
+        isOpen={isOpenDrawer}
+        onOpen={handleOpenDrawer}
+        onClose={handleCloseDrawer}
+        listItems={selectedNavItem}
+      />
 
       <div className='flex flex-row gap-[24px]'>
         {/* search input on mobile */}
         {isMobile && (
           <div>
-            <IconButton onClick={handleClickMobileSearchIcon} children={<SearchIcon />} size='large' />
+            <IconButton
+              aria-label='search-mobile'
+              data-testid='Header_SearchInputIcon_Mobile'
+              onClick={handleClickMobileSearchIcon}
+              children={<SearchIcon />}
+              size='large'
+            />
             <Popper
               open={openSearchInputPopup}
               anchorEl={searchIconAnchorEl}
               sx={{ backgroundColor: theme.palette.grey[200], width: '100%' }}
             >
               <Box sx={{ padding: ' 12px 16px' }}>
-                <SearchInput placeholder='Search or type a command' />
+                <SearchInput data-testid='Header_SearchInput_Mobile' placeholder='Search or type a command' />
               </Box>
             </Popper>
           </div>
         )}
 
         <Hidden lgDown>
-          <Button sx={{ width: '120px' }} startIcon={<AddIcon />} children='Create' color='primary' />
+          <Button
+            aria-label='create'
+            sx={useMemo(() => ({ width: '120px' }), [])}
+            startIcon={useMemo(
+              () => (
+                <AddIcon />
+              ),
+              []
+            )}
+            children='Create'
+            color='primary'
+          />
         </Hidden>
         <IconButton
+          aria-label='chat-icon'
           badgeContent={0}
-          children={<ChatBubbleOutlineIcon />}
+          children={useMemo(
+            () => (
+              <ChatBubbleOutlineIcon />
+            ),
+            []
+          )}
           size='large'
-          sx={{ ':hover': { color: theme.palette.text.secondary } }}
+          sx={iconButtonStyles}
         />
         <IconButton
+          aria-label='notification-icon'
           badgeContent={0}
-          children={<NotificationsNoneIcon />}
+          children={useMemo(
+            () => (
+              <NotificationsNoneIcon />
+            ),
+            []
+          )}
           size='large'
-          sx={{ ':hover': { color: theme.palette.text.secondary } }}
+          sx={iconButtonStyles}
         />
 
         <Avatar avtBackground={themes.colors.yellow[600]} size='small' src={Customer1} alt='Customer1' />

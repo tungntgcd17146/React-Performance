@@ -6,7 +6,7 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [
     react({
-      jsxImportSource: '@welldone-software/why-did-you-render' // <-----
+      jsxImportSource: '@welldone-software/why-did-you-render'
     })
   ],
   resolve: {
@@ -36,7 +36,12 @@ export default defineConfig({
         '**/constants/**',
         '**/types/**',
         '**/coverage/**',
-        '**/vite-env.d.ts'
+        '**/vite-env.d.ts',
+        '**/wdyr.ts',
+        '**/routes.tsx',
+        '**/App.tsx',
+        '**/main.tsx',
+        '**/materialTheme.ts'
       ]
     }
   }

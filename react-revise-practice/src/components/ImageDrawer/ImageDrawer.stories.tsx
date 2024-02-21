@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import DarkProductDetail from '@/assets/ProductDetailImgDark.jpg'
+import DarkProductDetail from '/assets/ProductDetailImgDark.webp'
 
 import ImageDrawer from '.'
 

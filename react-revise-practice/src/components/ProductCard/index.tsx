@@ -4,21 +4,18 @@ import { memo, useCallback, useMemo, useState } from 'react'
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
 import CardMedia from '@mui/material/CardMedia'
-import Typography from '@mui/material/Typography'
 import { useTheme } from '@mui/material'
 import CardActionArea from '@mui/material/CardActionArea'
 import Box from '@mui/material/Box'
 import ArrowForwardOutlinedIcon from '@mui/icons-material/ArrowForwardOutlined'
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined'
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
-import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined'
 
 //components
 import Rating from '@/components/Rating'
-import Branch1 from '@/assets/Brand1.jpg'
+import Branch1 from '/assets/Brand1.webp'
 import IconButton from '@/components/IconButton'
 import Chip from '@/components/Chip'
-import { themes } from '@/themes'
 
 export interface Props {
   onEditCard?: (e: React.MouseEvent<HTMLElement>) => void
@@ -29,7 +26,7 @@ export interface Props {
   productPrice: number
   productRating: number
   productRatingCount: number
-  popularity: string
+  popularity?: string
   id: number
 }
 
@@ -42,8 +39,7 @@ const ProductCard = ({
   productCategory,
   productPrice,
   productRating,
-  productRatingCount,
-  popularity
+  productRatingCount
 }: Props) => {
   const [isExpandedCard, setIsExpandedCard] = useState(false)
   const theme = useTheme()
@@ -94,6 +90,7 @@ const ProductCard = ({
 
   return (
     <Card
+      data-testid='ProductCard'
       sx={{
         maxWidth: 560,
         maxHeight: 276,
@@ -130,6 +127,7 @@ const ProductCard = ({
             }}
           >
             <IconButton
+              aria-label='product-edit-icon'
               data-testid='ProductCard_IconButton_edit'
               children={useMemo(
                 () => (
@@ -141,6 +139,7 @@ const ProductCard = ({
               onClick={handleEditCard}
             />
             <IconButton
+              aria-label='product-delete-icon'
               data-testid='ProductCard_IconButton_delete'
               children={useMemo(
                 () => (
@@ -152,6 +151,7 @@ const ProductCard = ({
               onClick={handleDeleteCard}
             />
             <IconButton
+              aria-label='product-view-icon'
               data-testid='ProductCard_IconButton_view'
               children={useMemo(
                 () => (
@@ -166,23 +166,23 @@ const ProductCard = ({
         </Box>
         <CardContent sx={{ display: 'flex', flexDirection: 'column' }}>
           <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
-            <Typography gutterBottom variant='subtitle1' sx={{ color: theme.palette.text.secondary }}>
+            <p
+              style={{
+                color: theme.palette.text.secondary,
+                fontSize: '15px',
+                fontStyle: 'normal',
+                fontWeight: '600',
+                lineHeight: '24px',
+                letterSpacing: '-0.15px',
+                margin: 0
+              }}
+            >
               {productName} ({productCategory})
-            </Typography>
+            </p>
 
             <Chip price={productPrice} variant='filled' />
           </Box>
-          <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
-            <Typography
-              gutterBottom
-              variant='subtitle1'
-              sx={{ color: theme.palette.text.secondary, alignContent: 'center' }}
-            >
-              <FavoriteOutlinedIcon sx={{ color: themes.colors.red[500], marginRight: '8px' }} /> {popularity}
-            </Typography>
-
-            <Rating ratingPoint={productRating} counter={productRatingCount} />
-          </Box>
+          <Rating ratingPoint={productRating} counter={productRatingCount} />
         </CardContent>
       </CardActionArea>
     </Card>
