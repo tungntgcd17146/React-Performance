@@ -1,16 +1,19 @@
-//mui
-import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined'
+import { memo, useMemo } from 'react'
+
 import Chip from '@/components/Chip'
 import IconButton from '@/components/IconButton'
+
 import useScreenWidth from '@/hooks/useScreenWidth'
 import { themes } from '@/themes'
+
+//mui
+import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined'
 import { useTheme } from '@mui/material'
 import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
-import { memo, useMemo } from 'react'
 
 interface Props {
-  onClickHeaderButton: (e: React.MouseEvent<HTMLElement>) => void
+  onClickHeaderButton?: (e: React.MouseEvent<HTMLElement>) => void
   showingProduct?: number
   totalProduct?: number
 }

@@ -7,7 +7,9 @@ const defaultProp = {
   onReset: vi.fn(),
   onSubmit: vi.fn(),
   totalProducts: 0,
-  showingProducts: 0
+  showingProducts: 0,
+  onCloseModal: vi.fn(),
+  anchorEl: (<button />) as unknown as HTMLElement
 } as Props
 
 const setup = (overrideProps = {}) => {
@@ -23,8 +25,6 @@ describe('ProductFilter Test', () => {
   it('render ProductFilter when click icon button correctly', () => {
     setup()
 
-    fireEvent.click(screen.getByTestId('ProductFilter_IconButton'))
-
     expect(screen.getByTestId('ProductFilter_Popover')).toBeTruthy()
   })
 
@@ -33,19 +33,15 @@ describe('ProductFilter Test', () => {
     vi.spyOn(useScreenWidth, 'default').mockReturnValue({ isMobile: true } as any)
     setup()
 
-    fireEvent.click(screen.getByTestId('ProductFilter_IconButton'))
-
     expect(screen.getByTestId('ProductFilter_Popover')).toBeTruthy()
 
     fireEvent.click(screen.getByTestId('ProductFilter_CloseIconButton'))
 
-    await waitFor(() => expect(screen.queryByTestId('ProductFilter_Popover')).toBeFalsy())
+    await waitFor(() => expect(defaultProp.onCloseModal).toBeCalled())
   })
 
   it('call onReset when click Reset button', () => {
     setup()
-
-    fireEvent.click(screen.getByTestId('ProductFilter_IconButton'))
 
     const search = screen.getByPlaceholderText('Search for products')
     fireEvent.change(search, { target: { value: 'test' } })
@@ -57,8 +53,6 @@ describe('ProductFilter Test', () => {
 
   it('change to close button when reset filter modal', async () => {
     setup()
-
-    fireEvent.click(screen.getByTestId('ProductFilter_IconButton'))
 
     const checkedBoxes = screen.getAllByRole('checkbox')
 
@@ -75,8 +69,6 @@ describe('ProductFilter Test', () => {
 
   it('call onSubmit when click Apply button', () => {
     setup()
-
-    fireEvent.click(screen.getByTestId('ProductFilter_IconButton'))
 
     const search = screen.getByPlaceholderText('Search for products')
     fireEvent.change(search, { target: { value: 'test' } })
