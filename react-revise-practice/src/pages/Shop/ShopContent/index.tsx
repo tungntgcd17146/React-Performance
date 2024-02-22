@@ -127,12 +127,8 @@ const ShopContent = () => {
 
   const handleSubmitFilterModal = useCallback(
     (filterData: FilterValue) => {
-      const { priceRange, rating, sortBy, searchInput, categories } = filterData
+      const { minPriceRange, maxPriceRange, rating, sortBy, searchInput, categories } = filterData
       setPage(1)
-
-      const minPriceRange = priceRange[0]
-      const maxPriceRange = priceRange[1]
-
       setProductsQueryParam({
         ...productsQueryParam,
         productPrice_gte: minPriceRange,
@@ -172,12 +168,10 @@ const ShopContent = () => {
   )
   const filterIcon = useMemo(() => <FilterAltOutlinedIcon />, [])
 
-  const handleClickFilterButton = useCallback(
-    (event: React.MouseEvent<HTMLElement>) => {
-      setAnchorEl(anchorEl ? null : event.currentTarget)
-    },
-    [anchorEl]
-  )
+  const handleClickFilterButton = useCallback((event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl((prevAnchorEl) => (prevAnchorEl ? null : event.currentTarget))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const handleCloseFilterModal = useCallback(() => {
     setAnchorEl(null)

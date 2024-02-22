@@ -1,6 +1,8 @@
 import * as React from 'react'
 import { memo, useMemo } from 'react'
 
+import { Checkbox } from '@/types'
+
 //mui
 import FormGroup from '@mui/material/FormGroup'
 import FormControlLabel from '@mui/material/FormControlLabel'
@@ -8,16 +10,8 @@ import Typography from '@mui/material/Typography'
 import { Checkbox as MuiCheckbox, useTheme } from '@mui/material'
 import Box from '@mui/material/Box'
 
-export interface CheckboxOption {
-  id: string
-  label: string
-  sx?: React.CSSProperties
-  labelPlacement?: 'top' | 'start' | 'bottom' | 'end'
-  isChecked: boolean
-}
-
 export interface Props {
-  checkboxOptions: CheckboxOption[]
+  checkboxOptions: Checkbox[]
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
   label?: string
   wrapperStyles?: React.CSSProperties
