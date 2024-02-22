@@ -79,7 +79,6 @@ const Button = ({
 
   const commonStyle = {
     minWidth: '100px',
-    fontFamily: 'Inter',
     fontWeight: 700,
     height: '48px',
     lineHeight: '20px',

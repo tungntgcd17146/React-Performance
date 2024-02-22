@@ -220,7 +220,6 @@ const ShopContent = () => {
       <Grid item xs={12}>
         {isProductsTabs ? (
           <InfiniteScroll
-            maxHeight='1000px'
             isEmptyItem={showingProducts === 0}
             isError={isProductsError}
             isLoading={isProductsLoading}

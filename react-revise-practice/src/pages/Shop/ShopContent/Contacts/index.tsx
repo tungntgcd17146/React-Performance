@@ -37,13 +37,7 @@ const Contacts = ({ tabSelectedText }: Props) => {
   if (!contacts) return <PageNotFound isBrowserError headerContent='Opp!' body='No item found' />
 
   return (
-    <InfiniteScroll
-      maxHeight='800px'
-      isLoading={isLoading}
-      isError={isError}
-      isEmptyItem={contacts.length === 0}
-      isHiddenLoadMore
-    >
+    <InfiniteScroll isLoading={isLoading} isError={isError} isEmptyItem={contacts.length === 0} isHiddenLoadMore>
       <Grid container={!matchedBreakpoint}>
         {contacts.map((contactItem) => {
           return (

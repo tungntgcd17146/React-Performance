@@ -17,7 +17,7 @@ export interface Props {
 }
 
 const InfiniteScroll = ({
-  maxHeight = '300px',
+  maxHeight = 'auto',
   children,
   isLoading,
   isError,
