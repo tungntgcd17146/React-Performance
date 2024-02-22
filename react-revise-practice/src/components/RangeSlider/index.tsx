@@ -15,7 +15,8 @@ export interface Props extends SliderProps {
   onChangeValue?: (value: number[]) => void
   label?: string
   wrapperStyles?: React.CSSProperties
-  rangeValue?: number[]
+  startValue?: number
+  endValue?: number
 }
 export const valuetext = (value: number) => {
   return `$${value}`
@@ -26,9 +27,10 @@ const RangeSlider = ({
   valueLabelFormat = valuetext,
   min = 0,
   max = 100,
-  rangeValue,
   onChangeValue,
   wrapperStyles,
+  startValue = 0,
+  endValue = 0,
   ...rest
 }: Props) => {
   const theme = useTheme()
@@ -36,6 +38,8 @@ const RangeSlider = ({
   const handleChange = (_event: Event, newValue: number | number[]) => {
     onChangeValue?.(newValue as number[])
   }
+
+  const rangeValue = React.useMemo(() => [startValue, endValue], [startValue, endValue])
 
   const sliderStyles = React.useMemo(
     () => ({

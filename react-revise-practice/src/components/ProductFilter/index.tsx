@@ -6,7 +6,7 @@ import { SelectChangeEvent, useTheme } from '@mui/material'
 import Backdrop from '@mui/material/Backdrop'
 import Grid from '@mui/material/Grid'
 import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined'
-import Checkboxes, { CheckboxOption } from '@/components/Checkboxes'
+import Checkboxes from '@/components/Checkboxes'
 
 //components
 import SearchInput from '@/components/SearchInput'
@@ -18,16 +18,18 @@ import Button from '@/components/Button'
 //utils
 import useScreenWidth from '@/hooks/useScreenWidth'
 import { themes } from '@/themes'
+import { Checkbox as CheckboxType } from '@/types'
 
 export interface FilterValue {
   searchInput: string
   sortBy: string
   categories: string[]
-  priceRange: number[]
+  minPriceRange: number
+  maxPriceRange: number
   rating: string
 }
 
-const checkboxesOptions: CheckboxOption[] = [
+const checkboxOptions: CheckboxType[] = [
   {
     id: '1',
     label: 'UI Kit',
@@ -84,13 +86,14 @@ const ProductFilter = ({
   totalProducts = 0,
   showingProducts = 0
 }: Props) => {
-  const [categoryChecked, setCategoryChecked] = useState<CheckboxOption[]>(checkboxesOptions)
+  const [categoryChecked, setCategoryChecked] = useState<CheckboxType[]>(checkboxOptions)
 
   const [searchInput, setSearchInput] = useState('')
   const [categoryValue, setCategoryValue] = useState<string[]>([])
   const [selectedSortByValue, setSelectedSortByValue] = useState(sortBySelect[0].value)
   const [selectedRatingValue, setSelectedRatingValue] = useState(ratingSelect[0].value)
-  const [rangeSlideValue, setRangeSlideValue] = useState([0, 0])
+  const [rangeSlideMinValue, setRangeSlideMinValue] = useState(0)
+  const [rangeSlideMaxValue, setRangeSlideMaxValue] = useState(0)
 
   const [isDisableActionButton, setIsDisableActionButton] = useState(true)
 
@@ -105,10 +108,10 @@ const ProductFilter = ({
         categoryValue.length === 0 &&
         selectedSortByValue === sortBySelect[0].value &&
         selectedRatingValue === ratingSelect[0].value &&
-        rangeSlideValue[0] === 0 &&
-        rangeSlideValue[1] === 0
+        rangeSlideMinValue === 0 &&
+        rangeSlideMaxValue === 0
     )
-  }, [searchInput, categoryValue, selectedSortByValue, selectedRatingValue, rangeSlideValue])
+  }, [searchInput, categoryValue, selectedSortByValue, selectedRatingValue, rangeSlideMinValue, rangeSlideMaxValue])
 
   const open = Boolean(anchorEl)
   const id = open ? 'simple-popper' : undefined
@@ -117,10 +120,11 @@ const ProductFilter = ({
     setSearchInput('')
     setSelectedSortByValue(sortBySelect[0].value)
     setSelectedRatingValue(ratingSelect[0].value)
-    setRangeSlideValue([0, 0])
+    setRangeSlideMinValue(0)
+    setRangeSlideMaxValue(0)
     setCategoryValue([])
 
-    setCategoryChecked(checkboxesOptions)
+    setCategoryChecked(checkboxOptions)
 
     onReset?.()
   }, [onReset])
@@ -130,13 +134,23 @@ const ProductFilter = ({
       searchInput: searchInput,
       categories: categoryValue,
       sortBy: selectedSortByValue,
-      priceRange: rangeSlideValue,
+      minPriceRange: rangeSlideMinValue,
+      maxPriceRange: rangeSlideMaxValue,
       rating: selectedRatingValue
     }
 
     onSubmit?.(filterApplyValue)
     onCloseModal?.()
-  }, [categoryValue, onCloseModal, onSubmit, rangeSlideValue, searchInput, selectedRatingValue, selectedSortByValue])
+  }, [
+    categoryValue,
+    onCloseModal,
+    onSubmit,
+    rangeSlideMaxValue,
+    rangeSlideMinValue,
+    searchInput,
+    selectedRatingValue,
+    selectedSortByValue
+  ])
 
   const handleSelectRatingChange = useCallback((value: SelectChangeEvent) => {
     setSelectedRatingValue(value.target.value)
@@ -170,18 +184,16 @@ const ProductFilter = ({
   }, [])
 
   const handleRangeSliderChange = useCallback((value: number[]) => {
-    setRangeSlideValue(value)
+    setRangeSlideMinValue(value[0]) //min value
+    setRangeSlideMaxValue(value[1]) //max value
   }, [])
 
   const applyButtonStyles = useMemo(() => ({ marginLeft: '16px' }), [])
-
   const selectStyles = useMemo(() => ({ height: '100%' }), [])
-
   const iconHelperSelectStyles = useMemo(() => ({ color: themes.colors.red[500] }), [])
+  const commonMarginBottom = useMemo(() => ({ marginBottom: '24px' }), [])
 
   const startIcon = useMemo(() => <FavoriteOutlinedIcon sx={iconHelperSelectStyles} />, [iconHelperSelectStyles])
-
-  const commonMarginBottom = useMemo(() => ({ marginBottom: '24px' }), [])
 
   return (
     <div>
@@ -251,7 +263,8 @@ const ProductFilter = ({
           <RangeSlider
             wrapperStyles={commonMarginBottom}
             label='Price'
-            rangeValue={rangeSlideValue}
+            startValue={rangeSlideMinValue}
+            endValue={rangeSlideMaxValue}
             onChangeValue={handleRangeSliderChange}
           />
 
