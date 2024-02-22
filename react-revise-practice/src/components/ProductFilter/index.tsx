@@ -251,7 +251,7 @@ const ProductFilter = ({
           <RangeSlider
             wrapperStyles={commonMarginBottom}
             label='Price'
-            defaultValue={rangeSlideValue}
+            rangeValue={rangeSlideValue}
             onChangeValue={handleRangeSliderChange}
           />
 

@@ -12,10 +12,10 @@ export interface Props extends SliderProps {
   valueLabelFormat?: (value: number) => string
   min?: number
   max?: number
-  defaultValue?: number[]
   onChangeValue?: (value: number[]) => void
   label?: string
   wrapperStyles?: React.CSSProperties
+  rangeValue?: number[]
 }
 export const valuetext = (value: number) => {
   return `$${value}`
@@ -26,18 +26,14 @@ const RangeSlider = ({
   valueLabelFormat = valuetext,
   min = 0,
   max = 100,
-  defaultValue = [20, 40],
+  rangeValue,
   onChangeValue,
   wrapperStyles,
   ...rest
 }: Props) => {
-  const [value, setValue] = React.useState<number[]>(defaultValue)
-
   const theme = useTheme()
 
   const handleChange = (_event: Event, newValue: number | number[]) => {
-    setValue(newValue as number[])
-
     onChangeValue?.(newValue as number[])
   }
 
@@ -68,7 +64,7 @@ const RangeSlider = ({
         sx={sliderStyles}
         min={min}
         max={max}
-        value={value}
+        value={rangeValue}
         onChange={handleChange}
         valueLabelDisplay='auto'
         valueLabelFormat={valueLabelFormat}
